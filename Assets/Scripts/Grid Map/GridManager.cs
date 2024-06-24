@@ -11,17 +11,25 @@ public class GridManager : MonoBehaviour
         Debug.Log($"Seed: {seed}");
         GenerateGrid(seed);
     }
-
+    [Header("Map Size")]
     [SerializeField] private int _width, _height;
+
+    [Header("Base Tile")]
     [SerializeField] private Tile _tilePrefab;
     //[SerializeField] private Transform _camTransform;
+
+    [Header("Grid")]
     [SerializeField] private Tilemap _tilemap;
+    
     [SerializeField] private Dictionary<Vector2, Tile> _tiles;
-    [SerializeField] private TileType[] _natureTileTypes;
+
+    [Header("Tile Types")]
+    [SerializeField] private TileType[] _baseTileTypes;
+    [SerializeField] private TileType _forestType;
 
     void GenerateGrid(int seed) {
         //Debug Toggle
-        bool logDebug = true;
+        bool logDebug = false;
 
         //Tile Storage
         _tiles = new Dictionary<Vector2, Tile>();
@@ -38,16 +46,36 @@ public class GridManager : MonoBehaviour
                 Vector3 worldPos = _tilemap.CellToWorld(currentPos);
                 var spawnedTile = Instantiate(_tilePrefab, worldPos, Quaternion.identity);
                 //spawnedTile.Init(GenerateTileType(x, y));
-                spawnedTile.Init(GenerateTileTypeFromNoise(noiseMap, x, y));
+                spawnedTile.Init(x, y, GenerateTileTypeFromNoise(noiseMap, x, y));
                 spawnedTile.name = $"Tile ({x} , {y}) [{spawnedTile.initialType}]";
                 if(logDebug) {Debug.Log("Tile type: " + spawnedTile.initialType);}
                 _tiles[new Vector2(x,y)] = spawnedTile;
             }
         }
 
+        //Forest Generator
+        for (int x = 0; x < _width; x++)
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                Vector2 currentPos = new Vector2(x , y);
+                Tile currentTile = GetTileAtPos(currentPos);
+                if (currentTile.initialType == "Grass")
+                {
+                    if(Random.value > 0.80)
+                    {
+                        currentTile.Init(x, y, _forestType);
+                        currentTile.name = $"Tile ({x} , {y}) [{currentTile.initialType}]";
+                    }
+                }
+                
+            }
+        }
+
         //_camTransform.position = new Vector3((float) _width / 2 -0.5f, (float) _height / 2 -0.5f, -10);
     }
 
+    //Get Tile from Dictionary
     public Tile GetTileAtPos(Vector2 pos)
     {
         if (_tiles.TryGetValue(pos, out var tile))
@@ -58,6 +86,8 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+
+    //Generate NoiseMap based from Seed
     float[,] GenerateNoiseMap(int _width, int _height, int seed = 0)
     {
         float scale = 0.1f;
@@ -73,11 +103,12 @@ public class GridManager : MonoBehaviour
         return noiseMap;
     }
 
+    //Generate TileType based on NoiseMap
     TileType GenerateTileTypeFromNoise(float[,] noiseMap, int x, int y, bool logDebug = false)
     {
         float noiseValue = noiseMap[x,y];
         if(logDebug) {Debug.Log($"{x} , {y} | Noise: {noiseValue}");}
-        foreach (TileType type in _natureTileTypes)
+        foreach (TileType type in _baseTileTypes)
         {
             if(noiseValue < type.level)
             {
@@ -86,14 +117,16 @@ public class GridManager : MonoBehaviour
 
         }
 
-        return _natureTileTypes[_natureTileTypes.Length - 1];
+        return _baseTileTypes[_baseTileTypes.Length - 1];
     }
 
+
+    //Not Currently Used
     TileType GenerateTileType(int x, int y, bool logDebug = false)
     {
         float downChance = Random.value;
         float leftChance = Random.value;
-        int randomType = Random.Range(0, _natureTileTypes.Length);
+        int randomType = Random.Range(0, _baseTileTypes.Length);
         if(logDebug) {Debug.Log($"Checking {x} , {y} | Chances: {leftChance} , {downChance}");}
 
         if(y > 0 && downChance > leftChance)
@@ -117,10 +150,10 @@ public class GridManager : MonoBehaviour
         }
 
         if(logDebug) {Debug.Log("Generating Random Type");}
-        while (Random.value < _natureTileTypes[randomType].spawnChance)
+        while (Random.value < _baseTileTypes[randomType].spawnChance)
         {
-            randomType = Random.Range(0, _natureTileTypes.Length);
+            randomType = Random.Range(0, _baseTileTypes.Length);
         }
-        return _natureTileTypes[randomType];
+        return _baseTileTypes[randomType];
     }
 }

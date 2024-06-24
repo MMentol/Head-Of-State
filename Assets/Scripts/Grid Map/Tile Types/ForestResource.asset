@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57a31a60df515f4b87ecd5139467c8c, type: 3}
-  m_Name: Grass
+  m_Script: {fileID: 11500000, guid: 59b6500e91bf8e84dae9fec142acedbf, type: 3}
+  m_Name: ForestResource
   m_EditorClassIdentifier: 
-  tileTypeName: Grass
-  tileColor: {r: 0, g: 0.41509432, b: 0.09390131, a: 1}
+  tileTypeName: Forest
+  tileColor: {r: 0, g: 0.12156863, b: 0.02745098, a: 1}
   isWalkable: 1
-  level: 0.7
-  spawnChance: 0.86
-  adjacentChance: 0.8
+  level: 0
+  spawnChance: 0
+  adjacentChance: 0
+  resource: Wood

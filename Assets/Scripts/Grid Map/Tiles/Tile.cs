@@ -10,10 +10,10 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
 
     private Vector2 position;
-    public TileType tileType;
+    public TileType tileType {get ; private set;}
     public string initialType;
     public bool isResource = false;
-    public string resourceType;
+    public HarvestableResource resourceType;
     public int resourceAmount;
 
 
@@ -29,14 +29,9 @@ public class Tile : MonoBehaviour
         if(isResource)
         {
             ResourceTile resourceTile = (ResourceTile) tileType;
-            resourceType = resourceTile.resource;
+            resourceType = resourceTile.harvestableResource;
             resourceAmount = Random.Range(1200,25000);
         }
-    }
-
-    public TileType GetTileType()
-    {
-        return tileType;
     }
 
     //Mouse Events

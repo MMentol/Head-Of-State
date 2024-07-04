@@ -176,12 +176,8 @@ public class GridManager : MonoBehaviour
     //Get Tile from Dictionary
     public Tile GetTileAtPos(Vector2 pos)
     {
-        if (_tiles.TryGetValue(pos, out var tile))
-        {
-            return tile;
-        }
-
-        return null;
+        Debug.Log($"Getting tile: {_tiles[pos].name}");
+        return _tiles[pos];
     }
     #endregion
 

@@ -370,11 +370,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24549246270ca64faa5e785ace4524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseIndicator: {fileID: 0}
-  placeableObjects:
-  - {fileID: 3192580965925728889, guid: 88d6f7c1639cc4b48a19f0fdacc342b8, type: 3}
+  _mouseIndicator: {fileID: 0}
+  _placeableObjects:
   - {fileID: 7722850542549836018, guid: 33c574190c130524da7b8b7039487dd1, type: 3}
-  currentPos: {x: 0, y: 0, z: 0}
+  - {fileID: 3192580965925728889, guid: 88d6f7c1639cc4b48a19f0fdacc342b8, type: 3}
+  _currentPos: {x: 0, y: 0}
+  _gridManager: {fileID: 474828757}
+  _tilemap: {fileID: 1279996025}
 --- !u!1 &714861303
 GameObject:
   m_ObjectHideFlags: 0

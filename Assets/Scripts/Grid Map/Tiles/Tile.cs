@@ -11,15 +11,18 @@ public class Tile : MonoBehaviour
 
     [Header("Placement System Settings")]
     [SerializeField] public StructureChooser structureChooser;
-    [SerializeField] private GameObject mouseIndicator;
+    [SerializeField] private GameObject _mouseIndicator;
 
-    private Vector2 position;
+    public Vector2 position;
     public TileType tileType {get ; private set;}
     public string initialType;
     public bool isResource = false;
     public HarvestableResource resourceType;
     public int resourceAmount;
+
+    [Header("Placed Structure")]
     public bool isOccupied = false;
+    public GameObject _placedStructure = null;
 
 
     public void Init(int x, int y, TileType type)
@@ -42,21 +45,31 @@ public class Tile : MonoBehaviour
     //Mouse Events
     private void OnMouseEnter() 
     {
-        structureChooser.currentPos = gameObject.transform.position;
+        structureChooser._currentPos = position;
 
-        if (structureChooser.mouseIndicator != null)
+        if (structureChooser._mouseIndicator != null)
         {
-            mouseIndicator = structureChooser.mouseIndicator;
-            mouseIndicator.transform.position = gameObject.transform.position;
+            _mouseIndicator = structureChooser._mouseIndicator;
+            _mouseIndicator.transform.position = gameObject.transform.position;
         }
 
         _highlight.SetActive(true);
     }
+
+    private void OnMouseOver() 
+    {
+        if (structureChooser._mouseIndicator != null)
+        {
+            _mouseIndicator = structureChooser._mouseIndicator;
+            _mouseIndicator.transform.position = gameObject.transform.position;
+        }
+    }
+
     private void OnMouseExit() 
     {
-        if (mouseIndicator != null)
+        if (_mouseIndicator != null)
         {
-            mouseIndicator = null;
+            _mouseIndicator = null;
         }
         _highlight.SetActive(false);
     }
@@ -64,5 +77,36 @@ public class Tile : MonoBehaviour
     private void OnMouseUp() 
     {
         Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} "+ (isResource ? $"| Resource: {resourceType} Amount: {resourceAmount}" : "") );
+    }
+
+    public bool PlaceStructure(GameObject placeableStructure)
+    {
+        if(!isOccupied)
+        {
+            isOccupied = true;
+            var placedObject =  Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._tilemap.transform);
+            _placedStructure = placedObject;
+            Structure objectStructure = placedObject.GetComponent<Structure>();
+            objectStructure.isPlaced = true;
+            objectStructure._currentPos = position;
+            objectStructure._tile = GetComponent<Tile>();
+            placedObject.name = $"{placeableStructure.name} ({position.x},{position.y})";
+            return true;
+        }
+        Debug.Log("Occupied");
+        return false;
+    }
+
+    public bool DestroyStructure()
+    {
+        Debug.Log($"Destroying structure at ({position.x},{position.y})");
+        if(isOccupied)
+        {
+            Destroy(_placedStructure);
+            _placedStructure = null;
+            isOccupied = false;
+            return true;
+        }
+        return false;
     }
 }

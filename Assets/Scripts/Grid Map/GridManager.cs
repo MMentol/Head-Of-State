@@ -28,6 +28,8 @@ public class GridManager : MonoBehaviour
     [Header("Map Settings")]
     [SerializeField] private float _forestChance = 0.80f;
 
+    [Header("Placement System Settings")]
+    [SerializeField] private StructureChooser structureChooser;
 
     #region Lifecycle Methods
     void Awake()
@@ -65,6 +67,8 @@ public class GridManager : MonoBehaviour
                 //spawnedTile.Init(GenerateTileType(x, y));
                 spawnedTile.Init(x, y, GenerateTileTypeFromNoise(noiseMap, x, y));
                 spawnedTile.name = $"Tile ({x} , {y}) [{spawnedTile.initialType}]";
+                Tile tileSettings = spawnedTile.GetComponent<Tile>();
+                tileSettings.structureChooser = structureChooser;
                 if(logDebug) {Debug.Log("Tile type: " + spawnedTile.initialType);}
                 _tiles[new Vector2(x,y)] = spawnedTile;
             }

@@ -162,7 +162,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22254817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -211,7 +211,7 @@ Tilemap:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22254817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Tiles: {}
   m_AnimatedTiles: {}
   m_TileAssetArray: []
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 474828757}
   - component: {fileID: 474828760}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Grid Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,10 +279,11 @@ MonoBehaviour:
     type: 3}
   _tilemap: {fileID: 22254820}
   _baseTileTypes:
-  - {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
-  - {fileID: 11400000, guid: b121a9732b7a20b45a04ade14c250796, type: 2}
+  - {fileID: 11400000, guid: c1494f808029b2949a0bf8236144deca, type: 2}
   - {fileID: 11400000, guid: 782711a2ee75b39489af0a4b662b7886, type: 2}
+  - {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
   _forestType: {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}
+  _forestChance: 0.8
 --- !u!156049354 &474828758
 Grid:
   m_ObjectHideFlags: 0
@@ -291,10 +292,10 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474828756}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 0.5, z: 1}
+  m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 2
-  m_CellSwizzle: 0
+  m_CellLayout: 0
+  m_CellSwizzle: 1
 --- !u!4 &474828759
 Transform:
   m_ObjectHideFlags: 0
@@ -383,8 +384,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -408,13 +409,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714861303}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 24, z: -48}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalPosition: {x: -45, y: 80, z: -45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!1 &1288228515
 GameObject:
   m_ObjectHideFlags: 0

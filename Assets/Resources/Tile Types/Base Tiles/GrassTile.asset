@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57a31a60df515f4b87ecd5139467c8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e9f9a2fdff21f4ebfe32c5a8866f2d, type: 3}
   m_Name: GrassTile
   m_EditorClassIdentifier: 
   tileTypeName: Grass
-  tileColor: {r: 0, g: 0.41509432, b: 0.09390131, a: 1}
+  tileColor: {r: 0, g: 0.41568628, b: 0.09411765, a: 1}
   isWalkable: 1
   level: 0.6
-  spawnChance: 0.86
-  adjacentChance: 0.8
+  spawnChance: 0
+  adjacentChance: 0

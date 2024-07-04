@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57a31a60df515f4b87ecd5139467c8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e9f9a2fdff21f4ebfe32c5a8866f2d, type: 3}
   m_Name: StoneTile
   m_EditorClassIdentifier: 
   tileTypeName: Stone
-  tileColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+  tileColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
   isWalkable: 1
   level: 0.8
-  spawnChance: 0.8
-  adjacentChance: 0.3
+  spawnChance: 0
+  adjacentChance: 0

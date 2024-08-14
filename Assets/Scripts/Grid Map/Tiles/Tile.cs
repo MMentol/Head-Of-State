@@ -14,6 +14,13 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _mouseIndicator;
 
     public Vector2 position;
+
+    public int gCost;
+    public int hCost;
+    public int fCost;
+
+    public bool isWalkable;
+    public Tile cameFromTile;
     public TileType tileType {get ; private set;}
     public string initialType;
     public bool isResource = false;
@@ -108,5 +115,15 @@ public class Tile : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void CalculateFCost()
+    {
+        fCost = gCost + hCost;
+    }
+
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
     }
 }

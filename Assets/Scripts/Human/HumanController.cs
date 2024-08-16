@@ -1,14 +1,29 @@
+using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HumanController : MonoBehaviour
 {
-    private Rigidbody body;
-    private Animator anim;
-    private BoxCollider boxCollider;
+    public Rigidbody body;
+    public Animator anim;
+    public BoxCollider boxCollider;
     private float horizontalInput;
     private float verticalInput;
+
+    private Vector2 position;
+    private List<Vector3> pathVectorList;
+    private int currentPathIndex;
+
+    public HumanPathfinding humanPathfinding;
+
+    private const float speed = 40f;
+
+    [Range(0, 100)]
+    public int testx;
+    [Range(0, 100)]
+    public int testy;
+
 
 
     // Start is called before the first frame update
@@ -18,13 +33,94 @@ public class HumanController : MonoBehaviour
         body = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider>();
+        humanPathfinding = GetComponent<HumanPathfinding>();
+        transform.position = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        HandleMovement();
+        //unitSkeleton.Update(Time.deltaTime);
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            //Debug.Log(UtilsClass.GetMouseWorldPosition() + " 38");
+            Vector3 mospos = UtilsClass.GetMouseWorldPosition();
+            //SetTargetPosition(mospos);
+            //Debug.Log(mospos + " 39");
+            SetTargetPosition(new Vector3(testx, testy));
+        }
 
     }
+    public void SetTargetPosition(Vector3 targetPosition)
+    {
+        currentPathIndex = 0;
+        pathVectorList = humanPathfinding.FindPath(GetPosition(), targetPosition);
+        Debug.Log(GetPosition() + " , " + targetPosition);
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
+    }
+
+    private void HandleMovement()
+    {
+        //Debug.Log("Moving?");
+        if (pathVectorList != null)
+        {
+            Debug.Log("not null");
+            Vector3 tilexy = pathVectorList[currentPathIndex] - new Vector3(0.5f, 0.5f ,0.5f);
+            Vector3 targetPosition = new Vector3(tilexy.x, 0 , tilexy.y);
+            //Debug.Log(targetPosition);
+            if (Vector3.Distance(transform.position, targetPosition) > 1f)
+            {
+                Vector3 moveDir = (targetPosition - transform.position).normalized;
+                Debug.Log("MoveDir: " + moveDir);
+                Debug.Log("targetPos: " +  targetPosition + " , " + transform.position);
+
+                float distanceBefore = Vector3.Distance(transform.position, targetPosition);
+                //animatedWalker.SetMoveVector(moveDir);
+                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+                Debug.Log("updating");
+            }
+            else
+            {
+                currentPathIndex++;
+                if (currentPathIndex >= pathVectorList.Count)
+                {
+                    StopMoving();
+
+                    if ((transform.position.x % 1) != 0) Mathf.RoundToInt(transform.position.x);
+                    if ((transform.position.z % 1) != 0) Mathf.RoundToInt(transform.position.z);
+                    Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
+                    if (transform.position.x < targetPosition.x) transform.position = transform.position + new Vector3(1f,0);
+                    if (transform.position.x > targetPosition.x) transform.position = transform.position - new Vector3(1f,0);
+                    if (transform.position.z < targetPosition.z) transform.position = transform.position + new Vector3(0,0,1f);
+                    if (transform.position.z > targetPosition.z) transform.position = transform.position - new Vector3(0,0,1f);
+                    //animatedWalker.SetMoveVector(Vector3.zero);
+                }
+            }
+        }
+        else
+        {
+
+            //animatedWalker.SetMoveVector(Vector3.zero);
+        }
+    }
+
+    private void StopMoving()
+    {
+        pathVectorList = null;
+
+    }
+
+    public Vector2 GetPosition()
+    {
+        return new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.z));
+    }
+
+    
 }

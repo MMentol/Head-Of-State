@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
     [Header("Grid")]
     [SerializeField] private Tilemap _tilemap;
     
-    [SerializeField] private Dictionary<Vector2, Tile> _tiles;
+    [SerializeField] public Dictionary<Vector2, Tile> _tiles;
 
     [Header("Tile Types")]
     [SerializeField] private BaseTile[] _baseTileTypes;
@@ -183,4 +183,18 @@ public class GridManager : MonoBehaviour
 
     #region Misc Utility
     #endregion
+
+    #region Getters
+    public int GetWidth()
+    {
+        return _width;
+    }
+    public int GetHeight()
+    {
+        return _height;
+    }
+
+    
+    #endregion
+
 }

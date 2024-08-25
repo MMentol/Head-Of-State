@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class HumanStats : MonoBehaviour
 {
-
+    private string name;
+    public float hunger;
+    public float thirst;
+    public float heat;
 
 
     // Start is called before the first frame update

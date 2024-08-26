@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanStats : MonoBehaviour
+public class HumanStats
 {
     private string name;
     public float hunger;

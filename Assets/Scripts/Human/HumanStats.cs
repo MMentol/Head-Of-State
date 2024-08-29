@@ -8,6 +8,7 @@ public class HumanStats : MonoBehaviour
     public float _hunger;
     public float _thirst;
     public float _heat;
+    public float _energy;
     public float _happiness;
 
     

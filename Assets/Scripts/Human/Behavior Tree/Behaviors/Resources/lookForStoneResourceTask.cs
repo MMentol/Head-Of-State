@@ -20,7 +20,27 @@ public class lookForStoneResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        
+        object t = GetData("stone");
+        if (t == null)
+        {
+            List<object> stoneSource = new List<object>();
+            //Look for all stoneSources on the Map
+            foreach (object s in stoneSource)
+            {
+                //Look through each stonesource if it has resource
+                if (s != null)
+                {
+                    parent.parent.SetData("stone", s);
+                    state = NodeState.SUCCESS;
+                    return state;
+                }
+            }
+            state = NodeState.FAILURE;
+            return state;
+
+        }
+
+        state = NodeState.SUCCESS;
         return state;
     }
 }

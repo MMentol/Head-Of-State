@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageStats
+public class VillageStats : MonoBehaviour
 {
     //Resourcee Trackers
     public float _metal;

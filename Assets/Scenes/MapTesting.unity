@@ -368,8 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5359f76afab5724084ec2b58ee85758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 20
-  _height: 20
+  _width: 100
+  _height: 100
   _tilePrefab: {fileID: 6712076944214036391, guid: 017aa422c19d7a5498394c2bcf721df5,
     type: 3}
   _tilemap: {fileID: 22254820}
@@ -377,8 +377,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1494f808029b2949a0bf8236144deca, type: 2}
   - {fileID: 11400000, guid: 782711a2ee75b39489af0a4b662b7886, type: 2}
   - {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
-  _forestType: {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}
-  _forestChance: 0.8
+  _resourceTypes:
+  - {fileID: 11400000, guid: 4798a2097977cd34fb643521fe11fee9, type: 2}
+  - {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}
+  - {fileID: 11400000, guid: e7cb3e727723a3a4ca5246769e947cd5, type: 2}
   structureChooser: {fileID: 558141569}
 --- !u!156049354 &474828758
 Grid:
@@ -637,11 +639,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -25
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 51.03
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -665,8 +667,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714861303}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10, y: 10, z: 10}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalPosition: {x: 26.668806, y: 20, z: 26.668806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,7 +822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1118385078
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,7 +1298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1940815635
 Transform:
   m_ObjectHideFlags: 0

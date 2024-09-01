@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     [Header("Inventory Settings")]
+    public bool logDebug = false;
     [SerializeField] private int size = 100;
-    [SerializeField] private Dictionary<string, int> _resources = new Dictionary<string, int>{
-        { "wood", 10 },
-        { "metal", 20 },
-        { "stone", 30 },
-        { "water", 40 },
-        { "food", 50 }
+    [SerializeField] public Dictionary<string, int> _resources = new Dictionary<string, int>{
+        { "wood", 0 },
+        { "metal", 0 },
+        { "stone", 0 },
+        { "water", 0 },
+        { "food", 0 }
     };
     
+    public void Init(string type, int resourceAmount, bool debug = false)
+    {
+        logDebug = debug;
+        size = resourceAmount;
+        SetResource(type, resourceAmount);
+    }
+
     public int GetRemainingCapacity()
     {
         int used = _resources.Values.Sum();
-        if (used >= size)
+        if (used > size)
         {
             Debug.LogError($"{gameObject.name} Used storage is more than capacity.");
             return 0;
@@ -57,10 +65,13 @@ public class Inventory : MonoBehaviour {
 
         return count;
     }
-
+    public void SetResource(string type, int count)
+    {
+        _resources[type] = count;
+    }
     //For testing  
     void OnMouseOver() {
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && logDebug)
         {
             Debug.Log($"Available: {GetRemainingCapacity()}");
             foreach (var resource in _resources)

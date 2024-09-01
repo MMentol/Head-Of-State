@@ -8,6 +8,12 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color _baseColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+    public TileType tileType {get ; private set;}
+    public string initialType;
+    public bool isResource = false;
+    public HarvestableResource resourceType;
+    public Inventory inventory;
+    public int resourceAmount;
 
     [Header("Placement System Settings")]
     [SerializeField] public StructureChooser structureChooser;
@@ -15,23 +21,18 @@ public class Tile : MonoBehaviour
 
     public Vector2 position;
 
-    public int gCost;
-    public int hCost;
-    public int fCost;
-
-    public bool isWalkable;
-    public Tile cameFromTile;
-    public TileType tileType {get ; private set;}
-    public string initialType;
-    public bool isResource = false;
-    public HarvestableResource resourceType;
-    public int resourceAmount;
-
     [Header("Placed Structure")]
     public bool isOccupied = false;
     public GameObject _placedStructure = null;
-
-
+    
+    [Header("Pathfinding")]
+    public int gCost;
+    public int hCost;
+    public int fCost;
+    
+    public bool isWalkable;
+    public Tile cameFromTile;
+       
     public void Init(int x, int y, TileType type)
     {
         position = new Vector2(x, y);
@@ -42,10 +43,11 @@ public class Tile : MonoBehaviour
         isResource = (type is ResourceTile);
 
         if(isResource)
-        {
+        {   
             ResourceTile resourceTile = (ResourceTile) tileType;
+            inventory = gameObject.AddComponent<Inventory>();
+            inventory.Init(resourceTile.harvestableResource.ToString(), Random.Range(1200,2500));            
             resourceType = resourceTile.harvestableResource;
-            resourceAmount = Random.Range(1200,25000);
         }
     }
 
@@ -83,7 +85,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUp() 
     {
-        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} "+ (isResource ? $"| Resource: {resourceType} Amount: {resourceAmount}" : "") );
+        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} "+ (isResource ? $"| Resource: {resourceType.ToString()}, Amount: {inventory._resources[resourceType.ToString()]}" : "") );
     }
 
     public bool PlaceStructure(GameObject placeableStructure)

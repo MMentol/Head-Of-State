@@ -23,10 +23,9 @@ public class GridManager : MonoBehaviour
 
     [Header("Tile Types")]
     [SerializeField] private BaseTile[] _baseTileTypes;
-    [SerializeField] private TileType _forestType;
+    [SerializeField] private ResourceTile[] _resourceTypes;
 
     [Header("Map Settings")]
-    [SerializeField] private float _forestChance = 0.80f;
 
     [Header("Placement System Settings")]
     [SerializeField] private StructureChooser structureChooser;
@@ -75,7 +74,7 @@ public class GridManager : MonoBehaviour
         }
 
         //Resource Generation
-        GenerateForest(_forestChance);
+        GenerateResourceNode();
 
         //_camTransform.position = new Vector3((float) _width / 2 -0.5f, (float) _height / 2 -0.5f, -10);
     }
@@ -113,20 +112,24 @@ public class GridManager : MonoBehaviour
         return _baseTileTypes[_baseTileTypes.Length - 1];
     }
 
-    //Forest Generator
-    void GenerateForest(float forestChance)
+    //Resource Generator
+    void GenerateResourceNode(bool logDebug = false)
     {
+        List<BaseTile> _bases = new List<BaseTile>(_baseTileTypes);
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
                 Vector2 currentPos = new Vector2(x , y);
                 Tile currentTile = GetTileAtPos(currentPos);
-                if (currentTile.initialType == "Grass")
+                var curType = (BaseTile) currentTile.tileType;    
+                var resourceNode = curType.resourceNode;   
+                if(logDebug) {Debug.Log($"{curType} , {resourceNode}");}         
+                if (curType.resourceNode == resourceNode)
                 {
-                    if(Random.value > forestChance)
+                    if(Random.value > resourceNode.nodeChance)
                     {
-                        currentTile.Init(x, y, _forestType);
+                        currentTile.Init(x, y, resourceNode);
                         currentTile.name = $"Tile ({x} , {y}) [{currentTile.initialType}]";
                     }
                 }
@@ -174,9 +177,9 @@ public class GridManager : MonoBehaviour
 
     #region Tile Methods
     //Get Tile from Dictionary
-    public Tile GetTileAtPos(Vector2 pos)
+    public Tile GetTileAtPos(Vector2 pos, bool logDebug = false)
     {
-        Debug.Log($"Getting tile: {_tiles[pos].name}");
+        if(logDebug) {Debug.Log($"Getting tile: {_tiles[pos].name}");}
         return _tiles[pos];
     }
     #endregion

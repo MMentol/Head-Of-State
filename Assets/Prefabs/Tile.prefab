@@ -271,10 +271,20 @@ MonoBehaviour:
   _baseColor: {r: 0.0017799971, g: 0.3773585, b: 0.05474616, a: 1}
   _renderer: {fileID: 7794727838974342568}
   _highlight: {fileID: 604907186399408773}
+  structureChooser: {fileID: 0}
+  _mouseIndicator: {fileID: 0}
+  position: {x: 0, y: 0}
+  gCost: 0
+  hCost: 0
+  fCost: 0
+  isWalkable: 0
+  cameFromTile: {fileID: 0}
   initialType: 
   isResource: 0
   resourceType: 0
   resourceAmount: 0
+  isOccupied: 0
+  _placedStructure: {fileID: 0}
 --- !u!65 &6507000078960536003
 BoxCollider:
   m_ObjectHideFlags: 0

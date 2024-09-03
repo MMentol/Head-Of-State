@@ -6,6 +6,13 @@ using TMPro;
 
 public class UIScript : MonoBehaviour
 {
+    [Header("Main Menu stuff")]
+    [SerializeField]
+    GameObject mainMenu = null;
+    [SerializeField]
+    GameObject stagePick = null;
+
+    [Header("Ingame Overlays")]
     [SerializeField]
     GameObject pauseMenu = null;
     [SerializeField]
@@ -23,6 +30,13 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SceneManager.GetActiveScene().name.Equals("Main Menu")) {
+            pause = false;
+            if(Input.GetKeyDown(KeyCode.Escape)) {
+                mainMenu.SetActive(true);
+                stagePick.SetActive(false);
+            }
+        }
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(pause) {
                 pause = false;
@@ -53,4 +67,8 @@ public class UIScript : MonoBehaviour
         buildMenu.SetActive(false);
     }
     
+    public void StartGame() {
+        mainMenu.SetActive(false);
+        stagePick.SetActive(true);
+    }
 }

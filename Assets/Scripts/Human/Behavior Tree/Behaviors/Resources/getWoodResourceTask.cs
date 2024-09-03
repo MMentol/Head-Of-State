@@ -6,7 +6,9 @@ using BehaviorTree;
 
 public class getWoodResourceTask : Node
 {
-    private Animator _animator;
+    private HumanController humanController;
+    private Transform _transform;
+    private HumanStats _hStats;
 
     private Transform _lastTarget;
 
@@ -15,12 +17,23 @@ public class getWoodResourceTask : Node
 
     public getWoodResourceTask(Transform transform)
     {
-        _animator = transform.GetComponent<Animator>();
+        _transform = transform;
+        humanController = transform.GetComponent<HumanController>();
+        _hStats = transform.GetComponent<HumanStats>();
     }
 
     public override NodeState Evaluate()
     {
-        
+        Transform target = (Transform)GetData("wood");
+
+        if (_transform.position.Equals(target.position))
+        {
+            //add food to human
+            //remove food from tile
+            state = NodeState.SUCCESS;
+            return state;
+        }
+        state = NodeState.FAILURE;
         return state;
     }
 }

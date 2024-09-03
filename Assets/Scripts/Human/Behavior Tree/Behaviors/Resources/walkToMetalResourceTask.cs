@@ -6,21 +6,29 @@ using BehaviorTree;
 
 public class walkToMetalResourceTask : Node
 {
-    private Animator _animator;
-
+    private HumanController humanController;
     private Transform _lastTarget;
+    private Transform _transform;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
     public walkToMetalResourceTask(Transform transform)
     {
-        _animator = transform.GetComponent<Animator>();
+        _transform = transform;
+        humanController = transform.GetComponent<HumanController>();
     }
 
     public override NodeState Evaluate()
     {
-        
+        Transform target = (Transform)GetData("metal");
+
+        if (Vector3.Distance(_transform.position, target.position) > 0.1f)
+        {
+            humanController.SetTargetPosition(target.position);
+
+        }
+        state = NodeState.RUNNING;
         return state;
     }
 }

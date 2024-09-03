@@ -20,7 +20,27 @@ public class lookForHomeTask : Node
 
     public override NodeState Evaluate()
     {
-        
+        object t = GetData("home");
+        if (t == null)
+        {
+            List<object> homes = new List<object>();
+            //Look for all homes on the Map
+            foreach (object h in homes)
+            {
+                //Look through each homes if it has resource
+                if (h != null)
+                {
+                    parent.parent.SetData("home", h);
+                    state = NodeState.SUCCESS;
+                    return state;
+                }
+            }
+            state = NodeState.FAILURE;
+            return state;
+
+        }
+
+        state = NodeState.SUCCESS;
         return state;
     }
 }

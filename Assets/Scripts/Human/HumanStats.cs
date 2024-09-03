@@ -2,23 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanStats
+public class HumanStats : MonoBehaviour
 {
-    private string name;
-    public float hunger;
-    public float thirst;
-    public float heat;
+    public float _age;
+    public float _hunger;
+    public float _thirst;
+    public float _heat;
+    public float _energy;
+    public float _happiness;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void getHungry()
     {
-        
+        _hunger--;
+    }
+    public void getThirsty()
+    {
+        _thirst--;
+    }
+    public void getHot()
+    {
+        _heat--;
+    }
+    public void getSleepy(float energyUsed)
+    {
+        _energy -= energyUsed;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void getOlder()
     {
-        
+        _age++;
     }
+
+
+
+
+
+
 }

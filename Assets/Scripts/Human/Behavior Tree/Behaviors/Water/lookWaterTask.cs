@@ -20,7 +20,27 @@ public class lookWaterTask : Node
 
     public override NodeState Evaluate()
     {
-        
+        object t = GetData("water");
+        if (t == null)
+        {
+            List<object> waterSource = new List<object>();
+            //Look for all waterSources on the Map
+            foreach (object wa in waterSource)
+            {
+                //Look through each watersource if it has resource
+                if (wa != null)
+                {
+                    parent.parent.SetData("water", wa);
+                    state = NodeState.SUCCESS;
+                    return state;
+                }
+            }
+            state = NodeState.FAILURE;
+            return state;
+
+        }
+
+        state = NodeState.SUCCESS;
         return state;
     }
 }

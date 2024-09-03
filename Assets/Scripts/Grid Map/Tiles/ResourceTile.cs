@@ -14,4 +14,5 @@ public enum HarvestableResource
 public class ResourceTile : TileType
 {
     public HarvestableResource harvestableResource;
+    public float nodeChance;
 }

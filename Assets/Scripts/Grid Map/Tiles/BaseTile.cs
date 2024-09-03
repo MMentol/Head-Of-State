@@ -9,6 +9,7 @@ public class BaseTile : TileType, IComparable<BaseTile>
     public float level;
     public float spawnChance;
     public float adjacentChance;
+    public ResourceTile resourceNode;
 
     public int CompareTo(BaseTile otherType)
     {

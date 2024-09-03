@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59b6500e91bf8e84dae9fec142acedbf, type: 3}
-  m_Name: ForestResource
+  m_Name: WaterResource
   m_EditorClassIdentifier: 
-  tileTypeName: Forest
-  tileColor: {r: 0, g: 0.12156863, b: 0.02745098, a: 1}
+  tileTypeName: Water
+  tileColor: {r: 0, g: 0.50980395, b: 1, a: 1}
   isWalkable: 1
-  harvestableResource: 0
-  baseTile: {fileID: 11400000, guid: c1494f808029b2949a0bf8236144deca, type: 2}
-  nodeChance: 0.8
+  harvestableResource: 3
+  baseTile: {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
+  nodeChance: 0

@@ -18,3 +18,4 @@ MonoBehaviour:
   level: 0.6
   spawnChance: 0
   adjacentChance: 0
+  resourceNode: {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}

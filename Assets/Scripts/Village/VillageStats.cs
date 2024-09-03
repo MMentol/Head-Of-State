@@ -11,7 +11,7 @@ public class VillageStats : MonoBehaviour
     public float _totalHunger;
     public float _totalThirst;
     public float _totalHeat;
-    public float _happiness;
+    public float _totalHappiness;
 
     public HumanStats[] experiments;
     
@@ -25,22 +25,43 @@ public class VillageStats : MonoBehaviour
 
     public void updateHunger(HumanStats[] humans)
     {
+        float _currentHunger = 0;
         foreach(HumanStats h in humans)
         {
-            _totalHunger += h._hunger;
+            _currentHunger += h._hunger;
         }
-    }
-    public void updateWater(Human[] humans)
-    {
 
+        if (_currentHunger != _totalHunger) _totalHunger = _currentHunger;
     }
-    public void updateTemp(Human[] humans)
+    public void updateWater(HumanStats[] humans)
     {
+        float _currentThirst = 0;
+        foreach (HumanStats h in humans)
+        {
+            _currentThirst += h._thirst;
+        }
 
+        if (_currentThirst != _totalThirst) _totalThirst = _currentThirst;
     }
-    public void updateHappiness(Human[] humans)
+    public void updateTemp(HumanStats[] humans)
     {
+        float _currentTemp = 0;
+        foreach (HumanStats h in humans)
+        {
+            _currentTemp += h._heat;
+        }
 
+        if (_currentTemp != _totalHeat) _totalHeat = _currentTemp;
+    }
+    public void updateHappiness(HumanStats[] humans)
+    {
+        float _currentHappiness = 0;
+        foreach (HumanStats h in humans)
+        {
+            _currentHappiness += h._happiness;
+        }
+
+        if (_currentHappiness != _totalHappiness) _totalHappiness = _currentHappiness;
     }
     public void updateStone(Human[] humans)
     {

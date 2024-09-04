@@ -23,6 +23,10 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            OpenBuild();
+        }
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if(pause) {
                 pause = false;

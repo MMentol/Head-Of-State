@@ -26,53 +26,53 @@ namespace Demos.Complex.Actions
 
         public override void Start(IMonoAgent agent, Data data)
         {
-            data.Drinkable = data.Inventory.Get<IDrinkable>().FirstOrDefault();
-            data.Inventory.Hold(data.Drinkable);
+            data.Eatable = data.Inventory.Get<IEatable>().FirstOrDefault();
+            data.Inventory.Hold(data.Eatable);
         }
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
         {
-            if (data.Drinkable== null)
+            if (data.Eatable == null)
                 return ActionRunState.Stop;
             
-            var drinkThirst = context.DeltaTime * 20f;
-            data.Drinkable.ThirstValue -= drinkThirst;
-            data.Thirst.thirst -= drinkThirst;
+            var eatNutrition = context.DeltaTime * 20f;
+            data.Eatable.NutritionValue -= eatNutrition;
+            data.Hunger.hunger -= eatNutrition;
 
-            if (data.Thirst.thirst <= 20f)
+            if (data.Hunger.hunger <= 20f)
                 return ActionRunState.Stop;
 
-            if (data.Drinkable.ThirstValue > 0)
+            if (data.Eatable.NutritionValue > 0)
                 return ActionRunState.Continue;
 
-            if (data.Drinkable == null)
+            if (data.Eatable == null)
                 return ActionRunState.Stop;
             
-            data.Inventory.Remove(data.Drinkable);
-            this.instanceHandler.QueueForDestroy(data.Drinkable);
+            data.Inventory.Remove(data.Eatable);
+            this.instanceHandler.QueueForDestroy(data.Eatable);
             
             return ActionRunState.Stop;
         }
 
         public override void End(IMonoAgent agent, Data data)
         {
-            if (data.Drinkable == null)
+            if (data.Eatable == null)
                 return;
             
-            if (data.Drinkable.ThirstValue > 0)
-                data.Inventory.Add(data.Drinkable);
+            if (data.Eatable.NutritionValue > 0)
+                data.Inventory.Add(data.Eatable);
         }
         
         public class Data : IActionData
         {
             public ITarget Target { get; set; }
-            public IDrinkable Drinkable { get; set; }
+            public IEatable Eatable { get; set; }
             
             [GetComponent]
             public ComplexInventoryBehaviour Inventory { get; set; }
             
             [GetComponent]
-            public ThirstBehaviour Thirst { get; set; }
+            public HungerBehaviour Hunger { get; set; }
         }
     }
 }

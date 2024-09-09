@@ -8,6 +8,7 @@ public class HumanBT : Tree
     {
         Node root = new Selector(new List<Node>
         {
+
             new Sequence(new List<Node>
             {
                 new checkFoodTask(transform),
@@ -70,6 +71,8 @@ public class HumanBT : Tree
                 new reproduceTask(transform)
             }),
             
+
+            new WanderBT(transform)
             //new Sequence(new List<Node>
             //{
             //    new CheckEnemyInAttackRange(transform),
@@ -81,6 +84,8 @@ public class HumanBT : Tree
             //    new TaskGoToTarget(transform),
             //}),
             //new TaskPatrol(transform, waypoints),
+
+
         });
 
         return root;

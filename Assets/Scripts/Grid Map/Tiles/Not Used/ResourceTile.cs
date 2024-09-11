@@ -10,7 +10,7 @@ public enum HarvestableResource
     Water
 }
 
-[CreateAssetMenu(fileName = "ResourceTile", menuName = "Grid Map/ResourceTile", order = 0)]
+//[CreateAssetMenu(fileName = "ResourceTile", menuName = "Grid Map/ResourceTile", order = 0)]
 public class ResourceTile : TileType
 {
     public HarvestableResource harvestableResource;

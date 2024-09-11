@@ -7,6 +7,7 @@ public class Structure : MonoBehaviour
     [Header("Structure Properties")]
     [SerializeField] public string name = "Structure";
     [SerializeField] public bool isPlaced = false;
+    [SerializeField] public bool isRemovable = true;
     [SerializeField] public Vector2 _currentPos;
     [SerializeField] public Tile _tile;
 
@@ -22,7 +23,10 @@ public class Structure : MonoBehaviour
             if(Input.GetMouseButtonUp(1))
             {
                 //Debug.Log("Rightclick structure");
-                _tile.DestroyStructure();
+                if(isRemovable)
+                {
+                    _tile.DestroyStructure();
+                }
             }
         }
     }

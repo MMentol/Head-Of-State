@@ -52,6 +52,10 @@ public class Inventory : MonoBehaviour {
             stored -= count;
             return count;
         }
+        if(_resources.Values.Sum() == 0)
+        {
+            gameObject.GetComponent<Structure>()._tile.DestroyStructure();
+        }
     }
     public int AddResource(string type, int count)
     {

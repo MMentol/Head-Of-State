@@ -6,12 +6,19 @@ using TMPro;
 
 public class UIScript : MonoBehaviour
 {
+    [Header("Gameplay Menus")]
     [SerializeField]
     GameObject pauseMenu = null;
     [SerializeField]
     GameObject buildMenu = null;
     [SerializeField]
     GameObject overlayMenu = null;
+
+    [Header("Main Menu Items")]
+    [SerializeField]
+     GameObject stagePick = null;
+     [SerializeField]
+     GameObject mainMenu = null;
 
     // Start is called before the first frame update
     bool pause = false;
@@ -27,7 +34,14 @@ public class UIScript : MonoBehaviour
         {
             OpenBuild();
         }
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if(SceneManager.GetActiveScene().name.Equals("Main Menu")) {
+            pause = false;
+            if(Input.GetKeyDown(KeyCode.Escape)) {
+                mainMenu.SetActive(true);
+                stagePick.SetActive(false);
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape)) {
             if(pause) {
                 pause = false;
             } else {
@@ -47,6 +61,11 @@ public class UIScript : MonoBehaviour
             overlayMenu.SetActive(!pause);
             Time.timeScale = 1;
         }
+    }
+
+    public void PickStage() {
+        stagePick.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     public void OpenBuild() {

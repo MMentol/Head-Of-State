@@ -54,7 +54,10 @@ public class Tile : MonoBehaviour
     //Mouse Events
     private void OnMouseEnter() 
     {
-        structureChooser._currentPos = position;
+        if(structureChooser.isBuildMode)
+        {
+          structureChooser._currentPos = position;
+        }
 
         if (structureChooser._mouseIndicator != null)
         {
@@ -69,8 +72,16 @@ public class Tile : MonoBehaviour
     {
         if (structureChooser._mouseIndicator != null)
         {
-            _mouseIndicator = structureChooser._mouseIndicator;
+            if(structureChooser.isBuildMode == true)
+            {
+                _mouseIndicator = structureChooser._mouseIndicator;
             _mouseIndicator.transform.position = gameObject.transform.position;
+            }
+            else
+            {
+                structureChooser.isBuildMode = true;
+            }
+            
         }
     }
 

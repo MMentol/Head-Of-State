@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     public string initialType;
 
     [Header("Placement System Settings")]
+    [SerializeField] public bool canPlaceOn = true;
     [SerializeField] public StructureChooser structureChooser;
     [SerializeField] private GameObject _mouseIndicator;
 
@@ -40,6 +41,7 @@ public class Tile : MonoBehaviour
 
         if(initialType == "Water")
         {
+            canPlaceOn = false;
             Inventory inventory = gameObject.AddComponent<Inventory>();
             inventory.Init("Water", 999999, logDebug);  
         }
@@ -95,7 +97,7 @@ public class Tile : MonoBehaviour
 
     public bool PlaceStructure(GameObject placeableStructure)
     {
-        if(!isOccupied)
+        if(!isOccupied && canPlaceOn)
         {
             isOccupied = true;
             var placedObject =  Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._tilemap.transform);

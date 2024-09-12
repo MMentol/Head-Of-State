@@ -14,7 +14,7 @@ namespace Demos.Shared.Behaviours
 
         private void FixedUpdate()
         {
-            this.thirst += Time.fixedDeltaTime * 2f;    
+            this.thirst += Time.fixedDeltaTime * 2f;
         }
     }
 }

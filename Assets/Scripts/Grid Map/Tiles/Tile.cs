@@ -12,7 +12,6 @@ public class Tile : MonoBehaviour
     public string initialType;
     public bool isResource = false;
     public HarvestableResource resourceType;
-    public Inventory inventory;
     public int resourceAmount;
 
     [Header("Placement System Settings")]
@@ -41,14 +40,6 @@ public class Tile : MonoBehaviour
         _baseColor = tileType.tileColor;
         _renderer.color = _baseColor;
         isResource = (type is ResourceTile);
-
-        if(isResource)
-        {   
-            ResourceTile resourceTile = (ResourceTile) tileType;
-            inventory = gameObject.AddComponent<Inventory>();
-            inventory.Init(resourceTile.harvestableResource.ToString(), Random.Range(1200,2500));            
-            resourceType = resourceTile.harvestableResource;
-        }
     }
 
     //Mouse Events
@@ -96,7 +87,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUp() 
     {
-        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} "+ (isResource ? $"| Resource: {resourceType.ToString()}, Amount: {inventory._resources[resourceType.ToString()]}" : "") );
+        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} ");
     }
 
     public bool PlaceStructure(GameObject placeableStructure)
@@ -116,7 +107,6 @@ public class Tile : MonoBehaviour
         Debug.Log("Occupied");
         return false;
     }
-
     public bool DestroyStructure()
     {
         Debug.Log($"Destroying structure at ({position.x},{position.y})");

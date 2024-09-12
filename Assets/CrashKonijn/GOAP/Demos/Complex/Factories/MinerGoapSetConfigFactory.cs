@@ -22,9 +22,11 @@ namespace Demos.Complex.Factories
             builder.AddWanderGoal();
             
             builder.AddFixHungerGoal();
+            builder.AddFixThirstGoal();
             builder.AddPickupItemGoal<Pickaxe>();
 
             builder.AddGatherItemGoal<Iron>();
+            builder.AddGatherItemGoal<Stone>();
             
             // Actions
             builder.AddWanderAction();
@@ -32,9 +34,11 @@ namespace Demos.Complex.Factories
             builder.AddPickupItemAction<Iron>();
             builder.AddPickupItemAction<Pickaxe>();
             builder.AddPickupItemAction<IEatable>();
+            builder.AddPickupItemAction<IDrinkable>();
             
             builder.AddGatherItemAction<Iron, Pickaxe>();
             builder.AddGatherItemSlowAction<Iron>();
+            builder.AddGatherItemSlowAction<Stone>();
 
             builder.AddEatAction();
             
@@ -43,19 +47,25 @@ namespace Demos.Complex.Factories
             builder.AddTransformTargetSensor();
             
             builder.AddClosestItemTargetSensor<Iron>();
+            builder.AddClosestItemTargetSensor<Stone>();
             builder.AddClosestItemTargetSensor<Pickaxe>();
             builder.AddClosestItemTargetSensor<IEatable>();
+            builder.AddClosestItemTargetSensor<IDrinkable>();
             
             builder.AddClosestSourceTargetSensor<Iron>();
+            builder.AddClosestSourceTargetSensor<Stone>();
 
             // WorldSensors
             builder.AddIsHoldingSensor<Pickaxe>();
             builder.AddIsHoldingSensor<Iron>();
+            builder.AddIsHoldingSensor<Stone>();
             builder.AddIsHoldingSensor<IEatable>();
+            builder.AddIsHoldingSensor<IDrinkable>();
             
             builder.AddIsInWorldSensor<Pickaxe>();
             builder.AddIsInWorldSensor<Iron>();
             builder.AddIsInWorldSensor<IEatable>();
+            builder.AddIsInWorldSensor<IDrinkable>();
             
             return builder.Build();
         }

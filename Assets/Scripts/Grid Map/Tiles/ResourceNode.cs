@@ -12,6 +12,7 @@ public enum Resource
 }
 public class ResourceNode : MonoBehaviour
 {
+    [SerializeField] public bool logDebug;
     [Header("Resource Node Properties")]
     [SerializeField] public BaseTile _baseType;
     [SerializeField] public Resource resourceType;
@@ -19,9 +20,9 @@ public class ResourceNode : MonoBehaviour
     [SerializeField] public float nodeChance;
     [SerializeField] public Inventory inventory;
 
-    void Init()
+    public void Init()
     {
         inventory = gameObject.AddComponent<Inventory>();
-        inventory.Init(resourceType.ToString(), Random.Range(1200,2500), true);            
+        inventory.Init(resourceType.ToString(), Random.Range(1200,2500), logDebug);            
     }
 }

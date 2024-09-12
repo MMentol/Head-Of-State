@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    [SerializeField] public bool logDebug;
     [Header("Tile Properties")]
     [SerializeField] private Color _baseColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     public TileType tileType {get ; private set;}
     public string initialType;
-    public bool isResource = false;
-    public HarvestableResource resourceType;
-    public int resourceAmount;
 
     [Header("Placement System Settings")]
     [SerializeField] public StructureChooser structureChooser;
@@ -39,7 +37,12 @@ public class Tile : MonoBehaviour
         initialType = tileType.tileTypeName;
         _baseColor = tileType.tileColor;
         _renderer.color = _baseColor;
-        isResource = (type is ResourceTile);
+
+        if(initialType == "Water")
+        {
+            Inventory inventory = gameObject.AddComponent<Inventory>();
+            inventory.Init("Water", 999999, logDebug);  
+        }
     }
 
     //Mouse Events
@@ -102,6 +105,12 @@ public class Tile : MonoBehaviour
             objectStructure._currentPos = position;
             objectStructure._tile = GetComponent<Tile>();
             placedObject.name = $"{placeableStructure.name} ({position.x},{position.y})";
+
+            ResourceNode rNode = placedObject.GetComponent<ResourceNode>();
+            if(rNode != null)
+            {
+                rNode.Init();
+            }
             return true;
         }
         Debug.Log("Occupied");

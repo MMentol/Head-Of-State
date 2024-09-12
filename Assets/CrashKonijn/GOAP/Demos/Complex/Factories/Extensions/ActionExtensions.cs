@@ -91,5 +91,13 @@ namespace Demos.Complex.Factories.Extensions
                 .AddEffect<IsHungry>(EffectType.Decrease)
                 .AddCondition<IsHolding<IEatable>>(Comparison.GreaterThanOrEqual, 1);
         }
+
+        public static void AddDrinkAction(this GoapSetBuilder builder)
+        {
+            builder.AddAction<DrinkAction>()
+                .SetTarget<TransformTarget>()
+                .AddEffect<IsThirsty>(EffectType.Decrease)
+                .AddCondition<IsHolding<IDrinkable>>(Comparison.GreaterThanOrEqual, 1);
+        }
     }
 }

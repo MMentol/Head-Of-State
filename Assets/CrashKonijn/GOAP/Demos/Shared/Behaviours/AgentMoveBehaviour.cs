@@ -56,8 +56,8 @@ namespace Demos.Shared.Behaviours
             
             if (this.currentTarget == null)
                 return;
-            humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
-            //this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
+            //humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
         }
 
         private void OnDrawGizmos()

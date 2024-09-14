@@ -41,6 +41,7 @@ namespace Demos.Complex.Factories
             builder.AddGatherItemSlowAction<Stone>();
 
             builder.AddEatAction();
+            builder.AddDrinkAction();
             
             // TargetSensors
             builder.AddWanderTargetSensor();

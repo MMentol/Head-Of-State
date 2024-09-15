@@ -35,9 +35,9 @@ namespace Demos.Complex.Actions
             if (data.Drinkable== null)
                 return ActionRunState.Stop;
             
-            var eatNutrition = context.DeltaTime * 20f;
-            data.Drinkable.ThirstValue -= eatNutrition;
-            data.Thirst.thirst -= eatNutrition;
+            var drinkThirst = context.DeltaTime * 20f;
+            data.Drinkable.ThirstValue -= drinkThirst;
+            data.Thirst.thirst -= drinkThirst;
 
             if (data.Thirst.thirst <= 20f)
                 return ActionRunState.Stop;

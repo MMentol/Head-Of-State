@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] public bool logDebug;
+    [SerializeField] public bool logDebug = false;
     [Header("Tile Properties")]
     [SerializeField] private Color _baseColor;
     [SerializeField] private SpriteRenderer _renderer;
@@ -31,8 +31,9 @@ public class Tile : MonoBehaviour
     public bool isWalkable;
     public Tile cameFromTile;
        
-    public void Init(int x, int y, TileType type)
+    public void Init(int x, int y, TileType type, bool logDebug = false)
     {
+        this.logDebug = logDebug;
         position = new Vector2(x, y);
         tileType = type;
         initialType = tileType.tileTypeName;

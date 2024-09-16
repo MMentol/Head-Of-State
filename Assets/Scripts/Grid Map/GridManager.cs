@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
+    //Debug Toggle
+    [SerializeField] public bool logDebug = false;
     [Header("Map Size")]
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -46,9 +48,6 @@ public class GridManager : MonoBehaviour
 
     #region Generator Methods
     void GenerateGrid(int seed) {
-        //Debug Toggle
-        bool logDebug = false;
-
         //Tile Storage
         _tiles = new Dictionary<Vector2, Tile>();
 

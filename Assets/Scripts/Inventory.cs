@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour {
     public void Init(string type, int resourceAmount, bool debug = false)
     {
         logDebug = debug;
-        Debug.Log($"Inv Init.");
+        if(logDebug){Debug.Log($"Inv Init.");}
         initList.AddItemType(type, resourceAmount);
         _resources = initList.ToDictionary();
         size = resourceAmount;

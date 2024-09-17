@@ -20,10 +20,10 @@ MonoBehaviour:
   <MoveMode>k__BackingField: 0
   conditions:
   - worldKey: {fileID: 11400000, guid: 234651d0e15f8b448960d2eb39f5fd95, type: 2}
-    <Comparison>k__BackingField: 2
+    <Comparison>k__BackingField: 3
     <Amount>k__BackingField: 0
   effects:
-  - worldKey: {fileID: 11400000, guid: 234651d0e15f8b448960d2eb39f5fd95, type: 2}
-    <Increase>k__BackingField: 0
   - worldKey: {fileID: 11400000, guid: ca400ecee7030674295679f1ff48acbd, type: 2}
     <Increase>k__BackingField: 1
+  - worldKey: {fileID: 11400000, guid: 234651d0e15f8b448960d2eb39f5fd95, type: 2}
+    <Increase>k__BackingField: 0

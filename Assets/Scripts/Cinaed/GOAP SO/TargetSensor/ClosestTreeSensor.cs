@@ -12,7 +12,7 @@ namespace Cinaed.GOAP.Simple.TargetSensors
         private TreeResource[] trees;
         public override void Created()
         {
-            Debug.Log("Getting trees.");
+            //Debug.Log("Getting tree list.");
             this.trees = GameObject.FindObjectsOfType<TreeResource>();
         }
 
@@ -20,11 +20,22 @@ namespace Cinaed.GOAP.Simple.TargetSensors
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
-            var closest = this.trees
+            //Debug.Log($"Sense Closest Tree {agent.gameObject.name}");
+            TreeResource closest = this.trees
                 .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
-                .FirstOrDefault()
-                .transform;
-            return new TransformTarget(closest);
+                .FirstOrDefault();
+
+            while (closest.rawMaterialAmount == 0)
+            {
+                var list = this.trees.ToList();
+                list.Remove(closest);
+                trees = list.ToArray();
+                closest = this.trees
+                .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
+                .FirstOrDefault();
+            }
+
+            return new TransformTarget(closest.transform);
         }
 
     }

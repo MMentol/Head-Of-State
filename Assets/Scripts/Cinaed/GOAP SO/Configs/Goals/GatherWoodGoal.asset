@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classType: Cinaed.GOAP.Simple.Goals.GatherWoodGoal, Assembly-CSharp, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
-  baseCost: 1
+  baseCost: 100
   conditions:
   - worldKey: {fileID: 11400000, guid: ca400ecee7030674295679f1ff48acbd, type: 2}
-    <Comparison>k__BackingField: 1
+    <Comparison>k__BackingField: 2
     <Amount>k__BackingField: 75

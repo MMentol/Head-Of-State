@@ -54,6 +54,7 @@ namespace Cinaed.GOAP.Simple.Behaviours
 
             if (this.currentTarget == null)
                 return;
+            //Debug.Log("Moving");
             //humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
             this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
         }

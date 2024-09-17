@@ -124,6 +124,8 @@ MonoBehaviour:
   _baseType: {fileID: 11400000, guid: c1494f808029b2949a0bf8236144deca, type: 2}
   resourceType: 0
   nodeChance: 0.25
+  minAmount: 1
+  maxAmount: 1
   inventory: {fileID: 0}
 --- !u!114 &6875124672069536029
 MonoBehaviour:
@@ -158,3 +160,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fde22926b8c56f44b6eb5af9672a855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBound: 1
+  rawMaterialAmount: 0

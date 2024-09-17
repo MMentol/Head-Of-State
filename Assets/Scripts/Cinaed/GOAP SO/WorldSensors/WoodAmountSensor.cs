@@ -2,6 +2,7 @@ using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Interfaces;
 using CrashKonijn.Goap.Sensors;
 using Scripts;
+using UnityEngine;
 
 namespace Cinaed.GOAP.Simple.WorldSensors
 {
@@ -17,7 +18,8 @@ namespace Cinaed.GOAP.Simple.WorldSensors
             if (inventory == null)
                 return false;
 
-            return inventory.GetResourceCount("Wood") / inventory.GetRemainingCapacity();
+            float percentage = (float) inventory.GetResourceCount("wood") / (float) inventory.size * 100f;
+            return Mathf.RoundToInt(percentage) ;
         }
     }
 }

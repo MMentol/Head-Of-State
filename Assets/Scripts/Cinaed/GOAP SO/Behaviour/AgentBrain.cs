@@ -18,10 +18,13 @@ namespace Cinaed.GOAP.Behaviors
 
         private void Update()
         {
-            if (this.inventory.GetResourceCount("Wood") == 0)
+            int woodPercentage = (this.inventory.GetResourceCount("wood") / inventory.size * 100);
+            if (woodPercentage < 75)
             {
+                //Debug.Log("Set Goal to Wood");
                 this.agent.SetGoal<GatherWoodGoal>(true);
             }
+            else { this.agent.SetGoal<GatherWoodGoal>(false); }
         }
     }
 }

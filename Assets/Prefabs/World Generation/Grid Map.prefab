@@ -191,9 +191,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 782711a2ee75b39489af0a4b662b7886, type: 2}
   - {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
   _resourceTypes:
-  - {fileID: 11400000, guid: 4798a2097977cd34fb643521fe11fee9, type: 2}
-  - {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}
-  - {fileID: 11400000, guid: e7cb3e727723a3a4ca5246769e947cd5, type: 2}
+  - {fileID: 7241097003127628268, guid: c2275b357c9422f4fabfa78f3ad9ad81, type: 3}
+  - {fileID: 7241097003127628268, guid: e6b20579260a14545b5cd987a3b0d991, type: 3}
+  - {fileID: 7241097003127628268, guid: 34382668181330e4dbb7b298970570aa, type: 3}
   structureChooser: {fileID: 5328205706227911053}
 --- !u!114 &8732579145065857255
 MonoBehaviour:
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24549246270ca64faa5e785ace4524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuildMode: 0
   _mouseIndicator: {fileID: 0}
   _placeableObjects:
   - {fileID: 7722850542549836018, guid: 33c574190c130524da7b8b7039487dd1, type: 3}

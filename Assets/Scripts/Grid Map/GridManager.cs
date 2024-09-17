@@ -34,11 +34,12 @@ public class GridManager : MonoBehaviour
 
     #region Lifecycle Methods
     void Awake()
-    {
-        
+    {       
         Array.Sort(_baseTileTypes);
+        StartGenerate();
+        Debug.Log("Generating Done.");
     }
-    void Start () 
+    void StartGenerate() 
     {       
         int seed = Random.Range(-1000000,1000000);
         Debug.Log($"Seed: {seed}");

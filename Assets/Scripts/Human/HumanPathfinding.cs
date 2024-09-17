@@ -39,7 +39,7 @@ public class HumanPathfinding : MonoBehaviour
         gridManager = GameObject.FindWithTag("Grid").GetComponent<GridManager>();
         tiles = gridManager._tiles;
 
-        Debug.Log(tiles + " tiles");
+        //Debug.Log(tiles + " tiles");
     }
     public List<Vector3> FindPath(Vector2 startWorldPosition, Vector2 endWorldPosition)
     {

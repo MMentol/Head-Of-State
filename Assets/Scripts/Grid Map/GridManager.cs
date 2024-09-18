@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
+    //Debug Toggle
+    [SerializeField] public bool logDebug = false;
     [Header("Map Size")]
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -23,7 +25,7 @@ public class GridManager : MonoBehaviour
 
     [Header("Tile Types")]
     [SerializeField] private BaseTile[] _baseTileTypes;
-    [SerializeField] private ResourceTile[] _resourceTypes;
+    [SerializeField] private ResourceNode[] _resourceTypes;
 
     [Header("Map Settings")]
 
@@ -46,9 +48,6 @@ public class GridManager : MonoBehaviour
 
     #region Generator Methods
     void GenerateGrid(int seed) {
-        //Debug Toggle
-        bool logDebug = false;
-
         //Tile Storage
         _tiles = new Dictionary<Vector2, Tile>();
 
@@ -74,7 +73,14 @@ public class GridManager : MonoBehaviour
         }
 
         //Resource Generation
-        GenerateResourceNode();
+        for (int x = 0; x < _width; x++)
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                if(GenerateResourceNode(x,y, false))
+                {if(logDebug){Debug.Log($"Placed Resource. at {x},{y}");}};
+            }
+        }
 
         //_camTransform.position = new Vector3((float) _width / 2 -0.5f, (float) _height / 2 -0.5f, -10);
     }
@@ -113,33 +119,57 @@ public class GridManager : MonoBehaviour
     }
 
     //Resource Generator
-    void GenerateResourceNode(bool logDebug = false)
+    bool GenerateResourceNode(int x, int y, bool logDebug = false)
     {
-        List<BaseTile> _bases = new List<BaseTile>(_baseTileTypes);
-        for (int x = 0; x < _width; x++)
+        Vector2 currentPos = new Vector2(x, y);
+        Tile currentTile = GetTileAtPos(currentPos);
+        var curType = (BaseTile)currentTile.tileType;
+
+        float totalChance = 0f;
+        List<ResourceNode> matchingNodes = new List<ResourceNode>();
+
+        // Find all ResourceNodes with matching baseType
+        foreach (ResourceNode resourceNode in _resourceTypes)
         {
-            for (int y = 0; y < _height; y++)
+            if (curType == resourceNode._baseType)
             {
-                Vector2 currentPos = new Vector2(x , y);
-                Tile currentTile = GetTileAtPos(currentPos);
-                var curType = (BaseTile) currentTile.tileType;    
-                var resourceNode = curType.resourceNode;   
-                if(logDebug) {Debug.Log($"{curType} , {resourceNode}");}         
-                if (curType.resourceNode == resourceNode)
-                {
-                    if(Random.value > resourceNode.nodeChance)
-                    {
-                        currentTile.Init(x, y, resourceNode);
-                        currentTile.name = $"Tile ({x} , {y}) [{currentTile.initialType}]";
-                    }
-                }
-                
+                matchingNodes.Add(resourceNode);
+                totalChance += resourceNode.nodeChance;
             }
         }
+
+        // Check if any matching nodes exist
+        if (matchingNodes.Count == 0)
+        {
+            return false;
+        }
+
+        float rand = Random.value;
+        //Debug.Log(rand);
+
+        // Check if a resource node should be generated based on combined probability
+        if (rand <= totalChance)
+        {
+            // Choose a resource node based on their individual chances (weighted random selection)
+            float accumulatedChance = 0f;
+            int chosenIndex = 0;
+            while (accumulatedChance < rand)
+            {
+                accumulatedChance += matchingNodes[chosenIndex].nodeChance;
+                chosenIndex++;
+            }
+
+            ResourceNode chosenNode = matchingNodes[chosenIndex - 1];
+
+            currentTile.PlaceStructure(chosenNode.gameObject);
+            return true;
+        }
+
+        return false;               
     }
 
     //Not Currently Used
-    TileType GenerateTileType(int x, int y, bool logDebug = false)
+    /*TileType GenerateTileType(int x, int y, bool logDebug = false)
     {
         float downChance = Random.value;
         float leftChance = Random.value;
@@ -172,7 +202,7 @@ public class GridManager : MonoBehaviour
             randomType = Random.Range(0, _baseTileTypes.Length);
         }
         return _baseTileTypes[randomType];
-    }
+    }*/
     #endregion
 
     #region Tile Methods

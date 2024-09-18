@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace GridMap.Resources
 {
-    public class TreeResource : MonoBehaviour, IResourceSource
+    public class WaterResource : MonoBehaviour, IResourceSource
     {
-        [SerializeField][Min(1)] public int maxBound;
+        [SerializeField][Min(1)] public int maxBound = 999999;
         [SerializeField] public int rawMaterialAmount;
         [SerializeField] public bool toDestroy = false;
         [SerializeField] public GameObject occupant = null;
@@ -40,7 +40,7 @@ namespace GridMap.Resources
             //Debug.Log($"Started Harvesting {gameObject.name}");
             
             this.rawMaterialAmount -= amount;
-            DestroyEmpty();
+            //DestroyEmpty();
             
             return (rawMaterialAmount < 0) ? -rawMaterialAmount : amount;
         }

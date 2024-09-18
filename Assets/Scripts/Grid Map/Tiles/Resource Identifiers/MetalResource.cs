@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GridMap.Resources
 {
-    public class TreeResource : MonoBehaviour, IResourceSource
+    public class MetalResource : MonoBehaviour, IResourceSource
     {
         [SerializeField][Min(1)] public int maxBound;
         [SerializeField] public int rawMaterialAmount;

@@ -25,7 +25,7 @@ public class ResourceNode : MonoBehaviour
 
     public void Init()
     {
-        inventory = gameObject.AddComponent<Inventory>();
+        //inventory = gameObject.AddComponent<Inventory>();
         //inventory.Init(resourceType.ToString(), Mathf.CeilToInt(Random.Range(minAmount, maxAmount)), logDebug);            
     }
 }

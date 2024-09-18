@@ -1618,6 +1618,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 149734016}
   buildMenu: {fileID: 1326261054}
   overlayMenu: {fileID: 41121758}
+  stagePick: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!1 &1778213980
 GameObject:
   m_ObjectHideFlags: 0

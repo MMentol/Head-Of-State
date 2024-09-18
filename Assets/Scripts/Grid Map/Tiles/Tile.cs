@@ -1,4 +1,4 @@
-using Scripts;
+using GridMap.Resources;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -42,8 +42,7 @@ public class Tile : MonoBehaviour
         if(initialType == "Water")
         {
             canPlaceOn = false;
-            Inventory inventory = gameObject.AddComponent<Inventory>();
-            inventory.Init("Water", 999999, logDebug);  
+            gameObject.AddComponent<WaterResource>();
         }
     }
 
@@ -120,7 +119,7 @@ public class Tile : MonoBehaviour
     }
     public bool DestroyStructure()
     {
-        Debug.Log($"Destroying structure at ({position.x},{position.y})");
+        if (logDebug) { Debug.Log($"Destroying structure at ({position.x},{position.y})"); }
         if(isOccupied)
         {
             Destroy(_placedStructure);

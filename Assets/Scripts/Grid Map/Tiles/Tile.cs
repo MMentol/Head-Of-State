@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    [SerializeField] public bool logDebug = false;
     [Header("Tile Properties")]
     [SerializeField] private Color _baseColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     public TileType tileType {get ; private set;}
     public string initialType;
-    public bool isResource = false;
-    public HarvestableResource resourceType;
-    public Inventory inventory;
-    public int resourceAmount;
 
     [Header("Placement System Settings")]
+    [SerializeField] public bool canPlaceOn = true;
     [SerializeField] public StructureChooser structureChooser;
     [SerializeField] private GameObject _mouseIndicator;
 
@@ -33,21 +31,20 @@ public class Tile : MonoBehaviour
     public bool isWalkable;
     public Tile cameFromTile;
        
-    public void Init(int x, int y, TileType type)
+    public void Init(int x, int y, TileType type, bool logDebug = false)
     {
+        this.logDebug = logDebug;
         position = new Vector2(x, y);
         tileType = type;
         initialType = tileType.tileTypeName;
         _baseColor = tileType.tileColor;
         _renderer.color = _baseColor;
-        isResource = (type is ResourceTile);
 
-        if(isResource)
-        {   
-            ResourceTile resourceTile = (ResourceTile) tileType;
-            inventory = gameObject.AddComponent<Inventory>();
-            inventory.Init(resourceTile.harvestableResource.ToString(), Random.Range(1200,2500));            
-            resourceType = resourceTile.harvestableResource;
+        if(initialType == "Water")
+        {
+            canPlaceOn = false;
+            Inventory inventory = gameObject.AddComponent<Inventory>();
+            inventory.Init("Water", 999999, logDebug);  
         }
     }
 
@@ -96,12 +93,12 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUp() 
     {
-        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} "+ (isResource ? $"| Resource: {resourceType.ToString()}, Amount: {inventory._resources[resourceType.ToString()]}" : "") );
+        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} ");
     }
 
     public bool PlaceStructure(GameObject placeableStructure)
     {
-        if(!isOccupied)
+        if(!isOccupied && canPlaceOn)
         {
             isOccupied = true;
             var placedObject =  Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._tilemap.transform);
@@ -111,12 +108,17 @@ public class Tile : MonoBehaviour
             objectStructure._currentPos = position;
             objectStructure._tile = GetComponent<Tile>();
             placedObject.name = $"{placeableStructure.name} ({position.x},{position.y})";
+
+            ResourceNode rNode = placedObject.GetComponent<ResourceNode>();
+            if(rNode != null)
+            {
+                rNode.Init();
+            }
             return true;
         }
         Debug.Log("Occupied");
         return false;
     }
-
     public bool DestroyStructure()
     {
         Debug.Log($"Destroying structure at ({position.x},{position.y})");

@@ -4,6 +4,7 @@ namespace GridMap.Resources
 {
     public interface IResourceSource
     {
+        public void RemoveOccupied();
         public void SetOccupied(GameObject occupant);
         public GameObject GetOccupied();
         public bool ToDestroy();

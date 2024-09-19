@@ -45,10 +45,16 @@ namespace GridMap.Resources
             return (rawMaterialAmount < 0) ? -rawMaterialAmount : amount;
         }
 
+        public void RemoveOccupied()
+        {
+            this.occupant = null;
+        }
+
         public void SetOccupied(GameObject occupant)
         {
             this.occupant = occupant;
         }
+        
         public GameObject GetOccupied()
         {
             return occupant;

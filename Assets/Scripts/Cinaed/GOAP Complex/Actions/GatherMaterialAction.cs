@@ -25,8 +25,13 @@ namespace Cinaed.GOAP.Complex.Actions
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
         {
-
-            if (data.Source.GetOccupied() != agent.gameObject || data.Target == null || data.Source == null || data.Source.ToDestroy())
+            if (data.Target == null)
+                return ActionRunState.Stop;
+            if (data.Source == null)
+                return ActionRunState.Stop;
+            if (data.Source.GetOccupied() != agent.gameObject)
+                return ActionRunState.Stop;
+            if (data.Source.ToDestroy())
                 return ActionRunState.Stop;
 
             data.Timer -= context.DeltaTime;
@@ -47,12 +52,13 @@ namespace Cinaed.GOAP.Complex.Actions
             }
             else
                 Debug.LogError($"{agent.name} Inventory is Missing");
+            data.Source.RemoveOccupied();
 
             return ActionRunState.Stop;
         }
 
         public override void End(IMonoAgent agent, Data data)
-        {
+        {           
             //Debug.Log("Ended Gather Wood");
         }
 

@@ -17,6 +17,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         private AgentBehaviour agent;
         private Inventory inventory;
         public float MaterialPercentage = 75.0f;
+        public bool logDebug = false;
 
         private void Awake()
         {
@@ -89,8 +90,21 @@ namespace Cinaed.GOAP.Complex.Behaviours
                     }
                 }
             }
+            Dictionary<string, float> sortedNeeded = resourcesNeeded.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            string lowest = sortedNeeded.FirstOrDefault().Key;
 
-            string lowest = resourcesNeeded.OrderBy(x => x.Value).FirstOrDefault().Key;
+            while (!IsThereExistingNodes(lowest) && lowest != null)
+            {
+                if (logDebug)
+                    Debug.Log($"No {lowest} found.");
+
+                sortedNeeded.Remove(lowest);
+                lowest = sortedNeeded.FirstOrDefault().Key;
+                
+                if (logDebug)
+                    Debug.Log($"New resource to find: {lowest}");
+            }
+
             switch (lowest)
             {
                 case "wood":
@@ -110,6 +124,32 @@ namespace Cinaed.GOAP.Complex.Behaviours
                     break;
             }
 
+        }
+
+        public bool IsThereExistingNodes(string resource)
+        {
+            //Check if there are existing nodes
+            switch (resource)
+            {
+                case "wood":
+                    return GameObject.FindObjectsOfType<TreeResource>().Any();
+                    break;
+                case "stone":
+                    return GameObject.FindObjectsOfType<StoneResource>().Any();
+                    break;
+                case "metal":
+                    return GameObject.FindObjectsOfType<MetalResource>().Any();
+                    break;
+                case "food":
+                    return false;
+                    //return GameObject.FindObjectsOfType<FoodResource>().Any();
+                    break;
+                case "water":
+                    return GameObject.FindObjectsOfType<WaterResource>().Any();
+                    break;
+                default:
+                    return false;
+            }
         }
     }
 }

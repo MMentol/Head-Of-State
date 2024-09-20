@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Cinaed.GOAP.Complex.TargetSensors
 {
     public class ClosestMaterialSourceSensor<TSource> : LocalTargetSensorBase
-        where TSource : MonoBehaviour, IResourceSource
+        where TSource : ResourceSourceBase
     {
         public TSource[] sources;
         public override void Created()

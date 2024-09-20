@@ -1,6 +1,5 @@
 using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Classes;
-using CrashKonijn.Goap.Classes.References;
 using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Interfaces;
 using GridMap.Resources;
@@ -37,7 +36,7 @@ namespace Cinaed.GOAP.Simple.Actions
                 int harvested = data.Tree.Harvest(1);
                 string resource = "wood";
                 if (harvested > 0)
-                    inventory.AddResource(resource, harvested);
+                    inventory.AddToInventory(resource, harvested);
             }
             else
                 Debug.LogError("An Inventory is Missing");
@@ -47,12 +46,12 @@ namespace Cinaed.GOAP.Simple.Actions
 
         public override void End(IMonoAgent agent, Data data)
         {
-            //Debug.Log("Ended Gather Wood");
+            
         }
 
         public override void Created()
         {
-            //Debug.Log("Created Gather Wood Action");
+            
         }
 
         public class Data : IActionData

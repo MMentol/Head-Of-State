@@ -10,19 +10,21 @@ using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Resolver;
 using Demos.Complex.Targets;
 using GridMap.Resources;
+using GridMap.Structures.Storage;
+using TreeEditor;
 using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.Factories.Extensions
 {
-    public static class BuilderExtensions
+    public static class GatheringExtensions
     {
         //GOAL EXTENSIONS
-        public static void AddGatherGoal<TMaterial>(this GoapSetBuilder builder)
+        public static void AddGatherGoal<TMaterial>(this GoapSetBuilder builder, int condition)
             where TMaterial : MaterialBase
             
         {
             builder.AddGoal<GatherMaterialGoal<TMaterial>>()
-                .AddCondition<MaterialAmount<TMaterial>>(Comparison.GreaterThanOrEqual, 75);
+                .AddCondition<PlayerMaterialAmount<TMaterial>>(Comparison.GreaterThanOrEqual, condition);
         }
 
         //ACTION EXTENSIONS
@@ -31,9 +33,10 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             where TSource : ResourceSourceBase
         {
             builder.AddAction<GatherMaterialAction<TMaterial, TSource>>()
-                .AddCondition<InventorySpaceKey>(Comparison.GreaterThan, 0)
+                .AddCondition<InventorySpaceAmount>(Comparison.GreaterThan, 0)
                 .SetTarget<ClosestMaterialSource<TMaterial>>()
-                .AddEffect<MaterialAmount<TMaterial>>(EffectType.Increase);
+                .AddEffect<AgentMaterialAmount<TMaterial>>(EffectType.Increase)
+                .AddEffect<InventorySpaceAmount>(EffectType.Decrease);
         }
         //TARGET SENSOR EXTENSIONS
         public static void AddClosestMaterialSourceSensor<TMaterial, TSource>(this GoapSetBuilder builder) 
@@ -43,18 +46,65 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             builder.AddTargetSensor<ClosestMaterialSourceSensor<TSource>>()
                 .SetTarget<ClosestMaterialSource<TMaterial>>();
         }
-
         //WORLD SENSOR EXTENSIONS
-        public static void AddMaterialAmountSensor<TMaterial>(this GoapSetBuilder builder)
-        where TMaterial : MaterialBase
+        public static void AddAgentMaterialAmountSensor<TMaterial>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
         {
-            builder.AddWorldSensor<MaterialAmountSensor<TMaterial>>()
-                .SetKey<MaterialAmount<TMaterial>>();
+            builder.AddWorldSensor<AgentMaterialAmountSensor<TMaterial>>()
+                .SetKey<AgentMaterialAmount<TMaterial>>();
         }
         public static void AddInventorySpaceSensor(this GoapSetBuilder builder)
         {
             builder.AddWorldSensor<InventorySpaceSensor>()
-                .SetKey<InventorySpaceKey>();
+                .SetKey<InventorySpaceAmount>();
+        }
+    }
+
+    public static class DepositExtensions
+    {
+        //GOAL EXTENSIONS
+        public static void AddDepositGoal<TMaterial>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
+        {
+            builder.AddGoal<DepositMaterialGoal<TMaterial>>()
+                .AddCondition<AgentMaterialAmount<TMaterial>>(Comparison.SmallerThanOrEqual, 0)
+                .AddCondition<PlayerMaterialAmount<TMaterial>>(Comparison.GreaterThanOrEqual, 75)
+                .AddCondition<InventorySpaceAmount>(Comparison.SmallerThanOrEqual, 0)
+                .AddCondition<StorageSpaceAmount<TMaterial>>(Comparison.SmallerThanOrEqual, 0);
+        }
+        //ACTION EXTENSIONS
+        public static void AddDepositAction<TMaterial, TStorage>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
+            where TStorage : MaterialStorageBase
+        {
+            builder.AddAction<DepositMaterialAction<TMaterial, TStorage>>()
+                .AddCondition<InventorySpaceAmount>(Comparison.SmallerThanOrEqual, 100)
+                .AddCondition<AgentMaterialAmount<TMaterial>>(Comparison.GreaterThan, 0)
+                .SetTarget<ClosestStorageWithSpace<TMaterial>>()
+                .AddEffect<AgentMaterialAmount<TMaterial>>(EffectType.Decrease)
+                .AddEffect<PlayerMaterialAmount<TMaterial>>(EffectType.Increase)
+                .AddEffect<InventorySpaceAmount>(EffectType.Increase);
+        }
+        //TARGET SENSOR EXTENSIONS
+        public static void AddClosestStorageWithSpaceSensor<TMaterial, TStorage>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
+            where TStorage : MaterialStorageBase
+        {
+            builder.AddTargetSensor<ClosestStorageWithSpaceSensor<TStorage>>()
+                .SetTarget<ClosestStorageWithSpace<TMaterial>>();
+        }
+        //WORLD SENSOR EXTENSIONS
+        public static void AddStorageSpaceSensor<TMaterial>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
+        {
+            builder.AddWorldSensor<StorageSpaceSensor<TMaterial>>()
+                .SetKey<StorageSpaceAmount<TMaterial>>();
+        }
+        public static void AddPlayerMaterialAmountSensor<TMaterial>(this GoapSetBuilder builder)
+            where TMaterial : MaterialBase
+        {
+            builder.AddWorldSensor<PlayerMaterialAmountSensor<TMaterial>>()
+                .SetKey<PlayerMaterialAmount<TMaterial>>();
         }
     }
 }

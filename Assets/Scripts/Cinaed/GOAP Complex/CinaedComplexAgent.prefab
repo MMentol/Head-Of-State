@@ -66,6 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbac894c6412a3428b45cefffaef29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaterialPercentage: 5
+  logDebug: 0
 --- !u!114 &7346507521047682018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +80,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2cee34ed9657e47ab6da8feb7e6229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  shouldMove: 0
+  humanController: {fileID: 0}
+  logDebug: 1
 --- !u!114 &-5366297016516215228
 MonoBehaviour:
   m_ObjectHideFlags: 0

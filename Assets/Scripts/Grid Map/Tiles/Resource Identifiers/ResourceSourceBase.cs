@@ -5,7 +5,7 @@ namespace GridMap.Resources
 {
     public abstract class ResourceSourceBase : MonoBehaviour
     {
-        [SerializeField][Min(1)] public int maxBound;
+        [SerializeField][Min(1)] public int maxBound = 10000;
         [SerializeField] public int rawMaterialAmount;
         [SerializeField] public bool toDestroy = false;
         [SerializeField] public GameObject occupant = null;

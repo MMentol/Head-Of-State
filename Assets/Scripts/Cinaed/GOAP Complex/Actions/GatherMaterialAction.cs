@@ -29,8 +29,8 @@ namespace Cinaed.GOAP.Complex.Actions
                 return ActionRunState.Stop;
             if (data.Source == null)
                 return ActionRunState.Stop;
-            if (data.Source.GetOccupied() != agent.gameObject)
-                return ActionRunState.Stop;
+            /*if (data.Source.GetOccupied() != agent.gameObject)
+                return ActionRunState.Stop;*/
             if (data.Source.ToDestroy())
                 return ActionRunState.Stop;
 
@@ -48,18 +48,18 @@ namespace Cinaed.GOAP.Complex.Actions
                 int harvested = data.Source.Harvest(1);
                 string resource = typeof(TMaterial).Name.ToLower();
                 if (harvested > 0)
-                    inventory.AddResource(resource, harvested);
+                    inventory.AddToInventory(resource, harvested);
             }
             else
                 Debug.LogError($"{agent.name} Inventory is Missing");
             data.Source.RemoveOccupied();
 
+            //Debug.Log("Success Gather Action");
             return ActionRunState.Stop;
         }
 
         public override void End(IMonoAgent agent, Data data)
         {           
-            //Debug.Log("Ended Gather Wood");
         }
 
         public override void Created()

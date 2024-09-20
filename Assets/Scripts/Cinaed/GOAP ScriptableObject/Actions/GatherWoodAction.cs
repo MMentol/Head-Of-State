@@ -37,7 +37,7 @@ namespace Cinaed.GOAP.Simple.Actions
                 int harvested = data.Tree.Harvest(1);
                 string resource = "wood";
                 if (harvested > 0)
-                    inventory.AddResource(resource, harvested);
+                    inventory.AddToInventory(resource, harvested);
             }
             else
                 Debug.LogError("An Inventory is Missing");

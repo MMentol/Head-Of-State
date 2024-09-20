@@ -42,7 +42,10 @@ public class Tile : MonoBehaviour
         if(initialType == "Water")
         {
             canPlaceOn = false;
-            gameObject.AddComponent<WaterResource>();
+            WaterResource water = gameObject.AddComponent<WaterResource>();
+            water.maxBound = 999999;
+            water.rawMaterialAmount = water.maxBound;
+
         }
     }
 

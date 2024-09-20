@@ -2,12 +2,11 @@ using Cinaed.GOAP.Complex.Interfaces;
 using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Interfaces;
 using CrashKonijn.Goap.Sensors;
-using Scripts;
 using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.WorldKeySensors
 {
-    public class MaterialAmountSensor<TMaterial> : LocalWorldSensorBase
+    public class PlayerMaterialAmountSensor<TMaterial> : LocalWorldSensorBase
         where TMaterial : MaterialBase
     {
         public override void Created() { }
@@ -15,12 +14,12 @@ namespace Cinaed.GOAP.Complex.WorldKeySensors
 
         public override SenseValue Sense(IMonoAgent agent, IComponentReference references)
         {
-            Inventory inventory = references.GetCachedComponent<Inventory>();
+            MaterialDataStorage inventory = GameObject.FindObjectOfType<MaterialDataStorage>();
 
             if (inventory == null)
                 return false;
             string materialType = typeof(TMaterial).Name;
-            float percentage = (float)inventory.GetResourceCount(materialType) / (float)inventory.size * 100f;
+            float percentage = (float)inventory.GetAmount(materialType) / (float)inventory.GetMaxCapacity(materialType) * 100f;
             return Mathf.RoundToInt(percentage);
         }
     }

@@ -1,37 +1,37 @@
 using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Interfaces;
 using CrashKonijn.Goap.Sensors;
-using GridMap.Resources;
+using GridMap.Structures.Storage;
 using System.Linq;
 using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.TargetSensors
 {
-    public class ClosestMaterialSourceSensor<TSource> : LocalTargetSensorBase
-        where TSource : ResourceSourceBase
+    public class ClosestStorageWithSpaceSensor<TStorage> : LocalTargetSensorBase
+        where TStorage : MaterialStorageBase
     {
-        public TSource[] sources;
+        public TStorage[] storages;
         public override void Created()
         {
-            this.sources = GameObject.FindObjectsOfType<TSource>();
+            this.storages = GameObject.FindObjectsOfType<TStorage>();
         }
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
-            var closest = this.sources
-            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            var closest = this.storages
+            .Where(x => x.Capacity > 0)
             .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
             .FirstOrDefault();
 
             if (closest == null)
                 return null;
             else
-                while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
+                while (closest.Capacity <= 0)
                 {
-                    var list = this.sources.ToList();
+                    var list = this.storages.ToList();
                     list.Remove(closest);
-                    sources = list.ToArray();
-                    closest = this.sources
+                    storages = list.ToArray();
+                    closest = this.storages
                     .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
                     .FirstOrDefault();
                     if (closest == null)
@@ -41,6 +41,6 @@ namespace Cinaed.GOAP.Complex.TargetSensors
         }
 
         public override void Update()
-        {}
+        { }
     }
 }

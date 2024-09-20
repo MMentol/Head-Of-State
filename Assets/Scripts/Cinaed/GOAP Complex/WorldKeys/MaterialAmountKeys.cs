@@ -3,8 +3,12 @@ using CrashKonijn.Goap.Behaviours;
 
 namespace Cinaed.GOAP.Complex.WorldKeys
 {
-    public class MaterialAmount<T> : WorldKeyBase
+    public class AgentMaterialAmount<T> : WorldKeyBase
         where T : MaterialBase { }
+
+    public class PlayerMaterialAmount<T> : WorldKeyBase
+        where T : MaterialBase
+    { }
 
     public class WoodAmount : WorldKeyBase { }
     public class StoneAmount : WorldKeyBase { }

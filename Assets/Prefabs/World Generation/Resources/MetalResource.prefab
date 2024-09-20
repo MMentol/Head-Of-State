@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 462297947967213340}
   - component: {fileID: 7241097003127628268}
   - component: {fileID: 6875124672069536029}
-  - component: {fileID: 8067461512282819170}
+  - component: {fileID: 3323819261356438124}
   m_Layer: 0
   m_Name: MetalResource
   m_TagString: Untagged
@@ -148,7 +148,7 @@ MonoBehaviour:
   _stoneCost: 0
   _metalCost: 0
   _waterCost: 0
---- !u!114 &8067461512282819170
+--- !u!114 &3323819261356438124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170bcf669505e2f49b717e4665e797f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBound: 1
-  rawMaterialAmount: 1
+  maxBound: 10000
+  rawMaterialAmount: 0
   toDestroy: 0
   occupant: {fileID: 0}

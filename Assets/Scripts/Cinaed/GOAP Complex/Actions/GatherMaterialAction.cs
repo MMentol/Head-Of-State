@@ -11,14 +11,14 @@ namespace Cinaed.GOAP.Complex.Actions
 {
     public class GatherMaterialAction<TMaterial, TSource> : ActionBase<GatherMaterialAction<TMaterial, TSource>.Data>
         where TMaterial : MaterialBase
-        where TSource : IResourceSource
+        where TSource : ResourceSourceBase
     {
         public override void Start(IMonoAgent agent, Data data)
         {
             if (data.Target is not TransformTarget transformTarget)
                 return;
 
-            data.Source = transformTarget.Transform.GetComponent<IResourceSource>();
+            data.Source = transformTarget.Transform.GetComponent<ResourceSourceBase>();
             data.Source.SetOccupied(agent.gameObject);
             data.Timer = 1;
         }
@@ -70,7 +70,7 @@ namespace Cinaed.GOAP.Complex.Actions
         public class Data : IActionData
         {
             public ITarget Target { get; set; }
-            public IResourceSource Source { get; set; }
+            public ResourceSourceBase Source { get; set; }
             public float Timer { get; set; }
         }
     }

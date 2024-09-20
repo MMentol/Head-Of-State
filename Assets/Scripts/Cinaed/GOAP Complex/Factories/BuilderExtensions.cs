@@ -28,7 +28,7 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         //ACTION EXTENSIONS
         public static void AddGatherAction<TMaterial, TSource>(this GoapSetBuilder builder)
             where TMaterial: MaterialBase
-            where TSource : IResourceSource
+            where TSource : ResourceSourceBase
         {
             builder.AddAction<GatherMaterialAction<TMaterial, TSource>>()
                 .AddCondition<InventorySpaceKey>(Comparison.GreaterThan, 0)
@@ -38,7 +38,7 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         //TARGET SENSOR EXTENSIONS
         public static void AddClosestMaterialSourceSensor<TMaterial, TSource>(this GoapSetBuilder builder) 
             where TMaterial : MaterialBase
-            where TSource : MonoBehaviour, IResourceSource
+            where TSource : ResourceSourceBase
         {
             builder.AddTargetSensor<ClosestMaterialSourceSensor<TSource>>()
                 .SetTarget<ClosestMaterialSource<TMaterial>>();

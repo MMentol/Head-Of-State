@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 992475364051922478}
   - component: {fileID: 7300704381463543327}
   - component: {fileID: 7060228255510196094}
-  - component: {fileID: 6857685576209740203}
-  - component: {fileID: 5060030108188319715}
+  - component: {fileID: 4270206511377413474}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -107,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6857685576209740203
+--- !u!114 &4270206511377413474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,19 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Sphere
   isPlaced: 0
+  isRemovable: 1
   _currentPos: {x: 0, y: 0}
   _tile: {fileID: 0}
---- !u!114 &5060030108188319715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3192580965925728889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbbc0ec05cb4a84b8adc596a2d0edca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 100
+  _woodCost: 0
+  _stoneCost: 0
+  _metalCost: 0
+  _waterCost: 0

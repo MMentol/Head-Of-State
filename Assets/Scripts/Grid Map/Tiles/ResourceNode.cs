@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts;
 
 public enum Resource
 {
@@ -18,11 +19,13 @@ public class ResourceNode : MonoBehaviour
     [SerializeField] public Resource resourceType;
     [Range(0,1)]
     [SerializeField] public float nodeChance;
+    [SerializeField] public int minAmount;
+    [SerializeField] public int maxAmount;
     [SerializeField] public Inventory inventory;
 
     public void Init()
     {
-        inventory = gameObject.AddComponent<Inventory>();
-        inventory.Init(resourceType.ToString(), Random.Range(1200,2500), logDebug);            
+        //inventory = gameObject.AddComponent<Inventory>();
+        //inventory.Init(resourceType.ToString(), Mathf.CeilToInt(Random.Range(minAmount, maxAmount)), logDebug);            
     }
 }

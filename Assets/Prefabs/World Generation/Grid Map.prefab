@@ -120,6 +120,37 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &687638986930379889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8574152826022318511}
+  m_Layer: 0
+  m_Name: MaterialsDataStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8574152826022318511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687638986930379889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 904348670364219549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2585171556646703781
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5359f76afab5724084ec2b58ee85758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logDebug: 0
   _width: 100
   _height: 100
   _tilePrefab: {fileID: 6712076944214036391, guid: 017aa422c19d7a5498394c2bcf721df5,
@@ -191,9 +223,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 782711a2ee75b39489af0a4b662b7886, type: 2}
   - {fileID: 11400000, guid: ec239946996469943b5547d3c5036242, type: 2}
   _resourceTypes:
-  - {fileID: 11400000, guid: 4798a2097977cd34fb643521fe11fee9, type: 2}
-  - {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}
-  - {fileID: 11400000, guid: e7cb3e727723a3a4ca5246769e947cd5, type: 2}
+  - {fileID: 7241097003127628268, guid: c2275b357c9422f4fabfa78f3ad9ad81, type: 3}
+  - {fileID: 7241097003127628268, guid: e6b20579260a14545b5cd987a3b0d991, type: 3}
+  - {fileID: 7241097003127628268, guid: 34382668181330e4dbb7b298970570aa, type: 3}
   structureChooser: {fileID: 5328205706227911053}
 --- !u!114 &8732579145065857255
 MonoBehaviour:
@@ -236,7 +268,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8574152826022318511}
   m_Father: {fileID: 9093610150126315720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5328205706227911053
@@ -251,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24549246270ca64faa5e785ace4524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuildMode: 0
   _mouseIndicator: {fileID: 0}
   _placeableObjects:
   - {fileID: 7722850542549836018, guid: 33c574190c130524da7b8b7039487dd1, type: 3}

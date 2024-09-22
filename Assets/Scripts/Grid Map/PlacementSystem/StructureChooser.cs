@@ -6,15 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class StructureChooser : MonoBehaviour
 {
-    [SerializeField] public bool isBuildMode = false;
-    [SerializeField] public GameObject _mouseIndicator;
-    [SerializeField] public GameObject _storedStructure;
-    [SerializeField] public GameObject[] _placeableObjects;
-    [SerializeField] public Vector2 _currentPos;
+    public bool isBuildMode = false;
+    public GameObject _mouseIndicator;
+    public GameObject _storedStructure;
+    public Structure _structureProperties;
+    public GameObject[] _placeableObjects;
+    public Vector2 _currentPos;
 
     [Header("Grid")]
     [SerializeField] private GridManager _gridManager;
-    [SerializeField] public Tilemap _tilemap;
+    public Tilemap _tilemap;
 
 
     void Update() 
@@ -42,11 +43,12 @@ public class StructureChooser : MonoBehaviour
             {
                 Tile tile = _gridManager.GetTileAtPos(new Vector2(_currentPos.x, _currentPos.y));
                 Debug.Log("Tried to place.");
-                if(tile.PlaceStructure(_storedStructure))
+                if(tile.PlaceStructure(_storedStructure, _structureProperties))
                 {                    
                     DestroyCurrent();
                     Debug.Log($"Placed Structure at ({tile.position.x},{tile.position.y})");                    
                 } else { Debug.Log("Failed Place");}
+                DestroyCurrent();
                 isBuildMode = false;
             }
         }
@@ -65,6 +67,7 @@ public class StructureChooser : MonoBehaviour
         _storedStructure = chosenStructure;
         Debug.Log($"Select: {chosenStructure.name}");
         _mouseIndicator = Instantiate(chosenStructure, new Vector3(1000,1000,1000), Quaternion.identity, gameObject.transform);
+        _structureProperties = _mouseIndicator.GetComponent<Structure>();
         _mouseIndicator.name = $"CURSOR: {chosenStructure.name}";
         if (_mouseIndicator.TryGetComponent<MaterialStorageBase>(out var storageComponent))
         {

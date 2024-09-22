@@ -3,12 +3,16 @@ namespace GridMap.Structures.Storage
 { 
     public abstract class MaterialStorageBase : MonoBehaviour
     {
-        [SerializeField] public int Capacity = 100;
-        [SerializeField] public int Count;
+        public int Capacity = 100;
+        public int Count;
+        public MaterialDataStorage materialDataStorage;
+        private void Awake()
+        {
+            materialDataStorage = FindObjectOfType<MaterialDataStorage>();           
+        }
 
         public void UpdateResources()
         {
-            MaterialDataStorage materialDataStorage = FindObjectOfType<MaterialDataStorage>();
             materialDataStorage.TallyMaterials();
         }
 
@@ -32,7 +36,7 @@ namespace GridMap.Structures.Storage
         {
             this.Capacity = 0;
             this.Count = 0;
-            FindObjectOfType<MaterialDataStorage>().TallyMaterials();
+            UpdateResources();
         }
     }
 }

@@ -6,17 +6,18 @@ using TMPro;
 public class Structure : MonoBehaviour
 {
     [Header("Structure Properties")]
-    [SerializeField] public string name = "Structure";
-    [SerializeField] public bool isPlaced = false;
-    [SerializeField] public bool isRemovable = true;
-    [SerializeField] public Vector2 _currentPos;
-    [SerializeField] public Tile _tile;
+    public string name = "Structure Name";
+    public bool isPlaced = false;
+    public bool isRemovable = true;
+    public Vector2 _currentPos;
+    public Tile _tile;
 
     [Header("Resource Placement Costs")]
-    [SerializeField] public float _woodCost = 0;
-    [SerializeField] public float _stoneCost = 0;
-    [SerializeField] public float _metalCost = 0;
-    [SerializeField] public float _waterCost = 0;
+    public int _woodCost = 0;
+    public int _stoneCost = 0;
+    public int _metalCost = 0;
+    public int _foodCost = 0;
+    public int _waterCost = 0;
 
     [Header("On-Click UI")]
     [SerializeField] public GameObject ocUI;

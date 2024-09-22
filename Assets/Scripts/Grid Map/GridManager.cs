@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class GridManager : MonoBehaviour
 {
     //Debug Toggle
-    [SerializeField] public bool logDebug = false;
+    public bool logDebug = false;
     [Header("Map Size")]
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour
     [Header("Grid")]
     [SerializeField] private Tilemap _tilemap;
     
-    [SerializeField] public Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Vector2, Tile> _tiles;
 
     [Header("Tile Types")]
     [SerializeField] private BaseTile[] _baseTileTypes;
@@ -31,10 +31,12 @@ public class GridManager : MonoBehaviour
 
     [Header("Placement System Settings")]
     [SerializeField] private StructureChooser structureChooser;
+    public MaterialDataStorage materialDataStorage;
 
     #region Lifecycle Methods
     void Awake()
-    {       
+    {
+        materialDataStorage = GetComponentInChildren<MaterialDataStorage>();
         Array.Sort(_baseTileTypes);
         StartGenerate();
         Debug.Log("Generating Done.");
@@ -67,7 +69,8 @@ public class GridManager : MonoBehaviour
                 spawnedTile.Init(x, y, GenerateTileTypeFromNoise(noiseMap, x, y));
                 spawnedTile.name = $"Tile ({x} , {y}) [{spawnedTile.initialType}]";
                 Tile tileSettings = spawnedTile.GetComponent<Tile>();
-                tileSettings.structureChooser = structureChooser;
+                tileSettings.structureChooser = this.structureChooser;
+                tileSettings.materialDataStorage = this.materialDataStorage;
                 if(logDebug) {Debug.Log("Tile type: " + spawnedTile.initialType);}
                 _tiles[new Vector2(x,y)] = spawnedTile;
             }
@@ -161,9 +164,8 @@ public class GridManager : MonoBehaviour
             }
 
             ResourceNode chosenNode = matchingNodes[chosenIndex - 1];
-
-            currentTile.PlaceStructure(chosenNode.gameObject);
-            return true;
+           
+            return currentTile.PlaceResource(chosenNode.gameObject);;
         }
 
         return false;               

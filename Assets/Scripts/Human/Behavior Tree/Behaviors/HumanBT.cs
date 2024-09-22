@@ -17,7 +17,7 @@ public class HumanBT : Tree
                 new getFoodTask(transform)
             }),
 
-    
+
             new Sequence(new List<Node>
             {
                 new checkWaterTask(transform),
@@ -25,7 +25,7 @@ public class HumanBT : Tree
                 new walkToWaterTask(transform),
                 new getWaterTask(transform)
             }),
-            
+
             new Selector(new List<Node>
             {
                 new Sequence(new List<Node>

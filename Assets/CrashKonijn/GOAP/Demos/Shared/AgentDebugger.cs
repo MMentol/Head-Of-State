@@ -8,9 +8,8 @@ namespace Demos.Shared
         public string GetInfo(IMonoAgent agent, IComponentReference references)
         {
             var hunger = references.GetCachedComponent<HungerBehaviour>();
-            var thirst = references.GetCachedComponent<ThirstBehaviour>();
             
-            return $"Hunger: {hunger.hunger}, Thirst: {thirst.thirst}";
+            return $"Hunger: {hunger.hunger}";
         }
     }
 }

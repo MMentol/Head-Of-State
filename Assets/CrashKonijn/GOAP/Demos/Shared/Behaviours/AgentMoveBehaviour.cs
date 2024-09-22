@@ -11,12 +11,9 @@ namespace Demos.Shared.Behaviours
         private ITarget currentTarget;
         private bool shouldMove;
 
-        private HumanController humanController;
-
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
-            this.humanController = this.GetComponent<HumanController>();
         }
 
         private void OnEnable()
@@ -56,7 +53,7 @@ namespace Demos.Shared.Behaviours
             
             if (this.currentTarget == null)
                 return;
-            //humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
+            
             this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
         }
 

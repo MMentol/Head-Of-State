@@ -115,11 +115,11 @@ public class HumanPathfinding : MonoBehaviour
             foreach (Tile neighbourTile in GetNeighbourList(currentTile))
             {
                 if (closedList.Contains(neighbourTile)) continue;
-                if (!neighbourTile.isWalkable)
-                {
-                    closedList.Add(neighbourTile);
-                    continue;
-                }
+                //if (!neighbourTile.isWalkable)
+                //{
+                //    closedList.Add(neighbourTile);
+                //    continue;
+                //}
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile, neighbourTile);
                 if (tentativeGCost < neighbourTile.gCost)

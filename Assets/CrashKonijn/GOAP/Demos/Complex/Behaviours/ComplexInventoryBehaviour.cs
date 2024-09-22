@@ -8,7 +8,6 @@ namespace Demos.Complex.Behaviours
 {
     public class ComplexInventoryBehaviour : MonoBehaviour
     {
-        [SerializeField]
         private List<IHoldable> items = new();
         
         public void Add<T>(T item)

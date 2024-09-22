@@ -33,11 +33,6 @@ namespace Demos.Complex.Factories.Extensions
             builder.AddGoal<FixHungerGoal>()
                 .AddCondition<IsHungry>(Comparison.SmallerThanOrEqual, 0);
         }
-        public static void AddFixThirstGoal(this GoapSetBuilder builder)
-        {
-            builder.AddGoal<FixThirstGoal>()
-                .AddCondition<IsThirsty>(Comparison.SmallerThanOrEqual, 0);
-        }
         
         public static void AddGatherItemGoal<T>(this GoapSetBuilder builder)
             where T : IGatherable

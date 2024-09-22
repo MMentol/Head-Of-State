@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 using GridMap.Structures.Storage;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 public class MaterialDataStorage : MonoBehaviour
 {
     public int Wood = 0;
@@ -33,7 +36,6 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyMaterials()
     {
-        Debug.Log("Tallying");
         Clear();
         TallyWood();
         TallyStone();
@@ -48,7 +50,6 @@ public class MaterialDataStorage : MonoBehaviour
         WoodStorage[] woodStorages = GameObject.FindObjectsOfType<WoodStorage>();
         foreach (WoodStorage storage in woodStorages)
         {
-            Debug.Log(storage.gameObject.name);
             this.WoodCapacity += storage.Capacity;
             this.Wood += storage.Count;
         }
@@ -179,4 +180,109 @@ public class MaterialDataStorage : MonoBehaviour
 
     }
 
+    public bool CanAfford(int woodCost, int stoneCost, int metalCost, int foodCost, int waterCost)
+    {
+        //If cost is higher
+        if (Wood < woodCost || Stone < stoneCost || Metal < metalCost || Food < foodCost || Water < waterCost)
+            return false;
+        //If no cost is higher
+        return true;
+    }
+
+    public bool DeductCosts(int woodCost, int stoneCost, int metalCost, int foodCost, int waterCost)
+    {
+        if (!CanAfford(woodCost, stoneCost, metalCost, foodCost, waterCost))
+            return false;
+        Debug.Log("Can afford");
+        MaterialStorageBase[] storages;
+        List<MaterialStorageBase> storageList;
+        MaterialStorageBase current;
+        int deduction;
+
+        // Deduct wood
+        if(woodCost > 0)
+        {
+            storages = FindObjectsOfType<WoodStorage>();
+            storageList = storages.OrderBy(x => x.Count).ToList();
+            current = storageList.FirstOrDefault();
+            if (current == null)
+                return false;
+            while (woodCost > 0)
+            {
+                deduction = Math.Min(woodCost, current.Count);
+                current.Count -= deduction;
+                woodCost -= deduction;
+                storageList.Remove(current);
+                current = storageList.FirstOrDefault();
+            }
+        }
+        // Deduct stone
+        if (stoneCost > 0)
+        {
+            storages = FindObjectsOfType<StoneStorage>();
+            storageList = storages.OrderBy(x => x.Count).ToList();
+            current = storageList.FirstOrDefault();
+            if (current == null)
+                return false;
+            while (stoneCost > 0)
+            {
+                deduction = Math.Min(stoneCost, current.Count);
+                current.Count -= deduction;
+                stoneCost -= deduction;
+                storageList.Remove(current);
+                current = storageList.FirstOrDefault();
+            }
+        }
+        // Deduct metal
+        if (metalCost > 0)
+        {
+            storages = FindObjectsOfType<MetalStorage>();
+            storageList = storages.OrderBy(x => x.Count).ToList();
+            current = storageList.FirstOrDefault();
+            if (current == null)
+                return false;
+            while (metalCost > 0)
+            {
+                deduction = Math.Min(metalCost, current.Count);
+                current.Count -= deduction;
+                metalCost -= deduction;
+                storageList.Remove(current);
+                current = storageList.FirstOrDefault();
+            }
+        }
+        // Deduct food
+        if (foodCost > 0)
+        {
+            storages = FindObjectsOfType<FoodStorage>();
+            storageList = storages.OrderBy(x => x.Count).ToList();
+            current = storageList.FirstOrDefault();
+            if (current == null)
+                return false;
+            while (foodCost > 0)
+            {
+                deduction = Math.Min(foodCost, current.Count);
+                current.Count -= deduction;
+                foodCost -= deduction;
+                storageList.Remove(current);
+                current = storageList.FirstOrDefault();
+            }
+        }
+        // Deduct water
+        if (waterCost > 0)
+        {
+            storages = FindObjectsOfType<WaterStorage>();
+            storageList = storages.OrderBy(x => x.Count).ToList();
+            current = storageList.FirstOrDefault();
+            while (waterCost > 0)
+            {
+                deduction = Math.Min(waterCost, current.Count);
+                current.Count -= deduction;
+                waterCost -= deduction;
+                storageList.Remove(current);
+                current = storageList.FirstOrDefault();
+            }
+        }
+        TallyMaterials();
+        return true;
+    }
 }

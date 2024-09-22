@@ -963,6 +963,20 @@ MonoBehaviour:
   MetalTxt: {fileID: 1505779077}
   FoodTxt: {fileID: 1857844844}
   WaterTxt: {fileID: 2039477547}
+--- !u!114 &1138959979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138959975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Capacity: 0
+  Count: 10
 --- !u!114 &1149703827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -2023,6 +2037,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1138959977}
+    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1138959979}
   m_SourcePrefab: {fileID: 100100000, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
 --- !u!114 &2039477547 stripped
 MonoBehaviour:

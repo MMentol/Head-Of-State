@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using Demos.Complex;
 
 public class Inventory : MonoBehaviour {
     [Header("Inventory Settings")]

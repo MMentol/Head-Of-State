@@ -58,12 +58,18 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddDepositGoal<Water>();
             builder.AddDepositGoal<Metal>();*/
             //Actions
-            builder.AddDepositAction<Wood, WoodStorage>();
-            builder.AddDepositAction<Stone, StoneStorage>();
-            builder.AddDepositAction<Metal, MetalStorage>();
-            builder.AddDepositAction<Food, FoodStorage>();
-            builder.AddDepositAction<Water, WaterStorage>();
+            builder.AddDepositAction<Wood, WoodStorage>(MaterialPercentage.NPCWoodThreshold);
+            builder.AddDepositAction<Stone, StoneStorage>(MaterialPercentage.NPCStoneThreshold);
+            builder.AddDepositAction<Metal, MetalStorage>(MaterialPercentage.NPCMetalThreshold);
+            builder.AddDepositAction<Food, FoodStorage>(MaterialPercentage.NPCFoodThreshold);
+            builder.AddDepositAction<Water, WaterStorage>(MaterialPercentage.NPCWaterThreshold);
             //Target Sensors
+            builder.AddClosestStorageWithSpaceSensor<Wood, WoodStorage>();
+            builder.AddClosestStorageWithSpaceSensor<Stone, StoneStorage>();
+            builder.AddClosestStorageWithSpaceSensor<Metal, MetalStorage>();
+            builder.AddClosestStorageWithSpaceSensor<Food, FoodStorage>();
+            builder.AddClosestStorageWithSpaceSensor<Water, WaterStorage>();
+
             builder.AddStorageSpaceSensor<Wood>();
             builder.AddStorageSpaceSensor<Stone>();
             builder.AddStorageSpaceSensor<Metal>();
@@ -75,6 +81,12 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddStorageSpaceSensor<Metal>();
             builder.AddStorageSpaceSensor<Food>();
             builder.AddStorageSpaceSensor<Water>();
+
+            builder.AddPlayerMaterialAmountSensor<Wood>();
+            builder.AddPlayerMaterialAmountSensor<Stone>();
+            builder.AddPlayerMaterialAmountSensor<Metal>();
+            builder.AddPlayerMaterialAmountSensor<Food>();
+            builder.AddPlayerMaterialAmountSensor<Water>();
 
             return builder.Build();
         }

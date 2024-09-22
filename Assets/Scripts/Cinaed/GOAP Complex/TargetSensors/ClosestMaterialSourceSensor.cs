@@ -12,6 +12,9 @@ namespace Cinaed.GOAP.Complex.TargetSensors
     {
         public TSource[] sources;
         public override void Created()
+        {}
+
+        public override void Update()
         {
             this.sources = GameObject.FindObjectsOfType<TSource>();
         }
@@ -40,7 +43,5 @@ namespace Cinaed.GOAP.Complex.TargetSensors
             return new TransformTarget(closest.transform);
         }
 
-        public override void Update()
-        {}
     }
 }

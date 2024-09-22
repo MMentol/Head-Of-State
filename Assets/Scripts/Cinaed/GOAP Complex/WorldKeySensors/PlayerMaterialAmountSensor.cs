@@ -20,7 +20,7 @@ namespace Cinaed.GOAP.Complex.WorldKeySensors
                 return false;
             string materialType = typeof(TMaterial).Name;
             float percentage = (float)inventory.GetAmount(materialType) / (float)inventory.GetMaxCapacity(materialType) * 100f;
-            return Mathf.RoundToInt(percentage);
+            return Mathf.Max(Mathf.RoundToInt(percentage),0);
         }
     }
 }

@@ -68,22 +68,18 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         {
             builder.AddGoal<DepositMaterialGoal<TMaterial>>()
                 .AddCondition<AgentMaterialAmount<TMaterial>>(Comparison.SmallerThanOrEqual, 0)
-                .AddCondition<PlayerMaterialAmount<TMaterial>>(Comparison.GreaterThanOrEqual, 75)
-                .AddCondition<InventorySpaceAmount>(Comparison.SmallerThanOrEqual, 0)
-                .AddCondition<StorageSpaceAmount<TMaterial>>(Comparison.SmallerThanOrEqual, 0);
+                .AddCondition<PlayerMaterialAmount<TMaterial>>(Comparison.GreaterThanOrEqual, 75);
         }
         //ACTION EXTENSIONS
-        public static void AddDepositAction<TMaterial, TStorage>(this GoapSetBuilder builder)
+        public static void AddDepositAction<TMaterial, TStorage>(this GoapSetBuilder builder, int condition)
             where TMaterial : MaterialBase
             where TStorage : MaterialStorageBase
         {
             builder.AddAction<DepositMaterialAction<TMaterial, TStorage>>()
-                .AddCondition<InventorySpaceAmount>(Comparison.SmallerThanOrEqual, 100)
-                .AddCondition<AgentMaterialAmount<TMaterial>>(Comparison.GreaterThan, 0)
+                .AddCondition<AgentMaterialAmount<TMaterial>>(Comparison.GreaterThan, condition)
                 .SetTarget<ClosestStorageWithSpace<TMaterial>>()
                 .AddEffect<AgentMaterialAmount<TMaterial>>(EffectType.Decrease)
-                .AddEffect<PlayerMaterialAmount<TMaterial>>(EffectType.Increase)
-                .AddEffect<InventorySpaceAmount>(EffectType.Increase);
+                .AddEffect<PlayerMaterialAmount<TMaterial>>(EffectType.Increase);
         }
         //TARGET SENSOR EXTENSIONS
         public static void AddClosestStorageWithSpaceSensor<TMaterial, TStorage>(this GoapSetBuilder builder)

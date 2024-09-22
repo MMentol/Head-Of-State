@@ -347,10 +347,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 186783508}
-    - targetCorrespondingSourceObject: {fileID: 2615115078104617228, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 928256517}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28526bf8f56afb04eb0b583a2ca75dc8, type: 3}
 --- !u!224 &41121757 stripped
@@ -554,7 +550,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 444069052}
+  m_Father: {fileID: 543117485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -611,12 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &341713286 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2615115078104617228, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
-    type: 3}
-  m_PrefabInstance: {fileID: 41121756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &351084896 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6298260751522688164, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -665,6 +655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &543117485 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5804291161267256850, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
+    type: 3}
+  m_PrefabInstance: {fileID: 41121756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &558376405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2011226115938245076, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -801,11 +797,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262192606facc9c4ba7dec167fe5aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCWoodThreshold: 5
-  NPCStoneThreshold: 5
-  NPCMetalThreshold: 5
-  NPCFoodThreshold: 5
-  NPCWaterThreshold: 5
+  NPCWoodThreshold: 50
+  NPCStoneThreshold: 50
+  NPCMetalThreshold: 50
+  NPCFoodThreshold: 50
+  NPCWaterThreshold: 50
 --- !u!1001 &948380915
 PrefabInstance:
   m_ObjectHideFlags: 0

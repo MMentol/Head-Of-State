@@ -6,6 +6,7 @@ using UnityEngine;
 public class TileType : ScriptableObject
 {
     public string tileTypeName;
+    public Sprite tileSprite;
     public Color tileColor;
     public bool isWalkable;
 }

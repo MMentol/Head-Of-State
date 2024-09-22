@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 6363880960006864445}
   - component: {fileID: 5491371223889494724}
   - component: {fileID: 7310428640818895179}
-  - component: {fileID: 7786359114497113422}
-  - component: {fileID: 7002866369433048526}
   m_Layer: 0
   m_Name: ComplexAgent
   m_TagString: Untagged
@@ -32,7 +30,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31104030825128304}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1827358, y: 10.077041, z: -4.3000727}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,6 +38,7 @@ Transform:
   - {fileID: 811063261888545222}
   - {fileID: 4661396797160660406}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3664022629467210336
 MonoBehaviour:
@@ -55,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goapSetBehaviour: {fileID: 0}
-  <DistanceMultiplier>k__BackingField: 1
 --- !u!114 &2567974379695048867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc89a1df52a4499a4efb85d8b5ad601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &7786359114497113422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 0}
+=======
+>>>>>>> parent of 3df9257 (Merge branch 'GOAP')
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,13 +186,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210546375148099049}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 1.1827358, y: -10.077041, z: 4.3000727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2644901599046946488}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4199933221404985918
 SpriteRenderer:
@@ -298,6 +298,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4661396797160660406}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -434,6 +435,7 @@ RectTransform:
   m_Children:
   - {fileID: 8761627808353469091}
   m_Father: {fileID: 2644901599046946488}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

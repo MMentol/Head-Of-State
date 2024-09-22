@@ -43,7 +43,7 @@ namespace Cinaed.GOAP.Complex.Actions
         {
             if (data.Target is not TransformTarget transformTarget)
                 return;
-
+            Debug.Log($"Start Deposit Action");
             data.Storage = transformTarget.Transform.GetComponent<MaterialStorageBase>();
             data.Timer = 3;
         }

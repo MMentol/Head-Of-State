@@ -18,8 +18,7 @@ namespace Cinaed.GOAP.WorldSensors
             MaterialDataStorage inventory = GameObject.FindObjectOfType<MaterialDataStorage>();
 
             if (inventory == null)
-                return false;
-
+                return false;            
             return inventory.GetRemainingCapacity(typeof(TMaterial).Name);
         }
     }

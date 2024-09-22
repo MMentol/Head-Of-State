@@ -1,10 +1,12 @@
 using GridMap.Resources;
+using GridMap.Structures.Storage;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
     [SerializeField] public bool logDebug = false;
     [Header("Tile Properties")]
+    [SerializeField] private Sprite _baseSprite;
     [SerializeField] private Color _baseColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
@@ -36,8 +38,14 @@ public class Tile : MonoBehaviour
         position = new Vector2(x, y);
         tileType = type;
         initialType = tileType.tileTypeName;
+        _baseSprite = tileType.tileSprite;
         _baseColor = tileType.tileColor;
-        _renderer.color = _baseColor;
+        if (_baseSprite != null)
+        {
+            _renderer.sprite = _baseSprite;
+        }
+        else 
+            _renderer.color = _baseColor;
 
         if(initialType == "Water")
         {
@@ -110,11 +118,11 @@ public class Tile : MonoBehaviour
             objectStructure._tile = GetComponent<Tile>();
             placedObject.name = $"{placeableStructure.name} ({position.x},{position.y})";
 
-            ResourceNode rNode = placedObject.GetComponent<ResourceNode>();
-            if(rNode != null)
+            if (placedObject.TryGetComponent<MaterialStorageBase>(out var storageComponent))
             {
-                rNode.Init();
+                storageComponent.UpdateResources();
             }
+
             return true;
         }
         Debug.Log("Occupied");
@@ -128,6 +136,7 @@ public class Tile : MonoBehaviour
             Destroy(_placedStructure);
             _placedStructure = null;
             isOccupied = false;
+            Debug.Log("Destroyed");
             return true;
         }
         return false;

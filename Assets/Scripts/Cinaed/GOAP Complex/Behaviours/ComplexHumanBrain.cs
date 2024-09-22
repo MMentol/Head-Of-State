@@ -16,13 +16,16 @@ namespace Cinaed.GOAP.Complex.Behaviours
     {
         private AgentBehaviour agent;
         private Inventory inventory;
-        public float MaterialPercentage = 5.0f;
+        public MaterialDataStorage MaterialDataStorage;
+        public MaterialPercentage MaterialPercentage;
         public bool logDebug = false;
 
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
             this.inventory = this.GetComponent<Inventory>();
+            this.MaterialDataStorage = GameObject.FindObjectOfType<MaterialDataStorage>();
+            this.MaterialPercentage = GameObject.FindObjectOfType<MaterialPercentage>();
         }
 
         private void OnEnable()
@@ -64,34 +67,35 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
         private void DetermineGoal()
         {
-            float resourcePercentage = (float)this.inventory.GetResourceCount("wood") / (float)inventory.size * 100;
-            if (resourcePercentage < this.MaterialPercentage)
+            float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
                 return;
             }
 
-            resourcePercentage = (float)this.inventory.GetResourceCount("stone") / (float)inventory.size * 100;
-            if (resourcePercentage < this.MaterialPercentage)
+            resourcePercentage = (float) this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
                 return;
             }
 
-            resourcePercentage = (float)this.inventory.GetResourceCount("metal") / (float)inventory.size * 100;
-            if (resourcePercentage < this.MaterialPercentage)
+            resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
                 return;
             }
 
-            resourcePercentage = (float)this.inventory.GetResourceCount("water") / (float)inventory.size * 100;
-            if (resourcePercentage < this.MaterialPercentage)
+            resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
                 return;
             }
 
+            /*
             if (inventory.used > 0)
             {
                 if (this.inventory.GetResourceCount("wood") > 0)
@@ -119,7 +123,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
                     this.agent.SetGoal<DepositMaterialGoal<Water>>(false);
                     return;
                 }
-            }
+            }*/
 
             this.agent.SetGoal<WanderGoal>(false);
         }

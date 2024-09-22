@@ -1,3 +1,4 @@
+using GridMap.Structures.Storage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class StructureChooser : MonoBehaviour
 {
     [SerializeField] public bool isBuildMode = false;
     [SerializeField] public GameObject _mouseIndicator;
+    [SerializeField] public GameObject _storedStructure;
     [SerializeField] public GameObject[] _placeableObjects;
     [SerializeField] public Vector2 _currentPos;
 
@@ -25,17 +27,12 @@ public class StructureChooser : MonoBehaviour
         //Switch between objects
         if(Input.GetKeyUp(KeyCode.Alpha1))
         {
-            DestroyCurrent();
-            Debug.Log($"Select: {_placeableObjects[0].name}");
-            _mouseIndicator = Instantiate(_placeableObjects[0], _currentPos, Quaternion.identity, gameObject.transform);
-            _mouseIndicator.name = $"{_placeableObjects[0].name}";
+            ChooseStructure(_placeableObjects[0]);
+            
         }
         if(Input.GetKeyUp(KeyCode.Alpha2))
         {
-            DestroyCurrent();
-            Debug.Log($"Select: {_placeableObjects[1].name}");
-            _mouseIndicator = Instantiate(_placeableObjects[1], _currentPos, Quaternion.identity, gameObject.transform);
-            _mouseIndicator.name = $"{_placeableObjects[1].name}";
+            ChooseStructure(_placeableObjects[1]);           
         }
 
         //Place
@@ -45,8 +42,8 @@ public class StructureChooser : MonoBehaviour
             {
                 Tile tile = _gridManager.GetTileAtPos(new Vector2(_currentPos.x, _currentPos.y));
                 Debug.Log("Tried to place.");
-                if(tile.PlaceStructure(_mouseIndicator))
-                {
+                if(tile.PlaceStructure(_storedStructure))
+                {                    
                     DestroyCurrent();
                     Debug.Log($"Placed Structure at ({tile.position.x},{tile.position.y})");                    
                 } else { Debug.Log("Failed Place");}
@@ -65,9 +62,15 @@ public class StructureChooser : MonoBehaviour
     public void ChooseStructure(GameObject chosenStructure)
     {
         DestroyCurrent();
+        _storedStructure = chosenStructure;
         Debug.Log($"Select: {chosenStructure.name}");
         _mouseIndicator = Instantiate(chosenStructure, new Vector3(1000,1000,1000), Quaternion.identity, gameObject.transform);
-        _mouseIndicator.name = $"{chosenStructure.name}";
+        _mouseIndicator.name = $"CURSOR: {chosenStructure.name}";
+        if (_mouseIndicator.TryGetComponent<MaterialStorageBase>(out var storageComponent))
+        {
+            Destroy(storageComponent);
+        }
+
     }
 
     public void ResetBuildMode()
@@ -81,8 +84,10 @@ public class StructureChooser : MonoBehaviour
         if (_mouseIndicator != null)
         {
             Destroy(_mouseIndicator);
+            _storedStructure = null;
             _mouseIndicator = null;
             ResetBuildMode();
+            FindObjectOfType<MaterialDataStorage>().TallyMaterials();
         }
     }
 }

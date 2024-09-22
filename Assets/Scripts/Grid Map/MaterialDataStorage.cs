@@ -33,6 +33,7 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyMaterials()
     {
+        Debug.Log("Tallying");
         Clear();
         TallyWood();
         TallyStone();
@@ -47,6 +48,7 @@ public class MaterialDataStorage : MonoBehaviour
         WoodStorage[] woodStorages = GameObject.FindObjectsOfType<WoodStorage>();
         foreach (WoodStorage storage in woodStorages)
         {
+            Debug.Log(storage.gameObject.name);
             this.WoodCapacity += storage.Capacity;
             this.Wood += storage.Count;
         }

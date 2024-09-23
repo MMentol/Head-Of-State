@@ -9,9 +9,13 @@ using Scripts;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
+using UtilityAI;
 
 namespace Cinaed.GOAP.Complex.Behaviours
 {
+
+    [RequireComponent(typeof(NavMeshAgent), typeof(Sensor))]
     public class ComplexHumanBrain : MonoBehaviour
     {
         private AgentBehaviour agent;
@@ -20,12 +24,23 @@ namespace Cinaed.GOAP.Complex.Behaviours
         public MaterialPercentage MaterialPercentage;
         public bool logDebug = false;
 
+        //Utility AI
+        public List<AIAction> actions;
+        public Context context;
+
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
             this.inventory = this.GetComponent<Inventory>();
             this.MaterialDataStorage = GameObject.FindObjectOfType<MaterialDataStorage>();
             this.MaterialPercentage = GameObject.FindObjectOfType<MaterialPercentage>();
+
+            context = new Context(this);
+
+            foreach (var action in actions)
+            {
+                action.Initialize(context);
+            }
         }
 
         private void OnEnable()
@@ -63,11 +78,33 @@ namespace Cinaed.GOAP.Complex.Behaviours
             this.DetermineGoal();
         }
 
-        private void Update() { }
+        private void Update() {
 
-        private void DetermineGoal()
+            UpdateContext();
+            AIAction bestAction = null;
+            float highestUtility = float.MinValue;
+
+            foreach (var action in actions)
+            {
+                float utility = action.CalculateUtility(context);
+                if (utility > highestUtility)
+                {
+                    highestUtility = utility;
+                    bestAction = action;
+                }
+            }
+
+            if (bestAction != null)
+            {
+                bestAction.Execute(context);
+                
+            }
+        }
+
+        public void DetermineGoal()
         {
             float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
+
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
@@ -127,5 +164,77 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             this.agent.SetGoal<WanderGoal>(false);
         }
+
+        public void DetermineGoal(int forced)//UtilityAI Forced Goal
+        {
+            float resourcePercentage = (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity * 100;
+            if (forced == 0) resourcePercentage = 1;
+            if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
+                return;
+            }
+            
+            resourcePercentage = (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
+            if (forced == 1) resourcePercentage = 1;
+            if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
+                return;
+            }
+
+            resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
+                return;
+            }
+
+            resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
+                return;
+            }
+
+            /*
+            if (inventory.used > 0)
+            {
+                if (this.inventory.GetResourceCount("wood") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Wood>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("stone") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Stone>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("metal") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Metal>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("food") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Food>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("water") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Water>>(false);
+                    return;
+                }
+            }*/
+            
+            this.agent.SetGoal<WanderGoal>(false);
+        }
+
+        #region UtilitySide
+        private void UpdateContext()
+        {
+        }
+
+        #endregion
     }
 }

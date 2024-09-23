@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 2438970961399122718, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2438970961399122718, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
         type: 3}
@@ -1981,8 +1981,6 @@ MonoBehaviour:
   overlayMenu: {fileID: 41121758}
   stagePick: {fileID: 0}
   mainMenu: {fileID: 0}
-  _tilePrefab: {fileID: 6712076944214036391, guid: 017aa422c19d7a5498394c2bcf721df5,
-    type: 3}
 --- !u!1 &1778213980
 GameObject:
   m_ObjectHideFlags: 0

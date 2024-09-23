@@ -17,6 +17,12 @@ public class Structure : MonoBehaviour
     [SerializeField] public float _metalCost = 0;
     [SerializeField] public float _waterCost = 0;
 
+    [Header("On-Click UI")]
+    [SerializeField] public GameObject ocUI;
+
+    void Start(){
+        this.ocUI = GameObject.FindWithTag("BuildingUI");
+    }
     void OnMouseOver() {
         if(isPlaced)
         {
@@ -27,6 +33,10 @@ public class Structure : MonoBehaviour
                 {
                     _tile.DestroyStructure();
                 }
+            }
+            if(Input.GetMouseButtonUp(0)) {
+                // Make UI Open here
+                this.ocUI.SetActive(true);
             }
         }
     }

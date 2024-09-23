@@ -119,9 +119,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Structure
   isPlaced: 0
+  isRemovable: 1
   _currentPos: {x: 0, y: 0}
   _tile: {fileID: 0}
+  _woodCost: 0
+  _stoneCost: 0
+  _metalCost: 0
+  _waterCost: 0
+  ocUI: {fileID: 8824805215398575159, guid: b365166febc6d7841aceb8982fa7d821, type: 3}
 --- !u!114 &7504537452251028512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logDebug: 0
   size: 100
+  initList:
+    inventoryItems: []

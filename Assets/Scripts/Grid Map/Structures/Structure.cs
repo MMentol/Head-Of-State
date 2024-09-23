@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Structure : MonoBehaviour
 {
@@ -36,7 +37,10 @@ public class Structure : MonoBehaviour
             }
             if(Input.GetMouseButtonUp(0)) {
                 // Make UI Open here
-                this.ocUI.SetActive(true);
+                if(isRemovable) {
+                    ocUI.transform.GetChild(7).gameObject.SetActive(true);
+                    Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ public class UIScript : MonoBehaviour
      [SerializeField]
      GameObject mainMenu = null;
 
-    [Header("Tile Prefab")]
+    [Header("Tile Details")]
     [SerializeField] private Tile _tilePrefab;
 
     // Start is called before the first frame update

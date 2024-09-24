@@ -5,6 +5,7 @@ using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Interfaces;
 using GridMap.Resources;
 using Scripts;
+using System.Linq;
 using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.Actions
@@ -20,7 +21,7 @@ namespace Cinaed.GOAP.Complex.Actions
 
             data.Source = transformTarget.Transform.GetComponent<ResourceSourceBase>();
             data.Source.SetOccupied(agent.gameObject);
-            data.Timer = 1;
+            data.Timer = 1 * this.Config.BaseCost;
         }
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)

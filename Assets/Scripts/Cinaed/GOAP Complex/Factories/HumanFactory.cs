@@ -6,6 +6,7 @@ using CrashKonijn.Goap.Configs.Interfaces;
 using Demos.Complex.Factories.Extensions;
 using GridMap.Resources;
 using GridMap.Structures.Storage;
+using Items;
 
 namespace Cinaed.GOAP.Complex.Factories
 {
@@ -31,10 +32,16 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddGatherGoal<Water>(MaterialPercentage.NPCWaterThreshold);            
 
             //Actions
-            builder.AddGatherAction<Wood, TreeResource>();
-            builder.AddGatherAction<Stone, StoneResource>();
-            builder.AddGatherAction<Metal, MetalResource>();
-            builder.AddGatherAction<Water, WaterResource>();
+            //Gather with Tool
+            builder.AddGatherAction<Wood, TreeResource, Pickaxe>();
+            builder.AddGatherAction<Stone, StoneResource, Pickaxe>();
+            builder.AddGatherAction<Metal, MetalResource, Pickaxe>();
+            builder.AddGatherAction<Water, WaterResource, Bucket>();
+            //Slow Gather
+            builder.AddHandGatherAction<Wood, TreeResource>();
+            builder.AddHandGatherAction<Stone, StoneResource>();
+            builder.AddHandGatherAction<Metal, MetalResource>();
+            builder.AddHandGatherAction<Water, WaterResource>();
 
             //Target Sensors
             builder.AddClosestMaterialSourceSensor<Wood, TreeResource>();
@@ -51,12 +58,6 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddAgentMaterialAmountSensor<Water>();
 
             //Deposit
-            //Goals
-            /*builder.AddDepositGoal<Wood>();
-            builder.AddDepositGoal<Stone>();
-            builder.AddDepositGoal<Metal>();
-            builder.AddDepositGoal<Water>();
-            builder.AddDepositGoal<Metal>();*/
             //Actions
             builder.AddDepositAction<Wood, WoodStorage>(MaterialPercentage.NPCWoodThreshold);
             builder.AddDepositAction<Stone, StoneStorage>(MaterialPercentage.NPCStoneThreshold);
@@ -70,24 +71,33 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddClosestStorageWithSpaceSensor<Food, FoodStorage>();
             builder.AddClosestStorageWithSpaceSensor<Water, WaterStorage>();
 
-            builder.AddStorageSpaceSensor<Wood>();
-            builder.AddStorageSpaceSensor<Stone>();
-            builder.AddStorageSpaceSensor<Metal>();
-            builder.AddStorageSpaceSensor<Food>();
-            builder.AddStorageSpaceSensor<Water>();
             //World Sensors
-            builder.AddStorageSpaceSensor<Wood>();
+            /*builder.AddStorageSpaceSensor<Wood>();
             builder.AddStorageSpaceSensor<Stone>();
             builder.AddStorageSpaceSensor<Metal>();
             builder.AddStorageSpaceSensor<Food>();
-            builder.AddStorageSpaceSensor<Water>();
+            builder.AddStorageSpaceSensor<Water>();*/
 
-            builder.AddPlayerMaterialAmountSensor<Wood>();
-            builder.AddPlayerMaterialAmountSensor<Stone>();
-            builder.AddPlayerMaterialAmountSensor<Metal>();
-            builder.AddPlayerMaterialAmountSensor<Food>();
-            builder.AddPlayerMaterialAmountSensor<Water>();
+            builder.AddPlayerMaterialPercentageSensor<Wood>();
+            builder.AddPlayerMaterialPercentageSensor<Stone>();
+            builder.AddPlayerMaterialPercentageSensor<Metal>();
+            builder.AddPlayerMaterialPercentageSensor<Food>();
+            builder.AddPlayerMaterialPercentageSensor<Water>();
 
+
+            //Craft
+            builder.AddCraftItemGoal<Pickaxe>();
+            builder.AddCraftItemGoal<Bucket>();
+            //Actions
+            builder.AddCraftingAction<Pickaxe>();
+            builder.AddCraftingAction<Bucket>();
+            //Target Sensors
+            builder.AddSelfTargetSensor();
+            //World Sensors
+            builder.AddItemAmountSensor<Pickaxe>();
+            builder.AddItemAmountSensor<Bucket>();
+            //builder.AddIsItemCraftableSensor<Pickaxe>();
+            //BUILD GOAP SET
             return builder.Build();
         }
 

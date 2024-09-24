@@ -66,7 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbac894c6412a3428b45cefffaef29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaterialPercentage: 5
+  MaterialDataStorage: {fileID: 0}
+  MaterialPercentage: {fileID: 0}
   logDebug: 0
 --- !u!114 &7346507521047682018
 MonoBehaviour:
@@ -111,6 +112,7 @@ MonoBehaviour:
   logDebug: 0
   size: 15
   used: 0
+  items: []
 --- !u!114 &7786359114497113422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +444,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8486834440313140182
 MonoBehaviour:

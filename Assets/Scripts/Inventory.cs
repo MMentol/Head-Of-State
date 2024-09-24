@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using Items;
 
 namespace Scripts
 {
@@ -10,19 +11,20 @@ namespace Scripts
         public bool logDebug = false;
         public int size = 100;
         public int used = 0;
-        public Dictionary<string, int> _resources = new Dictionary<string, int>
+        public Dictionary<string, int> inventoryContents = new Dictionary<string, int>
         {
             {"wood", 0}, {"metal", 0}, {"stone", 0}, {"food", 0}, {"water", 0},
         };
+        public List<ItemBase> items = new List<ItemBase>();
 
         //Getting Current ItemCount / Capacity
         public int GetResourceCount(string resource)
         {
-            return _resources[resource.ToLower()];
+            return inventoryContents[resource.ToLower()];
         }
         public int GetRemainingCapacity()
         {
-            int used = _resources.Values.Sum();
+            int used = inventoryContents.Values.Sum();
             this.used = used;
             if (used > size)
             {
@@ -37,9 +39,9 @@ namespace Scripts
         public int GetFromInventory(string type, int toWithdraw)
         {
             type = type.ToLower();
-            int stored = _resources[type];
+            int stored = inventoryContents[type];
             int withdrawn = Math.Min(toWithdraw, stored);
-            _resources[type] -= withdrawn;
+            inventoryContents[type] -= withdrawn;
             return withdrawn;
         }
         public int AddToInventory(string type, int toDeposit)
@@ -47,7 +49,7 @@ namespace Scripts
             type = type.ToLower();
             int remainingCapacity = GetRemainingCapacity();
             int deposited = Mathf.Min(toDeposit, remainingCapacity);
-            _resources[type] += deposited;
+            inventoryContents[type] += deposited;
             return toDeposit - deposited;
         }
 
@@ -56,7 +58,7 @@ namespace Scripts
             if(Input.GetMouseButtonUp(0) && logDebug)
             {
                 //Debug.Log($"Available: {GetRemainingCapacity()}");
-                foreach (var resource in _resources)
+                foreach (var resource in inventoryContents)
                 {
                     Debug.Log($"{resource.Key}: {resource.Value}");
                 }

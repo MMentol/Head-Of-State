@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4446281940819639695, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
+        type: 3}
+      propertyPath: m_TagString
+      value: BuildingUI
+      objectReference: {fileID: 0}
     - target: {fileID: 5804291161267256850, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -802,109 +807,6 @@ MonoBehaviour:
   NPCMetalThreshold: 50
   NPCFoodThreshold: 50
   NPCWaterThreshold: 50
---- !u!1001 &948380915
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634937257288512851, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2906889229264111031, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_Name
-      value: Human
-      objectReference: {fileID: 0}
-    - target: {fileID: 2906889229264111031, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6094250625499920264, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934618557379954843, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: testx
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934618557379954843, guid: 0498931c2a64c8449a8f17c76f047844,
-        type: 3}
-      propertyPath: testy
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0498931c2a64c8449a8f17c76f047844, type: 3}
 --- !u!1 &987796696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4741333431238381870, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -930,54 +832,6 @@ MonoBehaviour:
   _stoneText: {fileID: 0}
   _metalText: {fileID: 0}
   _buildButton: {fileID: 0}
---- !u!1 &1138959975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1959244892}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1138959977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138959975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d117f04482d66145b0e901ec3430fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Wood: 0
-  Stone: 0
-  Metal: 0
-  Food: 0
-  Water: 0
-  WoodCapacity: 0
-  StoneCapacity: 0
-  MetalCapacity: 0
-  FoodCapacity: 0
-  WaterCapacity: 0
-  WoodTxt: {fileID: 543117484}
-  StoneTxt: {fileID: 426891968}
-  MetalTxt: {fileID: 1505779077}
-  FoodTxt: {fileID: 1857844844}
-  WaterTxt: {fileID: 2039477547}
---- !u!114 &1138959979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138959975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Capacity: 0
-  Count: 10
-  materialDataStorage: {fileID: 0}
 --- !u!114 &1149703827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -1676,6 +1530,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!1 &1446403198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2115214805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1446403200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446403198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b466b88e33ebbd448f27eb587b3b18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Pickaxe
+  durability: 10
+--- !u!114 &1446403202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446403198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fb25c1d3313144c86e544f5f489e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Bucket
+  durability: 10
 --- !u!114 &1505779077 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7779829751311052967, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
@@ -1947,6 +1835,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: FoodTxt
+      value: 
+      objectReference: {fileID: 1857844844}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: WoodTxt
+      value: 
+      objectReference: {fileID: 543117484}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: MetalTxt
+      value: 
+      objectReference: {fileID: 1505779077}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: StoneTxt
+      value: 
+      objectReference: {fileID: 426891968}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: WaterTxt
+      value: 
+      objectReference: {fileID: 2039477547}
     - target: {fileID: 2585171556646703781, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       propertyPath: m_Name
@@ -2033,15 +1946,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138959977}
-    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138959979}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
 --- !u!114 &2039477547 stripped
 MonoBehaviour:
@@ -2157,6 +2062,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 891203052}
+    - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1446403200}
+    - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1446403202}
   m_SourcePrefab: {fileID: 100100000, guid: bb41671162aaa06418e2e920bef1ade0, type: 3}
 --- !u!114 &2128898563 stripped
 MonoBehaviour:
@@ -2177,7 +2090,6 @@ SceneRoots:
   - {fileID: 1356237532}
   - {fileID: 562420015}
   - {fileID: 1959244892}
-  - {fileID: 948380915}
   - {fileID: 1688967755}
   - {fileID: 1778213983}
   - {fileID: 2115214805}

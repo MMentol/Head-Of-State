@@ -5,6 +5,7 @@ using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Interfaces;
 using Demos.Shared.Goals;
 using GridMap.Resources;
+using Items;
 using Scripts;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,21 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
         private void DetermineGoal()
         {
+            //Items in Inventory
+            if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1)
+            {
+                this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
+                //Debug.Log("Get pick");
+                return;
+            }
+
+            if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1)
+            {
+                this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
+                //Debug.Log("Get bucket");
+                return;
+            }
+            //Resources in Inventory
             float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
@@ -127,5 +143,6 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             this.agent.SetGoal<WanderGoal>(false);
         }
+
     }
 }

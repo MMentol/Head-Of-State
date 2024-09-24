@@ -22,6 +22,9 @@ namespace Cinaed.GOAP.Complex.Behaviours
         private Inventory inventory;
         public MaterialDataStorage MaterialDataStorage;
         public MaterialPercentage MaterialPercentage;
+        public Human human;
+        public HumanStats humanStats;
+        public VillageStats villageStats;
         public bool logDebug = false;
 
         //Utility AI
@@ -32,6 +35,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         {
             this.agent = this.GetComponent<AgentBehaviour>();
             this.inventory = this.GetComponent<Inventory>();
+            this.humanStats = this.GetComponent<HumanStats>();
             this.MaterialDataStorage = GameObject.FindObjectOfType<MaterialDataStorage>();
             this.MaterialPercentage = GameObject.FindObjectOfType<MaterialPercentage>();
 
@@ -168,7 +172,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         public void DetermineGoal(int forced)//UtilityAI Forced Goal
         {
             float resourcePercentage = (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity * 100;
-            if (forced == 0) resourcePercentage = 1;
+            if (forced == 4) resourcePercentage = 1;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
@@ -176,7 +180,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
             
             resourcePercentage = (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
-            if (forced == 1) resourcePercentage = 1;
+            if (forced == 3) resourcePercentage = 1;
             if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
@@ -184,6 +188,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
 
             resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
+            if (forced == 2) resourcePercentage = 1;
             if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
@@ -191,6 +196,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
 
             resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            if (forced == 1) resourcePercentage = 1;
             if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
@@ -233,6 +239,19 @@ namespace Cinaed.GOAP.Complex.Behaviours
         #region UtilitySide
         private void UpdateContext()
         {
+            context.SetData("foodAmount", MaterialDataStorage.Food);
+            context.SetData("waterAmount", MaterialDataStorage.Water);
+            context.SetData("woodAmount", MaterialDataStorage.Wood);
+            context.SetData("stoneAmount", MaterialDataStorage.Stone);
+            context.SetData("metalAmount", MaterialDataStorage.Metal);
+            context.SetData("hunger", humanStats._hunger);
+            context.SetData("thirst", humanStats._thirst);
+            context.SetData("happiness", humanStats._happiness);
+            context.SetData("heat", humanStats._heat);
+            context.SetData("energy", humanStats._energy);
+
+            context.SetData("partnerExists", humanStats.partnerExists);
+            context.SetData("house", humanStats.insideHouse);
         }
 
         #endregion

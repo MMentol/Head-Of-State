@@ -10,6 +10,9 @@ public class HumanStats : MonoBehaviour
     public float _heat;
     public float _energy;
     public float _happiness;
+    public bool partnerExists;
+    public bool insideHouse;
+
 
     public void getHungry()
     {

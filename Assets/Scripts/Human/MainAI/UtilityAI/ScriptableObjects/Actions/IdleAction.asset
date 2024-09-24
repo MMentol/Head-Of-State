@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcbc789c1549964f840df8339a2201f, type: 3}
   m_Name: IdleAction
   m_EditorClassIdentifier: 
-  targetTag: 
+  targetTag: 9
   consideration: {fileID: 11400000, guid: e879510cd95756140be1945b73575302, type: 2}

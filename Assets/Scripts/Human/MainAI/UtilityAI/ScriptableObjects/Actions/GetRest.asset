@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aff8c02461c4e5f46b115e0a3d9b2da3, type: 3}
-  m_Name: GetStone
+  m_Name: GetRest
   m_EditorClassIdentifier: 
-  targetTag: 3
-  consideration: {fileID: 11400000, guid: 55e4c699bdd13274cbcf5c77635a8598, type: 2}
+  targetTag: 6
+  consideration: {fileID: 11400000, guid: a4a7cba097916b646a70cd9076727254, type: 2}

@@ -19,7 +19,9 @@ GameObject:
   - component: {fileID: 5833939931090664638}
   - component: {fileID: 989207102976891531}
   - component: {fileID: 9045618736993964982}
-  m_Layer: 0
+  - component: {fileID: 4963011506668082560}
+  - component: {fileID: 4177433798054401649}
+  m_Layer: 2
   m_Name: CinaedComplexAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,9 +73,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaterialDataStorage: {fileID: 0}
   MaterialPercentage: {fileID: 0}
+  human: {fileID: 0}
+  humanStats: {fileID: 0}
+  villageStats: {fileID: 0}
   logDebug: 0
   actions:
   - {fileID: 11400000, guid: d1cd7d09a06243a4ebf2de996d67a7c7, type: 2}
+  - {fileID: 11400000, guid: ff72846d24e99a84798f1032807d56a4, type: 2}
+  - {fileID: 11400000, guid: be4a550314169e7479db6d98e17240db, type: 2}
+  - {fileID: 11400000, guid: 2de4a587f97a6db4f98a0acef1e6d44e, type: 2}
+  - {fileID: 11400000, guid: 74b4d11333aa22e4f85a4109c62bb751, type: 2}
+  - {fileID: 11400000, guid: 4e8b66388455f2f4daad4abe9c5332c3, type: 2}
+  - {fileID: 11400000, guid: f2112113f7fa5fb4f84dd0df9b943c1d, type: 2}
+  - {fileID: 11400000, guid: cea1dbb92837768469b65cbb9cc210be, type: 2}
 --- !u!114 &7346507521047682018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +197,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -204,7 +216,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 5
-  targetTagss: []
+  targetTags: []
+--- !u!114 &4963011506668082560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31104030825128304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5443de85cdc4a4da09661815242048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ageLimit: 0
+--- !u!114 &4177433798054401649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31104030825128304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c119d560906719146bdf6ee946cdc662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _age: 0
+  _hunger: 0
+  _thirst: 0
+  _heat: 0
+  _energy: 0
+  _happiness: 0
+  partnerExists: 0
+  insideHouse: 0
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +261,7 @@ GameObject:
   - component: {fileID: 811063261888545222}
   - component: {fileID: 4199933221404985918}
   - component: {fileID: 4483563038361863268}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 00-creature-sheet-front_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +367,7 @@ GameObject:
   - component: {fileID: 8761627808353469091}
   - component: {fileID: 5555714700744380104}
   - component: {fileID: 9109129127264646937}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +502,7 @@ GameObject:
   - component: {fileID: 6469353318596360819}
   - component: {fileID: 8486834440313140182}
   - component: {fileID: 3881786496287766826}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

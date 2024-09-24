@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GetBaby
   m_EditorClassIdentifier: 
   targetTag: 5
-  consideration: {fileID: 0}
+  consideration: {fileID: 11400000, guid: ffdf02081c5c0b94d986320aae6fbb9b, type: 2}

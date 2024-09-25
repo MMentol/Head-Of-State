@@ -111,6 +111,8 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void UpdateText()
     {
+        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null)
+            return;
         WoodTxt.text = $"Wood: {Wood} / {WoodCapacity}";
         StoneTxt.text = $"Stone: {Stone} / {StoneCapacity}";
         MetalTxt.text = $"Metal: {Metal} / {MetalCapacity}";

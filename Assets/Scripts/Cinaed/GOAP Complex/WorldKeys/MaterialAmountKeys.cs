@@ -10,6 +10,10 @@ namespace Cinaed.GOAP.Complex.WorldKeys
         where T : MaterialBase
     { }
 
+    public class PlayerMaterialPercentage<T> : WorldKeyBase
+        where T : MaterialBase
+    { }
+
     public class WoodAmount : WorldKeyBase { }
     public class StoneAmount : WorldKeyBase { }
     public class MetalAmount : WorldKeyBase { }

@@ -1,13 +1,12 @@
-using Cinaed.GOAP.Complex.Interfaces;
+﻿using Cinaed.GOAP.Complex.Interfaces;
 using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Interfaces;
 using CrashKonijn.Goap.Sensors;
-using Scripts;
 using UnityEngine;
 
-namespace Cinaed.GOAP.WorldSensors
+namespace Cinaed.GOAP.Complex.WorldKeySensors
 {
-    public class StorageSpaceSensor<TMaterial> : LocalWorldSensorBase
+    public class PlayerMaterialPercentageSensor<TMaterial> : LocalWorldSensorBase
         where TMaterial : MaterialBase
     {
         public override void Created() { }
@@ -18,8 +17,10 @@ namespace Cinaed.GOAP.WorldSensors
             MaterialDataStorage inventory = GameObject.FindObjectOfType<MaterialDataStorage>();
 
             if (inventory == null)
-                return false;            
-            return inventory.GetRemainingCapacity(typeof(TMaterial).Name);
+                return false;
+            string materialType = typeof(TMaterial).Name;
+            float percentage = (float)inventory.GetAmount(materialType) / (float)inventory.GetMaxCapacity(materialType) * 100f;
+            return Mathf.Max(Mathf.RoundToInt(percentage), 0);
         }
     }
 }

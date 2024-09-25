@@ -18,9 +18,10 @@ namespace Cinaed.GOAP.Complex.WorldKeySensors
 
             if (inventory == null)
                 return false;
+
             string materialType = typeof(TMaterial).Name;
-            float percentage = (float)inventory.GetAmount(materialType) / (float)inventory.GetMaxCapacity(materialType) * 100f;
-            return Mathf.Max(Mathf.RoundToInt(percentage),0);
+            int amount = inventory.GetAmount(materialType);
+            return amount;
         }
     }
 }

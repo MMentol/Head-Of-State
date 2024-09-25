@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Structure : MonoBehaviour
 {
@@ -18,6 +19,16 @@ public class Structure : MonoBehaviour
     public int _foodCost = 0;
     public int _waterCost = 0;
 
+    [Header("On-Click UI")]
+    [SerializeField] public GameObject ocUI;
+    GameObject realUI;
+    [SerializeField] TMP_Text BuildUIBox;
+
+    void Start(){
+        this.ocUI = GameObject.FindWithTag("BuildingUI");
+        realUI = ocUI.transform.GetChild(7).gameObject;
+        BuildUIBox = realUI.GetComponent<TMP_Text>();
+    }
     void OnMouseOver() {
         if(isPlaced)
         {
@@ -27,6 +38,14 @@ public class Structure : MonoBehaviour
                 if(isRemovable)
                 {
                     _tile.DestroyStructure();
+                }
+            }
+            if(Input.GetMouseButtonUp(0)) {
+                // Make UI Open here
+                if(isRemovable) {
+                    ocUI.transform.GetChild(7).gameObject.SetActive(true);
+                    BuildUIBox.text = "Structure: " + name + "\nResidents: " + "\nStorage: ";
+                    Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
                 }
             }
         }

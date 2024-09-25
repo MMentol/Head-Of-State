@@ -5,6 +5,7 @@ using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Interfaces;
 using Demos.Shared.Goals;
 using GridMap.Resources;
+using Items;
 using Scripts;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             foreach (var action in actions)
             {
                 action.Initialize(context);
-            }
+        }
         }
 
         private void OnEnable()
@@ -89,6 +90,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             float highestUtility = float.MinValue;
 
             foreach (var action in actions)
+        
             {
                 float utility = action.CalculateUtility(context);
                 if (utility > highestUtility)
@@ -103,12 +105,25 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 bestAction.Execute(context);
                 
             }
-        }
+            }
+        private void DetermineGoal() {
+            {
+                //Items in Inventory
+                if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1)
+                {
+                    this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
+                    //Debug.Log("Get pick");
+                    return;
+                }
 
-        public void DetermineGoal()
-        {
-            float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
-
+                if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1)
+                {
+                    this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
+                    //Debug.Log("Get bucket");
+                    return;
+                }
+                //Resources in Inventory
+                float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);

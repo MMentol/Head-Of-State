@@ -232,26 +232,26 @@ namespace Cinaed.GOAP.Complex.Behaviours
                     return;
                 }
             }*/
-            
+            if (forced == 9) resourcePercentage = 1;
             this.agent.SetGoal<WanderGoal>(false);
         }
 
         #region UtilitySide
         private void UpdateContext()
         {
-            context.SetData("foodAmount", MaterialDataStorage.Food);
-            context.SetData("waterAmount", MaterialDataStorage.Water);
-            context.SetData("woodAmount", MaterialDataStorage.Wood);
-            context.SetData("stoneAmount", MaterialDataStorage.Stone);
-            context.SetData("metalAmount", MaterialDataStorage.Metal);
-            context.SetData("hunger", humanStats._hunger);
-            context.SetData("thirst", humanStats._thirst);
-            context.SetData("happiness", humanStats._happiness);
-            context.SetData("heat", humanStats._heat);
-            context.SetData("energy", humanStats._energy);
+            context.SetData("foodAmount", (float)MaterialDataStorage.Food);
+            context.SetData("waterAmount", (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity);
+            context.SetData("woodAmount", (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity);
+            context.SetData("stoneAmount", (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity);
+            context.SetData("metalAmount", (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity);
+            context.SetData("hunger", humanStats._hunger/100f);
+            context.SetData("thirst", humanStats._thirst/100f);
+            context.SetData("happiness", humanStats._happiness/100f);
+            context.SetData("heat", humanStats._heat/100f);
+            context.SetData("energy", humanStats._energy/100f);
 
-            context.SetData("partnerExists", humanStats.partnerExists);
-            context.SetData("house", humanStats.insideHouse);
+            context.SetData("partnerExists", humanStats.partnerExists/100f);
+            context.SetData("house", humanStats.insideHouse/100f);
         }
 
         #endregion

@@ -19,7 +19,7 @@ namespace Cinaed.GOAP.WorldSensors
 
             if (inventory == null)
                 return false;            
-            return inventory.GetRemainingCapacity(typeof(TMaterial).Name);
+            return (int)inventory.GetRemainingCapacity(typeof(TMaterial).Name);
         }
     }
 }

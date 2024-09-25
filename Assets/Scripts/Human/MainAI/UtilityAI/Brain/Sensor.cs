@@ -18,6 +18,7 @@ namespace UtilityAI
             sphereCollider = GetComponent<SphereCollider>();
             sphereCollider.isTrigger = true;
             sphereCollider.radius = detectionRadius;
+            
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
             foreach (var c in colliders)

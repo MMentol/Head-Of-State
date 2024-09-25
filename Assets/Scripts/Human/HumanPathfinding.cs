@@ -39,7 +39,7 @@ public class HumanPathfinding : MonoBehaviour
         gridManager = GameObject.FindWithTag("Grid").GetComponent<GridManager>();
         tiles = gridManager._tiles;
 
-        Debug.Log(tiles + " tiles");
+        //Debug.Log(tiles + " tiles");
     }
     public List<Vector3> FindPath(Vector2 startWorldPosition, Vector2 endWorldPosition)
     {
@@ -115,11 +115,11 @@ public class HumanPathfinding : MonoBehaviour
             foreach (Tile neighbourTile in GetNeighbourList(currentTile))
             {
                 if (closedList.Contains(neighbourTile)) continue;
-                //if (!neighbourTile.isWalkable)
-                //{
-                //    closedList.Add(neighbourTile);
-                //    continue;
-                //}
+                if (!neighbourTile.isWalkable)
+                {
+                    closedList.Add(neighbourTile);
+                    continue;
+                }
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile, neighbourTile);
                 if (tentativeGCost < neighbourTile.gCost)

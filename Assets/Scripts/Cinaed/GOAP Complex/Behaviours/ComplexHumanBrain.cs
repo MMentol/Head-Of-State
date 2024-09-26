@@ -79,14 +79,16 @@ namespace Cinaed.GOAP.Complex.Behaviours
             if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1)
             {
                 this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
-                //Debug.Log("Get bucket");
+                Debug.Log("Get bucket");
                 return;
             }
+            Debug.Log("Checking resources");
             //Resources in Inventory
             float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
+                Debug.Log("Wood");
                 return;
             }
 
@@ -110,7 +112,14 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
                 return;
             }
+            resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                return;
+            }
 
+            //Try to empty inventory
             /*
             if (inventory.used > 0)
             {

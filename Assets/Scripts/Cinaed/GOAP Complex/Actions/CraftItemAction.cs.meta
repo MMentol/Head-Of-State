@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Cinaed/GOAP Complex/Actions/DepositMaterialAction.cs.meta
+guid: 55b170e02fe56d9408fd4025e0e635a6
+========
 guid: 82e55b5eaf879a744b32c13d0d2a6b50
+>>>>>>>> GOAP_Kenneth:Assets/Scripts/Cinaed/GOAP Complex/Actions/CraftItemAction.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

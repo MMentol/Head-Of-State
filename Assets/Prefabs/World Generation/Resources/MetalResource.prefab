@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3323819261356438124}
   m_Layer: 0
   m_Name: MetalResource
-  m_TagString: Untagged
+  m_TagString: MetalSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,10 @@ MonoBehaviour:
   _woodCost: 0
   _stoneCost: 0
   _metalCost: 0
+  _foodCost: 0
   _waterCost: 0
+  ocUI: {fileID: 0}
+  BuildUIBox: {fileID: 0}
 --- !u!114 &3323819261356438124
 MonoBehaviour:
   m_ObjectHideFlags: 0

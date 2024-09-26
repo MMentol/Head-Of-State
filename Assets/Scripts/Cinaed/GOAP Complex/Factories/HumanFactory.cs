@@ -30,6 +30,7 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddGatherGoal<Stone>(MaterialPercentage.NPCStoneThreshold);
             builder.AddGatherGoal<Metal>(MaterialPercentage.NPCMetalThreshold);
             builder.AddGatherGoal<Water>(MaterialPercentage.NPCWaterThreshold);            
+            builder.AddGatherGoal<Food>(MaterialPercentage.NPCFoodThreshold);            
 
             //Actions
             //Gather with Tool
@@ -37,6 +38,7 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddGatherAction<Stone, StoneResource, Pickaxe>();
             builder.AddGatherAction<Metal, MetalResource, Pickaxe>();
             builder.AddGatherAction<Water, WaterResource, Bucket>();
+            builder.AddGatherAction<Food, FoodResource, Pickaxe>();
             //Slow Gather
             builder.AddHandGatherAction<Wood, TreeResource>();
             builder.AddHandGatherAction<Stone, StoneResource>();
@@ -48,6 +50,7 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddClosestMaterialSourceSensor<Stone, StoneResource>();
             builder.AddClosestMaterialSourceSensor<Metal, MetalResource>();
             builder.AddClosestMaterialSourceSensor<Water, WaterResource>();
+            builder.AddClosestMaterialSourceSensor<Food, FoodResource>();
 
             //World Sensors
             builder.AddInventorySpaceSensor();

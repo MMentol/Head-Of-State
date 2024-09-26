@@ -128,6 +128,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
+                Debug.Log("Wood");
                 return;
             }
 
@@ -151,7 +152,14 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
                 return;
             }
+            resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                return;
+            }
 
+            //Try to empty inventory
             /*
             if (inventory.used > 0)
             {

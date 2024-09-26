@@ -12,6 +12,9 @@ namespace Cinaed.GOAP.Complex.TargetSensors
     {
         public TSource[] sources;
         public override void Created()
+        {}
+
+        public override void Update()
         {
             this.sources = GameObject.FindObjectsOfType<TSource>();
         }
@@ -19,6 +22,7 @@ namespace Cinaed.GOAP.Complex.TargetSensors
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
             var closest = this.sources
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
             .FirstOrDefault();
 
@@ -39,7 +43,5 @@ namespace Cinaed.GOAP.Complex.TargetSensors
             return new TransformTarget(closest.transform);
         }
 
-        public override void Update()
-        {}
     }
 }

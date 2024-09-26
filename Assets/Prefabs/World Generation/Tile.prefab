@@ -268,13 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c300a9ca3cc1e41ab308273b9da920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logDebug: 0
   _baseColor: {r: 0.0017799971, g: 0.3773585, b: 0.05474616, a: 1}
   _renderer: {fileID: 7794727838974342568}
   _highlight: {fileID: 604907186399408773}
   initialType: 
-  isResource: 0
-  resourceType: 0
-  resourceAmount: 0
+  canPlaceOn: 1
   structureChooser: {fileID: 0}
   _mouseIndicator: {fileID: 0}
   position: {x: 0, y: 0}

@@ -32,6 +32,7 @@ namespace Demos.Complex.Factories
             builder.AddWanderAction();
 
             builder.AddPickupItemAction<Iron>();
+            builder.AddPickupItemAction<Stone>();
             builder.AddPickupItemAction<Pickaxe>();
             builder.AddPickupItemAction<IEatable>();
             builder.AddPickupItemAction<IDrinkable>();

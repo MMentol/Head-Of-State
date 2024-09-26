@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0cbf8c5d6f07e429b42a26edefb247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBound: 1
-  rawMaterialAmount: 1
+  maxBound: 10000
+  rawMaterialAmount: 0
   toDestroy: 0
   occupant: {fileID: 0}

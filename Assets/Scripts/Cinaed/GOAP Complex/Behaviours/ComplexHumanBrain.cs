@@ -5,6 +5,7 @@ using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Interfaces;
 using Demos.Shared.Goals;
 using GridMap.Resources;
+using Items;
 using Scripts;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,16 @@ namespace Cinaed.GOAP.Complex.Behaviours
     {
         private AgentBehaviour agent;
         private Inventory inventory;
-        public float MaterialPercentage = 75.0f;
+        public MaterialDataStorage MaterialDataStorage;
+        public MaterialPercentage MaterialPercentage;
         public bool logDebug = false;
 
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
             this.inventory = this.GetComponent<Inventory>();
+            this.MaterialDataStorage = GameObject.FindObjectOfType<MaterialDataStorage>();
+            this.MaterialPercentage = GameObject.FindObjectOfType<MaterialPercentage>();
         }
 
         private void OnEnable()
@@ -54,102 +58,91 @@ namespace Cinaed.GOAP.Complex.Behaviours
             this.DetermineGoal();
         }
 
-        private void Start() { DetermineGoal(); }
+        private void Start()
+        {
+            //this.agent.SetGoal<WanderGoal>(false);
+            this.DetermineGoal();
+        }
 
-        private void Update() {}
+        private void Update() { }
 
         private void DetermineGoal()
         {
-            string[] materialsToDetermine = { "wood", "stone", "metal", /*"food",*/ "water" };
-            Dictionary<string, float> resourcesNeeded = new Dictionary<string, float>();
-
-            for (int i = 0; i < materialsToDetermine.Length; i++)
+            //Items in Inventory
+            if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1)
             {
-                float resourcePercentage = (float) this.inventory.GetResourceCount(materialsToDetermine[i]) / (float) inventory.size * 100;
-                if (resourcePercentage < this.MaterialPercentage)
-                    resourcesNeeded.Add(materialsToDetermine[i], resourcePercentage);
-                else 
+                this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
+                //Debug.Log("Get pick");
+                return;
+            }
+
+            if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1)
+            {
+                this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
+                //Debug.Log("Get bucket");
+                return;
+            }
+            //Resources in Inventory
+            float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
+                return;
+            }
+
+            resourcePercentage = (float) this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
+                return;
+            }
+
+            resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
+                return;
+            }
+
+            resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
+                return;
+            }
+
+            /*
+            if (inventory.used > 0)
+            {
+                if (this.inventory.GetResourceCount("wood") > 0)
                 {
-                    switch (materialsToDetermine[i])
-                    {
-                        case "wood":
-                            this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
-                            break;
-                        case "stone":
-                            this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
-                            break;
-                        case "metal":
-                            this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
-                            break;
-                        case "food":
-                            //this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
-                            break;
-                        case "water":
-                            this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
-                            break;
-                    }
+                    this.agent.SetGoal<DepositMaterialGoal<Wood>>(false);
+                    return;
                 }
-            }
-            Dictionary<string, float> sortedNeeded = resourcesNeeded.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-            string lowest = sortedNeeded.FirstOrDefault().Key;
+                if (this.inventory.GetResourceCount("stone") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Stone>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("metal") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Metal>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("food") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Food>>(false);
+                    return;
+                }
+                if (this.inventory.GetResourceCount("water") > 0)
+                {
+                    this.agent.SetGoal<DepositMaterialGoal<Water>>(false);
+                    return;
+                }
+            }*/
 
-            while (!IsThereExistingNodes(lowest) && lowest != null)
-            {
-                if (logDebug)
-                    Debug.Log($"No {lowest} found.");
-
-                sortedNeeded.Remove(lowest);
-                lowest = sortedNeeded.FirstOrDefault().Key;
-                
-                if (logDebug)
-                    Debug.Log($"New resource to find: {lowest}");
-            }
-
-            switch (lowest)
-            {
-                case "wood":
-                    this.agent.SetGoal<GatherMaterialGoal<Wood>>(true);
-                    break;
-                case "stone":
-                    this.agent.SetGoal<GatherMaterialGoal<Stone>>(true);
-                    break;
-                case "metal":
-                    this.agent.SetGoal<GatherMaterialGoal<Metal>>(true);
-                    break;
-                case "food":
-                    this.agent.SetGoal<GatherMaterialGoal<Food>>(true);
-                    break;
-                case "water":
-                    this.agent.SetGoal<GatherMaterialGoal<Water>>(true);
-                    break;
-            }
-
+            this.agent.SetGoal<WanderGoal>(false);
         }
 
-        public bool IsThereExistingNodes(string resource)
-        {
-            //Check if there are existing nodes
-            switch (resource)
-            {
-                case "wood":
-                    return GameObject.FindObjectsOfType<TreeResource>().Any();
-                    break;
-                case "stone":
-                    return GameObject.FindObjectsOfType<StoneResource>().Any();
-                    break;
-                case "metal":
-                    return GameObject.FindObjectsOfType<MetalResource>().Any();
-                    break;
-                case "food":
-                    return false;
-                    //return GameObject.FindObjectsOfType<FoodResource>().Any();
-                    break;
-                case "water":
-                    return GameObject.FindObjectsOfType<WaterResource>().Any();
-                    break;
-                default:
-                    return false;
-            }
-        }
     }
 }

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: StoneTile
   m_EditorClassIdentifier: 
   tileTypeName: Stone
+  tileSprite: {fileID: 21300000, guid: 6353888c8f478b242b3fdb213f0a2e6a, type: 3}
   tileColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
   isWalkable: 1
   level: 0.8
-  spawnChance: 0
-  adjacentChance: 0
-  resourceNode: {fileID: 11400000, guid: e7cb3e727723a3a4ca5246769e947cd5, type: 2}

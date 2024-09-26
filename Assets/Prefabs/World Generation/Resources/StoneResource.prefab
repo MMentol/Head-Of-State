@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 462297947967213340}
   - component: {fileID: 7241097003127628268}
   - component: {fileID: 6875124672069536029}
+  - component: {fileID: 3793514890588155938}
   m_Layer: 0
   m_Name: StoneResource
-  m_TagString: Untagged
+  m_TagString: StoneSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,9 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156bf65782fa8b74eb1ed70e4effff19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logDebug: 0
   _baseType: {fileID: 11400000, guid: 782711a2ee75b39489af0a4b662b7886, type: 2}
   resourceType: 1
   nodeChance: 0.15
+  minAmount: 0
+  maxAmount: 0
   inventory: {fileID: 0}
 --- !u!114 &6875124672069536029
 MonoBehaviour:
@@ -143,4 +147,23 @@ MonoBehaviour:
   _woodCost: 0
   _stoneCost: 0
   _metalCost: 0
+  _foodCost: 0
   _waterCost: 0
+  ocUI: {fileID: 0}
+  BuildUIBox: {fileID: 0}
+--- !u!114 &3793514890588155938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221788029253391972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0cbf8c5d6f07e429b42a26edefb247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBound: 10000
+  rawMaterialAmount: 0
+  toDestroy: 0
+  occupant: {fileID: 0}

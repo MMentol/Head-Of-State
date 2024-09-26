@@ -1,142 +1,82 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour {
-    [Header("Inventory Settings")]
-    public bool logDebug = false;
-    [SerializeField] private int size = 100;
-    [SerializeField] public InventoryList initList = new InventoryList();
-    [SerializeField] public Dictionary<string, int> _resources = new Dictionary<string, int>();
-    
-    public void Init(string type, int resourceAmount, bool debug = false)
-    {
-        logDebug = debug;
-        if(logDebug){Debug.Log($"Inv Init.");}
-        initList.AddItemType(type, resourceAmount);
-        _resources = initList.ToDictionary();
-        size = resourceAmount;
-        SetResource(type, resourceAmount);
-    }
+using Items;
 
-    public int GetRemainingCapacity()
-    {
-        int used = _resources.Values.Sum();
-        if (used > size)
+namespace Scripts
+{
+    public class Inventory : MonoBehaviour {
+        [Header("Inventory Settings")]
+        public bool logDebug = false;
+        public int size = 100;
+        public int used = 0;
+        public Dictionary<string, int> inventoryContents = new Dictionary<string, int>
         {
-            Debug.LogError($"{gameObject.name} Used storage is more than capacity.");
-            return 0;
-        }
-        return size - used;
-    }
+            {"wood", 0}, {"metal", 0}, {"stone", 0}, {"food", 0}, {"water", 0},
+        };
+        public List<ItemBase> items = new List<ItemBase>();
 
-
-    //Resource functions
-    public int GetResourceCount(string resource)
-    {
-        return _resources[resource];
-    }
-    public int GetResource(string type, int count)
-    {
-        int stored = _resources[type];
-        if (count >= stored)
+        //Getting Current ItemCount / Capacity
+        public int GetResourceCount(string resource)
         {
-            stored = 0;
-            return count;
+            return inventoryContents[resource.ToLower()];
         }
-        else
+        public int GetRemainingCapacity()
         {
-            stored -= count;
-            return count;
-        }
-        if(_resources.Values.Sum() == 0)
-        {
-            ResourceNode node = gameObject.GetComponent<ResourceNode>();
-            if(node != null)
+            int used = inventoryContents.Values.Sum();
+            this.used = used;
+            if (used > size)
             {
-                gameObject.GetComponent<Structure>()._tile.DestroyStructure();
+                Debug.LogError($"{gameObject.name} Used storage is more than capacity.");
+                return 0;
+            }
+
+            return size - used;
+        }
+
+        //Storage Functions        
+        public int GetFromInventory(string type, int toWithdraw)
+        {
+            type = type.ToLower();
+            int stored = inventoryContents[type];
+            int withdrawn = Math.Min(toWithdraw, stored);
+            inventoryContents[type] -= withdrawn;
+            return withdrawn;
+        }
+        public int AddToInventory(string type, int toDeposit)
+        {
+            type = type.ToLower();
+            int remainingCapacity = GetRemainingCapacity();
+            int deposited = Mathf.Min(toDeposit, remainingCapacity);
+            inventoryContents[type] += deposited;
+            return toDeposit - deposited;
+        }
+
+        public ItemBase GetPickaxeFromInventory()
+        {
+            foreach (var item in this.items)
+            {
+                if (item.ItemName == "Pickaxe")
+                {
+                    Debug.Log("Found Pickaxe");
+                    return (ItemBase) item;
+                }
+            }
+            return null;
+        }
+
+        //For testing  
+        void OnMouseOver() {
+            if(Input.GetMouseButtonUp(0) && logDebug)
+            {
+                //Debug.Log($"Available: {GetRemainingCapacity()}");
+                foreach (var resource in inventoryContents)
+                {
+                    Debug.Log($"{resource.Key}: {resource.Value}");
+                }
             }
         }
     }
-    public int AddResource(string type, int count)
-    {
-        int capacity = GetRemainingCapacity();
-        if(count <= capacity)
-        {
-            int added = count - capacity;
-            _resources[type] += added;
-            return count - added;
-        }
-
-        return count;
-    }
-    public void SetResource(string type, int count)
-    {
-        if(_resources.ContainsKey(type))
-        {
-            _resources[type] = count;
-        }
-    }
-    //For testing  
-    void OnMouseOver() {
-        if(Input.GetMouseButtonUp(0) && logDebug)
-        {
-            Debug.Log($"Available: {GetRemainingCapacity()}");
-            foreach (var resource in _resources)
-            {
-                Debug.Log($"{resource.Key}: {resource.Value}");
-            }
-        }
-    }
-}
-
-[Serializable]
-public class InventoryList
-{
-    [SerializeField] List<InventoryItem> inventoryItems;
-
-    public InventoryList()
-    {
-        inventoryItems = new List<InventoryItem>();
-    }
-
-    public Dictionary<string, int> ToDictionary()
-    {
-        Dictionary<string, int> list = new Dictionary<string, int>();
-        foreach (var item in inventoryItems)
-        {
-            list.Add(item.name, item.amount);
-        }
-        return list;
-    }
-
-    public void AddItemType(string type, int amount)
-    {
-        // Check if the item already exists
-        if (inventoryItems.Any(item => item.name == type))
-        {
-            // Handle duplicates if needed
-            Debug.LogWarning("Item already exists: " + type);
-            return;
-        }
-
-        // Add the new item to the list
-        inventoryItems.Add(new InventoryItem(type, amount));
-    }
-}
-
-[Serializable]
-public class InventoryItem
-{
-    [SerializeField] public string name;
-    [SerializeField] public int amount;
-
-    public InventoryItem(string name, int amount)
-    {
-        this.name = name;
-        this.amount = amount;
-    }
-
 }

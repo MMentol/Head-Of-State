@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: GrassTile
   m_EditorClassIdentifier: 
   tileTypeName: Grass
+  tileSprite: {fileID: 21300000, guid: 8395370ef048b5d4fa060fc5baf1b66c, type: 3}
   tileColor: {r: 0, g: 0.41568628, b: 0.09411765, a: 1}
   isWalkable: 1
   level: 0.6
-  spawnChance: 0
-  adjacentChance: 0
-  resourceNode: {fileID: 11400000, guid: 5eb4ca0cb8d92ae4fb8adc7b9367311b, type: 2}

@@ -1,4 +1,4 @@
-﻿using CrashKonijn.Goap.Behaviours;
+using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Classes.Validators;
 using Demos.Shared.Behaviours;
 using TMPro;

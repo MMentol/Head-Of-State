@@ -7,6 +7,9 @@ TagManager:
   - Grid
   - Human
   - BuildingUI
+  - MetalSource
+  - WoodSource
+  - StoneSource
   layers:
   - Default
   - TransparentFX
@@ -43,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tiles
+    uniqueID: 2820274353
     locked: 0

@@ -242,8 +242,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1474692943
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c23cf9dfd74bf904daf92a1f22d18d3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -268,23 +268,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c300a9ca3cc1e41ab308273b9da920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logDebug: 0
   _baseColor: {r: 0.0017799971, g: 0.3773585, b: 0.05474616, a: 1}
   _renderer: {fileID: 7794727838974342568}
   _highlight: {fileID: 604907186399408773}
+  initialType: 
+  canPlaceOn: 1
   structureChooser: {fileID: 0}
   _mouseIndicator: {fileID: 0}
   position: {x: 0, y: 0}
+  isOccupied: 0
+  _placedStructure: {fileID: 0}
   gCost: 0
   hCost: 0
   fCost: 0
   isWalkable: 0
   cameFromTile: {fileID: 0}
-  initialType: 
-  isResource: 0
-  resourceType: 0
-  resourceAmount: 0
-  isOccupied: 0
-  _placedStructure: {fileID: 0}
 --- !u!65 &6507000078960536003
 BoxCollider:
   m_ObjectHideFlags: 0

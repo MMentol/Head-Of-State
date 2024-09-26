@@ -11,6 +11,10 @@ namespace Demos.Complex.Behaviours
     public class AgentSpawnBehaviour : MonoBehaviour
     {
         private static readonly Vector2 Bounds = new Vector2(15, 8);
+        [SerializeField] public GridManager grid;
+        [SerializeField] public Vector2 customBounds;
+        [SerializeField] public bool useCustomBounds = false;
+        [SerializeField] public int sets = 2;
         
         private IGoapRunner goapRunner;
         
@@ -24,24 +28,28 @@ namespace Demos.Complex.Behaviours
 
         private void Awake()
         {
+            this.grid = FindObjectOfType<GridManager>();
             this.goapRunner = FindObjectOfType<GoapRunnerBehaviour>();
             this.agentPrefab.SetActive(false);
         }
 
         private void Start()
         {
-            this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
-            this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
-            this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
+            for (int i = 0; i < sets; i++){
+                this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
+                this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
+                this.SpawnAgent(SetIds.Cleaner, ComplexAgentBrain.AgentType.Cleaner, this.cleanerColor);
+                
+                this.SpawnAgent(SetIds.Smith, ComplexAgentBrain.AgentType.Smith, this.smithColor);
+                this.SpawnAgent(SetIds.Miner, ComplexAgentBrain.AgentType.Miner, this.minerColor);
+                this.SpawnAgent(SetIds.WoodCutter, ComplexAgentBrain.AgentType.WoodCutter, this.woodCutterColor);
+            }
             
-            this.SpawnAgent(SetIds.Smith, ComplexAgentBrain.AgentType.Smith, this.smithColor);
-            this.SpawnAgent(SetIds.Miner, ComplexAgentBrain.AgentType.Miner, this.minerColor);
-            this.SpawnAgent(SetIds.WoodCutter, ComplexAgentBrain.AgentType.WoodCutter, this.woodCutterColor);
         }
 
         private void SpawnAgent(string setId, ComplexAgentBrain.AgentType agentType, Color color)
         {
-            var agent = Instantiate(this.agentPrefab, this.GetRandomPosition(), Quaternion.identity).GetComponent<AgentBehaviour>();
+            var agent = Instantiate(this.agentPrefab, this.GetRandomPosition(), Quaternion.identity, gameObject.transform).GetComponent<AgentBehaviour>();
             
             agent.GoapSet = this.goapRunner.GetGoapSet(setId);
             agent.gameObject.SetActive(true);
@@ -59,7 +67,18 @@ namespace Demos.Complex.Behaviours
         {
             var randomX = Random.Range(-Bounds.x, Bounds.x);
             var randomY = Random.Range(-Bounds.y, Bounds.y);
+
+            if (useCustomBounds)
+            {               
+                randomX = Random.Range(0, customBounds.x);
+                randomY = Random.Range(0, customBounds.y);
+                //Debug.Log($"CUSTOM X: {randomX}, Y: {randomY}");
+                Tile tile = grid.GetTileAtPos(new Vector2(Mathf.Round(randomX), Mathf.Round(randomY)), true);
+                //Debug.Log($"Tile Pos: {tile.transform.position}");
+                return tile.gameObject.transform.position;
+            }
             
+            Debug.Log($"X: {randomX}, Y: {randomY}");
             return new Vector3(randomX, 0f, randomY);
         }
     }

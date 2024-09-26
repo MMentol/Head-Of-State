@@ -8,6 +8,8 @@ public class VillageStats : MonoBehaviour
     public float _metal;
     public float _stone;
     public float _wood;
+    public float _food;
+    public float _water;
     public float _totalHunger;
     public float _totalThirst;
     public float _totalHeat;

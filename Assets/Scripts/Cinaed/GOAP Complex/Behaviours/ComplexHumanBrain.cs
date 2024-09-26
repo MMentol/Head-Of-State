@@ -83,14 +83,15 @@ namespace Cinaed.GOAP.Complex.Behaviours
             this.DetermineGoal();
         }
 
-        private void Update() {
+        private void Update()
+        {
 
             UpdateContext();
             AIAction bestAction = null;
             float highestUtility = float.MinValue;
 
             foreach (var action in actions)
-        
+
             {
                 float utility = action.CalculateUtility(context);
                 if (utility > highestUtility)
@@ -103,10 +104,10 @@ namespace Cinaed.GOAP.Complex.Behaviours
             if (bestAction != null)
             {
                 bestAction.Execute(context);
-                
+
             }
-            }
-        private void DetermineGoal() {
+        }   
+        private void DetermineGoal() 
             {
                 //Items in Inventory
                 if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1)

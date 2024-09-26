@@ -20,9 +20,9 @@ namespace Cinaed.GOAP.Complex.WorldKeySensors
         public override SenseValue Sense(IMonoAgent agent, IComponentReference references)
         {
             List<ItemBase> list = agent.GetComponent<Inventory>().items;
-            ItemBase itemType = GameObject.FindObjectOfType<ItemBase>();
+            ItemBase itemType = GameObject.FindObjectOfType<TCraftable>();
             int count = list.Where(item => item.ItemName == itemType.ItemName).Count();
-            Debug.Log(count);
+            //Debug.Log($"{itemType.ItemName} : {count}");
             return count;
         }
 

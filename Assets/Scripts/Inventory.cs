@@ -53,6 +53,19 @@ namespace Scripts
             return toDeposit - deposited;
         }
 
+        public ItemBase GetPickaxeFromInventory()
+        {
+            foreach (var item in this.items)
+            {
+                if (item.ItemName == "Pickaxe")
+                {
+                    Debug.Log("Found Pickaxe");
+                    return (ItemBase) item;
+                }
+            }
+            return null;
+        }
+
         //For testing  
         void OnMouseOver() {
             if(Input.GetMouseButtonUp(0) && logDebug)

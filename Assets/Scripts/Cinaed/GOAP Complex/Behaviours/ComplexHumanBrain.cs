@@ -82,13 +82,12 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 Debug.Log("Get bucket");
                 return;
             }
-            Debug.Log("Checking resources");
+            
             //Resources in Inventory
             float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
-                Debug.Log("Wood");
                 return;
             }
 

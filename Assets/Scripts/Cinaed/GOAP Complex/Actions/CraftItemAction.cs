@@ -41,7 +41,7 @@ namespace Cinaed.GOAP.Complex.Actions
         {
             if (data.Target is not TransformTarget transformTarget)
                 return;
-            Debug.Log($"Start CreateItem Action");
+            //Debug.Log($"Start Crafting Action");
             data.ItemType = GameObject.FindObjectOfType<TCraftable>();
             data.Timer = 3;
         }

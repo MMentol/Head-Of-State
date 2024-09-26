@@ -4,6 +4,7 @@ using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Interfaces;
 using GridMap.Resources;
+using Items;
 using Scripts;
 using System.Linq;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace Cinaed.GOAP.Complex.Actions
 
             data.Source = transformTarget.Transform.GetComponent<ResourceSourceBase>();
             data.Source.SetOccupied(agent.gameObject);
+            //Inventory
+            data.Inventory = agent.GetComponent<Inventory>();
+            data.HasTool = data.Inventory.items.Where(item => item.ItemName == "Pickaxe").Any();
             data.Timer = 1 * this.Config.BaseCost;
         }
 
@@ -43,13 +47,20 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Target == null || data.Source == null || data.Source.ToDestroy())
                 return ActionRunState.Stop;
 
-            Inventory inventory = agent.GetComponent<Inventory>();
-            if (inventory != null)
+            if (!data.HasTool)
+                Debug.Log("No tool");
+
+            if (data.Inventory != null)
             {
                 int harvested = data.Source.Harvest(1);
                 string resource = typeof(TMaterial).Name.ToLower();
                 if (harvested > 0)
-                    inventory.AddToInventory(resource, harvested);
+                {
+                    data.Inventory.AddToInventory(resource, harvested);
+                    //Tool durability reduction                   
+                    if (data.HasTool)
+                        data.Inventory.items.Where(item => item.ItemName == "Pickaxe").FirstOrDefault().DamageItem(harvested, data.Inventory);
+                }                   
             }
             else
                 Debug.LogError($"{agent.name} Inventory is Missing");
@@ -71,7 +82,9 @@ namespace Cinaed.GOAP.Complex.Actions
         public class Data : IActionData
         {
             public ITarget Target { get; set; }
+            public Inventory Inventory { get; set; }
             public ResourceSourceBase Source { get; set; }
+            public bool HasTool { get; set; }
             public float Timer { get; set; }
         }
     }

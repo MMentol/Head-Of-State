@@ -51,5 +51,13 @@ namespace Items
 
             return true;
         }
+
+        public void DamageItem(int dmg, Inventory inventory)
+        {
+            this.durability -= dmg;
+            if (this.durability <= 0)
+                inventory.items.Remove(this);
+            //Debug.Log($"Damage item {this.durability}");
+        }
     }
 }

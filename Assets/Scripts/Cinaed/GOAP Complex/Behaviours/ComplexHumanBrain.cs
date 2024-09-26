@@ -255,7 +255,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         #region UtilitySide
         private void UpdateContext()
         {
-            context.SetData("foodAmount", (float)MaterialDataStorage.Food);
+            context.SetData("foodAmount", (float)this.MaterialDataStorage.Food /(float)this.MaterialDataStorage.FoodCapacity);
             context.SetData("waterAmount", (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity);
             context.SetData("woodAmount", (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity);
             context.SetData("stoneAmount", (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity);
@@ -266,8 +266,11 @@ namespace Cinaed.GOAP.Complex.Behaviours
             context.SetData("heat", humanStats._heat/100f);
             context.SetData("energy", humanStats._energy/100f);
 
-            context.SetData("partnerExists", humanStats.partnerExists/100f);
-            context.SetData("house", humanStats.insideHouse/100f);
+            context.SetData("partnerExists", humanStats.partnerExists);
+            context.SetData("house", humanStats.insideHouse);
+            context.SetData("inBabyPhase", humanStats.inBabyPhase);
+            context.SetData("hasPickAxe", humanStats.hasPickAxe);
+            context.SetData("hasAxe", humanStats.hasAxe);
         }
 
         #endregion

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GetStone
   m_EditorClassIdentifier: 
   targetTag: 3
-  consideration: {fileID: 11400000, guid: 55e4c699bdd13274cbcf5c77635a8598, type: 2}
+  consideration: {fileID: 11400000, guid: fd2b19a4a2f766a4a83096658807518a, type: 2}

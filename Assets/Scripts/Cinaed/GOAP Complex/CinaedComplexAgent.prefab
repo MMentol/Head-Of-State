@@ -246,11 +246,14 @@ MonoBehaviour:
   _age: 0
   _hunger: 0
   _thirst: 0
-  _heat: 0
-  _energy: 0
+  _heat: 100
+  _energy: 100
   _happiness: 0
   partnerExists: 0
   insideHouse: 0
+  inBabyPhase: 0
+  hasPickAxe: 0
+  hasAxe: 0
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0

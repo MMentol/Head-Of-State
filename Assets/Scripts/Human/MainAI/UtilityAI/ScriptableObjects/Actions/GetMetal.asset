@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GetMetal
   m_EditorClassIdentifier: 
   targetTag: 2
-  consideration: {fileID: 11400000, guid: da217dba39739cc498774ae4790d408e, type: 2}
+  consideration: {fileID: 11400000, guid: 4727e3d6f00aa8643ba3ee2815da181e, type: 2}

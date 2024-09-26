@@ -412,10 +412,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 186783508}
-    - targetCorrespondingSourceObject: {fileID: 2615115078104617228, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 928256517}
     - targetCorrespondingSourceObject: {fileID: 6382148953590551139, guid: 28526bf8f56afb04eb0b583a2ca75dc8,
         type: 3}
       insertIndex: -1
@@ -1084,6 +1080,40 @@ MonoBehaviour:
   _stoneText: {fileID: 0}
   _metalText: {fileID: 0}
   _buildButton: {fileID: 0}
+--- !u!1 &1006046088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2115214805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1006046090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006046088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fb25c1d3313144c86e544f5f489e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Bucket
+  durability: 10
+--- !u!114 &1006046091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006046088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b466b88e33ebbd448f27eb587b3b18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Pickaxe
+  durability: 10
 --- !u!1 &1138959975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -1114,7 +1144,7 @@ MonoBehaviour:
   WaterCapacity: 0
   WoodTxt: {fileID: 543117484}
   StoneTxt: {fileID: 426891968}
-  MetalTxt: {fileID: 1505779077}
+  MetalTxt: {fileID: 0}
   FoodTxt: {fileID: 1857844844}
   WaterTxt: {fileID: 2039477547}
 --- !u!114 &1138959979
@@ -1131,6 +1161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Capacity: 0
   Count: 10
+  materialDataStorage: {fileID: 0}
 --- !u!114 &1149703827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -2304,6 +2335,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 891203052}
+    - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1006046091}
+    - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1006046090}
   m_SourcePrefab: {fileID: 100100000, guid: bb41671162aaa06418e2e920bef1ade0, type: 3}
 --- !u!114 &2128898563 stripped
 MonoBehaviour:

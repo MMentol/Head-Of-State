@@ -113,11 +113,11 @@ public class MaterialDataStorage : MonoBehaviour
     {
         if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null)
             return;
-        WoodTxt.text = $"Wood: {Wood} / {WoodCapacity}";
-        StoneTxt.text = $"Stone: {Stone} / {StoneCapacity}";
-        MetalTxt.text = $"Metal: {Metal} / {MetalCapacity}";
-        FoodTxt.text = $"Food: {Food} / {FoodCapacity}";
-        WaterTxt.text = $"Water: {Water} / {WaterCapacity}";
+        WoodTxt.text = $": {Wood} / {WoodCapacity}";
+        StoneTxt.text = $": {Stone} / {StoneCapacity}";
+        MetalTxt.text = $": {Metal} / {MetalCapacity}";
+        FoodTxt.text = $": {Food} / {FoodCapacity}";
+        WaterTxt.text = $": {Water} / {WaterCapacity}";
     }
 
     public int GetRemainingCapacity(string materialType)

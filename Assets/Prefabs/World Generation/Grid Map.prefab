@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8574152826022318511}
   - component: {fileID: 632945936859891499}
-  - component: {fileID: 6025108678496098540}
   m_Layer: 0
   m_Name: MaterialsDataStorage
   m_TagString: Untagged
@@ -180,21 +179,6 @@ MonoBehaviour:
   MetalTxt: {fileID: 0}
   FoodTxt: {fileID: 0}
   WaterTxt: {fileID: 0}
---- !u!114 &6025108678496098540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687638986930379889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Capacity: 0
-  Count: 10
-  materialDataStorage: {fileID: 0}
 --- !u!1 &2585171556646703781
 GameObject:
   m_ObjectHideFlags: 0

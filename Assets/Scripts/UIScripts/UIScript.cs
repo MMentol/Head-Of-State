@@ -16,9 +16,13 @@ public class UIScript : MonoBehaviour
 
     [Header("Main Menu Items")]
     [SerializeField]
-     GameObject stagePick = null;
-     [SerializeField]
-     GameObject mainMenu = null;
+    GameObject stagePick = null;
+    [SerializeField]
+    GameObject mainMenu = null;
+    [SerializeField]
+    GameObject instructions = null;
+    [SerializeField]
+    GameObject credits = null;
 
     // Start is called before the first frame update
     bool pause = false;
@@ -39,6 +43,8 @@ public class UIScript : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 mainMenu.SetActive(true);
                 stagePick.SetActive(false);
+                instructions.SetActive(false);
+                credits.SetActive(false);
             }
         }
         else if(Input.GetKeyDown(KeyCode.Escape)) {
@@ -47,8 +53,8 @@ public class UIScript : MonoBehaviour
             } else {
                 pause = true;
             }
+            PauseGame(pause);
         }
-        PauseGame(pause);
     }
 
     void PauseGame(bool stop) {
@@ -74,6 +80,10 @@ public class UIScript : MonoBehaviour
 
     public void CloseBuild() {
         buildMenu.SetActive(false);
+    }
+
+    public void startGOAP() {
+        SceneManager.LoadScene("UITesting");
     }
     
 }

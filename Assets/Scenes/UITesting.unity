@@ -1960,6 +1960,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5511291149141654894, guid: bf8514faf64fa494790e108b2a92ec00,
+        type: 3}
+      propertyPath: m_Name
+      value: Build Button
+      objectReference: {fileID: 0}
     - target: {fileID: 7319215788233742613, guid: bf8514faf64fa494790e108b2a92ec00,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -3,15 +3,20 @@ using CrashKonijn.Goap.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Demos.Complex.Behaviours
+namespace Cinaed.GOAP.Complex
 {
+    public static class AgentIds
+    {
+        public const string Human = "Human";
+    }
+
     public class AgentSpawner : MonoBehaviour
     {
         private static readonly Vector2 Bounds = new Vector2(15, 8);
-        [SerializeField] public GridManager grid;
-        [SerializeField] public Vector2 customBounds;
-        [SerializeField] public bool useCustomBounds = false;
-        [SerializeField] public int sets = 2;
+        public GridManager grid;
+        public Vector2 customBounds;
+        public bool useCustomBounds = false;
+        public int sets = 2;
 
         private IGoapRunner goapRunner;
 
@@ -29,9 +34,24 @@ namespace Demos.Complex.Behaviours
         {
             for (int i = 0; i < sets; i++)
             {
-                this.SpawnAgent("Human", Random.ColorHSV());
+                this.SpawnAgent(AgentIds.Human, Random.ColorHSV());
             }
 
+        }
+
+        public void CreateNewHuman(string setId, Color color, Vector3 position)
+        {
+            var agent = Instantiate(this.agentPrefab, position, Quaternion.identity, gameObject.transform).GetComponent<AgentBehaviour>();
+
+            agent.GoapSet = this.goapRunner.GetGoapSet(setId);
+            agent.gameObject.SetActive(true);
+
+            agent.gameObject.transform.name = $"Agent - {agent.GetInstanceID()}";
+
+            var brain = agent.GetComponent<AgentBrain>();
+
+            var spriteRenderer = agent.GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer.color = color;
         }
 
         private void SpawnAgent(string setId, Color color)

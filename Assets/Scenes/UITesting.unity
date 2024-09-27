@@ -317,6 +317,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &515937329 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1893699289134407669, guid: b7c092d66f58fec4399ea9b7517dffef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6932360768700132315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &558376405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2011226115938245076, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -626,33 +638,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1959244892}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1138959977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138959975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d117f04482d66145b0e901ec3430fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Wood: 0
-  Stone: 0
-  Metal: 0
-  Food: 0
-  Water: 0
-  WoodCapacity: 0
-  StoneCapacity: 0
-  MetalCapacity: 0
-  FoodCapacity: 0
-  WaterCapacity: 0
-  WoodTxt: {fileID: 5907927345074883009}
-  StoneTxt: {fileID: 8840129238833386176}
-  MetalTxt: {fileID: 0}
-  FoodTxt: {fileID: 676690426635447293}
-  WaterTxt: {fileID: 5146544591431834482}
 --- !u!114 &1138959979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,6 +1592,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: FoodTxt
+      value: 
+      objectReference: {fileID: 676690426635447293}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: WoodTxt
+      value: 
+      objectReference: {fileID: 5907927345074883009}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: MetalTxt
+      value: 
+      objectReference: {fileID: 515937329}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: StoneTxt
+      value: 
+      objectReference: {fileID: 8840129238833386176}
+    - target: {fileID: 632945936859891499, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: WaterTxt
+      value: 
+      objectReference: {fileID: 5146544591431834482}
     - target: {fileID: 2585171556646703781, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       propertyPath: m_Name
@@ -1690,14 +1700,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6025108678496098540, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138959977}
     - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       insertIndex: -1

@@ -8,6 +8,7 @@ using GridMap.Resources;
 using Items;
 using Scripts;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,6 +28,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         public HumanStats humanStats;
         public VillageStats villageStats;
         public bool logDebug = false;
+        
 
         //Utility AI
         public List<AIAction> actions;
@@ -88,23 +90,43 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             UpdateContext();
             AIAction bestAction = null;
+            Dictionary<AIAction, float> utilityActions = new();
             float highestUtility = float.MinValue;
+            AIAction[] bestActions = new AIAction[3];
+
+            
 
             foreach (var action in actions)
 
             {
                 float utility = action.CalculateUtility(context);
-                if (utility > highestUtility)
+                utilityActions.Add(action, utility);
+
+                //if (utility > highestUtility)
+                //{
+                //    highestUtility = utility;
+                //    bestAction = action;
+                //}
+            }
+
+            var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3);
+
+
+            int rnd = Random.Range(0, 2);
+            int cnt = 0;
+            foreach(var action in sortedActions)
+            {
+                cnt++;
+                if (cnt == rnd)
                 {
-                    highestUtility = utility;
-                    bestAction = action;
+                    bestAction = action.Key;
+                    continue;
                 }
             }
 
             if (bestAction != null)
             {
                 bestAction.Execute(context);
-
             }
         }   
         private void DetermineGoal() 

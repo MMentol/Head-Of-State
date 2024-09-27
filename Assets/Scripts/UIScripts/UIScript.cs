@@ -13,6 +13,8 @@ public class UIScript : MonoBehaviour
     GameObject buildMenu = null;
     [SerializeField]
     GameObject overlayMenu = null;
+    [SerializeField]
+    TMP_Text timerText = null;
 
     [Header("Main Menu Items")]
     [SerializeField]
@@ -23,6 +25,8 @@ public class UIScript : MonoBehaviour
     GameObject instructions = null;
     [SerializeField]
     GameObject credits = null;
+
+    float time = 0f;
 
     // Start is called before the first frame update
     bool pause = false;
@@ -55,6 +59,11 @@ public class UIScript : MonoBehaviour
             }
             PauseGame(pause);
         }
+
+        if(SceneManager.GetActiveScene().name.Equals("UITesting")) {
+            time += Time.deltaTime;
+            timerText.text = getTime(time);
+        }
     }
 
     void PauseGame(bool stop) {
@@ -68,7 +77,15 @@ public class UIScript : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    string getTime(float time) {
+        float intTime = time;
+        int minutes = Mathf.FloorToInt(intTime / 60);
+        int seconds = Mathf.FloorToInt(intTime % 60);
+        float fraction = time * 1000;
+        fraction = fraction % 1000;
+        return string.Format ("{0:00}:{1:00}", minutes, seconds);
 
+    }
     public void PickStage() {
         stagePick.SetActive(true);
         mainMenu.SetActive(false);

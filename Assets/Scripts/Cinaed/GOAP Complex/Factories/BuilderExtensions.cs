@@ -222,4 +222,39 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
                 .SetKey<Hunger>();
         }
     }
+    public static class ReproductionExtensions
+    {
+        //GOAL
+        public static void AddBreedGoal(this GoapSetBuilder builder)
+        {
+            builder.AddGoal<BreedingGoal>()
+                .AddCondition<PlayerMaterialPercentage<Population>>(Comparison.GreaterThanOrEqual, 100);
+        }
+        //ACTION
+        public static void AddBreedAction(this GoapSetBuilder builder, float condition)
+        {
+            builder.AddAction<BreedingAction>()
+                .AddCondition<Happiness>(Comparison.GreaterThan, Mathf.RoundToInt(condition))
+                .AddCondition<BreedCooldown>(Comparison.SmallerThanOrEqual, 0)
+                .SetTarget<ClosestHouseWithSpace>()
+                .AddEffect<PlayerMaterialPercentage<Population>>(EffectType.Increase);
+        }
+        //TARGET
+        public static void AddHouseSensor(this GoapSetBuilder builder)
+        {
+            builder.AddTargetSensor<ClosestHouseSensor>()
+                .SetTarget<ClosestHouseWithSpace>();
+        }
+        //WORLD
+        public static void AddHappinessSensor(this GoapSetBuilder builder)
+        {
+            builder.AddWorldSensor<HappinessSensor>()
+                .SetKey<Happiness>();
+        }
+        public static void AddBreedCooldownSensor(this GoapSetBuilder builder)
+        {
+            builder.AddWorldSensor<BreedCooldownSensor>()
+                .SetKey<BreedCooldown>();
+        }
+    }
 }

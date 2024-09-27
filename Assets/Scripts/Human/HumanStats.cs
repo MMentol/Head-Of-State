@@ -15,6 +15,7 @@ public class HumanStats : MonoBehaviour
     public float inBabyPhase = 1;
     public float hasPickAxe = 0;
     public float hasAxe = 0;
+    public float breedCooldown = 0;
 
     private void FixedUpdate()
     {
@@ -23,6 +24,7 @@ public class HumanStats : MonoBehaviour
         getHot();
         getSleepy(1);
         updateHappiness();
+        RefractoryPeriod();
         if (this._age > 1) inBabyPhase = 0;
     }
 
@@ -50,6 +52,11 @@ public class HumanStats : MonoBehaviour
     public void getOlder()
     {
         _age++;
+    }
+
+    public void RefractoryPeriod()
+    {
+        breedCooldown -= Time.fixedDeltaTime;
     }
 
     public void updateHappiness()

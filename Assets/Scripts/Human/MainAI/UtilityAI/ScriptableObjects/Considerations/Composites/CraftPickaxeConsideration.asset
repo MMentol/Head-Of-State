@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CraftPickaxeConsideration
   m_EditorClassIdentifier: 
   allMustBeNonZero: 1
-  operation: 5
+  operation: 1
   considerations:
   - {fileID: 11400000, guid: 23a5ac4919010d7499d0081e8e6a87dd, type: 2}
+  - {fileID: 11400000, guid: 9294be0bf9822f342860e33ddbb6282c, type: 2}

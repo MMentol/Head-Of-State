@@ -4,7 +4,7 @@ using UnityEngine;
 
 using BehaviorTree;
 
-public class checkHeatTask : Node
+public class checkHeatAndEnergyTask : Node
 {
     private Animator _animator;
 
@@ -13,7 +13,7 @@ public class checkHeatTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public checkHeatTask(Transform transform)
+    public checkHeatAndEnergyTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
     }

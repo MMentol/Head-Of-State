@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff8c02461c4e5f46b115e0a3d9b2da3, type: 3}
   m_Name: CreateAxe
   m_EditorClassIdentifier: 
-  targetTag: 
+  targetTag: 10
   consideration: {fileID: 0}

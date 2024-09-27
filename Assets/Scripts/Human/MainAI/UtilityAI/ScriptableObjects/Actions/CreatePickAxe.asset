@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff8c02461c4e5f46b115e0a3d9b2da3, type: 3}
   m_Name: CreatePickAxe
   m_EditorClassIdentifier: 
-  targetTag: 
-  consideration: {fileID: 0}
+  targetTag: 8
+  consideration: {fileID: 11400000, guid: 1abd84e432d86a841a165b8808d07160, type: 2}

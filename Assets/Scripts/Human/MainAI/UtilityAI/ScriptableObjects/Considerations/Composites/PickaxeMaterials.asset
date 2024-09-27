@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: PickaxeMaterials
   m_EditorClassIdentifier: 
   allMustBeNonZero: 1
-  operation: 5
-  considerations: []
+  operation: 1
+  considerations:
+  - {fileID: 11400000, guid: dce013d8a6e8eef49b940a105eef551f, type: 2}
+  - {fileID: 11400000, guid: 4100d86daf601c34fba96d668afa274f, type: 2}

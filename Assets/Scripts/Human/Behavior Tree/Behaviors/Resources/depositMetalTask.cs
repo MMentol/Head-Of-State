@@ -2,47 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts;
+using GridMap.Structures.Storage;
+
 using BehaviorTree;
-using GridMap.Resources;
 
-
-public class getWoodResourceTask : Node
+public class depositMetalTask : Node
 {
     private HumanController humanController;
+    private Transform _lastTarget;
     private Transform _transform;
-    private HumanStats _hStats;
     public Inventory inventory;
 
-
-    private Transform _lastTarget;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public getWoodResourceTask(Transform transform, Inventory inve )
+    public depositMetalTask(Transform transform, Inventory inve)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
-        _hStats = transform.GetComponent<HumanStats>();
         inventory = inve;
+
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("wood");
+        Transform target = (Transform)GetData("metalStorage");
 
         if (_transform.position.Equals(target.position))
         {
             //add food to human
             //remove food from tile
-            GameObject woodTile = (GameObject)GetData("wood");
-            TreeResource wood = woodTile.GetComponent<TreeResource>();
+            GameObject metal = (GameObject)GetData("metalStorage");
+            MetalStorage metalStorage = metal.GetComponent<MetalStorage>();
 
-            int harvested = wood.Harvest(1);
-            string resource = "wood";
-
-            if (harvested > 0)
-                inventory.AddToInventory(resource, harvested);
+            string resource = "metal";
+            int withdraw = metalStorage.Add(inventory.GetResourceCount(resource));
+            inventory.GetFromInventory(resource, withdraw);
 
 
 

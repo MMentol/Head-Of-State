@@ -30,6 +30,7 @@ namespace Cinaed.GOAP.Complex.Factories
             //Action
             builder.AddDrinkWaterAction();
             //Target
+            builder.AddDrinkableWaterSensor();
             //World
             builder.AddThirstSensor();
 

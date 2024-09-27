@@ -2,6 +2,7 @@ using Cinaed.GOAP.Complex.Actions;
 using Cinaed.GOAP.Complex.Goals;
 using Cinaed.GOAP.Complex.Interfaces;
 using Cinaed.GOAP.Complex.Target;
+using Cinaed.GOAP.Complex.TargetKeys;
 using Cinaed.GOAP.Complex.Targets;
 using Cinaed.GOAP.Complex.TargetSensors;
 using Cinaed.GOAP.Complex.WorldKeys;
@@ -185,11 +186,15 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         public static void AddDrinkWaterAction(this GoapSetBuilder builder)
         {
             builder.AddAction<DrinkAction>()
-                .SetTarget<ClosestMaterialSource<Water>>()
+                .SetTarget<DrinkableWaterSource>()
                 .AddEffect<Thirst>(EffectType.Decrease);
         }
         //TARGET
-
+        public static void AddDrinkableWaterSensor(this GoapSetBuilder builder)
+        {
+            builder.AddTargetSensor<DrinkableWaterSourceSensor>()
+                .SetTarget<DrinkableWaterSource>();
+        }
         //WORLD
         public static void AddThirstSensor(this GoapSetBuilder builder)
         {

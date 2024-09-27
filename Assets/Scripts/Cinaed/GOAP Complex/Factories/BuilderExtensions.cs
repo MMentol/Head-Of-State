@@ -11,6 +11,7 @@ using Cinaed.GOAP.WorldSensors;
 using CrashKonijn.Goap.Classes.Builders;
 using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Resolver;
+using Demos.Complex.Actions;
 using GridMap.Resources;
 using GridMap.Structures.Storage;
 using Items;
@@ -182,12 +183,23 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             builder.AddGoal<DrinkGoal>()
                 .AddCondition<Thirst>(Comparison.SmallerThanOrEqual, 0);
         }
+        public static void AddEatGoal(this GoapSetBuilder builder)
+        {
+            builder.AddGoal<EatGoal>()
+                .AddCondition<Hunger>(Comparison.SmallerThanOrEqual, 0);
+        }
         //ACTION
         public static void AddDrinkWaterAction(this GoapSetBuilder builder)
         {
-            builder.AddAction<DrinkAction>()
+            builder.AddAction<DrinkingAction>()
                 .SetTarget<DrinkableWaterSource>()
                 .AddEffect<Thirst>(EffectType.Decrease);
+        }
+        public static void AddEatAction(this GoapSetBuilder builder)
+        {
+            builder.AddAction<EatingAction>()
+                .SetTarget<EdibleFoodSource>()
+                .AddEffect<Hunger>(EffectType.Decrease);
         }
         //TARGET
         public static void AddDrinkableWaterSensor(this GoapSetBuilder builder)
@@ -195,11 +207,21 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             builder.AddTargetSensor<DrinkableWaterSourceSensor>()
                 .SetTarget<DrinkableWaterSource>();
         }
+        public static void AddFoodSourceSensor(this GoapSetBuilder builder)
+        {
+            builder.AddTargetSensor<EdibleFoodSourceSensor>()
+                .SetTarget<EdibleFoodSource>();
+        }
         //WORLD
         public static void AddThirstSensor(this GoapSetBuilder builder)
         {
             builder.AddWorldSensor<ThirstSensor>()
                 .SetKey<Thirst>();
+        }
+        public static void AddHungerSensor(this GoapSetBuilder builder)
+        {
+            builder.AddWorldSensor<HungerSensor>()
+                .SetKey<Hunger>();
         }
     }
 }

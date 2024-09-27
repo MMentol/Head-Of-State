@@ -11,11 +11,9 @@ using Cinaed.GOAP.WorldSensors;
 using CrashKonijn.Goap.Classes.Builders;
 using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Resolver;
-using Demos.Complex.Actions;
 using GridMap.Resources;
 using GridMap.Structures.Storage;
 using Items;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -195,7 +193,7 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
                 .SetTarget<DrinkableWaterSource>()
                 .AddEffect<Thirst>(EffectType.Decrease);
         }
-        public static void AddEatAction(this GoapSetBuilder builder)
+        public static void AddEatFoodAction(this GoapSetBuilder builder)
         {
             builder.AddAction<EatingAction>()
                 .SetTarget<EdibleFoodSource>()

@@ -25,8 +25,8 @@ public class HumanBT : Tree
 
     private void Awake()
     {
-        foodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
-        waterSources = UnityEngine.GameObject.FindGameObjectsWithTag("WaterSource");
+        //foodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
+        //waterSources = UnityEngine.GameObject.FindGameObjectsWithTag("WaterSource");
         woodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
         stoneSources = UnityEngine.GameObject.FindGameObjectsWithTag("StoneSource");
         metalSources = UnityEngine.GameObject.FindGameObjectsWithTag("MetalSource");
@@ -49,22 +49,22 @@ public class HumanBT : Tree
         Node root = new Selector(new List<Node>
         {
 
-            new Sequence(new List<Node>
-            {
-                new checkFoodTask(transform,this._hStats),
-                new lookFoodTask(transform, foodSources),
-                new walkToFoodTask(transform),
-                new getFoodTask(transform,this.inventory)
-            }),
+            //new Sequence(new List<Node>
+            //{
+            //    new checkFoodTask(transform,this._hStats),
+            //    new lookFoodTask(transform, foodSources),
+            //    new walkToFoodTask(transform),
+            //    new getFoodTask(transform,this.inventory)
+            //}),
 
     
-            new Sequence(new List<Node>
-            {
-                new checkWaterTask(transform,this._hStats),
-                new lookWaterTask(transform, waterSources),
-                new walkToWaterTask(transform),
-                new getWaterTask(transform,this._hStats)
-            }),
+            //new Sequence(new List<Node>
+            //{
+            //    new checkWaterTask(transform,this._hStats),
+            //    new lookWaterTask(transform, waterSources),
+            //    new walkToWaterTask(transform),
+            //    new getWaterTask(transform,this.inventory)
+            //}),
             
             new Selector(new List<Node>
             {
@@ -102,20 +102,20 @@ public class HumanBT : Tree
                 })
             }),
 
-            new Sequence(new List<Node>
-            {
-                new checkHeatAndEnergyTask(transform,this._hStats),
-                new lookForHomeTask(transform,this._hStats),
-                new walkToHomeTask(transform),
-                new sleepTask(transform,this._hStats)
-            }),
+            //new Sequence(new List<Node>
+            //{
+            //    new checkHeatAndEnergyTask(transform,this._hStats),
+            //    new lookForHomeTask(transform,this._hStats),
+            //    new walkToHomeTask(transform),
+            //    new sleepTask(transform,this._hStats)
+            //}),
 
-            new Sequence(new List<Node>
-            {
-                new isInHomeTask(transform,this._hStats),
-                new statsFulfilledTask(transform,this._hStats),
-                new reproduceTask(transform)
-            }),
+            //new Sequence(new List<Node>
+            //{
+            //    new isInHomeTask(transform,this._hStats),
+            //    new statsFulfilledTask(transform,this._hStats),
+            //    new reproduceTask(transform)
+            //}),
             
 
             new WanderBT(transform)

@@ -24,7 +24,7 @@ public class getWoodResourceTask : Node
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
-        inventory = inve;
+        this.inventory = inve;
     }
 
     public override NodeState Evaluate()
@@ -42,7 +42,7 @@ public class getWoodResourceTask : Node
             string resource = "wood";
 
             if (harvested > 0)
-                inventory.AddToInventory(resource, harvested);
+                this.inventory.AddToInventory(resource, harvested);
 
 
 

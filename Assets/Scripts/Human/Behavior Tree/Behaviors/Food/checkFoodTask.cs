@@ -9,38 +9,23 @@ public class checkFoodTask : Node
     private Animator _animator;
 
     private Transform _lastTarget;
+    public HumanStats _hStats;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public checkFoodTask(Transform transform)
+    public checkFoodTask(Transform transform, HumanStats hstat)
     {
         _animator = transform.GetComponent<Animator>();
+        this._hStats = hstat;
+
     }
 
     public override NodeState Evaluate()
     {
-        object t = GetData("food");
-        if(t == null)
-        {
-            List<object> foodSource = new List<object>();
-            //Look for all foodSources on the Map
-            foreach(object f in foodSource)
-            {
-                //Look through each foodsource if it has resource
-                if(f != null)
-                {
-                    parent.parent.SetData("food", f);
-                    state = NodeState.SUCCESS;
-                    return state;
-                }
-            }
-            state = NodeState.FAILURE;
-            return state;
-            
-        }
-
-        state = NodeState.SUCCESS;
+        if (_hStats._hunger > 80)
+            state = NodeState.SUCCESS;
+        else state = NodeState.FAILURE;
         return state;
     }
 }

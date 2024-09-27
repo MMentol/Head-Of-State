@@ -27,12 +27,16 @@ namespace Cinaed.GOAP.Complex.Factories
             //Stats
             //Goal
             builder.AddDrinkGoal();
+            builder.AddEatGoal();
             //Action
             builder.AddDrinkWaterAction();
+            builder.AddEatFoodAction();
             //Target
             builder.AddDrinkableWaterSensor();
+            builder.AddFoodSourceSensor();
             //World
             builder.AddThirstSensor();
+            builder.AddHungerSensor();
 
             //Gathering
             //Goals           

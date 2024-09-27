@@ -124,7 +124,7 @@ MonoBehaviour:
   logDebug: 0
   _baseType: {fileID: 11400000, guid: c1494f808029b2949a0bf8236144deca, type: 2}
   resourceType: 0
-  nodeChance: 0.25
+  nodeChance: 0.2
   minAmount: 1
   maxAmount: 1
   inventory: {fileID: 0}

@@ -173,4 +173,28 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
                 .SetKey<IsItemCraftable<TCraftable>>();
         }
     }
+    public static class HumanStatExtensions
+    {
+        //GOAL
+        public static void AddDrinkGoal(this GoapSetBuilder builder)
+        {
+            builder.AddGoal<DrinkGoal>()
+                .AddCondition<Thirst>(Comparison.SmallerThanOrEqual, 0);
+        }
+        //ACTION
+        public static void AddDrinkWaterAction(this GoapSetBuilder builder)
+        {
+            builder.AddAction<DrinkAction>()
+                .SetTarget<ClosestMaterialSource<Water>>()
+                .AddEffect<Thirst>(EffectType.Decrease);
+        }
+        //TARGET
+
+        //WORLD
+        public static void AddThirstSensor(this GoapSetBuilder builder)
+        {
+            builder.AddWorldSensor<ThirstSensor>()
+                .SetKey<Thirst>();
+        }
+    }
 }

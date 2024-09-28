@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using GridMap.Structures.Storage;
 
 public class Structure : MonoBehaviour
 {
@@ -26,12 +27,17 @@ public class Structure : MonoBehaviour
     [SerializeField] TMP_Text ResidentsTxt;
     [SerializeField] TMP_Text StorageTxt;
 
-    void Start(){
+    [SerializeField] MaterialStorageBase stor;
+    [SerializeField] House house;
+
+    void Awake(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
         realUI = ocUI.transform.GetChild(9).GetChild(0).gameObject;
         StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
         ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
         StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
+        stor = gameObject.GetComponent<MaterialStorageBase>();
+        house = gameObject.GetComponent<House>();
     }
     void OnMouseOver() {
         if(isPlaced)
@@ -49,8 +55,10 @@ public class Structure : MonoBehaviour
                 if(isRemovable) {
                     ocUI.transform.GetChild(9).gameObject.SetActive(true);
                     StructNameTxt.text = name;
-                    ResidentsTxt.text = "Residents: ";
-                    StorageTxt.text = "Storage: ";
+                    if(house != null)
+                        ResidentsTxt.text = "Residents: " + house.PeopleInside.Count + "/" + house.Capacity;
+                    if(stor != null)
+                        StorageTxt.text = "Storage: " + stor.Count + "/" + stor.Capacity;
                     Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
                 }
             }

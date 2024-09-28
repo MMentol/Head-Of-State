@@ -36,7 +36,7 @@ public class lookForMetalResourceTask : Node
         if (t == null)
         {
             var closest = this.metalSources
-            //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
             var close = closest.GetComponent<TreeResource>();

@@ -48,15 +48,31 @@ public class HumanBT : Tree
 
         Node root = new Selector(new List<Node>
         {
-
-            new Sequence(new List<Node>
+            new Selector(new List<Node>
             {
-                new checkFoodTask(transform),
-                new lookFoodTask(transform),
-                new walkToFoodTask(transform),
-                new getFoodTask(transform)
+                new getFoodTask(transform),
+                new Sequence(new List<Node>
+                {
+                    new checkFoodTask(transform),
+                    new lookFoodTask(transform),
+                    new walkToFoodTask(transform),
+                    
+                }),
+
             }),
 
+            new Selector(new List<Node>
+            {
+                new getWaterTask(transform),
+                new Sequence(new List<Node>
+                {
+                    new checkWaterTask(transform),
+                    new lookWaterTask(transform),
+                    new walkToWaterTask(transform),
+
+                }),
+
+            }),
     
             //new Sequence(new List<Node>
             //{
@@ -123,29 +139,23 @@ public class HumanBT : Tree
                 }),
             }),
             }),
-                //new Sequence(new List<Node>
-                //{
-                //    new checkForStoneStorageTask(transform, stoneStorage),
-                //    new checkStoneResourceTask(transform,this.storages),
-                //    new lookForStoneResourceTask(transform, waterSources),
-                //    new walkToStoneResourceTask(transform),
-                //    new getStoneResourceTask(transform,this.inventory),
-                //    new walkToStoneStorageTask(transform),
-                //    new depositStoneTask(transform, this.inventory)
-                //}),
+            new Selector(new List<Node>
+            {
+                new Sequence(new List<Node>
+            {
+                new statsFulfilledTask(transform),
+                new reproduceTask(transform)
+            }),
+                new sleepTask(transform),
+                new Sequence(new List<Node>
+                {
+                    new checkHeatAndEnergyTask(transform),
+                    new lookForHomeTask(transform),
+                    new walkToHomeTask(transform),
 
-                //new Sequence(new List<Node>
-                //{
-                //    new checkForMetalStorageTask(transform, metalStorage),
-                //    new checkMetalResourceTask(transform,this.storages),
-                //    new lookForMetalResourceTask(transform, metalSources),
-                //    new walkToMetalResourceTask(transform),
-                //    new getMetalResourceTask(transform,this.inventory),
-                //    new walkToMetalStorageTask(transform),
-                //    new depositMetalTask(transform, this.inventory)
-                //})
-            //}),
+                }),
 
+            }),
             //new Sequence(new List<Node>
             //{
             //    new checkHeatAndEnergyTask(transform,this._hStats),
@@ -154,13 +164,8 @@ public class HumanBT : Tree
             //    new sleepTask(transform,this._hStats)
             //}),
 
-            //new Sequence(new List<Node>
-            //{
-            //    new isInHomeTask(transform,this._hStats),
-            //    new statsFulfilledTask(transform,this._hStats),
-            //    new reproduceTask(transform)
-            //}),
             
+
 
             new WanderBT(transform)
             //new Sequence(new List<Node>

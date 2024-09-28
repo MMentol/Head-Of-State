@@ -14,10 +14,10 @@ public class checkHeatAndEnergyTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public checkHeatAndEnergyTask(Transform transform, HumanStats hstat)
+    public checkHeatAndEnergyTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
-        this._hStats = hstat;
+        this._hStats = transform.GetComponent<HumanStats>();
 
     }
 

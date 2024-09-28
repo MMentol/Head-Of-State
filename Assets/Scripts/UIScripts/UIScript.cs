@@ -59,11 +59,8 @@ public class UIScript : MonoBehaviour
             }
             PauseGame(pause);
         }
-
-        if(SceneManager.GetActiveScene().name.Equals("UITesting")) {
-            time += Time.deltaTime;
-            timerText.text = getTime(time);
-        }
+        time += Time.deltaTime;
+        timerText.text = getTime(time);
     }
 
     void PauseGame(bool stop) {
@@ -76,6 +73,10 @@ public class UIScript : MonoBehaviour
             overlayMenu.SetActive(!pause);
             Time.timeScale = 1;
         }
+    }
+    public void Unpause() {
+        pause = false;
+        PauseGame(pause);
     }
     string getTime(float time) {
         float intTime = time;
@@ -90,7 +91,6 @@ public class UIScript : MonoBehaviour
         stagePick.SetActive(true);
         mainMenu.SetActive(false);
     }
-
     public void OpenBuild() {
         buildMenu.SetActive(true);
     }

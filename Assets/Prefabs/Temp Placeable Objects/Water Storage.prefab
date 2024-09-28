@@ -157,15 +157,16 @@ MonoBehaviour:
   isRemovable: 1
   _currentPos: {x: 0, y: 0}
   _tile: {fileID: 0}
-  _woodCost: 10
+  _woodCost: 0
   _stoneCost: 0
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  ocUI: {fileID: 0}
   StructNameTxt: {fileID: 0}
   ResidentsTxt: {fileID: 0}
   StorageTxt: {fileID: 0}
+  stor: {fileID: 0}
+  house: {fileID: 0}
 --- !u!114 &3789077120605532329
 MonoBehaviour:
   m_ObjectHideFlags: 0

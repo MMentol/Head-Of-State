@@ -1896,6 +1896,9 @@ MonoBehaviour:
   FoodCapacity: 0
   WaterCapacity: 0
   MaxPopulation: 0
+  totalWood: 0
+  totalStone: 0
+  totalMetal: 0
   WoodTxt: {fileID: 3857234927445855477}
   StoneTxt: {fileID: 235621919320750626}
   MetalTxt: {fileID: 0}
@@ -4498,12 +4501,12 @@ PrefabInstance:
     - target: {fileID: 4074954838061024988, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 716.8301
+      value: 718.82
       objectReference: {fileID: 0}
     - target: {fileID: 4074954838061024988, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -347.99994
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 4162784370106995233, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}

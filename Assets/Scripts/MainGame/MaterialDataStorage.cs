@@ -21,7 +21,6 @@ public class MaterialDataStorage : MonoBehaviour
     public int totalWood = 0;
     public int totalStone = 0;
     public int totalMetal = 0;
-    public int totalPopulation = 0;
 
     public TMP_Text WoodTxt;
     public TMP_Text StoneTxt;
@@ -60,6 +59,7 @@ public class MaterialDataStorage : MonoBehaviour
         {
             this.WoodCapacity += storage.Capacity;
             this.Wood += storage.Count;
+            this.totalWood += storage.Count;
         }
     }
 
@@ -70,6 +70,7 @@ public class MaterialDataStorage : MonoBehaviour
         {
             this.StoneCapacity += storage.Capacity;
             this.Stone += storage.Count;
+            this.totalStone += storage.Count;
         }
     }
 
@@ -80,6 +81,7 @@ public class MaterialDataStorage : MonoBehaviour
         {
             this.MetalCapacity += storage.Capacity;
             this.Metal += storage.Count;
+            this.totalMetal += storage.Count;
         }
     }
 
@@ -242,6 +244,7 @@ public class MaterialDataStorage : MonoBehaviour
                 deduction = Math.Min(woodCost, current.Count);
                 current.Count -= deduction;
                 woodCost -= deduction;
+                totalWood += deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();
             }
@@ -258,6 +261,7 @@ public class MaterialDataStorage : MonoBehaviour
             {
                 deduction = Math.Min(stoneCost, current.Count);
                 current.Count -= deduction;
+                totalStone += deduction;
                 stoneCost -= deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();
@@ -275,6 +279,7 @@ public class MaterialDataStorage : MonoBehaviour
             {
                 deduction = Math.Min(metalCost, current.Count);
                 current.Count -= deduction;
+                totalMetal += deduction;
                 metalCost -= deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();

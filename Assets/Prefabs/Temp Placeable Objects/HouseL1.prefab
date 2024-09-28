@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 8794328823103998566}
   - component: {fileID: 6280087910699436866}
   m_Layer: 0
-  m_Name: Temp House
-  m_TagString: Untagged
+  m_Name: HouseL1
+  m_TagString: BuiltByPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Temp House
+  name: HouseL1
   isPlaced: 0
   isRemovable: 1
   _currentPos: {x: 0, y: 0}

@@ -31,7 +31,7 @@ public class ObjectivesTracker : MonoBehaviour
             tw.WriteLine("Objective No., Completion Time");
             tw.Close();
         }
-        Pop = mds.totalPopulation;
+        Pop = mds.Population;
         Wood = mds.totalWood;
         Stone = mds.totalStone;
         Metal = mds.totalMetal;

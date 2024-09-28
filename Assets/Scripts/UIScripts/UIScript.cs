@@ -26,7 +26,7 @@ public class UIScript : MonoBehaviour
     [SerializeField]
     GameObject credits = null;
 
-    float time = 0f;
+    public float time = 0f;
 
     // Start is called before the first frame update
     bool pause = false;
@@ -78,14 +78,13 @@ public class UIScript : MonoBehaviour
         pause = false;
         PauseGame(pause);
     }
-    string getTime(float time) {
+    public string getTime(float time) {
         float intTime = time;
         int minutes = Mathf.FloorToInt(intTime / 60);
         int seconds = Mathf.FloorToInt(intTime % 60);
         float fraction = time * 1000;
         fraction = fraction % 1000;
         return string.Format ("{0:00}:{1:00}", minutes, seconds);
-
     }
     public void PickStage() {
         stagePick.SetActive(true);

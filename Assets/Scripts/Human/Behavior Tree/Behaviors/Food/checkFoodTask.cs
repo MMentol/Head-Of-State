@@ -14,10 +14,10 @@ public class checkFoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public checkFoodTask(Transform transform, HumanStats hstat)
+    public checkFoodTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
-        this._hStats = hstat;
+        this._hStats = transform.GetComponent<HumanStats>();
 
     }
 

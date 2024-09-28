@@ -8,26 +8,29 @@ using BehaviorTree;
 
 public class lookFoodTask : Node
 {
-    private static int _woodSourceMask = 1 << 6;
+    private static int _foodSourceMask = 1 << 6;
 
     private Animator _animator;
 
     private Transform _lastTarget;
     private Transform _transform;
 
-    public GameObject[] foodSources;
+    public FoodResource[] foodSources;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
-    public lookFoodTask(Transform transform, GameObject[] Sources)
+
+    public lookFoodTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
-        foodSources = Sources;
+
     }
 
     public override NodeState Evaluate()
     {
+        this.foodSources = GameObject.FindObjectsOfType<FoodResource>();
+
 
         object t = GetData("food");
         if (t == null)

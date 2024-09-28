@@ -8,33 +8,38 @@ using BehaviorTree;
 
 public class lookForStoneResourceTask : Node
 {
+    private static int _stoneSourceMask = 1 << 6;
+
     private Animator _animator;
 
     private Transform _lastTarget;
     private Transform _transform;
 
-    public GameObject[] stoneSources;
+    public StoneResource[] stoneSources;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public lookForStoneResourceTask(Transform transform, GameObject[] Sources)
+    public lookForStoneResourceTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
-        stoneSources = Sources;
+
     }
 
     public override NodeState Evaluate()
     {
+        this.stoneSources = GameObject.FindObjectsOfType<StoneResource>();
+
+
         object t = GetData("stone");
         if (t == null)
         {
             var closest = this.stoneSources
-            //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-            var close = closest.GetComponent<StoneResource>();
+            var close = closest.GetComponent<TreeResource>();
             if (close == null)
                 return NodeState.FAILURE;
             else
@@ -46,7 +51,7 @@ public class lookForStoneResourceTask : Node
                     closest = this.stoneSources
                     .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                     .FirstOrDefault();
-                    close = closest.GetComponent<StoneResource>();
+                    close = closest.GetComponent<TreeResource>();
                     if (close == null)
                         return NodeState.FAILURE;
                 }

@@ -49,13 +49,13 @@ public class HumanBT : Tree
         Node root = new Selector(new List<Node>
         {
 
-            //new Sequence(new List<Node>
-            //{
-            //    new checkFoodTask(transform,this._hStats),
-            //    new lookFoodTask(transform, foodSources),
-            //    new walkToFoodTask(transform),
-            //    new getFoodTask(transform,this.inventory)
-            //}),
+            new Sequence(new List<Node>
+            {
+                new checkFoodTask(transform),
+                new lookFoodTask(transform),
+                new walkToFoodTask(transform),
+                new getFoodTask(transform)
+            }),
 
     
             //new Sequence(new List<Node>
@@ -66,8 +66,8 @@ public class HumanBT : Tree
             //    new getWaterTask(transform,this.inventory)
             //}),
             
-            //new Selector(new List<Node>
-            //{
+            new Selector(new List<Node>
+            {
             new Selector(new List<Node>  {
 
                 new depositWoodTask(transform),
@@ -75,7 +75,7 @@ public class HumanBT : Tree
                 {
                     new getWoodResourceTask(transform),
                     new walkToWoodStorageTask(transform),
-                    
+
                 }),
             new Sequence(new List<Node>
                 {
@@ -83,8 +83,45 @@ public class HumanBT : Tree
                     new checkForWoodStorageTask(transform),
                     new lookForWoodResourceTask(transform),
                     new walkToWoodResourceTask(transform),
-                    
+
                 }),
+            }),
+            new Selector(new List<Node>  {
+
+                new depositStoneTask(transform),
+                new Sequence(new List<Node>
+                {
+                    new getStoneResourceTask(transform),
+                    new walkToStoneStorageTask(transform),
+
+                }),
+            new Sequence(new List<Node>
+                {
+                    //new checkStoneResourceTask(transform),
+                    new checkForStoneStorageTask(transform),
+                    new lookForStoneResourceTask(transform),
+                    new walkToStoneResourceTask(transform),
+
+                }),
+            }),
+            new Selector(new List<Node>  {
+
+                new depositMetalTask(transform),
+                new Sequence(new List<Node>
+                {
+                    new getMetalResourceTask(transform),
+                    new walkToMetalStorageTask(transform),
+
+                }),
+            new Sequence(new List<Node>
+                {
+                    //new checkMetalResourceTask(transform),
+                    new checkForMetalStorageTask(transform),
+                    new lookForMetalResourceTask(transform),
+                    new walkToMetalResourceTask(transform),
+
+                }),
+            }),
             }),
                 //new Sequence(new List<Node>
                 //{

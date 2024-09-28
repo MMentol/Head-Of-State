@@ -19,37 +19,49 @@ public class getFoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public getFoodTask(Transform transform, Inventory inve)
+    public getFoodTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
-        inventory = inve;
+        inventory = transform.GetComponent<Inventory>();
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("food");
+        GameObject foodTile = (GameObject)GetData("food");
 
-        if (_transform.position.Equals(target.position))
+        if (foodTile == null) return NodeState.FAILURE;
+
+        if (this.inventory.used == this.inventory.size)
+        {
+            state = NodeState.SUCCESS;
+            Debug.Log("stateget1 :" + state);
+
+            return state;
+        }
+        if (_transform.position.Equals(foodTile.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject foodTile = (GameObject)GetData("food");
             FoodResource food = foodTile.GetComponent<FoodResource>();
 
             int harvested = food.Harvest(1);
             string resource = "food";
 
             if (harvested > 0)
-                inventory.AddToInventory(resource, harvested);
+                this.inventory.AddToInventory(resource, harvested);
 
 
 
             state = NodeState.SUCCESS;
+            Debug.Log("stateget :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateget :" + state);
+
         return state;
     }
 }

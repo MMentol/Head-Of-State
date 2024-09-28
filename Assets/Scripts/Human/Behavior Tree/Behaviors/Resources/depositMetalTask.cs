@@ -17,35 +17,50 @@ public class depositMetalTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public depositMetalTask(Transform transform, Inventory inve)
+    public depositMetalTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
-        inventory = inve;
+        this.inventory = transform.GetComponent<Inventory>();
 
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("metalStorage");
+        MetalStorage metal = (MetalStorage)GetData("metalStorage");
 
-        if (_transform.position.Equals(target.position))
+        if (metal == null || inventory.inventoryContents.GetValueOrDefault("metal") == 0 || ((float)metal.Count / (float)metal.Capacity) >= 1)
+            return NodeState.FAILURE;
+
+        Debug.Log("Capacity: " + ((float)metal.Count / (float)metal.Capacity));
+        if (_transform.position.Equals(metal.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject metal = (GameObject)GetData("metalStorage");
             MetalStorage metalStorage = metal.GetComponent<MetalStorage>();
 
+            Debug.Log("Inventory of:" + this.inventory);
             string resource = "metal";
             int withdraw = metalStorage.Add(inventory.GetResourceCount(resource));
-            inventory.GetFromInventory(resource, withdraw);
-
+            Debug.Log("withdraw: " + withdraw);
+            int taken = this.inventory.GetFromInventory(resource, withdraw);
+            Debug.Log("Taken:" + taken);
 
 
             state = NodeState.SUCCESS;
+            if (inventory.inventoryContents.GetValueOrDefault("metal") == 0)
+            {
+                ClearData("metalStorage");
+                ClearData("metal");
+            }
+
+            Debug.Log("stateDep :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateDep :" + state);
+
         return state;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridMap.Resources;
 using System.Linq;
+using GridMap.Structures.Storage;
 
 using BehaviorTree;
 
@@ -15,7 +16,7 @@ public class lookForWoodResourceTask : Node
     private Transform _lastTarget;
     private Transform _transform;
 
-    public GameObject[] woodSources;
+    public TreeResource[] woodSources;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
@@ -29,13 +30,13 @@ public class lookForWoodResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        woodSources = GameObject.FindGameObjectsWithTag("WoodSource");
+        this.woodSources = GameObject.FindObjectsOfType<TreeResource>();
 
         object t = GetData("wood");
         if (t == null)
         {
             var closest = this.woodSources
-            //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
             var close = closest.GetComponent<TreeResource>();

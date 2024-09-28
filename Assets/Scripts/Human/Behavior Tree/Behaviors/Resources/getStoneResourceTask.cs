@@ -19,37 +19,49 @@ public class getStoneResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public getStoneResourceTask(Transform transform, Inventory inve)
+    public getStoneResourceTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
-        inventory = inve;
+        this.inventory = transform.GetComponent<Inventory>();
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("stone");
+        GameObject stoneTile = (GameObject)GetData("stone");
 
-        if (_transform.position.Equals(target.position))
+        if (stoneTile == null) return NodeState.FAILURE;
+
+        if (this.inventory.used == this.inventory.size)
+        {
+            state = NodeState.SUCCESS;
+            Debug.Log("stateget1 :" + state);
+
+            return state;
+        }
+        if (_transform.position.Equals(stoneTile.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject stoneTile = (GameObject)GetData("stone");
-            StoneResource stone = stoneTile.GetComponent<StoneResource>();
+            TreeResource stone = stoneTile.GetComponent<TreeResource>();
 
             int harvested = stone.Harvest(1);
             string resource = "stone";
 
             if (harvested > 0)
-                inventory.AddToInventory(resource, harvested);
+                this.inventory.AddToInventory(resource, harvested);
 
 
 
             state = NodeState.SUCCESS;
+            Debug.Log("stateget :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateget :" + state);
+
         return state;
     }
 }

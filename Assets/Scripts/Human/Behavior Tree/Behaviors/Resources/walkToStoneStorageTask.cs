@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridMap.Structures.Storage;
 
 using BehaviorTree;
 
@@ -21,14 +22,20 @@ public class walkToStoneStorageTask : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("stoneStorage");
 
-        if (Vector3.Distance(_transform.position, target.position) > 0.1f)
+        StoneStorage storage = (StoneStorage)GetData("stoneStorage");
+        if (storage == null)
+            return NodeState.FAILURE;
+        if (Vector3.Distance(_transform.position, storage.transform.position) > 0.1f)
         {
-            humanController.SetTargetPosition(target.position);
+
+            humanController.SetTargetPosition(storage.transform.position);
 
         }
         state = NodeState.RUNNING;
+        Debug.Log("statewalks :" + state);
+
+
         return state;
     }
 }

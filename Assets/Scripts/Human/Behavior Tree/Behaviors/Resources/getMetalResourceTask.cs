@@ -19,37 +19,49 @@ public class getMetalResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public getMetalResourceTask(Transform transform, Inventory inve)
+    public getMetalResourceTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
-        inventory = inve;
+        this.inventory = transform.GetComponent<Inventory>();
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("metal");
+        GameObject metalTile = (GameObject)GetData("metal");
 
-        if (_transform.position.Equals(target.position))
+        if (metalTile == null) return NodeState.FAILURE;
+
+        if (this.inventory.used == this.inventory.size)
+        {
+            state = NodeState.SUCCESS;
+            Debug.Log("stateget1 :" + state);
+
+            return state;
+        }
+        if (_transform.position.Equals(metalTile.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject metalTile = (GameObject)GetData("metal");
-            MetalResource metal = metalTile.GetComponent<MetalResource>();
+            TreeResource metal = metalTile.GetComponent<TreeResource>();
 
             int harvested = metal.Harvest(1);
             string resource = "metal";
 
             if (harvested > 0)
-                inventory.AddToInventory(resource, harvested);
+                this.inventory.AddToInventory(resource, harvested);
 
 
 
             state = NodeState.SUCCESS;
+            Debug.Log("stateget :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateget :" + state);
+
         return state;
     }
 }

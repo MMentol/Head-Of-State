@@ -81,27 +81,4 @@ namespace Cinaed.GOAP.Complex.TargetSensors
         }
 
     }
-    public class ClosestHouseSensor : LocalTargetSensorBase
-    {
-        public House[] houses;
-        public override void Created() { }
-
-        public override void Update()
-        {
-            this.houses = GameObject.FindObjectsOfType<House>();
-        }
-
-        public override ITarget Sense(IMonoAgent agent, IComponentReference references)
-        {
-            var closest = this.houses
-                .Where(house => house.PeopleInside.Count < house.Capacity)
-                .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
-                .FirstOrDefault();
-
-            if (closest == null) { return null; }
-
-            return new TransformTarget(closest.transform);
-        }
-
-    }
 }

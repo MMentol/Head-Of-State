@@ -6,6 +6,5 @@ namespace Cinaed.GOAP.Complex.Goals
 
     public class DrinkGoal : GoalBase { }
     public class EatGoal : GoalBase { }
-    public class BreedingGoal : GoalBase { }
 
 }

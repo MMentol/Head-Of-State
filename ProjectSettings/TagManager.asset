@@ -10,9 +10,7 @@ TagManager:
   - MetalSource
   - WoodSource
   - StoneSource
-  - ResidentTXT
-  - StorageTXT
-  - StructureTXT
+  - BuiltByPlayer
   layers:
   - Default
   - TransparentFX

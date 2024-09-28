@@ -73,10 +73,7 @@ public class StructureChooser : MonoBehaviour
         {
             Destroy(storageComponent);
         }
-        if (_mouseIndicator.TryGetComponent<House>(out var houseComponent))
-        {
-            Destroy(houseComponent);
-        }
+
     }
 
     public void ResetBuildMode()

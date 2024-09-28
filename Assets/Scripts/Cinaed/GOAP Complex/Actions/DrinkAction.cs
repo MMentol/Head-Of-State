@@ -21,7 +21,7 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            data.Stats._thirst -= 25;
+            data.Stats._thirst -= 1;
 
             return ActionRunState.Stop;
         }
@@ -58,7 +58,7 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            data.Stats._hunger -= 25;
+            data.Stats._hunger -= 1;
 
             return ActionRunState.Stop;
         }

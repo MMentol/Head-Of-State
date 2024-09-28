@@ -24,6 +24,20 @@ namespace Cinaed.GOAP.Complex.Factories
             builder.AddWanderAction();
             builder.AddWanderTargetSensor();
 
+            //Stats
+            //Goal
+            builder.AddDrinkGoal();
+            builder.AddEatGoal();
+            //Action
+            builder.AddDrinkWaterAction();
+            builder.AddEatFoodAction();
+            //Target
+            builder.AddDrinkableWaterSensor();
+            builder.AddFoodSourceSensor();
+            //World
+            builder.AddThirstSensor();
+            builder.AddHungerSensor();
+
             //Gathering
             //Goals           
             builder.AddGatherGoal<Wood>(MaterialPercentage.NPCWoodThreshold);

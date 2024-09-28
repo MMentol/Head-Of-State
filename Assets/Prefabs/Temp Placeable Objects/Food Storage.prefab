@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6900993318331612142}
   - component: {fileID: 3781785838652519288}
   m_Layer: 0
-  m_Name: Wood Storage
+  m_Name: Food Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 513ca6472fdd42f4fafd2ba41b2243ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fad2b2e2487c6e14cbc68988c8764b86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 1177288492814679013}
   - component: {fileID: 8318894101753048452}
   - component: {fileID: 1589875167932382387}
-  - component: {fileID: 3196082067095554429}
+  - component: {fileID: 1821212036921388685}
   m_Layer: 0
-  m_Name: Wood Storage
+  m_Name: Food Storage
   m_TagString: BuiltByPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Wood Storage
+  name: Food Storage
   isPlaced: 0
   isRemovable: 1
   _currentPos: {x: 0, y: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   StructNameTxt: {fileID: 0}
   ResidentsTxt: {fileID: 0}
   StorageTxt: {fileID: 0}
---- !u!114 &3196082067095554429
+--- !u!114 &1821212036921388685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7722850542549836018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 331561b2b796b0640b540cfabaae8f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Capacity: 100

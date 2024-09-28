@@ -20,7 +20,7 @@ public class Structure : MonoBehaviour
     public int _waterCost = 0;
 
     [Header("On-Click UI")]
-    [SerializeField] public GameObject ocUI;
+    GameObject ocUI;
     GameObject realUI;
     [SerializeField] TMP_Text StructNameTxt;
     [SerializeField] TMP_Text ResidentsTxt;

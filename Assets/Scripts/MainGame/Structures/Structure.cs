@@ -22,12 +22,16 @@ public class Structure : MonoBehaviour
     [Header("On-Click UI")]
     [SerializeField] public GameObject ocUI;
     GameObject realUI;
-    [SerializeField] TMP_Text BuildUIBox;
+    [SerializeField] TMP_Text StructNameTxt;
+    [SerializeField] TMP_Text ResidentsTxt;
+    [SerializeField] TMP_Text StorageTxt;
 
     void Start(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
-        realUI = ocUI.transform.GetChild(7).gameObject;
-        BuildUIBox = realUI.GetComponent<TMP_Text>();
+        realUI = ocUI.transform.GetChild(9).GetChild(0).gameObject;
+        StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+        ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+        StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
     }
     void OnMouseOver() {
         if(isPlaced)
@@ -43,8 +47,10 @@ public class Structure : MonoBehaviour
             if(Input.GetMouseButtonUp(0)) {
                 // Make UI Open here
                 if(isRemovable) {
-                    ocUI.transform.GetChild(7).gameObject.SetActive(true);
-                    BuildUIBox.text = "Structure: " + name + "\nResidents: " + "\nStorage: ";
+                    ocUI.transform.GetChild(9).gameObject.SetActive(true);
+                    StructNameTxt.text = name;
+                    ResidentsTxt.text = "Residents: ";
+                    StorageTxt.text = "Storage: ";
                     Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
                 }
             }

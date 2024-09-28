@@ -16,23 +16,31 @@ public class checkWoodResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public checkWoodResourceTask(Transform transform, MaterialDataStorage  storage)
+    public checkWoodResourceTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
-        woodAmount = storage;
+
     }
 
     public override NodeState Evaluate()
     {
+        this.woodAmount = GameObject.FindObjectOfType<MaterialDataStorage>();
+
+        Debug.Log("close :" + woodAmount.Wood);
+        Debug.Log("closeC :" + woodAmount.WoodCapacity);
+
         if (woodAmount == null)
             state = NodeState.FAILURE;
 
 
 
-        if (((float)this.woodAmount.Wood / (float)this.woodAmount.WoodCapacity)! >= 100)
+        if (((float)this.woodAmount.Wood / (float)this.woodAmount.WoodCapacity) < 100)
             state = NodeState.SUCCESS;
         else state = NodeState.FAILURE;
+
+        
+
         return state;
     }
 }

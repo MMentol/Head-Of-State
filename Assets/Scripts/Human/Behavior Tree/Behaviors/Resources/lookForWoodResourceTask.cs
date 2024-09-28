@@ -20,15 +20,17 @@ public class lookForWoodResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public lookForWoodResourceTask(Transform transform, GameObject[] Sources)
+    public lookForWoodResourceTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
-        woodSources = Sources;
+        
     }
 
     public override NodeState Evaluate()
     {
+        woodSources = GameObject.FindGameObjectsWithTag("WoodSource");
+
         object t = GetData("wood");
         if (t == null)
         {

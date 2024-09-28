@@ -17,7 +17,7 @@ public class HumanController : MonoBehaviour
 
     public HumanPathfinding humanPathfinding;
 
-    private const float speed = 40f;
+    private const float speed = 1f;
 
     [Range(0, 100)]
     public int testx;
@@ -44,24 +44,26 @@ public class HumanController : MonoBehaviour
         //unitSkeleton.Update(Time.deltaTime);
 
 
-        if (Input.GetMouseButtonDown(0))
-        {
+        //if (Input.GetMouseButtonDown(0))
+        //{
             
-            //Debug.Log(UtilsClass.GetMouseWorldPosition() + " 38");
-            Vector3 mospos = UtilsClass.GetMouseWorldPosition();
-            //SetTargetPosition(mospos);
-            //Debug.Log(mospos + " 39");
-            SetTargetPosition(new Vector3(testx, testy));
-        }
+        //    //Debug.Log(UtilsClass.GetMouseWorldPosition() + " 38");
+        //    Vector3 mospos = UtilsClass.GetMouseWorldPosition();
+        //    //SetTargetPosition(mospos);
+        //    //Debug.Log(mospos + " 39");
+        //    SetTargetPosition(new Vector3(testx, testy));
+        //}
 
     }
     public void SetTargetPosition(Vector3 targetPosition)
     {
         currentPathIndex = 0;
-        pathVectorList = humanPathfinding.FindPath(GetPosition(), targetPosition);
+        pathVectorList = humanPathfinding.FindPath(GetPosition(), new Vector2(targetPosition.x,targetPosition.z));
         Debug.Log(GetPosition() + " , " + targetPosition);
+        Debug.Log("VectorList: " + pathVectorList);
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
+            
             pathVectorList.RemoveAt(0);
         }
     }
@@ -74,12 +76,12 @@ public class HumanController : MonoBehaviour
             Debug.Log("not null");
             Vector3 tilexy = pathVectorList[currentPathIndex] - new Vector3(0.5f, 0.5f ,0.5f);
             Vector3 targetPosition = new Vector3(tilexy.x, 0 , tilexy.y);
-            //Debug.Log(targetPosition);
-            if (Vector3.Distance(transform.position, targetPosition) > 1f)
+            Debug.Log("targetPosb4: " + targetPosition);
+            if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
-                Debug.Log("MoveDir: " + moveDir);
-                Debug.Log("targetPos: " +  targetPosition + " , " + transform.position);
+                //Debug.Log("MoveDir: " + moveDir);
+                //Debug.Log("targetPos: " +  targetPosition + " , " + transform.position);
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 //animatedWalker.SetMoveVector(moveDir);
@@ -93,13 +95,34 @@ public class HumanController : MonoBehaviour
                 {
                     StopMoving();
 
-                    if ((transform.position.x % 1) != 0) Mathf.RoundToInt(transform.position.x);
-                    if ((transform.position.z % 1) != 0) Mathf.RoundToInt(transform.position.z);
+                    if ((transform.position.x % 1) != 0)
+                        transform.position = transform.position + new Vector3(1-transform.position.x%1,0);
+                    if ((transform.position.z % 1) != 0)
+                        transform.position = transform.position + new Vector3(0, 0, 1 - transform.position.z % 1);
                     Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
-                    if (transform.position.x < targetPosition.x) transform.position = transform.position + new Vector3(1f,0);
-                    if (transform.position.x > targetPosition.x) transform.position = transform.position - new Vector3(1f,0);
-                    if (transform.position.z < targetPosition.z) transform.position = transform.position + new Vector3(0,0,1f);
-                    if (transform.position.z > targetPosition.z) transform.position = transform.position - new Vector3(0,0,1f);
+                    if (transform.position.x < targetPosition.x)
+                    {
+                        transform.position = transform.position + new Vector3(1f, 0);
+                        Debug.Log("movedforce");
+                    }
+                    if (transform.position.x > targetPosition.x)
+                    {
+                        transform.position = transform.position - new Vector3(1f, 0);
+
+                        Debug.Log("movedforce");
+                    }
+                    if (transform.position.z < targetPosition.z)
+                    {
+                        transform.position = transform.position + new Vector3(0, 0, 1f);
+
+                        Debug.Log("movedforce");
+                    }
+                    if (transform.position.z > targetPosition.z)
+                    {
+                        transform.position = transform.position - new Vector3(0, 0, 1f);
+
+                        Debug.Log("movedforce");
+                    }
                     //animatedWalker.SetMoveVector(Vector3.zero);
                 }
             }

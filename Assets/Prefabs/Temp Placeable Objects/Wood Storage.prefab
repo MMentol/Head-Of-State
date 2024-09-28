@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3196082067095554429}
   m_Layer: 0
   m_Name: Wood Storage
-  m_TagString: Untagged
+  m_TagString: WoodStorage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
+  ocUI: {fileID: 0}
+  BuildUIBox: {fileID: 0}
 --- !u!114 &3196082067095554429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Capacity: 100
   Count: 0
+  materialDataStorage: {fileID: 0}

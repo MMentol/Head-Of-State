@@ -13,25 +13,22 @@ public class HumanBT : Tree
 
     public UnityEngine.GameObject[] foodStorage;
     public UnityEngine.GameObject[] waterStorage;
-    public UnityEngine.GameObject[] woodStorage;
     public UnityEngine.GameObject[] stoneStorage;
     public UnityEngine.GameObject[] metalStorage;
 
     public HumanStats _hStats;
     public MaterialDataStorage storages;
     public Inventory inventory;
-    public MaterialPercentage MaterialPercentage;
+    //public MaterialPercentage MaterialPercentage;
 
 
     private void Awake()
     {
         //foodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
         //waterSources = UnityEngine.GameObject.FindGameObjectsWithTag("WaterSource");
-        woodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
         stoneSources = UnityEngine.GameObject.FindGameObjectsWithTag("StoneSource");
         metalSources = UnityEngine.GameObject.FindGameObjectsWithTag("MetalSource");
 
-        woodStorage = UnityEngine.GameObject.FindGameObjectsWithTag("WoodStorage");
         stoneStorage = UnityEngine.GameObject.FindGameObjectsWithTag("StoneStorage");
         metalStorage = UnityEngine.GameObject.FindGameObjectsWithTag("MetalStorage");
 
@@ -44,8 +41,11 @@ public class HumanBT : Tree
 
     }
 
+   
+
     protected override Node SetupTree()
     {
+
         Node root = new Selector(new List<Node>
         {
 
@@ -66,41 +66,48 @@ public class HumanBT : Tree
             //    new getWaterTask(transform,this.inventory)
             //}),
             
-            new Selector(new List<Node>
-            {
+            //new Selector(new List<Node>
+            //{
+            new Selector(new List<Node>  {
+
+                new depositWoodTask(transform),
                 new Sequence(new List<Node>
                 {
-                    new checkForWoodStorageTask(transform, woodStorage),
-                    new checkWoodResourceTask(transform,this.storages),
-                    new lookForWoodResourceTask(transform,woodSources),
-                    new walkToWoodResourceTask(transform),
-                    new getWoodResourceTask(transform,this.inventory),
+                    new getWoodResourceTask(transform),
                     new walkToWoodStorageTask(transform),
-                    new depositWoodTask(transform, this.inventory)
+                    
                 }),
-
-                new Sequence(new List<Node>
+            new Sequence(new List<Node>
                 {
-                    new checkForStoneStorageTask(transform, stoneStorage),
-                    new checkStoneResourceTask(transform,this.storages),
-                    new lookForStoneResourceTask(transform, waterSources),
-                    new walkToStoneResourceTask(transform),
-                    new getStoneResourceTask(transform,this.inventory),
-                    new walkToStoneStorageTask(transform),
-                    new depositStoneTask(transform, this.inventory)
+                    //new checkWoodResourceTask(transform),
+                    new checkForWoodStorageTask(transform),
+                    new lookForWoodResourceTask(transform),
+                    new walkToWoodResourceTask(transform),
+                    
                 }),
-
-                new Sequence(new List<Node>
-                {
-                    new checkForMetalStorageTask(transform, metalStorage),
-                    new checkMetalResourceTask(transform,this.storages),
-                    new lookForMetalResourceTask(transform, metalSources),
-                    new walkToMetalResourceTask(transform),
-                    new getMetalResourceTask(transform,this.inventory),
-                    new walkToMetalStorageTask(transform),
-                    new depositMetalTask(transform, this.inventory)
-                })
             }),
+                //new Sequence(new List<Node>
+                //{
+                //    new checkForStoneStorageTask(transform, stoneStorage),
+                //    new checkStoneResourceTask(transform,this.storages),
+                //    new lookForStoneResourceTask(transform, waterSources),
+                //    new walkToStoneResourceTask(transform),
+                //    new getStoneResourceTask(transform,this.inventory),
+                //    new walkToStoneStorageTask(transform),
+                //    new depositStoneTask(transform, this.inventory)
+                //}),
+
+                //new Sequence(new List<Node>
+                //{
+                //    new checkForMetalStorageTask(transform, metalStorage),
+                //    new checkMetalResourceTask(transform,this.storages),
+                //    new lookForMetalResourceTask(transform, metalSources),
+                //    new walkToMetalResourceTask(transform),
+                //    new getMetalResourceTask(transform,this.inventory),
+                //    new walkToMetalStorageTask(transform),
+                //    new depositMetalTask(transform, this.inventory)
+                //})
+            //}),
 
             //new Sequence(new List<Node>
             //{

@@ -14,27 +14,40 @@ public class checkForWoodStorageTask : Node
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
-    private GameObject[] woodStorage;
+    private WoodStorage[] woodStorage;
 
-    public checkForWoodStorageTask(Transform transform, GameObject[] storage)
+    public checkForWoodStorageTask(Transform transform)
     {
-        _animator = transform.GetComponent<Animator>();
-        _transform = transform;
-        woodStorage = storage;
+        this._animator = transform.GetComponent<Animator>();
+        this._transform = transform;
     }
 
+    
     public override NodeState Evaluate()
     {
-        if (woodStorage == null)
+        this.woodStorage = GameObject.FindObjectsOfType<WoodStorage>();
+
+        Debug.Log("checking: " +this.woodStorage );
+
+        if (woodStorage.Length == 0)
+        {
             state = NodeState.FAILURE;
 
+            return state;
+        }
         var closest = this.woodStorage
-            //.Where(x => x.Capacity > x.Count)
+            .Where(x => x.Capacity > x.Count)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
         var close = closest.GetComponent<WoodStorage>();
+
         if (close == null)
-            return NodeState.FAILURE;
+        {
+            state = NodeState.FAILURE; 
+            Debug.Log("checking: " + state);
+
+            return state;
+        }
         else
             while (close.Capacity <= close.Count)
             {
@@ -50,6 +63,7 @@ public class checkForWoodStorageTask : Node
             }
 
         parent.parent.SetData("woodStorage", closest);
+
         state = NodeState.SUCCESS;
 
         return state;

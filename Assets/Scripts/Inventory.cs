@@ -43,6 +43,7 @@ namespace Scripts
             int stored = inventoryContents[type];
             int withdrawn = Math.Min(toWithdraw, stored);
             inventoryContents[type] -= withdrawn;
+            GetRemainingCapacity();
             return withdrawn;
         }
         public int AddToInventory(string type, int toDeposit)

@@ -19,23 +19,31 @@ public class getWoodResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public getWoodResourceTask(Transform transform, Inventory inve )
+    public getWoodResourceTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
-        this.inventory = inve;
+        this.inventory = transform.GetComponent<Inventory>();
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("wood");
+        GameObject woodTile = (GameObject)GetData("wood");
 
-        if (_transform.position.Equals(target.position))
+        if (woodTile == null) return NodeState.FAILURE;
+
+        if(this.inventory.used == this.inventory.size)
+        {
+            state = NodeState.SUCCESS;
+            Debug.Log("stateget1 :" + state);
+
+            return state;
+        }
+        if (_transform.position.Equals(woodTile.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject woodTile = (GameObject)GetData("wood");
             TreeResource wood = woodTile.GetComponent<TreeResource>();
 
             int harvested = wood.Harvest(1);
@@ -47,9 +55,13 @@ public class getWoodResourceTask : Node
 
 
             state = NodeState.SUCCESS;
+            Debug.Log("stateget :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateget :" + state);
+
         return state;
     }
 }

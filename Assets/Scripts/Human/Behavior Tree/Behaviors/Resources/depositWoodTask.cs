@@ -17,35 +17,50 @@ public class depositWoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public depositWoodTask(Transform transform, Inventory inve)
+    public depositWoodTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
-        inventory = inve;
+        this.inventory = transform.GetComponent<Inventory>();
 
     }
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("woodStorage");
+        WoodStorage wood = (WoodStorage)GetData("woodStorage");
+        
+        if (wood == null || inventory.inventoryContents.GetValueOrDefault("wood")== 0 || ((float)wood.Count/(float)wood.Capacity)>=1)
+            return NodeState.FAILURE;
 
-        if (_transform.position.Equals(target.position))
+        Debug.Log("Capacity: " + ((float)wood.Count / (float)wood.Capacity));
+        if (_transform.position.Equals(wood.transform.position))
         {
             //add food to human
             //remove food from tile
-            GameObject wood = (GameObject)GetData("woodStorage");
             WoodStorage woodStorage = wood.GetComponent<WoodStorage>();
 
+            Debug.Log("Inventory of:" + this.inventory);
             string resource = "wood";
             int withdraw = woodStorage.Add(inventory.GetResourceCount(resource));
-            inventory.GetFromInventory(resource, withdraw);
-
+            Debug.Log("withdraw: " + withdraw);
+            int taken  = this.inventory.GetFromInventory(resource, withdraw);
+            Debug.Log("Taken:" + taken);
 
 
             state = NodeState.SUCCESS;
+            if (inventory.inventoryContents.GetValueOrDefault("wood") == 0)
+            {
+                ClearData("woodStorage");
+                ClearData("wood");
+            }
+                    
+            Debug.Log("stateDep :" + state);
+
             return state;
         }
         state = NodeState.FAILURE;
+        Debug.Log("stateDep :" + state);
+
         return state;
     }
 }

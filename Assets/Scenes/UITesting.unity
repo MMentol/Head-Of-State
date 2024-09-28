@@ -1127,6 +1127,20 @@ MonoBehaviour:
   NPCMetalThreshold: 50
   NPCFoodThreshold: 50
   NPCWaterThreshold: 50
+--- !u!114 &891203056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891203048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3e56f2bda48724a81d048e5d2b0f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredHappiness: 0
+  RestingEnergyBenefit: 0
 --- !u!1001 &948380915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1324,16 +1338,19 @@ MonoBehaviour:
   Metal: 0
   Food: 0
   Water: 0
+  Population: 0
   WoodCapacity: 0
   StoneCapacity: 0
   MetalCapacity: 0
   FoodCapacity: 0
   WaterCapacity: 0
+  MaxPopulation: 0
   WoodTxt: {fileID: 3857234927445855477}
   StoneTxt: {fileID: 235621919320750626}
   MetalTxt: {fileID: 0}
   FoodTxt: {fileID: 3626456465960727016}
   WaterTxt: {fileID: 6661834924632633370}
+  PopulationTxt: {fileID: 0}
 --- !u!114 &1138959979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,6 +2705,18 @@ MonoBehaviour:
   _stoneText: {fileID: 0}
   _metalText: {fileID: 0}
   _buildButton: {fileID: 0}
+--- !u!114 &1551078101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3655659824692072978, guid: b7c092d66f58fec4399ea9b7517dffef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7801024735315349066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1557268680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2005581498049564953, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -3143,6 +3172,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 891203052}
+    - targetCorrespondingSourceObject: {fileID: 2044818846619009058, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 891203056}
     - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
       insertIndex: -1
@@ -3267,6 +3300,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3594224981923433568, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594224981923433568, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594224981923433568, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594224981923433568, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4162784370106995233, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3312,6 +3365,31 @@ PrefabInstance:
       propertyPath: structureChooser
       value: 
       objectReference: {fileID: 1149703827}
+    - target: {fileID: 6404960737178878294, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404960737178878294, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404960737178878294, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404960737178878294, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962073883923130265, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -438
+      objectReference: {fileID: 0}
     - target: {fileID: 7046869854799187827, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: structureChooser
@@ -3432,11 +3510,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1688967756}
+    - target: {fileID: 8160762606004317833, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -398
+      objectReference: {fileID: 0}
     - target: {fileID: 8433135094640713456, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1688967756}
+    - target: {fileID: 8914828481923767718, guid: b7c092d66f58fec4399ea9b7517dffef,
+        type: 3}
+      propertyPath: PopulationTxt
+      value: 
+      objectReference: {fileID: 1551078101}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

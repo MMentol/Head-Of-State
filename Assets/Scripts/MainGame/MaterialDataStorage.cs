@@ -18,6 +18,10 @@ public class MaterialDataStorage : MonoBehaviour
     public int FoodCapacity = 0;
     public int WaterCapacity = 0;
     public int MaxPopulation = 0;
+    public int totalWood = 0;
+    public int totalStone = 0;
+    public int totalMetal = 0;
+    public int totalPopulation = 0;
 
     public TMP_Text WoodTxt;
     public TMP_Text StoneTxt;

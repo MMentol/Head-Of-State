@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 234deee5a1576d8438147d66232e73fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 513ca6472fdd42f4fafd2ba41b2243ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,7 +163,9 @@ MonoBehaviour:
   _foodCost: 0
   _waterCost: 0
   ocUI: {fileID: 0}
-  BuildUIBox: {fileID: 0}
+  StructNameTxt: {fileID: 0}
+  ResidentsTxt: {fileID: 0}
+  StorageTxt: {fileID: 0}
 --- !u!114 &3196082067095554429
 MonoBehaviour:
   m_ObjectHideFlags: 0

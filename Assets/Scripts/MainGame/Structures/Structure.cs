@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using GridMap.Structures.Storage;
 
 public class Structure : MonoBehaviour
 {
@@ -20,14 +21,23 @@ public class Structure : MonoBehaviour
     public int _waterCost = 0;
 
     [Header("On-Click UI")]
-    [SerializeField] public GameObject ocUI;
+    GameObject ocUI;
     GameObject realUI;
-    [SerializeField] TMP_Text BuildUIBox;
+    [SerializeField] TMP_Text StructNameTxt;
+    [SerializeField] TMP_Text ResidentsTxt;
+    [SerializeField] TMP_Text StorageTxt;
 
-    void Start(){
+    [SerializeField] MaterialStorageBase stor;
+    [SerializeField] House house;
+
+    void Awake(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
-        realUI = ocUI.transform.GetChild(7).gameObject;
-        BuildUIBox = realUI.GetComponent<TMP_Text>();
+        realUI = ocUI.transform.GetChild(9).GetChild(0).gameObject;
+        StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+        ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+        StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
+        stor = gameObject.GetComponent<MaterialStorageBase>();
+        house = gameObject.GetComponent<House>();
     }
     void OnMouseOver() {
         if(isPlaced)
@@ -43,8 +53,12 @@ public class Structure : MonoBehaviour
             if(Input.GetMouseButtonUp(0)) {
                 // Make UI Open here
                 if(isRemovable) {
-                    ocUI.transform.GetChild(7).gameObject.SetActive(true);
-                    BuildUIBox.text = "Structure: " + name + "\nResidents: " + "\nStorage: ";
+                    ocUI.transform.GetChild(9).gameObject.SetActive(true);
+                    StructNameTxt.text = name;
+                    if(house != null)
+                        ResidentsTxt.text = "Residents: " + house.PeopleInside.Count + "/" + house.Capacity;
+                    if(stor != null)
+                        StorageTxt.text = "Storage: " + stor.Count + "/" + stor.Capacity;
                     Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
                 }
             }

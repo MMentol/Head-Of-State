@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 9045618736993964982}
   - component: {fileID: 4963011506668082560}
   - component: {fileID: 4177433798054401649}
+  - component: {fileID: 6538967730826234972}
   m_Layer: 2
   m_Name: CinaedComplexAgent
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31104030825128304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bbac894c6412a3428b45cefffaef29b, type: 3}
   m_Name: 
@@ -254,6 +255,25 @@ MonoBehaviour:
   inBabyPhase: 0
   hasPickAxe: 0
   hasAxe: 0
+--- !u!114 &6538967730826234972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31104030825128304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4debede4268d5894fa0ad3669a5272e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialDataStorage: {fileID: 0}
+  MaterialPercentage: {fileID: 0}
+  HouseActivitySettings: {fileID: 0}
+  human: {fileID: 0}
+  humanStats: {fileID: 0}
+  villageStats: {fileID: 0}
+  logDebug: 0
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0

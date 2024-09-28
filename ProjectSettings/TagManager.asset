@@ -13,6 +13,7 @@ TagManager:
   - WoodStorage
   - MetalStorage
   - StoneStorage
+  - BuiltByPlayer
   layers:
   - Default
   - TransparentFX

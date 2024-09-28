@@ -11,17 +11,20 @@ public class MaterialDataStorage : MonoBehaviour
     public int Metal = 0;
     public int Food = 0;
     public int Water = 0;
+    public int Population = 0;
     public int WoodCapacity = 0;
     public int StoneCapacity = 0;
     public int MetalCapacity = 0;
     public int FoodCapacity = 0;
     public int WaterCapacity = 0;
+    public int MaxPopulation = 0;
 
     public TMP_Text WoodTxt;
     public TMP_Text StoneTxt;
     public TMP_Text MetalTxt;
     public TMP_Text FoodTxt;
     public TMP_Text WaterTxt;
+    public TMP_Text PopulationTxt;
 
     private void Awake()
     {
@@ -42,6 +45,7 @@ public class MaterialDataStorage : MonoBehaviour
         TallyMetal();
         TallyFood();
         TallyWater();
+        Census();
         UpdateText();
     }
 
@@ -94,6 +98,17 @@ public class MaterialDataStorage : MonoBehaviour
             this.Water += storage.Count;
         }
     }
+    
+    public void Census()
+    {
+        this.Population = GameObject.FindObjectsOfType<HumanStats>().Length;
+        House[] houses = GameObject.FindObjectsOfType<House>();
+        foreach (House house in houses)
+        {
+            this.MaxPopulation += house.Capacity;
+        }
+    }
+
 
     public void Clear()
     {
@@ -102,22 +117,25 @@ public class MaterialDataStorage : MonoBehaviour
         Metal = 0;
         Food = 0;
         Water = 0;
+        Population = 0;
         WoodCapacity = 0;
         StoneCapacity = 0;
         MetalCapacity = 0;
         FoodCapacity = 0;
         WaterCapacity = 0;
+        MaxPopulation = 0;
     }
 
     public void UpdateText()
     {
-        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null)
+        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null)
             return;
-        WoodTxt.text = $"Wood: {Wood} / {WoodCapacity}";
-        StoneTxt.text = $"Stone: {Stone} / {StoneCapacity}";
-        MetalTxt.text = $"Metal: {Metal} / {MetalCapacity}";
-        FoodTxt.text = $"Food: {Food} / {FoodCapacity}";
-        WaterTxt.text = $"Water: {Water} / {WaterCapacity}";
+        WoodTxt.text = $": {Wood} / {WoodCapacity}";
+        StoneTxt.text = $": {Stone} / {StoneCapacity}";
+        MetalTxt.text = $": {Metal} / {MetalCapacity}";
+        FoodTxt.text = $": {Food} / {FoodCapacity}";
+        WaterTxt.text = $": {Water} / {WaterCapacity}";
+        PopulationTxt.text = $": {Population} / {MaxPopulation}";
     }
 
     public int GetRemainingCapacity(string materialType)
@@ -134,6 +152,8 @@ public class MaterialDataStorage : MonoBehaviour
                 return FoodCapacity - Food;
             case "water":
                 return WaterCapacity - Water;
+            case "population":
+                return MaxPopulation - Population;
             default:
                 Debug.LogError("Invalid material type: " + materialType);
                 return 0;
@@ -154,6 +174,8 @@ public class MaterialDataStorage : MonoBehaviour
                 return Food;
             case "water":
                 return Water;
+            case "population":
+                return Population;
             default:
                 Debug.LogError("Invalid material type: " + materialType);
                 return 0;
@@ -175,6 +197,8 @@ public class MaterialDataStorage : MonoBehaviour
                 return FoodCapacity;
             case "water":
                 return WaterCapacity;
+            case "population":
+                return MaxPopulation;
             default:
                 Debug.LogError("Invalid material type: " + materialType);
                 return 0;

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: WaterTile
   m_EditorClassIdentifier: 
   tileTypeName: Water
+  tileSprite: {fileID: 21300000, guid: 368da6e86ffdc274aaf8a8c641697323, type: 3}
   tileColor: {r: 0, g: 0.50980395, b: 1, a: 1}
   isWalkable: 0
   level: 0.25
-  spawnChance: 0
-  adjacentChance: 0
-  resourceNode: {fileID: 11400000, guid: 4798a2097977cd34fb643521fe11fee9, type: 2}

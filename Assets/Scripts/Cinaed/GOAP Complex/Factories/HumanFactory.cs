@@ -7,16 +7,19 @@ using Demos.Complex.Factories.Extensions;
 using GridMap.Resources;
 using GridMap.Structures.Storage;
 using Items;
+using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.Factories
 {
     public class HumanFactory : GoapSetFactoryBase
     {
         MaterialPercentage MaterialPercentage;
+        HouseActivitySettings HouseActivitySettings;
 
         public override IGoapSetConfig Create()
         {
             MaterialPercentage = gameObject.GetComponent<MaterialPercentage>();
+            HouseActivitySettings = gameObject.GetComponent<HouseActivitySettings>();
             var builder = new GoapSetBuilder("Human");
             
             //Wandering
@@ -28,15 +31,21 @@ namespace Cinaed.GOAP.Complex.Factories
             //Goal
             builder.AddDrinkGoal();
             builder.AddEatGoal();
+            builder.AddBreedGoal();
             //Action
             builder.AddDrinkWaterAction();
             builder.AddEatFoodAction();
+            builder.AddBreedAction(HouseActivitySettings.RequiredHappiness);
             //Target
             builder.AddDrinkableWaterSensor();
             builder.AddFoodSourceSensor();
+            builder.AddHouseSensor();
             //World
             builder.AddThirstSensor();
             builder.AddHungerSensor();
+            builder.AddHappinessSensor();
+            builder.AddBreedCooldownSensor();
+            builder.AddPlayerMaterialPercentageSensor<Population>(); //Make them breed till colony has no more space left
 
             //Gathering
             //Goals           

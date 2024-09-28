@@ -47,8 +47,8 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Target == null || data.Source == null || data.Source.ToDestroy())
                 return ActionRunState.Stop;
 
-            if (!data.HasTool)
-                Debug.Log("No tool");
+            //if (!data.HasTool)
+                //Debug.Log("No tool");
 
             if (data.Inventory != null)
             {

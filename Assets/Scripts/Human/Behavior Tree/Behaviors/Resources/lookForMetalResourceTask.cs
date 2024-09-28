@@ -6,21 +6,21 @@ using System.Linq;
 
 using BehaviorTree;
 
-public class lookFoodTask : Node
+public class lookForMetalResourceTask : Node
 {
-    private static int _foodSourceMask = 1 << 6;
+    private static int _metalSourceMask = 1 << 6;
 
     private Animator _animator;
 
     private Transform _lastTarget;
     private Transform _transform;
 
-    public FoodResource[] foodSources;
+    public MetalResource[] metalSources;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public lookFoodTask(Transform transform)
+    public lookForMetalResourceTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
@@ -29,33 +29,33 @@ public class lookFoodTask : Node
 
     public override NodeState Evaluate()
     {
-        this.foodSources = GameObject.FindObjectsOfType<FoodResource>();
+        this.metalSources = GameObject.FindObjectsOfType<MetalResource>();
 
 
-        object t = GetData("food");
+        object t = GetData("metal");
         if (t == null)
         {
-            var closest = this.foodSources
+            var closest = this.metalSources
             //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-            var close = closest.GetComponent<FoodResource>();
+            var close = closest.GetComponent<TreeResource>();
             if (close == null)
                 return NodeState.FAILURE;
             else
                 while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
                 {
-                    var list = this.foodSources.ToList();
+                    var list = this.metalSources.ToList();
                     list.Remove(closest);
-                    foodSources = list.ToArray();
-                    closest = this.foodSources
+                    metalSources = list.ToArray();
+                    closest = this.metalSources
                     .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                     .FirstOrDefault();
-                    close = closest.GetComponent<FoodResource>();
+                    close = closest.GetComponent<TreeResource>();
                     if (close == null)
                         return NodeState.FAILURE;
                 }
-            parent.parent.SetData("food", closest);
+            parent.parent.SetData("metal", closest);
             state = NodeState.SUCCESS;
 
 

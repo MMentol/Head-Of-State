@@ -96,7 +96,7 @@ public class HumanPathfinding : MonoBehaviour
         startTile.gCost = 0;
         startTile.hCost = CalculateDistanceCost(startTile, endTile);
         startTile.CalculateFCost();
-        Debug.Log("hCost" + startTile.hCost);
+        //Debug.Log("hCost" + startTile.hCost);
 
 
         while (openList.Count > 0)
@@ -105,7 +105,7 @@ public class HumanPathfinding : MonoBehaviour
             if (currentTile == endTile)
             {
                 // Reached final node
-                Debug.Log("final");
+                //Debug.Log("final " + endTile.position);
                 return CalculatePath(endTile);
             }
 
@@ -115,11 +115,11 @@ public class HumanPathfinding : MonoBehaviour
             foreach (Tile neighbourTile in GetNeighbourList(currentTile))
             {
                 if (closedList.Contains(neighbourTile)) continue;
-                if (!neighbourTile.isWalkable)
-                {
-                    closedList.Add(neighbourTile);
-                    continue;
-                }
+                //if (!neighbourTile.isWalkable)
+                //{
+                //    closedList.Add(neighbourTile);
+                //    continue;
+                //}
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile, neighbourTile);
                 if (tentativeGCost < neighbourTile.gCost)

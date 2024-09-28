@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridMap.Structures.Storage;
 
 using BehaviorTree;
 
-public class walkToStoneResourceTask : Node
+public class walkToMetalStorageTask : Node
 {
     private HumanController humanController;
     private Transform _lastTarget;
@@ -13,7 +14,7 @@ public class walkToStoneResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public walkToStoneResourceTask(Transform transform)
+    public walkToMetalStorageTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
@@ -21,16 +22,20 @@ public class walkToStoneResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject target = (GameObject)GetData("stone");
 
-        if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
+        MetalStorage storage = (MetalStorage)GetData("metalStorage");
+        if (storage == null)
+            return NodeState.FAILURE;
+        if (Vector3.Distance(_transform.position, storage.transform.position) > 0.1f)
         {
-            humanController.SetTargetPosition(target.transform.position);
-            Debug.Log("statewalk : YES " + target.transform.position);
+
+            humanController.SetTargetPosition(storage.transform.position);
 
         }
-
         state = NodeState.RUNNING;
+        Debug.Log("statewalks :" + state);
+
+
         return state;
     }
 }

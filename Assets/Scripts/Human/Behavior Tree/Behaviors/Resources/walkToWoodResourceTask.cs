@@ -21,13 +21,15 @@ public class walkToWoodResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("wood");
+        GameObject target = (GameObject)GetData("wood");
 
-        if (Vector3.Distance(_transform.position, target.position) > 0.1f)
+        if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
-            humanController.SetTargetPosition(target.position);
+            humanController.SetTargetPosition(target.transform.position);
+            Debug.Log("statewalk : YES "+ target.transform.position);
 
         }
+
         state = NodeState.RUNNING;
         return state;
     }

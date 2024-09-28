@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3781785838652519288}
   m_Layer: 0
   m_Name: Wood Storage
-  m_TagString: Untagged
+  m_TagString: WoodStorage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

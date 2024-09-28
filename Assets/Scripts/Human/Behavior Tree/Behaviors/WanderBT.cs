@@ -24,6 +24,6 @@ public class WanderBT : Node
     public override NodeState Evaluate()
     {
 
-        return base.Evaluate();
+        return NodeState.RUNNING;
     }
 }

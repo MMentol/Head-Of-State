@@ -4213,6 +4213,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1871331410167759071, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3017485500126473352, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
       propertyPath: sets
@@ -4222,6 +4227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GOAP Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137851434853822056, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

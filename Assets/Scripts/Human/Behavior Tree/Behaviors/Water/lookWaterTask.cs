@@ -8,32 +8,35 @@ using BehaviorTree;
 
 public class lookWaterTask : Node
 {
-    private static int _woodSourceMask = 1 << 6;
+    private static int _waterSourceMask = 1 << 6;
 
     private Animator _animator;
 
     private Transform _lastTarget;
     private Transform _transform;
 
-    public GameObject[] waterSources;
+    public WaterResource[] waterSources;
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
-    public lookWaterTask(Transform transform, GameObject[] Sources)
+
+    public lookWaterTask(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         _transform = transform;
-        waterSources = Sources;
+
     }
 
     public override NodeState Evaluate()
     {
+        this.waterSources = GameObject.FindObjectsOfType<WaterResource>();
+
 
         object t = GetData("water");
         if (t == null)
         {
             var closest = this.waterSources
-            //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
             var close = closest.GetComponent<WaterResource>();

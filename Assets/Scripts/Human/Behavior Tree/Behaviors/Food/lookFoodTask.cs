@@ -36,7 +36,7 @@ public class lookFoodTask : Node
         if (t == null)
         {
             var closest = this.foodSources
-            //.Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
+            .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
             var close = closest.GetComponent<FoodResource>();

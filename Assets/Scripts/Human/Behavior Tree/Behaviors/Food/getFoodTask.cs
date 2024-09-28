@@ -49,14 +49,14 @@ public class getFoodTask : Node
             int harvested = food.Harvest(1);
             string resource = "food";
 
-            if (harvested > 0)
-                this.inventory.AddToInventory(resource, harvested);
+            //if (harvested > 0)
+            //    this.inventory.addtoinventory(resource, harvested);
 
-
+            _hStats._hunger -= 25;
 
             state = NodeState.SUCCESS;
             Debug.Log("stateget :" + state);
-
+            ClearData("food");
             return state;
         }
         state = NodeState.FAILURE;

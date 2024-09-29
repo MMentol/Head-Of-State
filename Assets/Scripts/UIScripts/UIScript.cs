@@ -102,4 +102,7 @@ public class UIScript : MonoBehaviour
         SceneManager.LoadScene("UITesting");
     }
     
+    public void startBT() {
+        SceneManager.LoadScene("BTBaseScene");
+    }
 }

@@ -7594,16 +7594,22 @@ MonoBehaviour:
   Metal: 0
   Food: 0
   Water: 0
+  Population: 0
   WoodCapacity: 0
   StoneCapacity: 0
   MetalCapacity: 0
   FoodCapacity: 0
   WaterCapacity: 0
+  MaxPopulation: 0
+  totalWood: 0
+  totalStone: 0
+  totalMetal: 0
   WoodTxt: {fileID: 5421091345472425549}
   StoneTxt: {fileID: 4288599409537039333}
   MetalTxt: {fileID: 4106878835113933050}
   FoodTxt: {fileID: 346268928804626734}
   WaterTxt: {fileID: 3657899311300447617}
+  PopulationTxt: {fileID: 0}
 --- !u!1 &7406467616743991046
 GameObject:
   m_ObjectHideFlags: 0

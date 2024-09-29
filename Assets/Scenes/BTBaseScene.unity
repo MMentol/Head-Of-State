@@ -751,6 +751,7 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &231338695
 CanvasRenderer:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2130,6 +2131,7 @@ MonoBehaviour:
   _metalText: {fileID: 254141046}
   _buildButton: {fileID: 254141049}
 --- !u!1 &361112946
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2395,6 +2397,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -376.1786
       objectReference: {fileID: 0}
+
     - target: {fileID: 2063876376234067691, guid: b7c092d66f58fec4399ea9b7517dffef,
         type: 3}
       propertyPath: m_Enabled
@@ -2921,6 +2924,7 @@ GameObject:
   - component: {fileID: 664678955}
   - component: {fileID: 664678957}
   - component: {fileID: 664678956}
+
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged

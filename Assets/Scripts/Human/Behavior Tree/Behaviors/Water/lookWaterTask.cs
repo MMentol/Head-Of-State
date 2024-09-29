@@ -39,11 +39,10 @@ public class lookWaterTask : Node
             .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-            var close = closest.GetComponent<WaterResource>();
-            if (close == null)
+            if (closest == null)
                 return NodeState.FAILURE;
             else
-                while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
+                while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
                 {
                     var list = this.waterSources.ToList();
                     list.Remove(closest);
@@ -51,8 +50,7 @@ public class lookWaterTask : Node
                     closest = this.waterSources
                     .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                     .FirstOrDefault();
-                    close = closest.GetComponent<WaterResource>();
-                    if (close == null)
+                    if (closest == null)
                         return NodeState.FAILURE;
                 }
             parent.parent.SetData("water", closest);

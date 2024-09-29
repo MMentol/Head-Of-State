@@ -56,7 +56,7 @@ public class HumanBT : Tree
                     new checkFoodTask(transform),
                     new lookFoodTask(transform),
                     new walkToFoodTask(transform),
-                    
+
                 }),
 
             }),
@@ -73,71 +73,63 @@ public class HumanBT : Tree
                 }),
 
             }),
-    
-            //new Sequence(new List<Node>
-            //{
-            //    new checkWaterTask(transform,this._hStats),
-            //    new lookWaterTask(transform, waterSources),
-            //    new walkToWaterTask(transform),
-            //    new getWaterTask(transform,this.inventory)
-            //}),
             
             new Selector(new List<Node>
             {
-            new Selector(new List<Node>  {
+                new Selector(new List<Node>  {
 
-                new depositWoodTask(transform),
+                    new depositWoodTask(transform),
+                    new Sequence(new List<Node>
+                    {
+                        new getWoodResourceTask(transform),
+                        new walkToWoodStorageTask(transform),
+
+                    }),
                 new Sequence(new List<Node>
-                {
-                    new getWoodResourceTask(transform),
-                    new walkToWoodStorageTask(transform),
+                    {
+                        //new checkWoodResourceTask(transform),
+                        new checkForWoodStorageTask(transform),
+                        new lookForWoodResourceTask(transform),
+                        new walkToWoodResourceTask(transform),
 
+                    }),
                 }),
-            new Sequence(new List<Node>
-                {
-                    //new checkWoodResourceTask(transform),
-                    new checkForWoodStorageTask(transform),
-                    new lookForWoodResourceTask(transform),
-                    new walkToWoodResourceTask(transform),
+                new Selector(new List<Node>  {
 
-                }),
-            }),
-            new Selector(new List<Node>  {
+                    new depositStoneTask(transform),
+                    new Sequence(new List<Node>
+                    {
+                        new getStoneResourceTask(transform),
+                        new walkToStoneStorageTask(transform),
 
-                new depositStoneTask(transform),
+                    }),
                 new Sequence(new List<Node>
-                {
-                    new getStoneResourceTask(transform),
-                    new walkToStoneStorageTask(transform),
+                    {
+                        //new checkStoneResourceTask(transform),
+                        new checkForStoneStorageTask(transform),
+                        new lookForStoneResourceTask(transform),
+                        new walkToStoneResourceTask(transform),
 
+                    }),
                 }),
-            new Sequence(new List<Node>
-                {
-                    //new checkStoneResourceTask(transform),
-                    new checkForStoneStorageTask(transform),
-                    new lookForStoneResourceTask(transform),
-                    new walkToStoneResourceTask(transform),
+                new Selector(new List<Node>  {
 
-                }),
-            }),
-            new Selector(new List<Node>  {
+                    new depositMetalTask(transform),
+                    new Sequence(new List<Node>
+                    {
+                        new getMetalResourceTask(transform),
+                        new walkToMetalStorageTask(transform),
 
-                new depositMetalTask(transform),
+                    }),
                 new Sequence(new List<Node>
-                {
-                    new getMetalResourceTask(transform),
-                    new walkToMetalStorageTask(transform),
+                    {
+                        //new checkMetalResourceTask(transform),
+                        new checkForMetalStorageTask(transform),
+                        new lookForMetalResourceTask(transform),
+                        new walkToMetalResourceTask(transform),
 
+                    }),
                 }),
-            new Sequence(new List<Node>
-                {
-                    //new checkMetalResourceTask(transform),
-                    new checkForMetalStorageTask(transform),
-                    new lookForMetalResourceTask(transform),
-                    new walkToMetalResourceTask(transform),
-
-                }),
-            }),
             }),
             new Selector(new List<Node>
             {
@@ -155,30 +147,12 @@ public class HumanBT : Tree
 
                 }),
 
-            }),
-            //new Sequence(new List<Node>
-            //{
-            //    new checkHeatAndEnergyTask(transform,this._hStats),
-            //    new lookForHomeTask(transform,this._hStats),
-            //    new walkToHomeTask(transform),
-            //    new sleepTask(transform,this._hStats)
-            //}),
-
             
 
 
             new WanderBT(transform)
-            //new Sequence(new List<Node>
-            //{
-            //    new CheckEnemyInAttackRange(transform),
-            //    new TaskAttack(transform),
-            //}),
-            //new Sequence(new List<Node>
-            //{
-            //    new CheckEnemyInFOVRange(transform),
-            //    new TaskGoToTarget(transform),
-            //}),
-            //new TaskPatrol(transform, waypoints),
+
+            }),
 
 
         });

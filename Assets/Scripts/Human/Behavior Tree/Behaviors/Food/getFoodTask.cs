@@ -29,18 +29,11 @@ public class getFoodTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject foodTile = (GameObject)GetData("food");
+        FoodResource foodTile = (FoodResource)GetData("food");
 
         if (foodTile == null) return NodeState.FAILURE;
 
-        if (this.inventory.used == this.inventory.size)
-        {
-            state = NodeState.SUCCESS;
-            Debug.Log("stateget1 :" + state);
-
-            return state;
-        }
-        if (_transform.position.Equals(foodTile.transform.position))
+        if (_transform.position.Equals(foodTile.transform.position)|| _hStats._hunger>=20)
         {
             //add food to human
             //remove food from tile
@@ -52,7 +45,7 @@ public class getFoodTask : Node
             //if (harvested > 0)
             //    this.inventory.addtoinventory(resource, harvested);
 
-            _hStats._hunger -= 25;
+            _hStats._hunger -= 80;
 
             state = NodeState.SUCCESS;
             Debug.Log("stateget :" + state);

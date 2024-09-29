@@ -29,18 +29,18 @@ public class getWaterTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject waterTile = (GameObject)GetData("water");
+        WaterResource waterTile = (WaterResource)GetData("water");
 
         if (waterTile == null) return NodeState.FAILURE;
 
-        if (this.inventory.used == this.inventory.size)
-        {
-            state = NodeState.SUCCESS;
-            Debug.Log("stateget1 :" + state);
+        //if (this.inventory.used == this.inventory.size)
+        //{
+        //    state = NodeState.SUCCESS;
+        //    Debug.Log("stateget1 :" + state);
 
-            return state;
-        }
-        if (_transform.position.Equals(waterTile.transform.position))
+        //    return state;
+        //}
+        if (_transform.position.Equals(waterTile.transform.position)|| _hStats._thirst>=20)
         {
             //add water to human
             //remove water from tile
@@ -52,7 +52,7 @@ public class getWaterTask : Node
             //if (harvested > 0)
             //    this.inventory.addtoinventory(resource, harvested);
 
-            _hStats._hunger -= 25;
+            _hStats._thirst -= 80;
 
             state = NodeState.SUCCESS;
             Debug.Log("stateget :" + state);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridMap.Resources;
 
 using BehaviorTree;
 
@@ -21,11 +22,11 @@ public class walkToWaterTask : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("water");
+        WaterResource target = (WaterResource)GetData("water");
 
-        if (Vector3.Distance(_transform.position, target.position) > 0.1f)
+        if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
-            humanController.SetTargetPosition(target.position);
+            humanController.SetTargetPosition(target.transform.position);
 
         }
         state = NodeState.RUNNING;

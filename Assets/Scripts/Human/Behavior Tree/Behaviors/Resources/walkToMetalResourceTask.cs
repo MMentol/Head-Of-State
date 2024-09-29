@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridMap.Resources;
 
 using BehaviorTree;
 
@@ -21,7 +22,7 @@ public class walkToMetalResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject target = (GameObject)GetData("metal");
+        MetalResource target = (MetalResource)GetData("metal");
 
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {

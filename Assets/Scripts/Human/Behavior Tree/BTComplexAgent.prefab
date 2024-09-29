@@ -58,7 +58,6 @@ MonoBehaviour:
   metalSources: []
   foodStorage: []
   waterStorage: []
-  woodStorage: []
   stoneStorage: []
   metalStorage: []
   _hStats: {fileID: 0}
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5443de85cdc4a4da09661815242048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ageLimit: 0
+  ageLimit: 15
 --- !u!114 &4177433798054401649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +146,10 @@ MonoBehaviour:
   inBabyPhase: 0
   hasPickAxe: 0
   hasAxe: 0
+  hasBucket: 0
+  breedCooldown: 0
+  canBreed: 1
+  inventory: {fileID: 0}
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0

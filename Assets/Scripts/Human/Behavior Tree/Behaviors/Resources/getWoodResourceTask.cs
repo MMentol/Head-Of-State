@@ -29,7 +29,7 @@ public class getWoodResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject woodTile = (GameObject)GetData("wood");
+        TreeResource woodTile = (TreeResource)GetData("wood");
 
         if (woodTile == null) return NodeState.FAILURE;
 
@@ -44,9 +44,9 @@ public class getWoodResourceTask : Node
         {
             //add food to human
             //remove food from tile
-            TreeResource wood = woodTile.GetComponent<TreeResource>();
+            //TreeResource wood = woodTile.GetComponent<TreeResource>();
 
-            int harvested = wood.Harvest(1);
+            int harvested = woodTile.Harvest(1);
             string resource = "wood";
 
             if (harvested > 0)

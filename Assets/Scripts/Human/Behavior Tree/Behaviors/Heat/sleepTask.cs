@@ -38,12 +38,12 @@ public class sleepTask : Node
             //if (harvested > 0)
             //    this.inventory.addtoinventory(resource, harvested);
 
-            _hStats._heat += 25;
-            _hStats._energy += 25;
+            _hStats._heat += 100;
+            _hStats._energy += 100;
 
             state = NodeState.SUCCESS;
             Debug.Log("stateget :" + state);
-            ClearData("food");
+            ClearData("home");
             return state;
         }
         state = NodeState.FAILURE;

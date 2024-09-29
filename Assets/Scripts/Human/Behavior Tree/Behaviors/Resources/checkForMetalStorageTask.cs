@@ -29,7 +29,7 @@ public class checkForMetalStorageTask : Node
 
         Debug.Log("checking: " + this.metalStorage);
 
-        if (metalStorage.Length == 0)
+        if (metalStorage == null || metalStorage.Length <= 1)
         {
             state = NodeState.FAILURE;
 
@@ -39,9 +39,8 @@ public class checkForMetalStorageTask : Node
             .Where(x => x.Capacity > x.Count)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-        var close = closest.GetComponent<MetalStorage>();
 
-        if (close == null)
+        if (closest == null)
         {
             state = NodeState.FAILURE;
             Debug.Log("checking: " + state);
@@ -49,7 +48,7 @@ public class checkForMetalStorageTask : Node
             return state;
         }
         else
-            while (close.Capacity <= close.Count)
+            while (closest.Capacity <= closest.Count)
             {
                 var list = this.metalStorage.ToList();
                 list.Remove(closest);
@@ -57,8 +56,7 @@ public class checkForMetalStorageTask : Node
                 closest = this.metalStorage
                 .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                 .FirstOrDefault();
-                close = closest.GetComponent<MetalStorage>();
-                if (close == null)
+                if (closest == null)
                     return NodeState.FAILURE;
             }
 

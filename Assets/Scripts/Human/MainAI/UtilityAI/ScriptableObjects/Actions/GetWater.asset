@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff8c02461c4e5f46b115e0a3d9b2da3, type: 3}
   m_Name: GetWater
   m_EditorClassIdentifier: 
-  targetTag: 1
-  consideration: {fileID: 11400000, guid: 5db68c688a04ad9429911fa0ac702c2f, type: 2}
+  targetTag: 12
+  consideration: {fileID: 11400000, guid: 0d0eae41b5c7bde419ebf58ba7eec3d9, type: 2}

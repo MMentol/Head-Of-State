@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aff8c02461c4e5f46b115e0a3d9b2da3, type: 3}
-  m_Name: CreateBucket
+  m_Name: DrinkAction
   m_EditorClassIdentifier: 
-  targetTag: 7
-  consideration: {fileID: 11400000, guid: 9b29db293881a4f4abc85454a34f2b99, type: 2}
+  targetTag: 1
+  consideration: {fileID: 11400000, guid: 83c583e1326b40445b83519f3d796555, type: 2}

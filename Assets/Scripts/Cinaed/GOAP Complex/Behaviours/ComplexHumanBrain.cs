@@ -97,32 +97,31 @@ namespace Cinaed.GOAP.Complex.Behaviours
             
 
             foreach (var action in actions)
-
             {
                 float utility = action.CalculateUtility(context);
-                utilityActions.Add(action, utility);
+                //utilityActions.Add(action, utility);
 
-                //if (utility > highestUtility)
-                //{
-                //    highestUtility = utility;
-                //    bestAction = action;
-                //}
-            }
-
-            var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3);
-
-
-            int rnd = Random.Range(0, 2);
-            int cnt = 0;
-            foreach(var action in sortedActions)
-            {
-                cnt++;
-                if (cnt == rnd)
+                if (utility > highestUtility)
                 {
-                    bestAction = action.Key;
-                    continue;
+                    highestUtility = utility;
+                    bestAction = action;
                 }
             }
+
+            //var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3);
+
+
+            //int rnd = Random.Range(0, 2);
+            //int cnt = 0;
+            //foreach(var action in sortedActions)
+            //{
+            //    cnt++;
+            //    if (cnt == rnd)
+            //    {
+            //        bestAction = action.Key;
+            //        continue;
+            //    }
+            //}
 
             if (bestAction != null)
             {
@@ -218,14 +217,14 @@ namespace Cinaed.GOAP.Complex.Behaviours
         public void DetermineGoal(int forced)//UtilityAI Forced Goal
         {
             //Items in Inventory
-            if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1 || forced == 8)
+            if (forced == 8)
             {
                 this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
                 //Debug.Log("Get pick");
                 return;
             }
 
-            if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1 || forced == 7)
+            if (forced == 7)
             {
                 this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
                 //Debug.Log("Get bucket");
@@ -259,11 +258,26 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
 
             resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            if (forced == 12) resourcePercentage = 1;
+            if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
+                return;
+            }
+            resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
+            if (forced == 11) resourcePercentage = 1;
+            if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
+            {
+                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                return;
+            }
+
+            resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
             if (forced == 1) resourcePercentage = 1;
 
             if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
-                this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
+                this.agent.SetGoal<DrinkGoal>(false);
                 return;
             }
             resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
@@ -271,7 +285,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
             {
-                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                this.agent.SetGoal<EatGoal>(false);
                 return;
             }
 

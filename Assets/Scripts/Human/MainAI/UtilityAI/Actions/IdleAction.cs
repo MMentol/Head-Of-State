@@ -9,7 +9,7 @@ namespace UtilityAI
     {
         public override void Execute(Context context)
         {
-            context.brain.DetermineGoal(1);
+            context.brain.DetermineGoal(9);
             
         }
     }

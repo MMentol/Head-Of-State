@@ -27,16 +27,21 @@ public class UIScript : MonoBehaviour
     GameObject credits = null;
 
     public float time = 0f;
+    public int clock = 0;
+    public float currTime = 0;
+
+
+    public HumanStats[] allHumanStats;
 
     // Start is called before the first frame update
     bool pause = false;
     void Start()
     {
-        
+        allHumanStats = GameObject.FindObjectsOfType<HumanStats>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
@@ -61,6 +66,22 @@ public class UIScript : MonoBehaviour
         }
         time += Time.deltaTime;
         timerText.text = getTime(time);
+        float newTime = Mathf.Floor(time);
+        if (Mathf.Floor(time) % 60 == 0)
+        {
+            Debug.Log("time:"+ currTime + "old time: " + newTime);
+            if(currTime!= newTime)
+            {
+                currTime = newTime;
+                Debug.Log("Age Older");
+                allHumanStats = GameObject.FindObjectsOfType<HumanStats>();
+                foreach (HumanStats human in allHumanStats)
+                {
+                    Debug.Log(human + " is dying");
+                    human.getOlder();
+                }
+            }
+        }
     }
 
     void PauseGame(bool stop) {

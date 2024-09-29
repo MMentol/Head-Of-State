@@ -19,10 +19,10 @@ public class Human : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Die();
     }
 
-    public void die()
+    public void Die()
     {
         //dies
         if(stats._age >= ageLimit)

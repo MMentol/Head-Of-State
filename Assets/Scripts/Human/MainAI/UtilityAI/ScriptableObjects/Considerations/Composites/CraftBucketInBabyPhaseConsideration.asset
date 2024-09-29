@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc93200127ee0af469a192b6182fa865, type: 3}
-  m_Name: GetBabyInBabyPhaseConsideration
+  m_Name: CraftBucketInBabyPhaseConsideration
   m_EditorClassIdentifier: 
   allMustBeNonZero: 1
   operation: 1
   considerations:
   - {fileID: 11400000, guid: 3963ffa60ebce8a43b6797a61a20d8d9, type: 2}
-  - {fileID: 11400000, guid: 824a595742809cb4cbc0831ad9b363c5, type: 2}
+  - {fileID: 11400000, guid: 91c117c6730d2914fa4689ad9b6aad7d, type: 2}

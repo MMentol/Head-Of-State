@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CreatePickAxe
   m_EditorClassIdentifier: 
   targetTag: 8
-  consideration: {fileID: 11400000, guid: 1abd84e432d86a841a165b8808d07160, type: 2}
+  consideration: {fileID: 11400000, guid: 9d58b55bcd4697e42ac24c0d764fd57e, type: 2}

@@ -12,7 +12,7 @@ namespace UtilityAI
         public override void Execute(Context context)
         {
             var targetGoal = targetTag;
-
+            Debug.Log("Target Number" + int.Parse(targetGoal));
             context.brain.DetermineGoal(int.Parse(targetGoal));
             
         }

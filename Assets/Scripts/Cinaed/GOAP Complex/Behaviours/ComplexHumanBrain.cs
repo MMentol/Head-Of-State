@@ -168,6 +168,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
 
             resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+    
             if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
@@ -216,6 +217,21 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
         public void DetermineGoal(int forced)//UtilityAI Forced Goal
         {
+            //Items in Inventory
+            if (inventory.items.Where(item => item is Pickaxe).ToArray().Length < 1 || forced == 8)
+            {
+                this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
+                //Debug.Log("Get pick");
+                return;
+            }
+
+            if (inventory.items.Where(item => item is Bucket).ToArray().Length < 1 || forced == 7)
+            {
+                this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
+                //Debug.Log("Get bucket");
+                return;
+            }
+            //Resources in Inventory
             float resourcePercentage = (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity * 100;
             if (forced == 4) resourcePercentage = 1;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
@@ -223,9 +239,10 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
                 return;
             }
-            
+
             resourcePercentage = (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
             if (forced == 3) resourcePercentage = 1;
+
             if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
@@ -234,6 +251,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
             if (forced == 2) resourcePercentage = 1;
+
             if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
@@ -242,42 +260,28 @@ namespace Cinaed.GOAP.Complex.Behaviours
 
             resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
             if (forced == 1) resourcePercentage = 1;
+
             if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
                 return;
             }
+            resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
+            if (forced == 0) resourcePercentage = 1;
 
-            /*
-            if (inventory.used > 0)
+            if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
             {
-                if (this.inventory.GetResourceCount("wood") > 0)
-                {
-                    this.agent.SetGoal<DepositMaterialGoal<Wood>>(false);
-                    return;
-                }
-                if (this.inventory.GetResourceCount("stone") > 0)
-                {
-                    this.agent.SetGoal<DepositMaterialGoal<Stone>>(false);
-                    return;
-                }
-                if (this.inventory.GetResourceCount("metal") > 0)
-                {
-                    this.agent.SetGoal<DepositMaterialGoal<Metal>>(false);
-                    return;
-                }
-                if (this.inventory.GetResourceCount("food") > 0)
-                {
-                    this.agent.SetGoal<DepositMaterialGoal<Food>>(false);
-                    return;
-                }
-                if (this.inventory.GetResourceCount("water") > 0)
-                {
-                    this.agent.SetGoal<DepositMaterialGoal<Water>>(false);
-                    return;
-                }
-            }*/
-            if (forced == 9) resourcePercentage = 1;
+                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                return;
+            }
+
+            if(forced == 5)
+            {
+                this.agent.SetGoal<BreedingGoal>(false);
+            }
+
+
+            if (forced == 9) 
             this.agent.SetGoal<WanderGoal>(false);
         }
 
@@ -300,6 +304,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             context.SetData("inBabyPhase", humanStats.inBabyPhase);
             context.SetData("hasPickAxe", humanStats.hasPickAxe);
             context.SetData("hasAxe", humanStats.hasAxe);
+            context.SetData("canBreed", humanStats.canBreed);
         }
 
         #endregion

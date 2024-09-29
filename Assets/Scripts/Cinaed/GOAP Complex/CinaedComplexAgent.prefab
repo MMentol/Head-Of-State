@@ -67,7 +67,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31104030825128304}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bbac894c6412a3428b45cefffaef29b, type: 3}
   m_Name: 
@@ -87,6 +87,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e8b66388455f2f4daad4abe9c5332c3, type: 2}
   - {fileID: 11400000, guid: f2112113f7fa5fb4f84dd0df9b943c1d, type: 2}
   - {fileID: 11400000, guid: cea1dbb92837768469b65cbb9cc210be, type: 2}
+  - {fileID: 11400000, guid: 37a3d26e848083344b2cec651bd4b0dc, type: 2}
+  - {fileID: 11400000, guid: 1a6c79489a3d5ca49b80f699d18ef837, type: 2}
+  - {fileID: 11400000, guid: a640cb81c0679b44298eb94c0eae918c, type: 2}
 --- !u!114 &7346507521047682018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +258,7 @@ MonoBehaviour:
   inBabyPhase: 0
   hasPickAxe: 0
   hasAxe: 0
+  breedCooldown: 0
 --- !u!114 &6538967730826234972
 MonoBehaviour:
   m_ObjectHideFlags: 0

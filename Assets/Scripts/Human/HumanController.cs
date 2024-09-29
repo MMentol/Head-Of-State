@@ -19,6 +19,8 @@ public class HumanController : MonoBehaviour
 
     private const float speed = 1f;
 
+    public int randomMoveDistance = 5;
+
     [Range(0, 100)]
     public int testx;
     [Range(0, 100)]

@@ -39,11 +39,10 @@ public class lookFoodTask : Node
             .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-            var close = closest.GetComponent<FoodResource>();
-            if (close == null)
+            if (closest == null)
                 return NodeState.FAILURE;
             else
-                while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
+                while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
                 {
                     var list = this.foodSources.ToList();
                     list.Remove(closest);
@@ -51,8 +50,7 @@ public class lookFoodTask : Node
                     closest = this.foodSources
                     .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                     .FirstOrDefault();
-                    close = closest.GetComponent<FoodResource>();
-                    if (close == null)
+                    if (closest == null)
                         return NodeState.FAILURE;
                 }
             parent.parent.SetData("food", closest);

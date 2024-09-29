@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridMap.Resources;
 
 using BehaviorTree;
 
@@ -21,7 +22,7 @@ public class walkToWoodResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject target = (GameObject)GetData("wood");
+        TreeResource target = (TreeResource)GetData("wood");
 
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {

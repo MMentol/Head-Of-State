@@ -23,7 +23,7 @@ public class statsFulfilledTask : Node
 
     public override NodeState Evaluate()
     {
-        if (_hStats._happiness > 80)
+        if (_hStats._happiness > 80 && _hStats.insideHouse == 1)
             state = NodeState.SUCCESS;
         else state = NodeState.FAILURE;
         return state;

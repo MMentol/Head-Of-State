@@ -29,7 +29,7 @@ public class checkForStoneStorageTask : Node
 
         Debug.Log("checking: " + this.stoneStorage);
 
-        if (stoneStorage.Length == 0)
+        if (stoneStorage == null || stoneStorage.Length <= 1)
         {
             state = NodeState.FAILURE;
 
@@ -39,9 +39,8 @@ public class checkForStoneStorageTask : Node
             .Where(x => x.Capacity > x.Count)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-        var close = closest.GetComponent<StoneStorage>();
 
-        if (close == null)
+        if (closest == null)
         {
             state = NodeState.FAILURE;
             Debug.Log("checking: " + state);
@@ -49,7 +48,7 @@ public class checkForStoneStorageTask : Node
             return state;
         }
         else
-            while (close.Capacity <= close.Count)
+            while (closest.Capacity <= closest.Count)
             {
                 var list = this.stoneStorage.ToList();
                 list.Remove(closest);
@@ -57,8 +56,7 @@ public class checkForStoneStorageTask : Node
                 closest = this.stoneStorage
                 .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                 .FirstOrDefault();
-                close = closest.GetComponent<StoneStorage>();
-                if (close == null)
+                if (closest == null)
                     return NodeState.FAILURE;
             }
 

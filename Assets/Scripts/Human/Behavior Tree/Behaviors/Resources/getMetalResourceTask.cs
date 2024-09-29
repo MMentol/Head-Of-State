@@ -29,7 +29,7 @@ public class getMetalResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject metalTile = (GameObject)GetData("metal");
+        MetalResource metalTile = (MetalResource)GetData("metal");
 
         if (metalTile == null) return NodeState.FAILURE;
 
@@ -44,9 +44,9 @@ public class getMetalResourceTask : Node
         {
             //add food to human
             //remove food from tile
-            TreeResource metal = metalTile.GetComponent<TreeResource>();
+            //TreeResource metal = metalTile.GetComponent<TreeResource>();
 
-            int harvested = metal.Harvest(1);
+            int harvested = metalTile.Harvest(1);
             string resource = "metal";
 
             if (harvested > 0)

@@ -21,7 +21,7 @@ public class walkToHomeTask : Node
 
     public override NodeState Evaluate()
     {
-        GameObject target = (GameObject)GetData("home");
+        House target = (House)GetData("home");
 
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {

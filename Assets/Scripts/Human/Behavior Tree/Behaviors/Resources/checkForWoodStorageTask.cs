@@ -27,9 +27,9 @@ public class checkForWoodStorageTask : Node
     {
         this.woodStorage = GameObject.FindObjectsOfType<WoodStorage>();
 
-        Debug.Log("checking: " +this.woodStorage );
+        Debug.Log("checking: " +this.woodStorage + " " + woodStorage.Length);
 
-        if (woodStorage.Length == 0)
+        if (woodStorage == null || woodStorage.Length <= 1 )
         {
             state = NodeState.FAILURE;
 
@@ -39,9 +39,8 @@ public class checkForWoodStorageTask : Node
             .Where(x => x.Capacity > x.Count)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-        var close = closest.GetComponent<WoodStorage>();
 
-        if (close == null)
+        if (closest == null)
         {
             state = NodeState.FAILURE; 
             Debug.Log("checking: " + state);
@@ -49,7 +48,7 @@ public class checkForWoodStorageTask : Node
             return state;
         }
         else
-            while (close.Capacity <= close.Count)
+            while (closest.Capacity <= closest.Count)
             {
                 var list = this.woodStorage.ToList();
                 list.Remove(closest);
@@ -57,8 +56,7 @@ public class checkForWoodStorageTask : Node
                 closest = this.woodStorage
                 .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                 .FirstOrDefault();
-                close = closest.GetComponent<WoodStorage>();
-                if (close == null)
+                if (closest == null)
                     return NodeState.FAILURE;
             }
 

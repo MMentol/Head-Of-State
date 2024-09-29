@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts;
 
 public class HumanStats : MonoBehaviour
 {
@@ -15,7 +16,16 @@ public class HumanStats : MonoBehaviour
     public float inBabyPhase = 1;
     public float hasPickAxe = 0;
     public float hasAxe = 0;
+    public float hasBucket = 0;
     public float breedCooldown = 0;
+    public float canBreed = 1;
+
+    public Inventory inventory;
+
+    private void Awake()
+    {
+        inventory = gameObject.GetComponent<Inventory>();
+    }
 
     private void FixedUpdate()
     {
@@ -24,6 +34,8 @@ public class HumanStats : MonoBehaviour
         getHot();
         getSleepy(1);
         updateHappiness();
+        updatePickaxe();
+        updateBucket();
         RefractoryPeriod();
         if (this._age > 1) inBabyPhase = 0;
     }
@@ -57,6 +69,8 @@ public class HumanStats : MonoBehaviour
     public void RefractoryPeriod()
     {
         breedCooldown -= Time.fixedDeltaTime;
+        if (breedCooldown == 0) canBreed = 1;
+        else canBreed = 0;
     }
 
     public void updateHappiness()
@@ -66,15 +80,35 @@ public class HumanStats : MonoBehaviour
 
     public void updatePickaxe()
     {
-        if (hasPickAxe == 0) hasPickAxe = 1;
-        else hasPickAxe = 0;
+        foreach(var item in this.inventory.items)
+        {
+            if(item.ItemName == "Pickaxe")
+            {
+                hasPickAxe = 1;
+                return;
+            }
+        }
+        
+        hasPickAxe = 0;
+        return;
+    }
+    
+    public void updateBucket()
+    {
+        foreach(var item in this.inventory.items)
+        {
+            if(item.ItemName == "Bucket")
+            {
+                hasBucket = 1;
+                return;
+            }
+        }
+        
+        hasBucket = 0;
+        return;
     }
 
-    public void updateAxe()
-    {
-        if (hasAxe == 0) hasAxe = 1;
-        else hasAxe = 0;
-    }
+    
 
 
 

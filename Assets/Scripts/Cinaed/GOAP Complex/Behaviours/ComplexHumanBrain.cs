@@ -274,6 +274,13 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
                 return;
             }
+
+            if(forced == 5)
+            {
+                this.agent.SetGoal<BreedingGoal>(false);
+            }
+
+
             if (forced == 9) 
             this.agent.SetGoal<WanderGoal>(false);
         }
@@ -297,6 +304,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             context.SetData("inBabyPhase", humanStats.inBabyPhase);
             context.SetData("hasPickAxe", humanStats.hasPickAxe);
             context.SetData("hasAxe", humanStats.hasAxe);
+            context.SetData("canBreed", humanStats.canBreed);
         }
 
         #endregion

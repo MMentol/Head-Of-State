@@ -26,6 +26,7 @@ public class House : MonoBehaviour
 
         //Enter house
         PeopleInside.Add(human);
+        human.insideHouse = 1;
         human.GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         return true;
@@ -38,6 +39,7 @@ public class House : MonoBehaviour
 
         //Leave house
         PeopleInside.Remove(human);
+        human.insideHouse = 0;
         human.GetComponentInChildren<SpriteRenderer>().enabled = true;
         return true;
     }

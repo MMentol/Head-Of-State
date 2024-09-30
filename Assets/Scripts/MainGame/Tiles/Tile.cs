@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour
     [SerializeField] public bool canPlaceOn = true;
     [SerializeField] public StructureChooser structureChooser;
     [SerializeField] private GameObject _mouseIndicator;
+    [SerializeField] public bool noMoney = false;
+    [SerializeField] public bool noSpace = false;
 
     public Vector2 position;
 
@@ -126,13 +128,16 @@ public class Tile : MonoBehaviour
                 {
                     storageComponent.UpdateResources();
                 }
-
+                noMoney = false;
+                noSpace = false;
                 return true;
             }
             Debug.Log("Cant Afford");
+            noMoney = true;
             return false;
         }
         Debug.Log("Occupied");
+        noSpace = true;
         return false;
     }
 

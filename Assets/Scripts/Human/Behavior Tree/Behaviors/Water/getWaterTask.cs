@@ -40,7 +40,7 @@ public class getWaterTask : Node
 
         //    return state;
         //}
-        if (_transform.position.Equals(waterTile.transform.position)|| _hStats._thirst>=20)
+        if (_transform.position.Equals(waterTile.transform.position)&& _hStats._thirst>=20)
         {
             //add water to human
             //remove water from tile

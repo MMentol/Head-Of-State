@@ -17,6 +17,7 @@ namespace Cinaed.GOAP.Complex
         public Vector2 customBounds;
         public bool useCustomBounds = false;
         public int sets = 2;
+        public bool useBT = false;
 
         private IGoapRunner goapRunner;
 
@@ -41,12 +42,12 @@ namespace Cinaed.GOAP.Complex
 
         public void CreateNewHuman(string setId, Color color, Vector3 position)
         {
-            var agent = Instantiate(this.agentPrefab, position, Quaternion.identity, gameObject.transform).GetComponent<AgentBehaviour>();
+            var agent = Instantiate(this.agentPrefab, position, Quaternion.identity, gameObject.transform);
 
-            agent.GoapSet = this.goapRunner.GetGoapSet(setId);
-            agent.gameObject.SetActive(true);
+            if (!useBT) agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+            agent.SetActive(true);
 
-            agent.gameObject.transform.name = $"Agent - {agent.GetInstanceID()}";
+            agent.transform.name = $"Agent - {agent.GetInstanceID()}";
 
             var brain = agent.GetComponent<AgentBrain>();
 
@@ -56,12 +57,12 @@ namespace Cinaed.GOAP.Complex
 
         private void SpawnAgent(string setId, Color color)
         {
-            var agent = Instantiate(this.agentPrefab, this.GetRandomPosition(), Quaternion.identity, gameObject.transform).GetComponent<AgentBehaviour>();
+            var agent = Instantiate(this.agentPrefab, this.GetRandomPosition(), Quaternion.identity, gameObject.transform);
 
-            agent.GoapSet = this.goapRunner.GetGoapSet(setId);
-            agent.gameObject.SetActive(true);
+            if(!useBT)agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+            agent.SetActive(true);
 
-            agent.gameObject.transform.name = $"Agent - {agent.GetInstanceID()}";
+            agent.transform.name = $"Agent - {agent.GetInstanceID()}";
 
             var brain = agent.GetComponent<AgentBrain>();
 

@@ -46,6 +46,7 @@ public class HumanBT : Tree
                     new depositWoodTask(transform),
                     new Sequence(new List<Node>
                     {
+                        new checkAgeTask(transform),
                         new getWoodResourceTask(transform),
                         new walkToWoodStorageTask(transform),
 
@@ -53,6 +54,7 @@ public class HumanBT : Tree
                 new Sequence(new List<Node>
                     {
                         //new checkWoodResourceTask(transform),
+                        new checkAgeTask(transform),
                         new checkForWoodStorageTask(transform),
                         new lookForWoodResourceTask(transform),
                         new walkToWoodResourceTask(transform),
@@ -64,6 +66,7 @@ public class HumanBT : Tree
                     new depositStoneTask(transform),
                     new Sequence(new List<Node>
                     {
+                        new checkAgeTask(transform),
                         new getStoneResourceTask(transform),
                         new walkToStoneStorageTask(transform),
 
@@ -71,6 +74,7 @@ public class HumanBT : Tree
                 new Sequence(new List<Node>
                     {
                         //new checkStoneResourceTask(transform),
+                        new checkAgeTask(transform),
                         new checkForStoneStorageTask(transform),
                         new lookForStoneResourceTask(transform),
                         new walkToStoneResourceTask(transform),
@@ -82,6 +86,7 @@ public class HumanBT : Tree
                     new depositMetalTask(transform),
                     new Sequence(new List<Node>
                     {
+                        new checkAgeTask(transform),
                         new getMetalResourceTask(transform),
                         new walkToMetalStorageTask(transform),
 
@@ -89,6 +94,7 @@ public class HumanBT : Tree
                 new Sequence(new List<Node>
                     {
                         //new checkMetalResourceTask(transform),
+                        new checkAgeTask(transform),
                         new checkForMetalStorageTask(transform),
                         new lookForMetalResourceTask(transform),
                         new walkToMetalResourceTask(transform),
@@ -100,6 +106,7 @@ public class HumanBT : Tree
             {
                 new Sequence(new List<Node>
             {
+                    new checkAgeTask(transform),
                 new statsFulfilledTask(transform),
                 new reproduceTask(transform)
             }),

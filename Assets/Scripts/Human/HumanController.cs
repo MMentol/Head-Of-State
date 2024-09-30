@@ -61,8 +61,8 @@ public class HumanController : MonoBehaviour
     {
         currentPathIndex = 0;
         pathVectorList = humanPathfinding.FindPath(GetPosition(), new Vector2(targetPosition.x,targetPosition.z));
-        Debug.Log(GetPosition() + " , " + targetPosition);
-        Debug.Log("VectorList: " + pathVectorList);
+        //Debug.Log(GetPosition() + " , " + targetPosition);
+        //Debug.Log("VectorList: " + pathVectorList);
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
             
@@ -75,11 +75,12 @@ public class HumanController : MonoBehaviour
         //Debug.Log("Moving?");
         if (pathVectorList != null)
         {
-            Debug.Log("not null");
+            //Debug.Log("not null");
             Vector3 tilexy = pathVectorList[currentPathIndex] - new Vector3(0.5f, 0.5f ,0.5f);
             Vector3 targetPosition = new Vector3(tilexy.x, 0 , tilexy.y);
-            Debug.Log("targetPosb4: " + targetPosition);
+            //Debug.Log("targetPosb4: " + targetPosition)
             anim.SetBool("isWalking", true);
+
             if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
@@ -102,7 +103,7 @@ public class HumanController : MonoBehaviour
                         transform.position = transform.position + new Vector3(1-transform.position.x%1,0);
                     if ((transform.position.z % 1) != 0)
                         transform.position = transform.position + new Vector3(0, 0, 1 - transform.position.z % 1);
-                    Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
+                    //Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
                     if (transform.position.x < targetPosition.x)
                     {
                         transform.position = transform.position + new Vector3(1f, 0);

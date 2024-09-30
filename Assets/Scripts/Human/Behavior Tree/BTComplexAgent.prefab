@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2644901599046946488
 Transform:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   _happiness: 0
   partnerExists: 0
   insideHouse: 0
-  inBabyPhase: 0
+  inBabyPhase: 1
   hasPickAxe: 0
   hasAxe: 0
   hasBucket: 0

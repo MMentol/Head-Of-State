@@ -43,8 +43,8 @@ public class HumanPathfinding : MonoBehaviour
     }
     public List<Vector3> FindPath(Vector2 startWorldPosition, Vector2 endWorldPosition)
     {
-        Debug.Log("start: " + startWorldPosition);
-        Debug.Log("end: " + endWorldPosition);
+        //Debug.Log("start: " + startWorldPosition);
+        //Debug.Log("end: " + endWorldPosition);
 
         Tile startTile = tiles[startWorldPosition];
         Tile endTile = tiles[endWorldPosition];
@@ -68,7 +68,7 @@ public class HumanPathfinding : MonoBehaviour
     }
     public List<Tile> FindPath(int startX, int startY, int endX, int endY)
     {
-        Debug.Log(startX + " " + startY + " " + endX + " " + endY);
+        //Debug.Log(startX + " " + startY + " " + endX + " " + endY);
         Tile startTile = tiles[new Vector2(startX, startY)];
         Tile endTile = tiles[new Vector2(endX, endY)];
 

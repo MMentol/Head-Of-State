@@ -25,9 +25,12 @@ public class reproduceTask : Node
 
     public override NodeState Evaluate()
     {
-
+        //Find partner
+        HumanStats partner;
         House house = (House)GetData("home");
-        if (house == null)
+        do
+        {
+            if (house == null)
             return NodeState.FAILURE;
         if (_hStats.breedCooldown > 0)
             return NodeState.FAILURE;
@@ -40,16 +43,10 @@ public class reproduceTask : Node
             return NodeState.FAILURE;
         }
 
-        //Find partner
-        HumanStats partner = house.PeopleInside.Where(h => house.IsHappy(h) && h != _hStats && h.breedCooldown <= 0).FirstOrDefault();
-
-        if (partner == null)
-        {
-            house.LeaveHouse(_hStats);
-            return NodeState.FAILURE;
+            partner = house.PeopleInside.Where(h => house.IsHappy(h) && h != _hStats && h.breedCooldown <= 0).FirstOrDefault();
         }
-
-
+        while (partner == null);
+        
         if (house.MakeNewHuman(_hStats, partner))
         {
             GameObject.FindObjectOfType<MaterialDataStorage>().TallyMaterials();

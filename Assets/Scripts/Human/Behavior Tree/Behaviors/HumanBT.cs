@@ -5,41 +5,6 @@ using Scripts;
 
 public class HumanBT : Tree
 {
-    public UnityEngine.GameObject[] foodSources;
-    public UnityEngine.GameObject[] waterSources;
-    public UnityEngine.GameObject[] woodSources;
-    public UnityEngine.GameObject[] stoneSources;
-    public UnityEngine.GameObject[] metalSources;
-
-    public UnityEngine.GameObject[] foodStorage;
-    public UnityEngine.GameObject[] waterStorage;
-    public UnityEngine.GameObject[] stoneStorage;
-    public UnityEngine.GameObject[] metalStorage;
-
-    public HumanStats _hStats;
-    public MaterialDataStorage storages;
-    public Inventory inventory;
-    //public MaterialPercentage MaterialPercentage;
-
-
-    private void Awake()
-    {
-        //foodSources = UnityEngine.GameObject.FindGameObjectsWithTag("WoodSource");
-        //waterSources = UnityEngine.GameObject.FindGameObjectsWithTag("WaterSource");
-        stoneSources = UnityEngine.GameObject.FindGameObjectsWithTag("StoneSource");
-        metalSources = UnityEngine.GameObject.FindGameObjectsWithTag("MetalSource");
-
-        stoneStorage = UnityEngine.GameObject.FindGameObjectsWithTag("StoneStorage");
-        metalStorage = UnityEngine.GameObject.FindGameObjectsWithTag("MetalStorage");
-
-        this._hStats = GetComponent<HumanStats>();
-        this.storages = FindObjectOfType<MaterialDataStorage>();
-        this.inventory = this.GetComponent<Inventory>();
-
-
-
-
-    }
 
    
 

@@ -18,11 +18,6 @@ namespace Scripts
         };
         public List<ItemBase> items = new List<ItemBase>();
 
-        public Animator anim;
-
-        public void Awake() {
-            anim = GetComponentInChildren<Animator>();
-        }
         //Getting Current ItemCount / Capacity
         public int GetResourceCount(string resource)
         {
@@ -66,12 +61,10 @@ namespace Scripts
             {
                 if (item.ItemName == "Pickaxe")
                 {
-                    anim.SetBool("hasPick", true);
                     Debug.Log("Found Pickaxe");
                     return (ItemBase) item;
                 }
             }
-            anim.SetBool("hasPick", false);
             return null;
         }
 

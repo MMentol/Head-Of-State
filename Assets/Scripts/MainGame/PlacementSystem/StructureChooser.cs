@@ -8,7 +8,6 @@ using TMPro;
 public class StructureChooser : MonoBehaviour
 {
     public bool isBuildMode = false;
-    public bool canBuild = true;
     public GameObject _mouseIndicator;
     public GameObject _storedStructure;
     public Structure _structureProperties;
@@ -60,10 +59,14 @@ public class StructureChooser : MonoBehaviour
                 if(tile.PlaceStructure(_storedStructure, _structureProperties))
                 {                    
                     DestroyCurrent();
-                    canBuild = true;
                     Debug.Log($"Placed Structure at ({tile.position.x},{tile.position.y})");                    
                 } else { 
-                    canBuild = false;
+                    if(tile.noMoney) {
+                        textBox.text = "Not Enough Resources";
+                    }
+                    if(tile.noSpace) {
+                        textBox.text = "Can't Place Here";
+                    }
                     Debug.Log("Failed Place");
                     textBoxParent.SetActive(true);
                     StartCoroutine(FadeOut(textBox, 1.5f));

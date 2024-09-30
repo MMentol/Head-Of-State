@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class StructureChooser : MonoBehaviour
 {
     public bool isBuildMode = false;
+    public bool canBuild = true;
     public GameObject _mouseIndicator;
     public GameObject _storedStructure;
     public Structure _structureProperties;
@@ -16,6 +18,18 @@ public class StructureChooser : MonoBehaviour
     [Header("Grid")]
     [SerializeField] private GridManager _gridManager;
     public Tilemap _tilemap;
+
+    [Header("Building Mode Pop-Up")]
+    [SerializeField] GameObject popUI;
+    GameObject textBoxParent;
+    [SerializeField] TMP_Text textBox;
+    
+
+    void Awake() {
+        this.popUI = GameObject.FindWithTag("BuildingUI");
+        textBoxParent = popUI.transform.GetChild(10).GetChild(0).gameObject;
+        textBox = textBoxParent.GetComponent<TMP_Text>();
+    }
 
 
     void Update() 
@@ -46,8 +60,14 @@ public class StructureChooser : MonoBehaviour
                 if(tile.PlaceStructure(_storedStructure, _structureProperties))
                 {                    
                     DestroyCurrent();
+                    canBuild = true;
                     Debug.Log($"Placed Structure at ({tile.position.x},{tile.position.y})");                    
-                } else { Debug.Log("Failed Place");}
+                } else { 
+                    canBuild = false;
+                    Debug.Log("Failed Place");
+                    textBoxParent.SetActive(true);
+                    StartCoroutine(FadeOut(textBox, 1.5f));
+                }
                 DestroyCurrent();
                 isBuildMode = false;
             }
@@ -59,6 +79,21 @@ public class StructureChooser : MonoBehaviour
             DestroyCurrent();
             Debug.Log("Cancel Select");
         }
+    }
+
+    private YieldInstruction fadeInstruction = new YieldInstruction();
+    IEnumerator FadeOut(TMP_Text text, float fadeTime) {
+        float elapsedTime = 0.0f;
+        Color c = text.color;
+        while (elapsedTime < fadeTime)
+        {
+            yield return fadeInstruction;
+            elapsedTime += Time.deltaTime ;
+            c.a = 1.0f - Mathf.Clamp01(elapsedTime / fadeTime);
+            text.color = c;
+        }
+        textBoxParent.SetActive(false);
+        c.a = 255.0f;
     }
 
     public void ChooseStructure(GameObject chosenStructure)

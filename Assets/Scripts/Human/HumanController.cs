@@ -17,6 +17,7 @@ public class HumanController : MonoBehaviour
 
     public HumanPathfinding humanPathfinding;
 
+
     private const float speed = 1f;
 
     public int randomMoveDistance = 5;
@@ -33,7 +34,7 @@ public class HumanController : MonoBehaviour
     {
         //Grab references for rigidbody and animator from object
         body = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         boxCollider = GetComponent<BoxCollider>();
         humanPathfinding = GetComponent<HumanPathfinding>();
         transform.position = new Vector3(0.0f, 0.0f, 0.0f);
@@ -79,6 +80,7 @@ public class HumanController : MonoBehaviour
             Vector3 tilexy = pathVectorList[currentPathIndex] - new Vector3(0.5f, 0.5f ,0.5f);
             Vector3 targetPosition = new Vector3(tilexy.x, 0 , tilexy.y);
             Debug.Log("targetPosb4: " + targetPosition);
+            anim.SetBool("isWalking", true);
             if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
@@ -97,7 +99,7 @@ public class HumanController : MonoBehaviour
                 {
                     StopMoving();
 
-                    if ((transform.position.x % 1) != 0)
+                    if ((transform.position.x % 1) != 0) 
                         transform.position = transform.position + new Vector3(1-transform.position.x%1,0);
                     if ((transform.position.z % 1) != 0)
                         transform.position = transform.position + new Vector3(0, 0, 1 - transform.position.z % 1);
@@ -110,19 +112,16 @@ public class HumanController : MonoBehaviour
                     if (transform.position.x > targetPosition.x)
                     {
                         transform.position = transform.position - new Vector3(1f, 0);
-
                         Debug.Log("movedforce");
                     }
                     if (transform.position.z < targetPosition.z)
                     {
                         transform.position = transform.position + new Vector3(0, 0, 1f);
-
                         Debug.Log("movedforce");
                     }
                     if (transform.position.z > targetPosition.z)
                     {
                         transform.position = transform.position - new Vector3(0, 0, 1f);
-
                         Debug.Log("movedforce");
                     }
                     //animatedWalker.SetMoveVector(Vector3.zero);
@@ -131,7 +130,7 @@ public class HumanController : MonoBehaviour
         }
         else
         {
-
+            anim.SetBool("isWalking", false);
             //animatedWalker.SetMoveVector(Vector3.zero);
         }
     }
@@ -139,7 +138,7 @@ public class HumanController : MonoBehaviour
     private void StopMoving()
     {
         pathVectorList = null;
-
+        anim.SetBool("isWalking", false);
     }
 
     public Vector2 GetPosition()

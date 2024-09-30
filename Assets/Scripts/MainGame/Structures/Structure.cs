@@ -32,7 +32,7 @@ public class Structure : MonoBehaviour
 
     void Awake(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
-        realUI = ocUI.transform.GetChild(9).GetChild(0).gameObject;
+        realUI = ocUI.transform.GetChild(8).GetChild(0).gameObject;
         StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
         ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
         StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();

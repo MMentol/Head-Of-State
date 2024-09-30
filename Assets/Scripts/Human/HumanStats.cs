@@ -80,6 +80,11 @@ public class HumanStats : MonoBehaviour
 
     public void updatePickaxe()
     {
+        if(inventory.items == null)
+        {
+            return;
+        }
+
         foreach(var item in this.inventory.items)
         {
             if(item.ItemName == "Pickaxe")
@@ -95,7 +100,11 @@ public class HumanStats : MonoBehaviour
     
     public void updateBucket()
     {
-        foreach(var item in this.inventory.items)
+        if (inventory.items == null)
+        {
+            return;
+        }
+        foreach (var item in this.inventory.items)
         {
             if(item.ItemName == "Bucket")
             {

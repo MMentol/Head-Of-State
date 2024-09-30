@@ -150,7 +150,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   boxCollider: {fileID: 0}
   humanPathfinding: {fileID: 7002866369433048526}
-  randomMoveDistance: 5
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526
@@ -308,13 +307,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210546375148099049}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2644901599046946488}
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4199933221404985918
 SpriteRenderer:
   m_ObjectHideFlags: 0

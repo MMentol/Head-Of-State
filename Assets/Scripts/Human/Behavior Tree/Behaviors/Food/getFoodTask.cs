@@ -33,7 +33,9 @@ public class getFoodTask : Node
 
         if (foodTile == null) return NodeState.FAILURE;
 
-        if (_transform.position.Equals(foodTile.transform.position)|| _hStats._hunger>=20)
+        Debug.Log("food: " + _transform.position);
+
+        if (_transform.position.Equals(foodTile.transform.position)&& _hStats._hunger>=20)
         {
             //add food to human
             //remove food from tile

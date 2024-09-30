@@ -18,6 +18,11 @@ namespace Scripts
         };
         public List<ItemBase> items = new List<ItemBase>();
 
+        public Animator anim;
+
+        void Awake() {
+            anim = GetComponentInChildren<Animator>();
+        }
         //Getting Current ItemCount / Capacity
         public int GetResourceCount(string resource)
         {

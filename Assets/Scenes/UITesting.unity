@@ -3271,6 +3271,7 @@ GameObject:
   - component: {fileID: 1356237531}
   - component: {fileID: 1356237530}
   - component: {fileID: 1356237533}
+  - component: {fileID: 1356237534}
   m_Layer: 0
   m_Name: Whole Map Cam
   m_TagString: MainCamera
@@ -3365,6 +3366,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2391aa2b6903c0b449db5e54a3dfd9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!45 &1356237534
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356237529}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 2023383839bdf7d41bd86389f659d451, type: 2}
 --- !u!1 &1542123872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8583166714332866804, guid: d684ea01f36a7b445b1356dcfa65e1fd,

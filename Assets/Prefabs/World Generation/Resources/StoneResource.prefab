@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6775211579661375540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1490775449981943323}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!212 &2243084140305232624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 7221788029253391972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1069296849048862915}
@@ -182,8 +182,11 @@ MonoBehaviour:
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  ocUI: {fileID: 0}
-  BuildUIBox: {fileID: 0}
+  StructNameTxt: {fileID: 0}
+  ResidentsTxt: {fileID: 0}
+  StorageTxt: {fileID: 0}
+  stor: {fileID: 0}
+  house: {fileID: 0}
 --- !u!114 &3793514890588155938
 MonoBehaviour:
   m_ObjectHideFlags: 0

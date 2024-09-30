@@ -35,13 +35,15 @@ public class UIScript : MonoBehaviour
 
     // Start is called before the first frame update
     bool pause = false;
+    bool x2 = false;
+    bool x4 = false;
     void Start()
     {
         allHumanStats = GameObject.FindObjectsOfType<HumanStats>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
@@ -57,12 +59,7 @@ public class UIScript : MonoBehaviour
             }
         }
         else if(Input.GetKeyDown(KeyCode.Escape)) {
-            if(pause) {
-                pause = false;
-            } else {
-                pause = true;
-            }
-            PauseGame(pause);
+            TogglePause();
         }
         time += Time.deltaTime;
         timerText.text = getTime(time);
@@ -95,9 +92,44 @@ public class UIScript : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+    public void TogglePause() {
+        if(pause) {
+            pause = false;
+        } else {
+            pause = true;
+        }
+        PauseGame(pause);
+    }
     public void Unpause() {
         pause = false;
         PauseGame(pause);
+    }
+
+    public void toggleGo2() {
+        if(!x2) {
+            x2 = true;
+            if(x4) {
+                x4 = false;
+            }
+            Time.timeScale = 2;
+        } else {
+            x2 = false;
+            Time.timeScale = 1;
+        }
+    }
+
+    public void toggleGo4() {
+        if(!x4) {
+            x4 = true;
+            if(x2) {
+                x2 = false;
+            }
+            Time.timeScale = 4;
+        } else {
+            x4 = false;
+            Time.timeScale = 1;
+        }
     }
     public string getTime(float time) {
         float intTime = time;

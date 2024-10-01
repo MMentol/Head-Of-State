@@ -1291,6 +1291,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Pickaxe
   durability: 10
+--- !u!114 &1006046093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006046088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfbe633f53236f40ad45f8abd9374aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1149703827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -2153,7 +2165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Capacity: 0
   Count: 10
-  materialDataStorage: {fileID: 0}
 --- !u!1 &1240785361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2835026484890896319, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -3997,7 +4008,7 @@ PrefabInstance:
     - target: {fileID: 3017485500126473352, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
       propertyPath: sets
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7137851434853822056, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
@@ -4021,6 +4032,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 891203056}
+    - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1006046093}
     - targetCorrespondingSourceObject: {fileID: 4960901269441812792, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
       insertIndex: -1

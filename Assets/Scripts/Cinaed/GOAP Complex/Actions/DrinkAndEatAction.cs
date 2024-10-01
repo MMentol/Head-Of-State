@@ -89,13 +89,17 @@ namespace Cinaed.GOAP.Complex.Actions
         {
             if (data.Target == null)
                 return ActionRunState.Stop;
+            if (data.House == null)
+                return ActionRunState.Stop;
+            if (data.House.EnterHouse(data.Stats))
+                return ActionRunState.Continue;
 
             data.Timer -= context.DeltaTime;
 
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            data.Stats._energy += 15;
+            data.House.NapTime(data.Stats);
 
             return ActionRunState.Stop;
         }
@@ -104,13 +108,20 @@ namespace Cinaed.GOAP.Complex.Actions
         {
             if (data.Target is not TransformTarget transformTarget)
                 return;
+
             data.Stats = agent.GetComponent<HumanStats>();
-            data.Timer = 1f;
+
+            House house = transformTarget.Transform.GetComponent<House>();
+            if (house.PeopleInside.Count < house.Capacity)
+                data.House = house;
+
+            data.Timer = 5f;
         }
 
         public class Data : IActionData
         {
             public ITarget Target { get; set; }
+            public House House { get; set; }
             public float Timer { get; set; }
             public HumanStats Stats { get; set; }
         }

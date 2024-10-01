@@ -48,7 +48,7 @@ public class UIScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            OpenBuild();
+           // OpenBuild();
         }
         if(SceneManager.GetActiveScene().name.Equals("Main Menu")) {
             pause = false;

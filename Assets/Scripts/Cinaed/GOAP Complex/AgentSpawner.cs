@@ -52,7 +52,7 @@ namespace Cinaed.GOAP.Complex
             var brain = agent.GetComponent<AgentBrain>();
 
             var spriteRenderer = agent.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.color = color;
+            //spriteRenderer.color = color;
         }
 
         private void SpawnAgent(string setId, Color color)
@@ -67,7 +67,7 @@ namespace Cinaed.GOAP.Complex
             var brain = agent.GetComponent<AgentBrain>();
 
             var spriteRenderer = agent.GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.color = color;
+            //spriteRenderer.color = color;
         }
 
         private Vector3 GetRandomPosition()

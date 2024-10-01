@@ -67,6 +67,7 @@ MonoBehaviour:
   size: 15
   used: 0
   items: []
+  anim: {fileID: 0}
 --- !u!114 &7786359114497113422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,13 +166,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210546375148099049}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.12607859, y: 0.25660488, z: -0.03378266, w: 0.9576622}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2644901599046946488}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 30, z: 0}
 --- !u!212 &4199933221404985918
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ Animator:
   m_GameObject: {fileID: 1210546375148099049}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6b5474218fde99a44ac01ae72b1d79ad, type: 2}
+  m_Controller: {fileID: 9100000, guid: a8d228fef35483741a7bb36780600720, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

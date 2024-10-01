@@ -141,7 +141,7 @@ public class MaterialDataStorage : MonoBehaviour
         MetalTxt.text = $": {Metal} / {MetalCapacity}";
         FoodTxt.text = $": {Food} / {FoodCapacity}";
         WaterTxt.text = $": {Water} / {WaterCapacity}";
-        PopulationTxt.text = $": {Population} / {MaxPopulation}";
+        PopulationTxt.text = $": {Population}";
     }
 
     public int GetRemainingCapacity(string materialType)

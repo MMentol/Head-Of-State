@@ -11,7 +11,6 @@ namespace Cinaed.GOAP.Behaviours
         [SerializeField] private bool shouldMove;
         [SerializeField] private HumanController humanController;
         [SerializeField] private bool logDebug = false;
-
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
@@ -51,10 +50,11 @@ namespace Cinaed.GOAP.Behaviours
         public void Update()
         {
 
-            if (!this.shouldMove)
+            if (!this.shouldMove) {
                 return;
+            }
 
-            if (this.currentTarget == null)
+            if (this.currentTarget == null) 
                 return;
 
             //Debug.Log("Moving");

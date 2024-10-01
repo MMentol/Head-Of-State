@@ -29,6 +29,12 @@ public class MaterialDataStorage : MonoBehaviour
     public TMP_Text WaterTxt;
     public TMP_Text PopulationTxt;
 
+    public TMP_Text WoodTxtCurr;
+    public TMP_Text StoneTxtCurr;
+    public TMP_Text MetalTxtCurr;
+    public TMP_Text FoodTxtCurr;
+    public TMP_Text WaterTxtCurr;
+
     private void Awake()
     {
         TallyMaterials();
@@ -134,14 +140,20 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void UpdateText()
     {
-        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null)
+        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null || WoodTxtCurr == null)
             return;
-        WoodTxt.text = $": {Wood} / {WoodCapacity}";
-        StoneTxt.text = $": {Stone} / {StoneCapacity}";
-        MetalTxt.text = $": {Metal} / {MetalCapacity}";
-        FoodTxt.text = $": {Food} / {FoodCapacity}";
-        WaterTxt.text = $": {Water} / {WaterCapacity}";
+        WoodTxt.text = $": {WoodCapacity}";
+        StoneTxt.text = $": {StoneCapacity}";
+        MetalTxt.text = $": {MetalCapacity}";
+        FoodTxt.text = $": {FoodCapacity}";
+        WaterTxt.text = $": {WaterCapacity}";
         PopulationTxt.text = $": {Population}";
+
+        WoodTxtCurr.text = $"{Wood}";
+        StoneTxtCurr.text = $"{Stone}";
+        MetalTxtCurr.text = $"{Metal}";
+        FoodTxtCurr.text = $"{Food}";
+        WaterTxtCurr.text = $"{Water}";
     }
 
     public int GetRemainingCapacity(string materialType)

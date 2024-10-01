@@ -26,7 +26,7 @@ public class StructureChooser : MonoBehaviour
 
     void Awake() {
         this.popUI = GameObject.FindWithTag("BuildingUI");
-        textBoxParent = popUI.transform.GetChild(9).GetChild(0).gameObject;
+        textBoxParent = popUI.transform.GetChild(11).GetChild(0).gameObject;
         textBox = textBoxParent.GetComponent<TMP_Text>();
     }
 

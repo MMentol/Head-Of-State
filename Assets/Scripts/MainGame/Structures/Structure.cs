@@ -32,7 +32,7 @@ public class Structure : MonoBehaviour
 
     void Awake(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
-        realUI = ocUI.transform.GetChild(8).GetChild(0).gameObject;
+        realUI = ocUI.transform.GetChild(10).GetChild(0).gameObject;
         StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
         ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
         StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
@@ -53,8 +53,10 @@ public class Structure : MonoBehaviour
             if(Input.GetMouseButtonUp(0)) {
                 // Make UI Open here
                 if(isRemovable) {
-                    ocUI.transform.GetChild(9).gameObject.SetActive(true);
+                    ocUI.transform.GetChild(10).gameObject.SetActive(true);
                     StructNameTxt.text = name;
+                    ResidentsTxt.text = "";
+                    StorageTxt.text = "";
                     if(house != null)
                         ResidentsTxt.text = "Residents: " + house.PeopleInside.Count + "/" + house.Capacity;
                     if(stor != null)

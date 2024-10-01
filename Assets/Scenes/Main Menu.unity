@@ -895,9 +895,12 @@ MonoBehaviour:
   timerText: {fileID: 0}
   stagePick: {fileID: 1658398304}
   mainMenu: {fileID: 1558991410}
-  instructions: {fileID: 0}
-  credits: {fileID: 0}
+  instructions: {fileID: 1148495373}
+  credits: {fileID: 2115930138}
   time: 0
+  clock: 0
+  currTime: 0
+  allHumanStats: []
 --- !u!1 &679153294
 GameObject:
   m_ObjectHideFlags: 0

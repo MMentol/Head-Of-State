@@ -48,7 +48,7 @@ public class UIScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            OpenBuild();
+           // OpenBuild();
         }
         if(SceneManager.GetActiveScene().name.Equals("Main Menu")) {
             pause = false;
@@ -63,7 +63,8 @@ public class UIScript : MonoBehaviour
             TogglePause();
         }
         time += Time.deltaTime;
-        timerText.text = getTime(time);
+        if (!SceneManager.GetActiveScene().name.Equals("Main Menu"))
+            timerText.text = getTime(time);
         float newTime = Mathf.Floor(time);
         if (Mathf.Floor(time) % 60 == 0)
         {
@@ -158,5 +159,9 @@ public class UIScript : MonoBehaviour
     
     public void startBT() {
         SceneManager.LoadScene("BTBaseScene");
+    }
+
+    public void goMainMenu() {
+        SceneManager.LoadScene("Main Menu");
     }
 }

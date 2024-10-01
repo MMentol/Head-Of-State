@@ -186,6 +186,11 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             builder.AddGoal<EatGoal>()
                 .AddCondition<Hunger>(Comparison.SmallerThanOrEqual, 0);
         }
+        public static void AddRestGoal(this GoapSetBuilder builder)
+        {
+            builder.AddGoal<RestGoal>()
+                .AddCondition<Energy>(Comparison.GreaterThan, 0);
+        }
         //ACTION
         public static void AddDrinkWaterAction(this GoapSetBuilder builder)
         {
@@ -198,6 +203,12 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
             builder.AddAction<EatingAction>()
                 .SetTarget<EdibleFoodSource>()
                 .AddEffect<Hunger>(EffectType.Decrease);
+        }
+        public static void AddRestAction(this GoapSetBuilder builder)
+        {
+            builder.AddAction<RestingAction>()
+                .SetTarget<ClosestHouseWithSpace>()
+                .AddEffect<Energy>(EffectType.Increase);
         }
         //TARGET
         public static void AddDrinkableWaterSensor(this GoapSetBuilder builder)
@@ -220,6 +231,11 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         {
             builder.AddWorldSensor<HungerSensor>()
                 .SetKey<Hunger>();
+        }
+        public static void AddEnergySensor(this GoapSetBuilder builder)
+        {
+            builder.AddWorldSensor<EnergySensor>()
+                .SetKey<Energy>();
         }
     }
     public static class ReproductionExtensions

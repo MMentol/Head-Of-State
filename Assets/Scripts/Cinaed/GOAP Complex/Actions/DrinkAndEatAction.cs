@@ -78,4 +78,41 @@ namespace Cinaed.GOAP.Complex.Actions
             public HumanStats Stats { get; set; }
         }
     }
+
+    public class RestingAction : ActionBase<RestingAction.Data>
+    {
+        public override void Created() { }
+
+        public override void End(IMonoAgent agent, Data data) { }
+
+        public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
+        {
+            if (data.Target == null)
+                return ActionRunState.Stop;
+
+            data.Timer -= context.DeltaTime;
+
+            if (data.Timer > 0)
+                return ActionRunState.Continue;
+
+            data.Stats._energy += 15;
+
+            return ActionRunState.Stop;
+        }
+
+        public override void Start(IMonoAgent agent, Data data)
+        {
+            if (data.Target is not TransformTarget transformTarget)
+                return;
+            data.Stats = agent.GetComponent<HumanStats>();
+            data.Timer = 1f;
+        }
+
+        public class Data : IActionData
+        {
+            public ITarget Target { get; set; }
+            public float Timer { get; set; }
+            public HumanStats Stats { get; set; }
+        }
+    }
 }

@@ -29,6 +29,18 @@ namespace Cinaed.GOAP.Complex.WorldKeySensors
 
     }
 
+    public class EnergySensor : LocalWorldSensorBase
+    {
+        public override void Created() { }
+        public override void Update() { }
+
+        public override SenseValue Sense(IMonoAgent agent, IComponentReference references)
+        {
+            return Mathf.RoundToInt(agent.GetComponent<HumanStats>()._energy);
+        }
+
+    }
+
     public class HappinessSensor : LocalWorldSensorBase
     {
         public override void Created() { }

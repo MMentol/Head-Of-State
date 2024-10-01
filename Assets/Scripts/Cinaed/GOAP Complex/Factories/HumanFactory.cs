@@ -31,10 +31,12 @@ namespace Cinaed.GOAP.Complex.Factories
             //Goal
             builder.AddDrinkGoal();
             builder.AddEatGoal();
+            builder.AddRestGoal();
             builder.AddBreedGoal();
             //Action
             builder.AddDrinkWaterAction();
             builder.AddEatFoodAction();
+            builder.AddRestAction();
             builder.AddBreedAction(HouseActivitySettings.RequiredHappiness);
             //Target
             builder.AddDrinkableWaterSensor();
@@ -43,6 +45,7 @@ namespace Cinaed.GOAP.Complex.Factories
             //World
             builder.AddThirstSensor();
             builder.AddHungerSensor();
+            builder.AddEnergySensor();
             builder.AddHappinessSensor();
             builder.AddBreedCooldownSensor();
             builder.AddPlayerMaterialPercentageSensor<Population>(); //Make them breed till colony has no more space left

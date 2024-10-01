@@ -5,15 +5,10 @@ namespace GridMap.Structures.Storage
     {
         public int Capacity = 100;
         public int Count;
-        public MaterialDataStorage materialDataStorage;
-        private void Awake()
-        {
-            materialDataStorage = FindObjectOfType<MaterialDataStorage>();           
-        }
 
         public void UpdateResources()
         {
-            materialDataStorage.TallyMaterials();
+            MaterialDataStorage.Instance.TallyMaterials();
         }
 
         public int Add(int amount)

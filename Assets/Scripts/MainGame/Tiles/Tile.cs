@@ -37,6 +37,7 @@ public class Tile : MonoBehaviour
        
     public void Init(int x, int y, TileType type, bool logDebug = false)
     {
+        this.materialDataStorage = MaterialDataStorage.Instance;
         this.logDebug = logDebug;
         position = new Vector2(x, y);
         tileType = type;
@@ -109,8 +110,9 @@ public class Tile : MonoBehaviour
     }
 
     public bool PlaceStructure(GameObject placeableStructure, Structure strucProps)
-    {       
-        if(!isOccupied && canPlaceOn)
+    {
+        this.materialDataStorage = MaterialDataStorage.Instance;
+        if (!isOccupied && canPlaceOn)
         {
             if (materialDataStorage.DeductCosts(strucProps._woodCost, strucProps._stoneCost, strucProps._metalCost, strucProps._foodCost, strucProps._waterCost))
             {

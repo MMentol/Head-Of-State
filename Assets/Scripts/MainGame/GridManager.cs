@@ -31,12 +31,10 @@ public class GridManager : MonoBehaviour
 
     [Header("Placement System Settings")]
     [SerializeField] private StructureChooser structureChooser;
-    public MaterialDataStorage materialDataStorage;
 
     #region Lifecycle Methods
     void Awake()
     {
-        materialDataStorage = GetComponentInChildren<MaterialDataStorage>();
         Array.Sort(_baseTileTypes);
         StartGenerate();
         Debug.Log("Generating Done.");
@@ -70,7 +68,6 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile ({x} , {y}) [{spawnedTile.initialType}]";
                 Tile tileSettings = spawnedTile.GetComponent<Tile>();
                 tileSettings.structureChooser = this.structureChooser;
-                tileSettings.materialDataStorage = this.materialDataStorage;
                 if(logDebug) {Debug.Log("Tile type: " + spawnedTile.initialType);}
                 _tiles[new Vector2(x,y)] = spawnedTile;
             }

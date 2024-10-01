@@ -11,18 +11,15 @@ namespace Cinaed.GOAP.Complex.TargetSensors
         where TStorage : MaterialStorageBase
     {
         public TStorage[] storages;
-        public override void Created()
-        {}
+        public override void Created() { }
 
-        public override void Update()
-        {
-            this.storages = GameObject.FindObjectsOfType<TStorage>();
-        }
+        public override void Update() { }
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
+            this.storages = MaterialDataStorage.Instance.GetStoragesOfType<TStorage>();
             var closest = this.storages
-            //.Where(x => x.Capacity > x.Count)
+            .Where(x => x.Capacity > x.Count)
             .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
             .FirstOrDefault();
 
@@ -40,7 +37,8 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                     if (closest == null)
                         return null;
                 }
-            
+
+            Debug.Log(closest.gameObject.name);
             return new TransformTarget(closest.transform);
         }
 

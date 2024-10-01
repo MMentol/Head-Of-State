@@ -4,8 +4,27 @@ using GridMap.Structures.Storage;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using GridMap.Resources;
 public class MaterialDataStorage : MonoBehaviour
 {
+    public static MaterialDataStorage Instance;
+
+    //Storage list holders
+    public WoodStorage[] WoodStorages;
+    public StoneStorage[] StoneStorages;
+    public MetalStorage[] MetalStorages;
+    public WaterStorage[] WaterStorages;
+    public FoodStorage[] FoodStorages;
+
+    public TreeResource[] WoodResources;
+    public StoneResource[] StoneResources;
+    public MetalResource[] MetalResources;
+    public WaterResource[] WaterResources;
+    public FoodResource[] FoodResources;
+
+    public House[] Houses;
+
+    //Data holders
     public int Wood = 0;
     public int Stone = 0;
     public int Metal = 0;
@@ -22,6 +41,7 @@ public class MaterialDataStorage : MonoBehaviour
     public int totalStone = 0;
     public int totalMetal = 0;
 
+    //Text boxes
     public TMP_Text WoodTxt;
     public TMP_Text StoneTxt;
     public TMP_Text MetalTxt;
@@ -31,6 +51,18 @@ public class MaterialDataStorage : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        UpdateStorageLists();
+        UpdateSourcesLists();
         TallyMaterials();
         UpdateText();
     }
@@ -43,19 +75,48 @@ public class MaterialDataStorage : MonoBehaviour
     public void TallyMaterials()
     {
         Clear();
-        TallyWood();
-        TallyStone();
-        TallyMetal();
-        TallyFood();
-        TallyWater();
-        Census();
+        UpdateStorageLists();
+        foreach (WoodStorage storage in WoodStorages)
+        {
+            this.WoodCapacity += storage.Capacity;
+            this.Wood += storage.Count;
+            this.totalWood += storage.Count;
+        }
+        foreach (StoneStorage storage in StoneStorages)
+        {
+            this.StoneCapacity += storage.Capacity;
+            this.Stone += storage.Count;
+            this.totalStone += storage.Count;
+        }
+        foreach (MetalStorage storage in MetalStorages)
+        {
+            this.MetalCapacity += storage.Capacity;
+            this.Metal += storage.Count;
+            this.totalMetal += storage.Count;
+        }
+        foreach (FoodStorage storage in FoodStorages)
+        {
+            this.FoodCapacity += storage.Capacity;
+            this.Food += storage.Count;
+        }
+        foreach (WaterStorage storage in WaterStorages)
+        {
+            this.WaterCapacity += storage.Capacity;
+            this.Water += storage.Count;
+        }
+        Population = FindObjectsOfType<HumanStats>().Length;
+        Houses = FindObjectsOfType<House>();
+        foreach (House house in Houses)
+        {
+            this.MaxPopulation += house.Capacity;
+        }
         UpdateText();
     }
 
     public void TallyWood()
     {
-        WoodStorage[] woodStorages = GameObject.FindObjectsOfType<WoodStorage>();
-        foreach (WoodStorage storage in woodStorages)
+        //WoodStorage[] woodStorages = GameObject.FindObjectsOfType<WoodStorage>();
+        foreach (WoodStorage storage in WoodStorages)
         {
             this.WoodCapacity += storage.Capacity;
             this.Wood += storage.Count;
@@ -65,8 +126,8 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyStone()
     {
-        StoneStorage[] stoneStorages = GameObject.FindObjectsOfType<StoneStorage>();
-        foreach (StoneStorage storage in stoneStorages)
+        //StoneStorage[] stoneStorages = GameObject.FindObjectsOfType<StoneStorage>();
+        foreach (StoneStorage storage in StoneStorages)
         {
             this.StoneCapacity += storage.Capacity;
             this.Stone += storage.Count;
@@ -76,8 +137,8 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyMetal()
     {
-        MetalStorage[] metalStorages = GameObject.FindObjectsOfType<MetalStorage>();
-        foreach (MetalStorage storage in metalStorages)
+        //MetalStorage[] metalStorages = GameObject.FindObjectsOfType<MetalStorage>();
+        foreach (MetalStorage storage in MetalStorages)
         {
             this.MetalCapacity += storage.Capacity;
             this.Metal += storage.Count;
@@ -87,8 +148,8 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyFood()
     {
-        FoodStorage[] foodStorages = GameObject.FindObjectsOfType<FoodStorage>();
-        foreach (FoodStorage storage in foodStorages)
+        //FoodStorage[] foodStorages = GameObject.FindObjectsOfType<FoodStorage>();
+        foreach (FoodStorage storage in FoodStorages)
         {
             this.FoodCapacity += storage.Capacity;
             this.Food += storage.Count;
@@ -97,8 +158,8 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void TallyWater()
     {
-        WaterStorage[] waterStorages = GameObject.FindObjectsOfType<WaterStorage>();
-        foreach (WaterStorage storage in waterStorages)
+        //WaterStorage[] waterStorages = GameObject.FindObjectsOfType<WaterStorage>();
+        foreach (WaterStorage storage in WaterStorages)
         {
             this.WaterCapacity += storage.Capacity;
             this.Water += storage.Count;
@@ -130,6 +191,24 @@ public class MaterialDataStorage : MonoBehaviour
         FoodCapacity = 0;
         WaterCapacity = 0;
         MaxPopulation = 0;
+    }
+
+    public void UpdateStorageLists()
+    {
+        WoodStorages = FindObjectsOfType<WoodStorage>();
+        StoneStorages = FindObjectsOfType<StoneStorage>();
+        MetalStorages = FindObjectsOfType<MetalStorage>();
+        WaterStorages = FindObjectsOfType<WaterStorage>();
+        FoodStorages = FindObjectsOfType<FoodStorage>();
+    }
+
+    public void UpdateSourcesLists()
+    {
+        WoodResources = FindObjectsOfType<TreeResource>();
+        StoneResources = FindObjectsOfType<StoneResource>();
+        MetalResources = FindObjectsOfType<MetalResource>();
+        WaterResources = FindObjectsOfType<WaterResource>();
+        FoodResources = FindObjectsOfType<FoodResource>();
     }
 
     public void UpdateText()
@@ -319,5 +398,52 @@ public class MaterialDataStorage : MonoBehaviour
         }
         TallyMaterials();
         return true;
+    }
+
+    //List optimization to reduce findobject usage
+    public TStorage[] GetStoragesOfType<TStorage>()
+        where TStorage : MaterialStorageBase
+    {
+        switch (typeof(TStorage).Name)
+        {
+            case "WoodStorage":
+                return WoodStorages.OfType<TStorage>().ToArray();
+            case "StoneStorage":
+                return StoneStorages.OfType<TStorage>().ToArray();
+            case "MetalStorage":
+                return MetalStorages.OfType<TStorage>().ToArray();
+            case "WaterStorage":
+                return WaterStorages.OfType<TStorage>().ToArray();
+            case "FoodStorage":
+                return FoodStorages.OfType<TStorage>().ToArray();
+            default:
+                Debug.LogError("Unsupported storage type: " + typeof(TStorage).Name);
+                return new TStorage[0];
+        }
+    }
+    //List optimization to reduce findobject usage
+    public TSource[] GetSourceOfType<TSource>()
+        where TSource : ResourceSourceBase
+    {
+        switch (typeof(TSource).Name)
+        {
+            case "TreeResource":
+                return WoodResources.OfType<TSource>().ToArray();
+            case "StoneResource":
+                return StoneResources.OfType<TSource>().ToArray();
+            case "MetalResource":
+                return MetalResources.OfType<TSource>().ToArray();
+            case "WaterResource":
+                return WaterResources.OfType<TSource>().ToArray();
+            case "FoodResource":
+                return FoodResources.OfType<TSource>().ToArray();
+            default:
+                Debug.LogError("Unsupported storage type: " + typeof(TSource).Name);
+                return new TSource[0];
+        }
+    }
+    public House[] GetHouses()
+    {
+        return Houses;
     }
 }

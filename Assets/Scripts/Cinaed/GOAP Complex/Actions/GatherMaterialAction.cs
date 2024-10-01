@@ -50,16 +50,22 @@ namespace Cinaed.GOAP.Complex.Actions
             //if (!data.HasTool)
                 //Debug.Log("No tool");
 
+            string resource = typeof(TMaterial).Name.ToLower();
             if (data.Inventory != null)
             {
                 int harvested = data.Source.Harvest(1);
-                string resource = typeof(TMaterial).Name.ToLower();
                 if (harvested > 0)
                 {
                     data.Inventory.AddToInventory(resource, harvested);
                     //Tool durability reduction                   
                     if (data.HasTool)
                         data.Inventory.items.Where(item => item.ItemName == "Pickaxe").FirstOrDefault().DamageItem(harvested, data.Inventory);
+
+                    /*if ((data.Inventory.GetRemainingCapacity() > 0 && data.Inventory.GetResourceCount(resource) < MaterialDataStorage.Instance.GetRemainingCapacity(resource)))
+                    {
+                        data.Timer = 1 * this.Config.BaseCost;
+                        return ActionRunState.Continue;
+                    }*/
                 }                   
             }
             else

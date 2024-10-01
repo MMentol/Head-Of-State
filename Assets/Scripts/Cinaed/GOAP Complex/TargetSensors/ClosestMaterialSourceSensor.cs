@@ -10,25 +10,22 @@ namespace Cinaed.GOAP.Complex.TargetSensors
     public class ClosestMaterialSourceSensor<TSource> : LocalTargetSensorBase
         where TSource : ResourceSourceBase
     {
-        public TSource[] sources;
         public override void Created()
         {}
 
         public override void Update()
-        {
-            this.sources = GameObject.FindObjectsOfType<TSource>();
-        }
+        {}
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
-            var closest = this.sources
+            var closest = MaterialDataStorage.Instance.GetSourceOfType<TSource>()
             .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, agent.transform.position))
             .FirstOrDefault();
 
             if (closest == null)
                 return null;
-            else
+            /*else
                 while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
                 {
                     var list = this.sources.ToList();
@@ -39,7 +36,7 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                     .FirstOrDefault();
                     if (closest == null)
                         return null;
-                }
+                }*/
             return new TransformTarget(closest.transform);
         }
 

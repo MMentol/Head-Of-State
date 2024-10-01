@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RequiredHappiness: 0
-  RestingEnergyBenefit: 0
+  RestingEnergyBenefit: 15
 --- !u!114 &901118561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 739459688225114925, guid: 782f9d754f314e146aa5c66953fcddf4,
@@ -1291,60 +1291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Pickaxe
   durability: 10
---- !u!1 &1138959975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1959244892}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1138959977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138959975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d117f04482d66145b0e901ec3430fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Wood: 0
-  Stone: 0
-  Metal: 0
-  Food: 0
-  Water: 0
-  Population: 0
-  WoodCapacity: 0
-  StoneCapacity: 0
-  MetalCapacity: 0
-  FoodCapacity: 0
-  WaterCapacity: 0
-  MaxPopulation: 0
-  totalWood: 0
-  totalStone: 0
-  totalMetal: 0
-  WoodTxt: {fileID: 0}
-  StoneTxt: {fileID: 0}
-  MetalTxt: {fileID: 0}
-  FoodTxt: {fileID: 0}
-  WaterTxt: {fileID: 0}
-  PopulationTxt: {fileID: 0}
---- !u!114 &1138959979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138959975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Capacity: 0
-  Count: 10
-  materialDataStorage: {fileID: 0}
 --- !u!114 &1149703827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
@@ -2169,7 +2115,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4327789856900941746, guid: 782f9d754f314e146aa5c66953fcddf4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5001809684993583129, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1232175896}
   m_SourcePrefab: {fileID: 100100000, guid: 782f9d754f314e146aa5c66953fcddf4, type: 3}
 --- !u!224 &1232175892 stripped
 RectTransform:
@@ -2189,6 +2139,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d117f04482d66145b0e901ec3430fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1232175896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218319703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Capacity: 0
+  Count: 10
+  materialDataStorage: {fileID: 0}
 --- !u!1 &1240785361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2835026484890896319, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -3821,6 +3786,11 @@ PrefabInstance:
       propertyPath: PopulationTxt
       value: 
       objectReference: {fileID: 1229022859}
+    - target: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2585171556646703781, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       propertyPath: m_Name
@@ -3906,17 +3876,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6025108678496098540, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138959979}
-    - targetCorrespondingSourceObject: {fileID: 687638986930379889, guid: 5f9537d8e95351a408beef259b229cd3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138959977}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9537d8e95351a408beef259b229cd3, type: 3}
 --- !u!114 &1962327104 stripped
 MonoBehaviour:

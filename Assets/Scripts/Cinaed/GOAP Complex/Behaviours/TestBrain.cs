@@ -89,7 +89,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 return;
             }
             //BREEDER SETUP
-            if (this.humanStats._happiness > HouseActivitySettings.RequiredHappiness)
+            if (this.humanStats._happiness > HouseActivitySettings.RequiredHappiness && MaterialDataStorage.Population < MaterialDataStorage.MaxPopulation)
             {
                 this.agent.SetGoal<BreedingGoal>(false);
                 return;

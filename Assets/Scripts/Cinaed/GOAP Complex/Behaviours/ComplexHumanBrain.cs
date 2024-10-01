@@ -219,7 +219,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
         public void DetermineGoal(int forced)//UtilityAI Forced Goal
         {
 
-            Debug.Log("Forced : " + forced);
+            if (logDebug) { Debug.Log("Forced : " + forced); }
             if (forced == 9)
             {
 

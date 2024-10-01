@@ -11,28 +11,18 @@ namespace Cinaed.GOAP.Complex.TargetSensors
 {
     public class DrinkableWaterSourceSensor : LocalTargetSensorBase
     {
-        public WaterStorage[] storages;
-        public WaterResource[] waterTiles;
-        public List<GameObject> combinedList;
+        public override void Update() { }
+
         public override void Created() { }
 
-        public override void Update()
-        {
-            this.storages = GameObject.FindObjectsOfType<WaterStorage>()
-                .Where(x => x.Count > 0)
-                .ToArray();                
-            this.waterTiles = GameObject.FindObjectsOfType<WaterResource>()
-                .Where(x => x.rawMaterialAmount > 0)
-                .ToArray();
-
-        }
-
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
-        {            
-            var closestStorage = this.storages
+        {
+            var closestStorage = MaterialDataStorage.Instance.GetStoragesOfType<WaterStorage>()
+                .Where(x => x.Count > 0)
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
-            var closestSource = this.waterTiles
+            var closestSource = MaterialDataStorage.Instance.GetSourceOfType<WaterResource>()
+                .Where(x => x.rawMaterialAmount > 0)
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
 
@@ -47,28 +37,18 @@ namespace Cinaed.GOAP.Complex.TargetSensors
     }
     public class EdibleFoodSourceSensor : LocalTargetSensorBase
     {
-        public FoodStorage[] storages;
-        public FoodResource[] foodTiles;
-        public List<GameObject> combinedList;
+        public override void Update() { }
+
         public override void Created() { }
-
-        public override void Update()
-        {
-            this.storages = GameObject.FindObjectsOfType<FoodStorage>()
-                .Where(x => x.Count > 0)
-                .ToArray();
-            this.foodTiles = GameObject.FindObjectsOfType<FoodResource>()
-                .Where(x => x.rawMaterialAmount > 0)
-                .ToArray();
-
-        }
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
-            var closestStorage = this.storages
+            var closestStorage = MaterialDataStorage.Instance.GetStoragesOfType<FoodStorage>()
+                .Where(x => x.Count > 0)
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
-            var closestSource = this.foodTiles
+            var closestSource = MaterialDataStorage.Instance.GetSourceOfType<FoodResource>()
+                .Where(x => x.rawMaterialAmount > 0)
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
 
@@ -83,17 +63,13 @@ namespace Cinaed.GOAP.Complex.TargetSensors
     }
     public class ClosestHouseSensor : LocalTargetSensorBase
     {
-        public House[] houses;
         public override void Created() { }
 
-        public override void Update()
-        {
-            this.houses = GameObject.FindObjectsOfType<House>();
-        }
+        public override void Update() { }
 
         public override ITarget Sense(IMonoAgent agent, IComponentReference references)
         {
-            var closest = this.houses
+            var closest = MaterialDataStorage.Instance.Houses
                 .Where(house => house.PeopleInside.Count < house.Capacity)
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();

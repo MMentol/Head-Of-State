@@ -15,7 +15,7 @@ namespace Cinaed.GOAP.WorldSensors
 
         public override SenseValue Sense(IMonoAgent agent, IComponentReference references)
         {
-            MaterialDataStorage inventory = GameObject.FindObjectOfType<MaterialDataStorage>();
+            MaterialDataStorage inventory = MaterialDataStorage.Instance;
 
             if (inventory == null)
                 return false;            

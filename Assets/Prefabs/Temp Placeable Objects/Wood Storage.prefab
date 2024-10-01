@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4561423585533738694}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.08641016, y: 0.13002947, z: -0.011376109, w: 0.9876721}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177288492814679013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 15, z: 0}
 --- !u!212 &3781785838652519288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -162,10 +162,11 @@ MonoBehaviour:
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  ocUI: {fileID: 0}
   StructNameTxt: {fileID: 0}
   ResidentsTxt: {fileID: 0}
   StorageTxt: {fileID: 0}
+  stor: {fileID: 0}
+  house: {fileID: 0}
 --- !u!114 &3196082067095554429
 MonoBehaviour:
   m_ObjectHideFlags: 0

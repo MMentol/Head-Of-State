@@ -1122,6 +1122,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300016, guid: 1eaee135ce037439d925cee5e41ce026,
         type: 3}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1688967756}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455358212204939821, guid: dd8a525b48c38d24a82b1d211af2f9f7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5524641723800420058, guid: dd8a525b48c38d24a82b1d211af2f9f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x

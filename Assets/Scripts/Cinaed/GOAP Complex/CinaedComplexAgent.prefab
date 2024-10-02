@@ -107,7 +107,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   shouldMove: 0
   humanController: {fileID: 0}
-  logDebug: 1
+  logDebug: 0
   anim: {fileID: 4483563038361863268}
 --- !u!114 &-5366297016516215228
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   humanPathfinding: {fileID: 7002866369433048526}
   humanStats: {fileID: 0}
   randomMoveDistance: 5
-  debugLog: 1
+  debugLog: 0
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526

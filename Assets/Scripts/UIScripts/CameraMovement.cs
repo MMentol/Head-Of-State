@@ -30,8 +30,9 @@ public class CameraMovement : MonoBehaviour
         }
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float y = Input.GetAxis("Vertical") * moveSpeed;
-        float xPos = transform.localPosition.x + x;
-        float yPos = transform.localPosition.y + y;
+        float ortho = currCam.orthographicSize;
+        float xPos = transform.localPosition.x + (x * (ortho / 40));
+        float yPos = transform.localPosition.y + (y * (ortho / 40));
         float xBound = Mathf.Clamp(xPos, -140, 50);
         float yBound = Mathf.Clamp(yPos, 35, 115);
         gameObject.transform.position = new Vector3(xBound, yBound, transform.position.z);

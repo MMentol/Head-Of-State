@@ -30,7 +30,16 @@ namespace Cinaed.GOAP.Complex.TargetSensors
             if (closestSource == null) { return new TransformTarget(closestStorage.transform); }
 
             if (Vector3.Distance(agent.transform.position, closestSource.transform.position) <= Vector3.Distance(agent.transform.position, closestStorage.transform.position))
-                return new TransformTarget(closestSource.transform);            
+            {
+                //Transform newTar = closestSource.transform;
+                //if (newTar.position.x > agent.transform.position.x) newTar.position = new Vector3(-1f, 0, 0);
+                //if (newTar.position.x < agent.transform.position.x) newTar.position = new Vector3(+1f, 0, 0);
+                //if (newTar.position.z > agent.transform.position.z) newTar.position = new Vector3(0, 0, -1f);
+                //if (newTar.position.z < agent.transform.position.z) newTar.position = new Vector3(0, 0, +1f);
+                
+
+                return new TransformTarget(closestSource.transform);
+            }           
             return new TransformTarget(closestStorage.transform);
         }
 

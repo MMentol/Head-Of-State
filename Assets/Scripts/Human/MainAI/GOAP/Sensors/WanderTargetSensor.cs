@@ -27,7 +27,7 @@ public class WanderTargetSensor : LocalTargetSensorBase
     private Vector3 GetRandomPosition(IMonoAgent agent)
     {
         var random = Random.insideUnitCircle * 5f;
-        var position = agent.transform.position + new Vector3(random.x, 0f, random.y);
+        var position = agent.transform.position + new Vector3(Mathf.Clamp(Mathf.RoundToInt(random.x), 0, 99), 0f, Mathf.Clamp(Mathf.RoundToInt(random.y), 0, 99));
 
         return position;
     }

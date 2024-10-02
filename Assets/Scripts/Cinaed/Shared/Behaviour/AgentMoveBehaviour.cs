@@ -42,12 +42,15 @@ namespace Cinaed.GOAP.Behaviours
             this.currentTarget = target;
             this.shouldMove = !inRange;
 
-            int x = Mathf.RoundToInt(Mathf.Clamp(this.currentTarget.Position.x, 0, 100));
-            int y = (int)this.currentTarget.Position.y;
-            int z = Mathf.RoundToInt(Mathf.Clamp(this.currentTarget.Position.z, 0, 100));
+            int x = Mathf.Clamp(Mathf.RoundToInt(this.currentTarget.Position.x), 0, 99);
+            int y = 0;
+            int z = Mathf.Clamp(Mathf.RoundToInt(this.currentTarget.Position.z), 0, 99);
             Vector3 targetPos = new Vector3(x, y, z);
-            Debug.Log("targetPos:" + targetPos);
+
             humanController.SetTargetPosition(targetPos);
+            Debug.Log("targetPos:" + targetPos);
+
+            //humanController.SetTargetPosition(currentTarget.Position);
         }
 
         private void OnTargetOutOfRange(ITarget target)

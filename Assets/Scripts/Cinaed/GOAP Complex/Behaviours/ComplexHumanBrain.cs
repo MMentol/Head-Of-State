@@ -280,6 +280,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             context.SetData("woodAmount", (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity);
             context.SetData("stoneAmount", (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity);
             context.SetData("metalAmount", (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity);
+            context.SetData("maxPopulation", (float)this.MaterialDataStorage.Population / (float)this.MaterialDataStorage.MaxPopulation);
             context.SetData("hunger", humanStats._hunger/100f);
             context.SetData("thirst", humanStats._thirst/100f);
             context.SetData("happiness", humanStats._happiness/100f);
@@ -292,6 +293,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             context.SetData("hasPickAxe", humanStats.hasPickAxe);
             context.SetData("hasAxe", humanStats.hasAxe);
             context.SetData("canBreed", humanStats.canBreed);
+
         }
 
         #endregion

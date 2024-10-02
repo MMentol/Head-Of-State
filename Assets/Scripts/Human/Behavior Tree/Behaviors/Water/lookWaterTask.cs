@@ -29,7 +29,7 @@ public class lookWaterTask : Node
 
     public override NodeState Evaluate()
     {
-        this.waterSources = GameObject.FindObjectsOfType<WaterResource>();
+        this.waterSources = MaterialDataStorage.Instance.GetSourceOfType<WaterResource>();
 
 
         object t = GetData("water");
@@ -41,18 +41,18 @@ public class lookWaterTask : Node
             .FirstOrDefault();
             if (closest == null)
                 return NodeState.FAILURE;
-            else
-                while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
-                {
-                    var list = this.waterSources.ToList();
-                    list.Remove(closest);
-                    waterSources = list.ToArray();
-                    closest = this.waterSources
-                    .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
-                    .FirstOrDefault();
-                    if (closest == null)
-                        return NodeState.FAILURE;
-                }
+            //else
+            //    while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
+            //    {
+            //        var list = this.waterSources.ToList();
+            //        list.Remove(closest);
+            //        waterSources = list.ToArray();
+            //        closest = this.waterSources
+            //        .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
+            //        .FirstOrDefault();
+            //        if (closest == null)
+            //            return NodeState.FAILURE;
+            //    }
             parent.parent.SetData("water", closest);
             state = NodeState.SUCCESS;
 

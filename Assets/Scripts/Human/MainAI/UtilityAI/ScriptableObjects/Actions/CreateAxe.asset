@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CreateAxe
   m_EditorClassIdentifier: 
   targetTag: 10
-  consideration: {fileID: 0}
+  consideration: {fileID: 11400000, guid: 2f63bcc96b13a914283982775455bda6, type: 2}

@@ -15,6 +15,7 @@ public class reproduceTask : Node
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
+    private float timer = 2f;
 
     public reproduceTask(Transform transform)
     {
@@ -26,16 +27,30 @@ public class reproduceTask : Node
     public override NodeState Evaluate()
     {
         //Find partner
-        HumanStats partner;
-        House house = (House)GetData("home");
-        do
-        {
-            if (house == null)
-            return NodeState.FAILURE;
-        if (_hStats.breedCooldown > 0)
+        House house = (House)GetData("bhome");
+
+        
+
+        if (house == null)
             return NodeState.FAILURE;
 
-        house.EnterHouse(_hStats);
+        if (_hStats.breedCooldown > 0)
+            return NodeState.FAILURE;
+        if (house.PeopleInside.Count < house.Capacity)
+        {
+            house.UpdateCurrentHouse(_hStats);
+        }
+        if (_transform.position.Equals(house.transform.position))
+        {
+            house.EnterHouse(_hStats);
+            Debug.Log("man1 inside");
+
+        }
+        else
+        {
+            return NodeState.FAILURE;
+        }
+
 
         if (_hStats._happiness <= house.HouseSettings.RequiredHappiness)
         {
@@ -43,15 +58,27 @@ public class reproduceTask : Node
             return NodeState.FAILURE;
         }
 
-            partner = house.PeopleInside.Where(h => house.IsHappy(h) && h != _hStats && h.breedCooldown <= 0).FirstOrDefault();
-        }
-        while (partner == null);
         
+
+        HumanStats partner = house.PeopleInside.Where(h => house.IsHappy(h) && h != _hStats && h.breedCooldown <= 0).FirstOrDefault();
+
+
+        if (partner == null)
+        {
+        Debug.Log("abort");
+
+
+            return NodeState.FAILURE;
+
+        }
+
+        Debug.Log("Man2 inside");
+
         if (house.MakeNewHuman(_hStats, partner))
         {
             GameObject.FindObjectOfType<MaterialDataStorage>().TallyMaterials();
-            _hStats.breedCooldown = 30;
-            partner.breedCooldown = 30;
+            _hStats.breedCooldown = 60;
+            partner.breedCooldown = 60;
             _hStats._heat += 100;
             _hStats._energy += 100;
             partner._heat += 100;
@@ -59,7 +86,8 @@ public class reproduceTask : Node
         }
         house.LeaveHouse(_hStats);
         house.LeaveHouse(partner);
-        ClearData("home");
+        Debug.Log("Baby Made");
+        ClearData("bhome");
         return NodeState.SUCCESS;
     }
 }

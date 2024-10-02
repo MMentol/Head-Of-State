@@ -91,6 +91,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de6bdb3b72a094141a76924f2ba24f6b, type: 2}
   - {fileID: 11400000, guid: ac76fb90081e86e49bda2ffba5f1f07a, type: 2}
   - {fileID: 11400000, guid: 74b4d11333aa22e4f85a4109c62bb751, type: 2}
+  - {fileID: 11400000, guid: 37a3d26e848083344b2cec651bd4b0dc, type: 2}
 --- !u!114 &7346507521047682018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   anim: {fileID: 4483563038361863268}
   boxCollider: {fileID: 0}
   humanPathfinding: {fileID: 7002866369433048526}
+  humanStats: {fileID: 0}
   randomMoveDistance: 5
   testx: 0
   testy: 0
@@ -265,6 +267,7 @@ MonoBehaviour:
   hasBucket: 0
   breedCooldown: 0
   canBreed: 1
+  currentHouse: {fileID: 0}
   anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
 --- !u!114 &6538967730826234972

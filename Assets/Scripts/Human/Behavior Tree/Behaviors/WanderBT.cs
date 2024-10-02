@@ -15,13 +15,13 @@ public class WanderBT : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
     private HumanController humanController;
-    private float _waitTime = 1f;
-    private float _waitCounter = 0f;
-    private bool _waiting = false;
+    private float _timerTime = 5f;
+    private float _timerCounter = 0f;
+    private bool _timer = false;
 
     Vector3 newPos;
-    float rndx = 0;
-    float rndz = 0;
+    float rndx = 0f;
+    float rndz = 0f;
     private bool firstWander = true;
 
     public WanderBT(Transform transform)
@@ -36,12 +36,12 @@ public class WanderBT : Node
 
     public override NodeState Evaluate()
     {
-        if (_waiting)
+        if (_timer)
         {
-            _waitCounter += Time.deltaTime;
-            if (_waitCounter >= _waitTime)
+            _timerCounter += Time.deltaTime;
+            if (_timerCounter >= _timerTime)
             {
-                _waiting = false;
+                _timer = false;
             }
         }
         else
@@ -58,10 +58,11 @@ public class WanderBT : Node
                 
                 newPos = new Vector3(rndx, _transform.position.y, rndz);
 
+                Debug.Log("newPos: " + newPos);
                 humanController.SetTargetPosition(newPos);
 
-                _waitCounter = 0f;
-                _waiting = true;
+                _timerCounter = 0f;
+                _timer = true;
                 firstWander = false;
             }
             else

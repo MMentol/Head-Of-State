@@ -33,7 +33,7 @@ public class getFoodTask : Node
 
         if (foodTile == null) return NodeState.FAILURE;
 
-        Debug.Log("food: " + _transform.position);
+        //Debug.Log("food: " + _transform.position);
 
         if (_transform.position.Equals(foodTile.transform.position)&& _hStats._hunger>=20)
         {
@@ -50,12 +50,12 @@ public class getFoodTask : Node
             _hStats._hunger -= 80;
 
             state = NodeState.SUCCESS;
-            Debug.Log("stateget :" + state);
+            //Debug.Log("stateget :" + state);
             ClearData("food");
             return state;
         }
         state = NodeState.FAILURE;
-        Debug.Log("stateget :" + state);
+        //Debug.Log("stateget :" + state);
 
         return state;
     }

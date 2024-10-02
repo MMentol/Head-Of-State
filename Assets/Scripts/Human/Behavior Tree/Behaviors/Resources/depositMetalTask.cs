@@ -32,19 +32,19 @@ public class depositMetalTask : Node
         if (metal == null || inventory.inventoryContents.GetValueOrDefault("metal") == 0 || ((float)metal.Count / (float)metal.Capacity) >= 1)
             return NodeState.FAILURE;
 
-        Debug.Log("Capacity: " + ((float)metal.Count / (float)metal.Capacity));
+        ///Debug.Log("Capacity: " + ((float)metal.Count / (float)metal.Capacity));
         if (_transform.position.Equals(metal.transform.position))
         {
             //add food to human
             //remove food from tile
             MetalStorage metalStorage = metal.GetComponent<MetalStorage>();
 
-            Debug.Log("Inventory of:" + this.inventory);
+            //Debug.Log("Inventory of:" + this.inventory);
             string resource = "metal";
             int withdraw = metalStorage.Add(inventory.GetResourceCount(resource));
-            Debug.Log("withdraw: " + withdraw);
+            //Debug.Log("withdraw: " + withdraw);
             int taken = this.inventory.GetFromInventory(resource, withdraw);
-            Debug.Log("Taken:" + taken);
+            //Debug.Log("Taken:" + taken);
 
 
             state = NodeState.SUCCESS;
@@ -54,7 +54,7 @@ public class depositMetalTask : Node
                 ClearData("metal");
             }
 
-            Debug.Log("stateDep :" + state);
+            //Debug.Log("stateDep :" + state);
 
             return state;
         }

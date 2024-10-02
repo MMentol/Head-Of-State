@@ -26,6 +26,8 @@ public class checkHeatAndEnergyTask : Node
         if (_hStats._heat < 20 || _hStats._energy < 20)
             state = NodeState.SUCCESS;
         else state = NodeState.FAILURE;
+
+        //Debug.Log("Slleep: " + state);
         return state;
     }
 }

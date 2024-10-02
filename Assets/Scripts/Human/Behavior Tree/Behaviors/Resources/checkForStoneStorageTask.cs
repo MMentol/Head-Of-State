@@ -25,14 +25,14 @@ public class checkForStoneStorageTask : Node
 
     public override NodeState Evaluate()
     {
-        this.stoneStorage = GameObject.FindObjectsOfType<StoneStorage>();
+        this.stoneStorage = MaterialDataStorage.Instance.GetStoragesOfType<StoneStorage>();
 
-        Debug.Log("checking: " + this.stoneStorage + " " + stoneStorage.Length);
+        //Debug.Log("checking: " + this.stoneStorage + " " + stoneStorage.Length);
 
         if (stoneStorage == null || stoneStorage.Length < 1)
         {
             state = NodeState.FAILURE;
-            Debug.Log("nostone");
+            //Debug.Log("nostone");
             return state;
         }
         var closest = this.stoneStorage
@@ -43,7 +43,7 @@ public class checkForStoneStorageTask : Node
         if (closest == null)
         {
             state = NodeState.FAILURE;
-            Debug.Log("checking stone: " + state );
+            //Debug.Log("checking stone: " + state );
 
             return state;
         }

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GridMap.Structures.Storage;
 
 using BehaviorTree;
 
-public class walkToWoodStorageTask : Node
+public class walkToBreedHomeTask : Node
 {
     private HumanController humanController;
     private Transform _lastTarget;
@@ -14,7 +13,7 @@ public class walkToWoodStorageTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-    public walkToWoodStorageTask(Transform transform)
+    public walkToBreedHomeTask(Transform transform)
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
@@ -22,20 +21,19 @@ public class walkToWoodStorageTask : Node
 
     public override NodeState Evaluate()
     {
-
-        WoodStorage storage = (WoodStorage)GetData("woodStorage");
-        if (storage == null)
-            return NodeState.FAILURE;
-        if (Vector3.Distance(_transform.position, storage.transform.position) > 0.1f)
+        House target = (House)GetData("bhome");
+        if(target == null)
         {
+            ClearData("bhome");
+        }
 
-            humanController.SetTargetPosition(storage.transform.position);
+        if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
+        {
+            humanController.SetTargetPosition(target.transform.position);
 
         }
+
         state = NodeState.RUNNING;
-        //Debug.Log("statewalks :" + state);
-
-
         return state;
     }
 }

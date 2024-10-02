@@ -25,9 +25,9 @@ public class checkForWoodStorageTask : Node
     
     public override NodeState Evaluate()
     {
-        this.woodStorage = GameObject.FindObjectsOfType<WoodStorage>();
+        this.woodStorage = MaterialDataStorage.Instance.GetStoragesOfType<WoodStorage>();
 
-        Debug.Log("checking: " +this.woodStorage + " " + woodStorage.Length);
+        // Debug.Log("checking: " +this.woodStorage + " " + woodStorage.Length);
 
         if (woodStorage == null || woodStorage.Length <= 1 )
         {
@@ -43,7 +43,7 @@ public class checkForWoodStorageTask : Node
         if (closest == null)
         {
             state = NodeState.FAILURE; 
-            Debug.Log("checking: " + state);
+         //   Debug.Log("checking: " + state);
 
             return state;
         }

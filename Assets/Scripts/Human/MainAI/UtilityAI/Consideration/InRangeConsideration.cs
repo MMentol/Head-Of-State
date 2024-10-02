@@ -6,7 +6,7 @@ namespace UtilityAI
     [CreateAssetMenu(menuName = "UtilityAI/Considerations/InRangeConsideration")]
     public class InRangeConsideration : Consideration
     {
-        public float maxDistance = 10f;
+        public float maxDistance = 50f;
         public float maxAngle = 360f;
         public string targetTag = "Target";
         public AnimationCurve curve;

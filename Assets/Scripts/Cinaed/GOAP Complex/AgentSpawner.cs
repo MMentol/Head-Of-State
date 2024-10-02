@@ -42,8 +42,9 @@ namespace Cinaed.GOAP.Complex
 
         public void CreateNewHuman(string setId, Color color, Vector3 position)
         {
+            Debug.Log("spawnPos:" + position);
             var agent = Instantiate(this.agentPrefab, position, Quaternion.identity, gameObject.transform);
-
+            
             if (!useBT) agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
             agent.SetActive(true);
 

@@ -6,7 +6,7 @@ using Scripts;
 public class HumanBT : Tree
 {
 
-   
+
 
     protected override Node SetupTree()
     {
@@ -38,80 +38,11 @@ public class HumanBT : Tree
                 }),
 
             }),
-            
+
+
             new Selector(new List<Node>
             {
-                
-                
-                new Selector(new List<Node>  {
 
-                    new depositMetalTask(transform),
-                    new Sequence(new List<Node>
-                    {
-                        new checkAgeTask(transform),
-                        new getMetalResourceTask(transform),
-                        new walkToMetalStorageTask(transform),
-
-                    }),
-                new Sequence(new List<Node>
-                    {
-                        //new checkMetalResourceTask(transform),
-                        new checkAgeTask(transform),
-                        new checkForMetalStorageTask(transform),
-                        new lookForMetalResourceTask(transform),
-                        new walkToMetalResourceTask(transform),
-
-                    }),
-                }),
-                new Selector(new List<Node>  {
-
-                    new depositStoneTask(transform),
-                    new Sequence(new List<Node>
-                    {
-                        new checkAgeTask(transform),
-                        new getStoneResourceTask(transform),
-                        new walkToStoneStorageTask(transform),
-
-                    }),
-                new Sequence(new List<Node>
-                    {
-                        //new checkStoneResourceTask(transform),
-                        new checkAgeTask(transform),
-                        new checkForStoneStorageTask(transform),
-                        new lookForStoneResourceTask(transform),
-                        new walkToStoneResourceTask(transform),
-
-                    }),
-                }),
-                new Selector(new List<Node>  {
-
-                    new depositWoodTask(transform),
-                    new Sequence(new List<Node>
-                    {
-                        new checkAgeTask(transform),
-                        new getWoodResourceTask(transform),
-                        new walkToWoodStorageTask(transform),
-
-                    }),
-                new Sequence(new List<Node>
-                    {
-                        //new checkWoodResourceTask(transform),
-                        new checkAgeTask(transform),
-                        new checkForWoodStorageTask(transform),
-                        new lookForWoodResourceTask(transform),
-                        new walkToWoodResourceTask(transform),
-
-                    }),
-                }),
-            }),
-            new Selector(new List<Node>
-            {
-                new Sequence(new List<Node>
-            {
-                    new checkAgeTask(transform),
-                new statsFulfilledTask(transform),
-                new reproduceTask(transform)
-            }),
                 new sleepTask(transform),
                 new Sequence(new List<Node>
                 {
@@ -120,14 +51,87 @@ public class HumanBT : Tree
                     new walkToHomeTask(transform),
 
                 }),
-
-            
-
-
-            new WanderBT(transform)
-
             }),
 
+
+            new Sequence(new List<Node>
+            {
+                new checkAgeTask(transform),
+
+                new Selector(new List<Node>
+                {
+                    new Selector(new List<Node>
+                    {
+                        new reproduceTask(transform),
+                        new Sequence(new List<Node>
+                        {
+                            new statsFulfilledTask(transform),
+                            new lookForBreedHomeTask(transform),
+                            new walkToBreedHomeTask(transform),
+
+                        }),
+                    }),
+
+                    new Selector(new List<Node>
+                    {
+                        new Selector(new List<Node>
+                        {
+                            new depositMetalTask(transform),
+                            new Sequence(new List<Node>
+                            {
+                                new getMetalResourceTask(transform),
+                                new walkToMetalStorageTask(transform),
+
+                            }),
+                            new Sequence(new List<Node>
+                            {
+                                //new checkMetalResourceTask(transform),
+                                new checkForMetalStorageTask(transform),
+                                new lookForMetalResourceTask(transform),
+                                new walkToMetalResourceTask(transform),
+
+                            }),
+                        }),
+                        new Selector(new List<Node>  {
+
+                            new depositStoneTask(transform),
+                            new Sequence(new List<Node>
+                            {
+                                new getStoneResourceTask(transform),
+                                new walkToStoneStorageTask(transform),
+
+                            }),
+                            new Sequence(new List<Node>
+                            {
+                                //new checkStoneResourceTask(transform),
+                                new checkForStoneStorageTask(transform),
+                                new lookForStoneResourceTask(transform),
+                                new walkToStoneResourceTask(transform),
+
+                            }),
+                        }),
+                        new Selector(new List<Node>  {
+
+                            new depositWoodTask(transform),
+                            new Sequence(new List<Node>
+                            {
+                                new getWoodResourceTask(transform),
+                                new walkToWoodStorageTask(transform),
+
+                            }),
+                            new Sequence(new List<Node>
+                            {
+                                //new checkWoodResourceTask(transform),
+                                new checkForWoodStorageTask(transform),
+                                new lookForWoodResourceTask(transform),
+                                new walkToWoodResourceTask(transform),
+
+                            }),
+                        }),
+                    }),
+                }),
+            }),
+            new WanderBT(transform)
 
         });
 

@@ -79,6 +79,16 @@ public class HumanPathfinding : MonoBehaviour
             return null;
         }
 
+        while(!endTile.isWalkable)
+        {
+            if (endX > startX) endX--;
+            if (endX < startX) endX++;
+            if (endY > startY) endY--;
+            if (endY < startY) endY++;
+            endTile = tiles[new Vector2(endX, endY)];
+        }
+
+
         openList = new List<Tile> { startTile };
         closedList = new List<Tile>();
 
@@ -115,11 +125,11 @@ public class HumanPathfinding : MonoBehaviour
             foreach (Tile neighbourTile in GetNeighbourList(currentTile))
             {
                 if (closedList.Contains(neighbourTile)) continue;
-                //if (!neighbourTile.isWalkable)
-                //{
-                //    closedList.Add(neighbourTile);
-                //    continue;
-                //}
+                if (!neighbourTile.isWalkable)
+                {
+                    closedList.Add(neighbourTile);
+                    continue;
+                }
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile, neighbourTile);
                 if (tentativeGCost < neighbourTile.gCost)

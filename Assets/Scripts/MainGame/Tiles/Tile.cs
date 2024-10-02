@@ -44,6 +44,7 @@ public class Tile : MonoBehaviour
         initialType = tileType.tileTypeName;
         _baseSprite = tileType.tileSprite;
         _baseColor = tileType.tileColor;
+        SetIsWalkable(tileType.isWalkable);
         if (_baseSprite != null)
         {
             _renderer.sprite = _baseSprite;
@@ -59,6 +60,7 @@ public class Tile : MonoBehaviour
             water.rawMaterialAmount = water.maxBound;
 
         }
+
     }
 
     //Mouse Events

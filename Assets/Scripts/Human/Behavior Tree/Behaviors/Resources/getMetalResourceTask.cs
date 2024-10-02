@@ -36,7 +36,7 @@ public class getMetalResourceTask : Node
         if (this.inventory.inventoryContents.GetValueOrDefault("metal") > 0)
         {
             state = NodeState.SUCCESS;
-            Debug.Log("stateget1 :" + state);
+            //Debug.Log("stateget1 :" + state);
 
             return state;
         }
@@ -55,12 +55,12 @@ public class getMetalResourceTask : Node
 
 
             state = NodeState.SUCCESS;
-            Debug.Log("stateget :" + state);
+            //Debug.Log("stateget :" + state);
 
             return state;
         }
         state = NodeState.FAILURE;
-        Debug.Log("stateget :" + state);
+        //Debug.Log("stateget :" + state);
 
         return state;
     }

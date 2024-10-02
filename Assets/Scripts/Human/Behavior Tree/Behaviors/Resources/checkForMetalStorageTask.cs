@@ -25,9 +25,9 @@ public class checkForMetalStorageTask : Node
 
     public override NodeState Evaluate()
     {
-        this.metalStorage = GameObject.FindObjectsOfType<MetalStorage>();
+        this.metalStorage = MaterialDataStorage.Instance.GetStoragesOfType<MetalStorage>();
 
-        Debug.Log("checking: " + this.metalStorage + " " + metalStorage.Length);
+        //Debug.Log("checking: " + this.metalStorage + " " + metalStorage.Length);
 
         if (metalStorage == null || metalStorage.Length < 1)
         {
@@ -43,7 +43,7 @@ public class checkForMetalStorageTask : Node
         if (closest == null)
         {
             state = NodeState.FAILURE;
-            Debug.Log("checking: " + state);
+            //Debug.Log("checking: " + state);
 
             return state;
         }

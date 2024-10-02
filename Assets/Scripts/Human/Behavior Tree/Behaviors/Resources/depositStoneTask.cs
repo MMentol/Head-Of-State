@@ -32,19 +32,19 @@ public class depositStoneTask : Node
         if (stone == null || inventory.inventoryContents.GetValueOrDefault("stone") == 0 || ((float)stone.Count / (float)stone.Capacity) >= 1)
             return NodeState.FAILURE;
 
-        Debug.Log("Capacity: " + ((float)stone.Count / (float)stone.Capacity));
+       // Debug.Log("Capacity: " + ((float)stone.Count / (float)stone.Capacity));
         if (_transform.position.Equals(stone.transform.position))
         {
             //add food to human
             //remove food from tile
             StoneStorage stoneStorage = stone.GetComponent<StoneStorage>();
 
-            Debug.Log("Inventory of:" + this.inventory);
+            ///Debug.Log("Inventory of:" + this.inventory);
             string resource = "stone";
             int withdraw = stoneStorage.Add(inventory.GetResourceCount(resource));
-            Debug.Log("withdraw: " + withdraw);
+           /// Debug.Log("withdraw: " + withdraw);
             int taken = this.inventory.GetFromInventory(resource, withdraw);
-            Debug.Log("Taken:" + taken);
+            ///Debug.Log("Taken:" + taken);
 
 
             state = NodeState.SUCCESS;
@@ -54,12 +54,12 @@ public class depositStoneTask : Node
                 ClearData("stone");
             }
 
-            Debug.Log("stateDep :" + state);
+           // Debug.Log("stateDep :" + state);
 
             return state;
         }
         state = NodeState.FAILURE;
-        Debug.Log("stateDep :" + state);
+       // Debug.Log("stateDep :" + state);
 
         return state;
     }

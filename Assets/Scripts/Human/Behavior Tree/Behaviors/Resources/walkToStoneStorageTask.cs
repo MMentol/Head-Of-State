@@ -30,10 +30,10 @@ public class walkToStoneStorageTask : Node
         {
 
             humanController.SetTargetPosition(storage.transform.position);
-            Debug.Log("storage stone  pos : " + storage.transform.position);
+            //Debug.Log("storage stone  pos : " + storage.transform.position);
         }
         state = NodeState.RUNNING;
-        Debug.Log("statewalks :" + state);
+        ////Debug.Log("statewalks :" + state);
 
 
         return state;

@@ -30,7 +30,8 @@ public class lookForStoneResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        this.stoneSources = GameObject.FindObjectsOfType<StoneResource>();
+        this.stoneSources = MaterialDataStorage.Instance.GetSourceOfType<StoneResource>();
+
 
         object t = GetData("stone");
         if (t == null)
@@ -42,19 +43,19 @@ public class lookForStoneResourceTask : Node
             var close = closest.GetComponent<StoneResource>();
             if (close == null)
                 return NodeState.FAILURE;
-            else
-                while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
-                {
-                    var list = this.stoneSources.ToList();
-                    list.Remove(closest);
-                    stoneSources = list.ToArray();
-                    closest = this.stoneSources
-                    .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
-                    .FirstOrDefault();
-                    close = closest.GetComponent<StoneResource>();
-                    if (close == null)
-                        return NodeState.FAILURE;
-                }
+            //else
+            //    while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
+            //    {
+            //        var list = this.stoneSources.ToList();
+            //        list.Remove(closest);
+            //        stoneSources = list.ToArray();
+            //        closest = this.stoneSources
+            //        .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
+            //        .FirstOrDefault();
+            //        close = closest.GetComponent<StoneResource>();
+            //        if (close == null)
+            //            return NodeState.FAILURE;
+            //    }
             parent.parent.SetData("stone", closest);
             state = NodeState.SUCCESS;
 

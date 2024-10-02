@@ -29,7 +29,7 @@ public class lookFoodTask : Node
 
     public override NodeState Evaluate()
     {
-        this.foodSources = GameObject.FindObjectsOfType<FoodResource>();
+        this.foodSources = MaterialDataStorage.Instance.GetSourceOfType<FoodResource>();
 
 
         object t = GetData("food");
@@ -41,18 +41,18 @@ public class lookFoodTask : Node
             .FirstOrDefault();
             if (closest == null)
                 return NodeState.FAILURE;
-            else
-                while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
-                {
-                    var list = this.foodSources.ToList();
-                    list.Remove(closest);
-                    foodSources = list.ToArray();
-                    closest = this.foodSources
-                    .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
-                    .FirstOrDefault();
-                    if (closest == null)
-                        return NodeState.FAILURE;
-                }
+            //else
+            //    while (closest.GetRawMaterialAmount() == 0 || closest.ToDestroy() || closest.GetOccupied() != null)
+            //    {
+            //        var list = this.foodSources.ToList();
+            //        list.Remove(closest);
+            //        foodSources = list.ToArray();
+            //        closest = this.foodSources
+            //        .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
+            //        .FirstOrDefault();
+            //        if (closest == null)
+            //            return NodeState.FAILURE;
+            //    }
             parent.parent.SetData("food", closest);
             state = NodeState.SUCCESS;
 

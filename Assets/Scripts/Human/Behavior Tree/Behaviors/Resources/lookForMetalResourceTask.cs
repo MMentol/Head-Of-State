@@ -30,8 +30,7 @@ public class lookForMetalResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        this.metalSources = GameObject.FindObjectsOfType<MetalResource>();
-
+        this.metalSources = MaterialDataStorage.Instance.GetSourceOfType<MetalResource>();
         object t = GetData("metal");
         if (t == null)
         {
@@ -42,19 +41,19 @@ public class lookForMetalResourceTask : Node
             var close = closest.GetComponent<MetalResource>();
             if (close == null)
                 return NodeState.FAILURE;
-            else
-                while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
-                {
-                    var list = this.metalSources.ToList();
-                    list.Remove(closest);
-                    metalSources = list.ToArray();
-                    closest = this.metalSources
-                    .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
-                    .FirstOrDefault();
-                    close = closest.GetComponent<MetalResource>();
-                    if (close == null)
-                        return NodeState.FAILURE;
-                }
+            //else
+            //    while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
+            //    {
+            //        var list = this.metalSources.ToList();
+            //        list.Remove(closest);
+            //        metalSources = list.ToArray();
+            //        closest = this.metalSources
+            //        .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
+            //        .FirstOrDefault();
+            //        close = closest.GetComponent<MetalResource>();
+            //        if (close == null)
+            //            return NodeState.FAILURE;
+            //    }
             parent.parent.SetData("metal", closest);
             state = NodeState.SUCCESS;
 

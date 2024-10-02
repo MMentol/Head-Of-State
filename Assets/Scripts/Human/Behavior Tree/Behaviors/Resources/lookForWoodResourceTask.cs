@@ -30,7 +30,7 @@ public class lookForWoodResourceTask : Node
 
     public override NodeState Evaluate()
     {
-        this.woodSources = GameObject.FindObjectsOfType<TreeResource>();
+        this.woodSources = MaterialDataStorage.Instance.GetSourceOfType<TreeResource>();
 
         object t = GetData("wood");
         if (t == null)
@@ -42,19 +42,19 @@ public class lookForWoodResourceTask : Node
             var close = closest.GetComponent<TreeResource>();
             if (close == null)
                 return NodeState.FAILURE;
-            else
-                while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
-                {
-                    var list = this.woodSources.ToList();
-                    list.Remove(closest);
-                    woodSources = list.ToArray();
-                    closest = this.woodSources
-                    .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
-                    .FirstOrDefault();
-                    close = closest.GetComponent<TreeResource>();
-                    if (close == null)
-                        return NodeState.FAILURE;
-                }
+            //else
+            //    while (close.GetRawMaterialAmount() == 0 || close.ToDestroy() || close.GetOccupied() != null)
+            //    {
+            //        var list = this.woodSources.ToList();
+            //        list.Remove(closest);
+            //        woodSources = list.ToArray();
+            //        closest = this.woodSources
+            //        .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
+            //        .FirstOrDefault();
+            //        close = closest.GetComponent<TreeResource>();
+            //        if (close == null)
+            //            return NodeState.FAILURE;
+            //    }
             parent.parent.SetData("wood", closest);
             state = NodeState.SUCCESS;
             

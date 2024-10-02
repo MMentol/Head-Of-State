@@ -4,14 +4,14 @@ using UnityEngine;
 using System.Linq;
 using BehaviorTree;
 
-public class lookForHomeTask : Node
+public class lookForBreedHomeTask : Node
 {
     private Transform _transform;
 
     public House[] houses;
     private float _attackCounter = 0f;
 
-    public lookForHomeTask(Transform transform)
+    public lookForBreedHomeTask(Transform transform)
     {
         _transform = transform;
     }
@@ -21,7 +21,7 @@ public class lookForHomeTask : Node
         this.houses = MaterialDataStorage.Instance.GetHouses();
 
         Debug.Log("house " + houses.Length);
-        object t = GetData("home");
+        object t = GetData("bhome");
         if (t == null)
         {
 
@@ -30,7 +30,7 @@ public class lookForHomeTask : Node
                 .OrderBy(x => Vector3.Distance(_transform.position, x.transform.position))
                 .FirstOrDefault();
             if (closest == null) { return NodeState.FAILURE; }
-            parent.parent.SetData("home", closest);
+            parent.parent.SetData("bhome", closest);
             Debug.Log("closes: " + closest);
             state = NodeState.SUCCESS;
 

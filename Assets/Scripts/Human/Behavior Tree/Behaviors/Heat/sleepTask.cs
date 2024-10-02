@@ -25,7 +25,7 @@ public class sleepTask : Node
     public override NodeState Evaluate()
     {
 
-        GameObject houseTile = (GameObject)GetData("home");
+        House houseTile = (House)GetData("home");
 
         if (houseTile == null || _hStats._heat>=99 || _hStats._energy>=99) return NodeState.FAILURE;
 
@@ -37,17 +37,16 @@ public class sleepTask : Node
 
             //if (harvested > 0)
             //    this.inventory.addtoinventory(resource, harvested);
-
-            _hStats._heat += 100;
-            _hStats._energy += 100;
-
+            houseTile.EnterHouse(_hStats);
+            houseTile.NapTime(_hStats);
+            houseTile.LeaveHouse(_hStats);
             state = NodeState.SUCCESS;
-            Debug.Log("stateget :" + state);
-            ClearData("home");
+            //Debug.Log("stateget :" + state);
+            
             return state;
         }
         state = NodeState.FAILURE;
-        Debug.Log("stateget :" + state);
+        //Debug.Log("stateget :" + state);
 
         return state;
     }

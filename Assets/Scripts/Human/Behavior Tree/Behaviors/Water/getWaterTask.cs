@@ -40,8 +40,9 @@ public class getWaterTask : Node
 
         //    return state;
         //}
-        if (_transform.position.Equals(waterTile.transform.position)&& _hStats._thirst>=20)
+        if (Vector3.Distance(_transform.position, waterTile.transform.position)<=1 && _hStats._thirst>=20)
         {
+            
             //add water to human
             //remove water from tile
             WaterResource water = waterTile.GetComponent<WaterResource>();

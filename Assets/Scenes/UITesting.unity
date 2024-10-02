@@ -1735,6 +1735,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.3862501
       objectReference: {fileID: 0}
+
     - target: {fileID: 2702878298808570496, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -2320,6 +2321,7 @@ PrefabInstance:
       propertyPath: structureChooser
       value: 
       objectReference: {fileID: 1149703827}
+
     - target: {fileID: 8341917658729785947, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4373,7 +4375,7 @@ PrefabInstance:
     - target: {fileID: 3017485500126473352, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}
       propertyPath: sets
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7137851434853822056, guid: bb41671162aaa06418e2e920bef1ade0,
         type: 3}

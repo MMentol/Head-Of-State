@@ -37,6 +37,7 @@ public class HumanController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         boxCollider = GetComponent<BoxCollider>();
         humanPathfinding = GetComponent<HumanPathfinding>();
+        humanStats = GetComponent<HumanStats>();
         transform.position = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
@@ -89,7 +90,7 @@ public class HumanController : MonoBehaviour
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 //animatedWalker.SetMoveVector(moveDir);
-                float slow = (humanStats._heat / 100f) >=0.2f ? humanStats._heat : 0.2f;
+                float slow = (humanStats._heat / 100f) >=0.2f ? humanStats._heat/100 : 0.2f;
                 transform.position = transform.position + moveDir * speed * Time.deltaTime * slow;
                 Debug.Log("updating");
             }

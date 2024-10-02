@@ -22,7 +22,10 @@ namespace Cinaed.GOAP.Complex.Actions
 
             House house = transformTarget.Transform.GetComponent<House>();
             if (house.PeopleInside.Count < house.Capacity)
+            {
                 data.House = house;
+                house.UpdateCurrentHouse(data.Human);
+            }
 
             data.Timer = 5f;
         }

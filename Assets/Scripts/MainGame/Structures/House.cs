@@ -16,6 +16,14 @@ public class House : MonoBehaviour
         this.HouseSettings = FindObjectOfType<HouseActivitySettings>();
     }
 
+    public void UpdateCurrentHouse(HumanStats human)
+    {
+        //Add to List
+        Debug.Log("Added to list");
+        human.currentHouse = this;
+        PeopleInside.Add(human);
+    }
+
     public bool EnterHouse(HumanStats human)
     {
         if (IsInside(human))
@@ -25,7 +33,6 @@ public class House : MonoBehaviour
             return false; //Full House
 
         //Enter house
-        PeopleInside.Add(human);
         human.insideHouse = 1;
         human.GetComponentInChildren<SpriteRenderer>().enabled = false;
 
@@ -38,6 +45,7 @@ public class House : MonoBehaviour
             return false; //Not inside
 
         //Leave house
+        human.currentHouse = null;
         PeopleInside.Remove(human);
         human.insideHouse = 0;
         human.GetComponentInChildren<SpriteRenderer>().enabled = true;
@@ -77,5 +85,6 @@ public class House : MonoBehaviour
             return; //Not inside
 
         human._energy += HouseSettings.RestingEnergyBenefit; //JOSEP SET VALUE
+        if (human._energy > 100) { human._energy = 100; }
     }
 }

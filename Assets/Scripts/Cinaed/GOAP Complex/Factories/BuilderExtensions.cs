@@ -189,7 +189,7 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         public static void AddRestGoal(this GoapSetBuilder builder)
         {
             builder.AddGoal<RestGoal>()
-                .AddCondition<Energy>(Comparison.GreaterThan, 0);
+                .AddCondition<Energy>(Comparison.GreaterThanOrEqual, 80);
         }
         //ACTION
         public static void AddDrinkWaterAction(this GoapSetBuilder builder)

@@ -25,9 +25,9 @@ public class HumanPathfinding : MonoBehaviour
 
     void Awake()
     {
-        //human = gameObject.GetComponent<HumanController>();
-        //gridManager = GameObject.FindWithTag("Grid").GetComponent<GridManager>();
-        //tiles = gridManager._tiles;
+        human = gameObject.GetComponent<HumanController>();
+        gridManager = GameObject.FindWithTag("Grid").GetComponent<GridManager>();
+        tiles = gridManager._tiles;
         
         //Debug.Log(tiles + " tiles");
     }
@@ -35,9 +35,9 @@ public class HumanPathfinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        human = gameObject.GetComponent<HumanController>();
+        /*human = gameObject.GetComponent<HumanController>();
         gridManager = GameObject.FindWithTag("Grid").GetComponent<GridManager>();
-        tiles = gridManager._tiles;
+        tiles = gridManager._tiles;*/
 
         //Debug.Log(tiles + " tiles");
     }

@@ -38,7 +38,7 @@ public class HumanController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         humanPathfinding = GetComponent<HumanPathfinding>();
         humanStats = GetComponent<HumanStats>();
-        transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        //transform.position = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame

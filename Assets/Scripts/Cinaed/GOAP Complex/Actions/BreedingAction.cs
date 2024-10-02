@@ -68,6 +68,10 @@ namespace Cinaed.GOAP.Complex.Actions
                 float breedCooldown = 60f;
                 data.Human.breedCooldown = breedCooldown;
                 partner.breedCooldown = breedCooldown;
+                data.Human._energy = 100;
+                partner._energy = 100;
+                partner._heat = 100;
+
             }
             data.House.LeaveHouse(data.Human);
             data.House.LeaveHouse(partner);

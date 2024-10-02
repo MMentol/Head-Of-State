@@ -76,7 +76,7 @@ public class reproduceTask : Node
 
         if (house.MakeNewHuman(_hStats, partner))
         {
-            GameObject.FindObjectOfType<MaterialDataStorage>().TallyMaterials();
+            MaterialDataStorage.Instance.TallyMaterials();
             _hStats.breedCooldown = 60;
             partner.breedCooldown = 60;
             _hStats._heat += 100;

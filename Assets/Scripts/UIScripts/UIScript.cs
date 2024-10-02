@@ -38,6 +38,7 @@ public class UIScript : MonoBehaviour
     bool pause = false;
     bool x2 = false;
     bool x4 = false;
+    bool x1 = true;
     void Start()
     {
         allHumanStats = GameObject.FindObjectsOfType<HumanStats>();
@@ -108,31 +109,53 @@ public class UIScript : MonoBehaviour
         PauseGame(pause);
     }
 
+    public void toggleGo1() {
+        Debug.Log("state of x1: "  + x1);
+        if(!x1) {
+            x1 = true;
+            if(x4 || x2) {
+                x4 = false;
+                x2 = false;
+            }
+            Time.timeScale = 1;
+        } else {
+            x1 = true;
+            Time.timeScale = 1;
+        }
+    }
+
     public void toggleGo2() {
         if(!x2) {
             x2 = true;
-            if(x4) {
+            if(x4 || x1) {
                 x4 = false;
+                x1 = false;
             }
             Time.timeScale = 2;
-        } else {
+        } 
+        /*else {
             x2 = false;
+            x1 = true;
             Time.timeScale = 1;
-        }
+        }*/
     }
 
     public void toggleGo4() {
         if(!x4) {
             x4 = true;
-            if(x2) {
+            if(x2 || x1) {
                 x2 = false;
+                x1 = false;
             }
             Time.timeScale = 4;
-        } else {
+        } 
+        /*else {
             x4 = false;
+            x1= true;
             Time.timeScale = 1;
-        }
+        }*/
     }
+
     public string getTime(float time) {
         float intTime = time;
         int minutes = Mathf.FloorToInt(intTime / 60);
@@ -141,10 +164,12 @@ public class UIScript : MonoBehaviour
         fraction = fraction % 1000;
         return string.Format ("{0:00}:{1:00}", minutes, seconds);
     }
+
     public void PickStage() {
         stagePick.SetActive(true);
         mainMenu.SetActive(false);
     }
+    
     public void OpenBuild() {
         buildMenu.SetActive(true);
     }

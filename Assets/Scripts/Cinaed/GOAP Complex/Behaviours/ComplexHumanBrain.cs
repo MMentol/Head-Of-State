@@ -220,74 +220,54 @@ namespace Cinaed.GOAP.Complex.Behaviours
         {
 
             if (logDebug) { Debug.Log("Forced : " + forced); }
-            if (forced == 9)
+            switch (forced)
             {
-
-                this.agent.SetGoal<WanderGoal>(false);
-                return;
-            }
-            //Items in Inventory
-            if (forced == 8)
-            {
-                this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
-                //Debug.Log("Get pick");
-                return;
-            }
-
-            if (forced == 7)
-            {
-                this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
-                //Debug.Log("Get bucket");
-                return;
-            }
-            //Resources in Inventory
-            if (forced == 4)
-            {
-                this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
-                return;
-            }
-
-
-            if (forced == 3)
-            {
-                this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
-                return;
-            }
-
-
-            if (forced == 2)
-            {
-                this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
-                return;
-            }
-
-            if (forced == 12)
-            {
-                this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
-                return;
-            }
-            if (forced == 11)
-            {
-                this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
-                return;
+                case 0: //Eat
+                    this.agent.SetGoal<EatGoal>(false);
+                    break;
+                case 1: //Drink
+                    this.agent.SetGoal<DrinkGoal>(false);
+                    break;
+                case 2: //GetMetal
+                    this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
+                    break;
+                case 3: //GetStone
+                    this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
+                    break;
+                case 4: //GetWood
+                    this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
+                    
+                    break;
+                case 5: //Breed
+                    this.agent.SetGoal<BreedingGoal>(false);
+                    break;
+                case 6: //Rest
+                    this.agent.SetGoal<RestGoal>(false);
+                    break;
+                case 7: //CraftBucket
+                    this.agent.SetGoal<CraftItemGoal<Bucket>>(false);
+                    //Debug.Log("Get bucket");
+                    break;
+                case 8: //CraftPick
+                    this.agent.SetGoal<CraftItemGoal<Pickaxe>>(false);
+                    //Debug.Log("Get pick");
+                    break;
+                case 9: //Idle
+                    this.agent.SetGoal<WanderGoal>(false);
+                    break;
+                case 10:
+                    break;
+                case 11: //GetFood
+                    this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
+                    break;
+                case 12: //GetWater
+                    this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
+                    break;
+                case 13:
+                    break;
             }
 
-            if (forced == 1)
-            {
-                this.agent.SetGoal<DrinkGoal>(false);
-                return;
-            }
-            if (forced == 0)
-            {
-                this.agent.SetGoal<EatGoal>(false);
-                return;
-            }
-
-            if(forced == 5)
-            {
-                this.agent.SetGoal<BreedingGoal>(false);
-                return;
-            }
+            return;
 
         }
 

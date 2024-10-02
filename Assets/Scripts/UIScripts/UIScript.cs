@@ -55,6 +55,7 @@ public class UIScript : MonoBehaviour
         }
         if(SceneManager.GetActiveScene().name.Equals("Main Menu")) {
             pause = false;
+            Time.timeScale = 1;
             if(Input.GetKeyDown(KeyCode.Escape)) {
                 mainMenu.SetActive(true);
                 stagePick.SetActive(false);
@@ -183,6 +184,10 @@ public class UIScript : MonoBehaviour
 
     public void CloseBuild() {
         buildMenu.SetActive(false);
+    }
+
+    public void CloseGame() {
+        Application.Quit();
     }
 
     public void startGOAP() {

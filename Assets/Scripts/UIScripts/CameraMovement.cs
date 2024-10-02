@@ -28,14 +28,7 @@ public class CameraMovement : MonoBehaviour
             currCam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
             Debug.Log(currCam.fieldOfView);
         }
-        float x = Input.GetAxis("Horizontal") * moveSpeed;
-        float y = Input.GetAxis("Vertical") * moveSpeed;
-        float ortho = currCam.orthographicSize;
-        float xPos = transform.localPosition.x + (x * (ortho / 40));
-        float yPos = transform.localPosition.y + (y * (ortho / 40));
-        float xBound = Mathf.Clamp(xPos, -140, 50);
-        float yBound = Mathf.Clamp(yPos, 35, 115);
-        gameObject.transform.position = new Vector3(xBound, yBound, transform.position.z);
+        calculateMove();
     }
 
     void zoomCam(){
@@ -48,5 +41,16 @@ public class CameraMovement : MonoBehaviour
         maxRect -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
         float clampedRect = Mathf.Clamp(maxRect, 5, 40);
         spriteTransform.localScale = new Vector3(clampedRect, clampedRect, 1);
+    }
+    void calculateMove() {
+        float x = Input.GetAxis("Horizontal") * moveSpeed;
+        float y = Input.GetAxis("Vertical") * moveSpeed;
+        float ortho = currCam.orthographicSize;
+        float xPos = transform.localPosition.x + (x * (ortho / 40));
+        float yPos = transform.localPosition.y + (y * (ortho / 40));
+        float xBound = Mathf.Clamp(xPos, -140, 50);
+        float yBound = Mathf.Clamp(yPos, 35, 115);
+        gameObject.transform.position = new Vector3(xBound, yBound, transform.position.z);
+        Debug.Log(gameObject.transform.position);
     }
 }

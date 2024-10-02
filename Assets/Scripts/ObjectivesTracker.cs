@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class ObjectivesTracker : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ObjectivesTracker : MonoBehaviour
     [Header("Material Data Storage")]
     [SerializeField] MaterialDataStorage mds = null;
     [SerializeField] UIScript uis = null;
+
+    [Header("Victory Screen")]
+    [SerializeField] TMP_Text victoryText;
 
     public float Pop, Wood, Stone, Metal;
     public int objCount = 0;
@@ -97,8 +101,10 @@ public class ObjectivesTracker : MonoBehaviour
         // When Times Up
         if(uis.time >= 2700) {
             TextWriter tw = new StreamWriter(filename, true);
-            tw.WriteLine("Time is Up" + "Completed " + objCount + " objectives");
+            tw.WriteLine("Time is Up,Completed " + objCount + " objectives");
             tw.Close();
+            victoryText.text ="Congratulations! You completed a total of " + objCount + " objectives.";
+            uis.time = 0;
         }
     }
 

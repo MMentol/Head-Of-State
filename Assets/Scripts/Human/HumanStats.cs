@@ -41,7 +41,7 @@ public class HumanStats : MonoBehaviour
         updatePickaxe();
         updateBucket();
         RefractoryPeriod();
-        if (this._age > 1) {
+        if (this._age > 3) {
             inBabyPhase = 0;
             anim.SetBool("isBaby", false);
         } else {

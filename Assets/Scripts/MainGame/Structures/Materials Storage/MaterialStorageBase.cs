@@ -11,6 +11,7 @@ namespace GridMap.Structures.Storage
         public int currentLevel = 0;
         public int Capacity = 100;
         public int Count;
+        public int totalCount;
 
         public void UpdateResources()
         {
@@ -39,6 +40,7 @@ namespace GridMap.Structures.Storage
         {
             int added = Mathf.Min(amount, Capacity - Count);
             Count += added;
+            totalCount += added;
             UpdateResources();
             return added;
         }

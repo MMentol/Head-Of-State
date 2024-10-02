@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3e56f2bda48724a81d048e5d2b0f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredHappiness: 80
+  RequiredHappiness: 43
   RestingEnergyBenefit: 100
 --- !u!224 &957640637 stripped
 RectTransform:
@@ -3522,6 +3522,11 @@ MonoBehaviour:
   bt: 0
   mds: {fileID: 2013503176}
   uis: {fileID: 1688967756}
+  Pop: 0
+  Wood: 0
+  Stone: 0
+  Metal: 0
+  objCount: 0
 --- !u!1 &1778213980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,6 +3789,7 @@ MonoBehaviour:
   currentLevel: 0
   Capacity: 0
   Count: 100
+  totalCount: 0
 --- !u!224 &2074465485 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8154401630483865214, guid: dbdbf0220aa132141b48cc9e13c053ef,

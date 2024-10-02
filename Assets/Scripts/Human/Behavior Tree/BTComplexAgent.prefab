@@ -86,6 +86,7 @@ MonoBehaviour:
   humanPathfinding: {fileID: 7002866369433048526}
   humanStats: {fileID: 0}
   randomMoveDistance: 5
+  debugLog: 0
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526
@@ -138,8 +139,9 @@ MonoBehaviour:
   hasPickAxe: 0
   hasAxe: 0
   hasBucket: 0
-  breedCooldown: 0
+  breedCooldown: 30
   canBreed: 1
+  currentHouse: {fileID: 0}
   anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
 --- !u!1 &1210546375148099049

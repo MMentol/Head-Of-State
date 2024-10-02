@@ -74,7 +74,7 @@ public class House : MonoBehaviour
         //Check if both are happy
         float happinessRequired = HouseSettings.RequiredHappiness; //JOSEP SET VALUE
         if (h1._happiness >= happinessRequired && h2._happiness >= happinessRequired)
-            Spawner.CreateNewHuman(AgentIds.Human, Random.ColorHSV(), h1.transform.position);
+            Spawner.CreateNewHuman(AgentIds.Human, Random.ColorHSV(), gameObject.transform.position);
 
         return true;
     }

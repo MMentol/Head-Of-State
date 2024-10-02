@@ -28,7 +28,7 @@ public class Human : MonoBehaviour
         if(stats._age >= ageLimit)
         {
             Destroy(gameObject);
-
+            MaterialDataStorage.Instance.Census();
             Debug.Log(_name + " died rip in peace");
         }
 

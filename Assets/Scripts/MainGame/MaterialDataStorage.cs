@@ -175,8 +175,7 @@ public class MaterialDataStorage : MonoBehaviour
     public void Census()
     {
         this.Population = GameObject.FindObjectsOfType<HumanStats>().Length;
-        House[] houses = GameObject.FindObjectsOfType<House>();
-        foreach (House house in houses)
+        foreach (House house in Houses)
         {
             this.MaxPopulation += house.Capacity;
         }

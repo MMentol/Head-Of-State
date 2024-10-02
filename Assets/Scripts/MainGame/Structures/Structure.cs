@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using GridMap.Structures.Storage;
+using UnityEngine.UI;
 
 public class Structure : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Structure : MonoBehaviour
     [SerializeField] TMP_Text StructNameTxt;
     [SerializeField] TMP_Text ResidentsTxt;
     [SerializeField] TMP_Text StorageTxt;
+    [SerializeField] Button UpgradeButton;
+    [SerializeField] Button DemolishButton;
 
     [SerializeField] MaterialStorageBase stor;
     [SerializeField] House house;
@@ -36,6 +39,8 @@ public class Structure : MonoBehaviour
         StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
         ResidentsTxt = realUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
         StorageTxt = realUI.transform.GetChild(2).gameObject.GetComponent<TMP_Text>();
+        UpgradeButton = realUI.transform.GetChild(3).gameObject.GetComponent<Button>();
+        DemolishButton = realUI.transform.GetChild(4).gameObject.GetComponent<Button>();
         stor = gameObject.GetComponent<MaterialStorageBase>();
         house = gameObject.GetComponent<House>();
     }
@@ -60,7 +65,11 @@ public class Structure : MonoBehaviour
                     if(house != null)
                         ResidentsTxt.text = "Residents: " + house.PeopleInside.Count + "/" + house.Capacity;
                     if(stor != null)
+                    {
                         StorageTxt.text = "Storage: " + stor.Count + "/" + stor.Capacity;
+                        UpgradeButton.onClick.AddListener(() => stor.Upgrade());
+                        DemolishButton.onClick.AddListener(() => _tile.DestroyStructure());
+                    }
                     Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
                 }
             }

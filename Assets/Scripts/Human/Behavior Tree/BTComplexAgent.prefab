@@ -81,9 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 4483563038361863268}
   boxCollider: {fileID: 0}
   humanPathfinding: {fileID: 7002866369433048526}
+  humanStats: {fileID: 0}
   randomMoveDistance: 5
   testx: 0
   testy: 0
@@ -139,6 +140,7 @@ MonoBehaviour:
   hasBucket: 0
   breedCooldown: 0
   canBreed: 1
+  anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
 --- !u!1 &1210546375148099049
 GameObject:

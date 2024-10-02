@@ -7,8 +7,8 @@ public class ObjectivesTracker : MonoBehaviour
 {
     string filename = "";
     [Header ("Algorithm Used")]
-    [SerializeField] bool goap = true;
-    [SerializeField] bool bt = false;
+    [SerializeField] bool goap;
+    [SerializeField] bool bt;
 
     [Header("Material Data Storage")]
     [SerializeField] MaterialDataStorage mds = null;
@@ -26,11 +26,12 @@ public class ObjectivesTracker : MonoBehaviour
             tw.Close();
             Debug.Log("GOAP CSV CREATED");
         }
-        if(bt) {
-            filename = Application.dataPath + "/BTRun.csv";
+        else if(bt) {
+            filename = Application.dataPath + "/Log/BTRun.csv";
             TextWriter tw = new StreamWriter(filename, false);
             tw.WriteLine("Objective No., Completion Time");
             tw.Close();
+            Debug.Log("BT CSV CREATED");
         }
         Pop = mds.Population;
         Wood = mds.totalWood;
@@ -43,7 +44,7 @@ public class ObjectivesTracker : MonoBehaviour
     {
         bool printed = false;
         // Objective 1
-        if(Wood == 10 && objCount == 0) {
+        if(Wood >= 15 && objCount == 0) {
             WriteCSV(1, uis.getTime(uis.time));
             objCount++;
         }

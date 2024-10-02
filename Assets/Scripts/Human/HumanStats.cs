@@ -78,7 +78,7 @@ public class HumanStats : MonoBehaviour
     public void RefractoryPeriod()
     {
         breedCooldown -= Time.fixedDeltaTime;
-        if (breedCooldown == 0) canBreed = 1;
+        if (breedCooldown <= 0) canBreed = 1;
         else canBreed = 0;
     }
 

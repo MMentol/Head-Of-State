@@ -14,8 +14,8 @@ public class ObjectivesTracker : MonoBehaviour
     [SerializeField] MaterialDataStorage mds = null;
     [SerializeField] UIScript uis = null;
 
-    float Pop, Wood, Stone, Metal;
-    int objCount = 0;
+    public float Pop, Wood, Stone, Metal;
+    public int objCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +42,7 @@ public class ObjectivesTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateValues();
         bool printed = false;
         // Objective 1
         if(Wood >= 15 && objCount == 0) {
@@ -107,6 +108,12 @@ public class ObjectivesTracker : MonoBehaviour
         tw.Close();
         Debug.Log(objNo + " ," + time);
         return;
+    }
+    void UpdateValues() {
+        Pop = mds.Population;
+        Wood = mds.totalWood;
+        Stone = mds.totalStone;
+        Metal = mds.totalMetal;
     }
 
 }

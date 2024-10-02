@@ -86,19 +86,19 @@ public class MaterialDataStorage : MonoBehaviour
         {
             this.WoodCapacity += storage.Capacity;
             this.Wood += storage.Count;
-            this.totalWood += storage.Count;
+            this.totalWood += storage.totalCount;
         }
         foreach (StoneStorage storage in StoneStorages)
         {
             this.StoneCapacity += storage.Capacity;
             this.Stone += storage.Count;
-            this.totalStone += storage.Count;
+            this.totalStone += storage.totalCount;
         }
         foreach (MetalStorage storage in MetalStorages)
         {
             this.MetalCapacity += storage.Capacity;
             this.Metal += storage.Count;
-            this.totalMetal += storage.Count;
+            this.totalMetal += storage.totalCount;
         }
         foreach (FoodStorage storage in FoodStorages)
         {
@@ -190,6 +190,9 @@ public class MaterialDataStorage : MonoBehaviour
         Metal = 0;
         Food = 0;
         Water = 0;
+        totalWood = 0;
+        totalStone = 0;
+        totalMetal = 0;
         Population = 0;
         WoodCapacity = 0;
         StoneCapacity = 0;
@@ -335,7 +338,6 @@ public class MaterialDataStorage : MonoBehaviour
                 deduction = Math.Min(woodCost, current.Count);
                 current.Count -= deduction;
                 woodCost -= deduction;
-                totalWood += deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();
             }
@@ -352,7 +354,6 @@ public class MaterialDataStorage : MonoBehaviour
             {
                 deduction = Math.Min(stoneCost, current.Count);
                 current.Count -= deduction;
-                totalStone += deduction;
                 stoneCost -= deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();
@@ -370,7 +371,6 @@ public class MaterialDataStorage : MonoBehaviour
             {
                 deduction = Math.Min(metalCost, current.Count);
                 current.Count -= deduction;
-                totalMetal += deduction;
                 metalCost -= deduction;
                 storageList.Remove(current);
                 current = storageList.FirstOrDefault();

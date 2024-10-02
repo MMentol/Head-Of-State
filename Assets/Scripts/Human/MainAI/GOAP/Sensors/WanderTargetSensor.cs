@@ -25,7 +25,7 @@ public class WanderTargetSensor : LocalTargetSensorBase
         {
             random = this.GetRandomPosition(agent);
         }
-        Debug.Log("randPos: " + tilemap.GetTileAtPos(new Vector2(random.x, random.z), false));
+       // Debug.Log("randPos: " + tilemap.GetTileAtPos(new Vector2(random.x, random.z), false));
         return new PositionTarget(random);
     }
 

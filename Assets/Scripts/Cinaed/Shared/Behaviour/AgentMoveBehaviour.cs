@@ -48,7 +48,7 @@ namespace Cinaed.GOAP.Behaviours
             Vector3 targetPos = new Vector3(x, y, z);
 
             humanController.SetTargetPosition(targetPos);
-            Debug.Log("targetPos:" + targetPos);
+            //Debug.Log("targetPos:" + targetPos);
 
             //humanController.SetTargetPosition(currentTarget.Position);
         }

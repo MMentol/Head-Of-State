@@ -63,6 +63,7 @@ namespace Cinaed.GOAP.Complex
             agent.SetActive(true);
 
             agent.transform.name = $"Agent - {agent.GetInstanceID()}";
+            agent.GetComponent<HumanStats>().inBabyPhase = 0;
 
             var brain = agent.GetComponent<AgentBrain>();
 

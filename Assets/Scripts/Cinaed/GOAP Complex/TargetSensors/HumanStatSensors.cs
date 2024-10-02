@@ -74,7 +74,7 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
 
-            if (closest == null) { return null; }
+            if (closest == null) { Debug.Log("No resting house available");  return null; }
 
             return new TransformTarget(closest.transform);
         }

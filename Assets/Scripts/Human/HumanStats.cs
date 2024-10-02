@@ -19,6 +19,7 @@ public class HumanStats : MonoBehaviour
     public float hasBucket = 0;
     public float breedCooldown = 0;
     public float canBreed = 1;
+    public House currentHouse = null;
 
     public Animator anim;
 

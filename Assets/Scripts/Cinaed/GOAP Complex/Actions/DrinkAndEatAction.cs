@@ -2,6 +2,7 @@
 using CrashKonijn.Goap.Classes;
 using CrashKonijn.Goap.Enums;
 using CrashKonijn.Goap.Interfaces;
+using UnityEngine;
 
 namespace Cinaed.GOAP.Complex.Actions
 {
@@ -91,15 +92,20 @@ namespace Cinaed.GOAP.Complex.Actions
                 return ActionRunState.Stop;
             if (data.House == null)
                 return ActionRunState.Stop;
-            if (data.House.EnterHouse(data.Stats))
-                return ActionRunState.Continue;
+            if (data.House != data.Stats.currentHouse)
+            {
+                Debug.Log($"Data: {data.House} Cur:{data.Stats.currentHouse}");
+                return ActionRunState.Stop;
+            }
 
             data.Timer -= context.DeltaTime;
 
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
+            data.House.EnterHouse(data.Stats);
             data.House.NapTime(data.Stats);
+            data.House.LeaveHouse(data.Stats);
 
             return ActionRunState.Stop;
         }
@@ -113,7 +119,10 @@ namespace Cinaed.GOAP.Complex.Actions
 
             House house = transformTarget.Transform.GetComponent<House>();
             if (house.PeopleInside.Count < house.Capacity)
+            {
                 data.House = house;
+                house.UpdateCurrentHouse(data.Stats);
+            }
 
             data.Timer = 5f;
         }

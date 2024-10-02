@@ -27,6 +27,8 @@ public class UIScript : MonoBehaviour
     [SerializeField]
     GameObject credits = null;
 
+    [Header("Other Items")]
+    [SerializeField] GameObject victory = null;
     public float time = 0f;
     public int clock = 0;
     public float currTime = 0;
@@ -63,7 +65,9 @@ public class UIScript : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Escape)) {
             TogglePause();
         }
+
         time += Time.deltaTime;
+
         if (!SceneManager.GetActiveScene().name.Equals("Main Menu"))
             timerText.text = getTime(time);
         float newTime = Mathf.Floor(time);
@@ -81,6 +85,9 @@ public class UIScript : MonoBehaviour
                     human.getOlder();
                 }
             }
+        }
+        if(time >= 2700) {
+            toggleVictory();
         }
     }
 
@@ -188,10 +195,16 @@ public class UIScript : MonoBehaviour
 
     public void goMainMenu() {
         SceneManager.LoadScene("Main Menu");
+        time = 0;
     }
 
     public void restartLevel(){
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
+    }
+
+    public void toggleVictory() {
+        victory.SetActive(true);
+        Time.timeScale = 0;
     }
 }

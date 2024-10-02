@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 10
   maxAngle: 360
-  targetTag: foodSource
+  targetTag: WoodSource
   curve:
     serializedVersion: 2
     m_Curve:

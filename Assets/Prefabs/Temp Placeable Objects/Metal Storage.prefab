@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Food Storage
+  name: Metal Storage
   isPlaced: 0
   isRemovable: 1
   _currentPos: {x: 0, y: 0}
@@ -165,6 +165,8 @@ MonoBehaviour:
   StructNameTxt: {fileID: 0}
   ResidentsTxt: {fileID: 0}
   StorageTxt: {fileID: 0}
+  UpgradeButton: {fileID: 0}
+  DemolishButton: {fileID: 0}
   stor: {fileID: 0}
   house: {fileID: 0}
 --- !u!114 &6573834350919999802
@@ -179,5 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39655b6aa988c8e4787d659609f33222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CapacityTiers: 640000007d000000fa000000f4010000
+  WoodUpgradeCost: 000000000f0000001400000019000000
+  StoneUpgradeCost: 00000000050000000a0000000f000000
+  MetalUpgradeCost: 0000000000000000050000000a000000
+  currentLevel: 0
   Capacity: 100
   Count: 0

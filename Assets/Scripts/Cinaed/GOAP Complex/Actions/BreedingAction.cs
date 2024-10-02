@@ -65,8 +65,9 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.House.MakeNewHuman(data.Human, partner))
             {
                 GameObject.FindObjectOfType<MaterialDataStorage>().TallyMaterials();
-                data.Human.breedCooldown = 30;
-                partner.breedCooldown = 30;
+                float breedCooldown = 60f;
+                data.Human.breedCooldown = breedCooldown;
+                partner.breedCooldown = breedCooldown;
             }
             data.House.LeaveHouse(data.Human);
             data.House.LeaveHouse(partner);

@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3e56f2bda48724a81d048e5d2b0f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredHappiness: 50
+  RequiredHappiness: 80
   RestingEnergyBenefit: 100
 --- !u!224 &957640637 stripped
 RectTransform:

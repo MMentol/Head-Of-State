@@ -41,6 +41,13 @@ namespace Cinaed.GOAP.Behaviours
         {
             this.currentTarget = target;
             this.shouldMove = !inRange;
+
+            int x = Mathf.RoundToInt(Mathf.Clamp(this.currentTarget.Position.x, 0, 100));
+            int y = (int)this.currentTarget.Position.y;
+            int z = Mathf.RoundToInt(Mathf.Clamp(this.currentTarget.Position.z, 0, 100));
+            Vector3 targetPos = new Vector3(x, y, z);
+            Debug.Log("targetPos:" + targetPos);
+            humanController.SetTargetPosition(targetPos);
         }
 
         private void OnTargetOutOfRange(ITarget target)
@@ -62,13 +69,13 @@ namespace Cinaed.GOAP.Behaviours
             }   
 
             //Debug.Log("Moving");
-            //humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
+            
             if (this.currentTarget.Position == Vector3.zero) {
                 anim.SetBool("isWalking", false);
                 if (logDebug) {   Debug.Log("Target was destroyed.");   }
             }
-
-            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
+            humanController.HandleMovement();
+            //this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
             anim.SetBool("isWalking", true);
         }
 

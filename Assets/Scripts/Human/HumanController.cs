@@ -44,7 +44,7 @@ public class HumanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        //HandleMovement();
         //unitSkeleton.Update(Time.deltaTime);
 
 
@@ -72,7 +72,7 @@ public class HumanController : MonoBehaviour
         }
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
         //Debug.Log("Moving?");
         if (pathVectorList != null)

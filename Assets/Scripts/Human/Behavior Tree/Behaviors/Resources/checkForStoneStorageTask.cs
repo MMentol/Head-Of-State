@@ -27,12 +27,12 @@ public class checkForStoneStorageTask : Node
     {
         this.stoneStorage = GameObject.FindObjectsOfType<StoneStorage>();
 
-        Debug.Log("checking: " + this.stoneStorage);
+        Debug.Log("checking: " + this.stoneStorage + " " + stoneStorage.Length);
 
-        if (stoneStorage == null || stoneStorage.Length <= 1)
+        if (stoneStorage == null || stoneStorage.Length < 1)
         {
             state = NodeState.FAILURE;
-
+            Debug.Log("nostone");
             return state;
         }
         var closest = this.stoneStorage
@@ -43,7 +43,7 @@ public class checkForStoneStorageTask : Node
         if (closest == null)
         {
             state = NodeState.FAILURE;
-            Debug.Log("checking: " + state);
+            Debug.Log("checking stone: " + state );
 
             return state;
         }

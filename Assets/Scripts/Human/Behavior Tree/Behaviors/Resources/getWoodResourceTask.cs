@@ -33,7 +33,7 @@ public class getWoodResourceTask : Node
 
         if (woodTile == null) return NodeState.FAILURE;
 
-        if(this.inventory.used == this.inventory.size)
+        if(this.inventory.inventoryContents.GetValueOrDefault("wood") > 0)
         {
             state = NodeState.SUCCESS;
             Debug.Log("stateget1 :" + state);

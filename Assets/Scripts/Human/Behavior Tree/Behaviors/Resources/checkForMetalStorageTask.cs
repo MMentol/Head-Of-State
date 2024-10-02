@@ -27,9 +27,9 @@ public class checkForMetalStorageTask : Node
     {
         this.metalStorage = GameObject.FindObjectsOfType<MetalStorage>();
 
-        Debug.Log("checking: " + this.metalStorage);
+        Debug.Log("checking: " + this.metalStorage + " " + metalStorage.Length);
 
-        if (metalStorage == null || metalStorage.Length <= 1)
+        if (metalStorage == null || metalStorage.Length < 1)
         {
             state = NodeState.FAILURE;
 

@@ -33,7 +33,7 @@ public class getMetalResourceTask : Node
 
         if (metalTile == null) return NodeState.FAILURE;
 
-        if (this.inventory.used == this.inventory.size)
+        if (this.inventory.inventoryContents.GetValueOrDefault("metal") > 0)
         {
             state = NodeState.SUCCESS;
             Debug.Log("stateget1 :" + state);

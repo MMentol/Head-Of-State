@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridMap.Resources;
 using System.Linq;
+using GridMap.Structures.Storage;
 
 using BehaviorTree;
 
@@ -31,7 +32,6 @@ public class lookForStoneResourceTask : Node
     {
         this.stoneSources = GameObject.FindObjectsOfType<StoneResource>();
 
-
         object t = GetData("stone");
         if (t == null)
         {
@@ -39,7 +39,7 @@ public class lookForStoneResourceTask : Node
             .Where(x => x.GetRawMaterialAmount() != 0 && !x.ToDestroy() && x.GetOccupied() == null)
             .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
             .FirstOrDefault();
-            var close = closest.GetComponent<TreeResource>();
+            var close = closest.GetComponent<StoneResource>();
             if (close == null)
                 return NodeState.FAILURE;
             else
@@ -51,7 +51,7 @@ public class lookForStoneResourceTask : Node
                     closest = this.stoneSources
                     .OrderBy(x => Vector3.Distance(x.transform.position, _transform.position))
                     .FirstOrDefault();
-                    close = closest.GetComponent<TreeResource>();
+                    close = closest.GetComponent<StoneResource>();
                     if (close == null)
                         return NodeState.FAILURE;
                 }

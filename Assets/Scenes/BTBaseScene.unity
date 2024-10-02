@@ -335,7 +335,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   customBounds: {x: 10, y: 10}
   useCustomBounds: 1
-  sets: 1
+  sets: 4
   useBT: 1
   agentPrefab: {fileID: 31104030825128304, guid: d5fd28eb612fc914190424dff7d6e358,
     type: 3}

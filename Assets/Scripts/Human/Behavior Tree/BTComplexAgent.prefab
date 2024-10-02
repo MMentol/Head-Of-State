@@ -87,6 +87,7 @@ MonoBehaviour:
   humanStats: {fileID: 0}
   randomMoveDistance: 5
   debugLog: 0
+  isBt: 1
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526

@@ -23,6 +23,7 @@ public class HumanController : MonoBehaviour
     public int randomMoveDistance = 5;
 
     public bool debugLog = false;
+    public bool isBt = false;
 
     [Range(0, 100)]
     public int testx;
@@ -46,13 +47,14 @@ public class HumanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HandleMovement();
+        if(isBt)
+            HandleMovement();
         //unitSkeleton.Update(Time.deltaTime);
 
 
         //if (Input.GetMouseButtonDown(0))
         //{
-            
+
         //    //Debug.Log(UtilsClass.GetMouseWorldPosition() + " 38");
         //    Vector3 mospos = UtilsClass.GetMouseWorldPosition();
         //    //SetTargetPosition(mospos);

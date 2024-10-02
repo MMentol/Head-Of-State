@@ -58,7 +58,7 @@ public class WanderBT : Node
                 
                 newPos = new Vector3(rndx, _transform.position.y, rndz);
 
-                Debug.Log("newPos: " + newPos);
+                //Debug.Log("newPos: " + newPos);
                 humanController.SetTargetPosition(newPos);
 
                 _timerCounter = 0f;

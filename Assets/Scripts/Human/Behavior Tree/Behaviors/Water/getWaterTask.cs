@@ -40,7 +40,7 @@ public class getWaterTask : Node
 
         //    return state;
         //}
-        if (Vector3.Distance(_transform.position, waterTile.transform.position)<=1 && _hStats._thirst>=20)
+        if (Vector3.Distance(_transform.position, waterTile.transform.position)<=1.5f && _hStats._thirst>=20)
         {
             
             //add water to human

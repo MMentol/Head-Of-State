@@ -24,16 +24,8 @@ public class Structure : MonoBehaviour
     [Header("On-Click UI")]
     GameObject ocUI;
     GameObject realUI;
-    [SerializeField] TMP_Text StructNameTxt;
-    [SerializeField] TMP_Text ResidentsTxt;
-    [SerializeField] TMP_Text StorageTxt;
-    [SerializeField] Button UpgradeButton;
-    [SerializeField] Button DemolishButton;
 
-    [SerializeField] MaterialStorageBase stor;
-    [SerializeField] House house;
-
-    void Awake(){
+    /*void Awake(){
         this.ocUI = GameObject.FindWithTag("BuildingUI");
         realUI = ocUI.transform.GetChild(10).GetChild(0).gameObject;
         StructNameTxt = realUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
@@ -43,7 +35,7 @@ public class Structure : MonoBehaviour
         DemolishButton = realUI.transform.GetChild(4).gameObject.GetComponent<Button>();
         stor = gameObject.GetComponent<MaterialStorageBase>();
         house = gameObject.GetComponent<House>();
-    }
+    }*/
     void OnMouseOver() {
         if(isPlaced)
         {
@@ -58,19 +50,9 @@ public class Structure : MonoBehaviour
             if(Input.GetMouseButtonUp(0)) {
                 // Make UI Open here
                 if(isRemovable) {
-                    ocUI.transform.GetChild(10).gameObject.SetActive(true);
-                    StructNameTxt.text = name;
-                    ResidentsTxt.text = "";
-                    StorageTxt.text = "";
-                    if(house != null)
-                        ResidentsTxt.text = "Residents: " + house.PeopleInside.Count + "/" + house.Capacity;
-                    if(stor != null)
-                    {
-                        StorageTxt.text = "Storage: " + stor.Count + "/" + stor.Capacity;
-                        UpgradeButton.onClick.AddListener(() => stor.Upgrade());
-                        DemolishButton.onClick.AddListener(() => _tile.DestroyStructure());
-                    }
-                    Debug.Log("Structure Script UI Children: " + ocUI.transform.childCount);
+                    //GameObject.FindWithTag("BuildingUI").transform.GetChild(10).gameObject.SetActive(true);
+                    StructureWindow.Instance.SetStructure(this);
+                    StructureWindow.Instance.ShowWindow();
                 }
             }
         }

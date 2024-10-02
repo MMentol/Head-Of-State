@@ -21,6 +21,8 @@ public class HumanStats : MonoBehaviour
     public float canBreed = 1;
     public House currentHouse = null;
 
+    public float statsRandomizer;
+
     public Animator anim;
 
     public Inventory inventory;
@@ -29,6 +31,7 @@ public class HumanStats : MonoBehaviour
     {
         inventory = gameObject.GetComponent<Inventory>();
         anim = gameObject.GetComponentInChildren<Animator>();
+        statsRandomizer = Random.Range(0.5f, 2f);
     }
 
     private void FixedUpdate()
@@ -51,22 +54,22 @@ public class HumanStats : MonoBehaviour
 
     public void getHungry()
     {
-        this._hunger += Time.fixedDeltaTime * 0.5f;
+        this._hunger += Time.fixedDeltaTime * 0.5f * statsRandomizer;
         if (this._hunger >= 100) this._hunger = 100;
     }
     public void getThirsty()
     {
-        this._thirst += Time.fixedDeltaTime * 0.7f ;
+        this._thirst += Time.fixedDeltaTime * 0.7f * statsRandomizer;
         if (this._thirst >= 100) this._thirst = 100;
     }
     public void getHot()
     {
-        this._heat -= Time.fixedDeltaTime * 0.05f ;
+        this._heat -= Time.fixedDeltaTime * 0.05f * statsRandomizer;
         if (this._heat <= 0) this._heat = 0;
     }
     public void getSleepy(float energyUsed)
     {
-        this._energy -= Time.fixedDeltaTime * energyUsed;
+        this._energy -= Time.fixedDeltaTime * energyUsed * statsRandomizer;
         if (this._energy <= 0) this._energy = 0;
     }
 
@@ -77,7 +80,7 @@ public class HumanStats : MonoBehaviour
 
     public void RefractoryPeriod()
     {
-        breedCooldown -= Time.fixedDeltaTime;
+        breedCooldown -= Time.fixedDeltaTime * statsRandomizer;
         if (breedCooldown <= 0) canBreed = 1;
         else canBreed = 0;
     }

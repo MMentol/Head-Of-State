@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3196082067095554429}
   m_Layer: 0
   m_Name: Wood Storage
-  m_TagString: BuiltByPlayer
+  m_TagString: WoodStorage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

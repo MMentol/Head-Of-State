@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: -7377248338722986108}
   m_Layer: 0
   m_Name: Stone Storage
-  m_TagString: BuiltByPlayer
+  m_TagString: StoneStorage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,6 +165,8 @@ MonoBehaviour:
   StructNameTxt: {fileID: 0}
   ResidentsTxt: {fileID: 0}
   StorageTxt: {fileID: 0}
+  UpgradeButton: {fileID: 0}
+  DemolishButton: {fileID: 0}
   stor: {fileID: 0}
   house: {fileID: 0}
 --- !u!114 &-7377248338722986108
@@ -179,5 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21413f8fba115bc4c9d3fa5bcb20165f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CapacityTiers: 640000007d000000fa000000f4010000
+  WoodUpgradeCost: 000000000f0000001400000019000000
+  StoneUpgradeCost: 00000000050000000a0000000f000000
+  MetalUpgradeCost: 0000000000000000050000000a000000
+  currentLevel: 0
   Capacity: 100
   Count: 0

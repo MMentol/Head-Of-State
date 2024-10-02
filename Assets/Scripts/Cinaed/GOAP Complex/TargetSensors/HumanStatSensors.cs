@@ -26,12 +26,32 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                 .OrderBy(x => Vector3.Distance(agent.transform.position, x.transform.position))
                 .FirstOrDefault();
 
-            if (closestStorage == null) { return new TransformTarget(closestSource.transform); }
+            if (closestStorage == null) {
+                return new TransformTarget(WalkableSource(agent, closestSource));
+            }
             if (closestSource == null) { return new TransformTarget(closestStorage.transform); }
 
             if (Vector3.Distance(agent.transform.position, closestSource.transform.position) <= Vector3.Distance(agent.transform.position, closestStorage.transform.position))
-                return new TransformTarget(closestSource.transform);            
+            {
+                return new TransformTarget(WalkableSource(agent, closestSource));
+            }           
             return new TransformTarget(closestStorage.transform);
+        }
+        private Transform WalkableSource(IMonoAgent agent, WaterResource closestSource)
+        {
+            var pathfinding = agent.transform.GetComponent<HumanPathfinding>();
+            var tilemap = GameObject.FindFirstObjectByType<GridManager>();
+
+            var waterSource = closestSource.transform.GetComponent<Tile>();
+            var neighbours = pathfinding.GetNeighbourList(waterSource);
+
+            foreach (var neighbour in neighbours)
+            {
+                //Debug.Log("neibour:" + neighbour);
+                if (neighbour.isWalkable)
+                    return neighbour.transform;
+            }
+            return waterSource.transform;
         }
 
     }

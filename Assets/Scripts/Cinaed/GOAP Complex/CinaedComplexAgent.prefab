@@ -77,7 +77,7 @@ MonoBehaviour:
   human: {fileID: 0}
   humanStats: {fileID: 0}
   villageStats: {fileID: 0}
-  logDebug: 1
+  logDebug: 0
   actions:
   - {fileID: 11400000, guid: d1cd7d09a06243a4ebf2de996d67a7c7, type: 2}
   - {fileID: 11400000, guid: ff72846d24e99a84798f1032807d56a4, type: 2}
@@ -107,7 +107,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   shouldMove: 0
   humanController: {fileID: 0}
-  logDebug: 1
+  logDebug: 0
   anim: {fileID: 4483563038361863268}
 --- !u!114 &-5366297016516215228
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31104030825128304}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3da1907ae9362fa4491d0fbdbc13fb86, type: 3}
   m_Name: 
@@ -156,6 +156,7 @@ MonoBehaviour:
   humanPathfinding: {fileID: 7002866369433048526}
   humanStats: {fileID: 0}
   randomMoveDistance: 5
+  debugLog: 0
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526

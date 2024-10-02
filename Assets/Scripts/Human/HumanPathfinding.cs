@@ -185,7 +185,7 @@ public class HumanPathfinding : MonoBehaviour
         return path;
     }
 
-    private List<Tile> GetNeighbourList(Tile currentTile)
+    public List<Tile> GetNeighbourList(Tile currentTile)
     {
         List<Tile> neighbourList = new List<Tile>();
 

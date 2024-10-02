@@ -580,6 +580,23 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2262868581263984274, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c4ec726efbb114892fed8b5b66db2b,
+        type: 2}
+    - target: {fileID: 2262868581263984274, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4789158129310999455, guid: 67c4ec726efbb114892fed8b5b66db2b,
+        type: 2}
+    - target: {fileID: 2262868581263984274, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2464822431463491735, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -730,6 +747,11 @@ PrefabInstance:
       propertyPath: structureChooser
       value: 
       objectReference: {fileID: 1149703827}
+    - target: {fileID: 3802368509235052827, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -750
+      objectReference: {fileID: 0}
     - target: {fileID: 3842816095376626877, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -844,6 +866,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770993074474600448, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770993074474600448, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770993074474600448, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.6150943
       objectReference: {fileID: 0}
     - target: {fileID: 6923590500828621012, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}

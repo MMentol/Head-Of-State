@@ -99,7 +99,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             foreach (var action in actions)
             {
                 float utility = action.CalculateUtility(context);
-                //utilityActions.Add(action, utility);
+                utilityActions.Add(action, utility);
 
                 if (utility > highestUtility)
                 {
@@ -109,18 +109,19 @@ namespace Cinaed.GOAP.Complex.Behaviours
             }
 
             //var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3);
-
+            
 
             //int rnd = Random.Range(0, 2);
             //int cnt = 0;
-            //foreach(var action in sortedActions)
+            //foreach (var action in sortedActions)
             //{
-            //    cnt++;
+                
             //    if (cnt == rnd)
             //    {
             //        bestAction = action.Key;
             //        continue;
             //    }
+            //    cnt++;
             //}
 
             if (bestAction != null)

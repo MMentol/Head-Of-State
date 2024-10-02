@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allMustBeNonZero: 1
   operation: 5
-  considerations: []
+  considerations:
+  - {fileID: 11400000, guid: ffdf02081c5c0b94d986320aae6fbb9b, type: 2}
+  - {fileID: 11400000, guid: b42a831520ce77842938011718e38f00, type: 2}

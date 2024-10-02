@@ -52,7 +52,9 @@ public class depositMetalTask : Node
             {
                 ClearData("metalStorage");
                 ClearData("metal");
+                ClearData("random");
             }
+
 
             //Debug.Log("stateDep :" + state);
 

@@ -23,6 +23,7 @@ namespace BehaviorTree
                         return state;
                     case NodeState.RUNNING:
                         state = NodeState.RUNNING;
+
                         return state;
                     default:
                         break;

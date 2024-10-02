@@ -73,62 +73,76 @@ public class HumanBT : Tree
                         }),
                     }),
 
-                    new RandomizedSelector(new List<Node>
+                    new Selector(new List<Node>
                     {
-                        new Selector(new List<Node>
-                        {
-                            new depositMetalTask(transform),
-                            new Sequence(new List<Node>
+                        new RandomizerMaterial(transform),
+                        new Sequence(new List<Node>{
+                            new MetalCheckRandom(transform),
+                            new Selector(new List<Node>
                             {
-                                new getMetalResourceTask(transform),
-                                new walkToMetalStorageTask(transform),
+                                new depositMetalTask(transform),
+                                new Sequence(new List<Node>
+                                {
+                                    new getMetalResourceTask(transform),
+                                    new walkToMetalStorageTask(transform),
+
+                                }),
+                                new Sequence(new List<Node>
+                                {
+                                    //new checkMetalResourceTask(transform),
+                                    new checkForMetalStorageTask(transform),
+                                    new lookForMetalResourceTask(transform),
+                                    new walkToMetalResourceTask(transform),
+
+                                }),
+                            }),
 
                             }),
-                            new Sequence(new List<Node>
-                            {
-                                //new checkMetalResourceTask(transform),
-                                new checkForMetalStorageTask(transform),
-                                new lookForMetalResourceTask(transform),
-                                new walkToMetalResourceTask(transform),
+                            new Sequence(new List<Node>{
+                            new StoneCheckRandom(transform),
+                            new Selector(new List<Node>  {
 
+                                new depositStoneTask(transform),
+                                new Sequence(new List<Node>
+                                {
+                                    new getStoneResourceTask(transform),
+                                    new walkToStoneStorageTask(transform),
+
+                                }),
+                                new Sequence(new List<Node>
+                                {
+                                    //new checkStoneResourceTask(transform),
+                                    new checkForStoneStorageTask(transform),
+                                    new lookForStoneResourceTask(transform),
+                                    new walkToStoneResourceTask(transform),
+
+                                }),
+                            }),
+
+                            }),
+                            new Sequence(new List<Node>{
+                            new WoodCheckRandom(transform),
+                            new Selector(new List<Node>  {
+
+                                new depositWoodTask(transform),
+                                new Sequence(new List<Node>
+                                {
+                                    new getWoodResourceTask(transform),
+                                    new walkToWoodStorageTask(transform),
+
+                                }),
+                                new Sequence(new List<Node>
+                                {
+                                    //new checkWoodResourceTask(transform),
+                                    new checkForWoodStorageTask(transform),
+                                    new lookForWoodResourceTask(transform),
+                                    new walkToWoodResourceTask(transform),
+
+                                }),
                             }),
                         }),
-                        new Selector(new List<Node>  {
 
-                            new depositStoneTask(transform),
-                            new Sequence(new List<Node>
-                            {
-                                new getStoneResourceTask(transform),
-                                new walkToStoneStorageTask(transform),
 
-                            }),
-                            new Sequence(new List<Node>
-                            {
-                                //new checkStoneResourceTask(transform),
-                                new checkForStoneStorageTask(transform),
-                                new lookForStoneResourceTask(transform),
-                                new walkToStoneResourceTask(transform),
-
-                            }),
-                        }),
-                        new Selector(new List<Node>  {
-
-                            new depositWoodTask(transform),
-                            new Sequence(new List<Node>
-                            {
-                                new getWoodResourceTask(transform),
-                                new walkToWoodStorageTask(transform),
-
-                            }),
-                            new Sequence(new List<Node>
-                            {
-                                //new checkWoodResourceTask(transform),
-                                new checkForWoodStorageTask(transform),
-                                new lookForWoodResourceTask(transform),
-                                new walkToWoodResourceTask(transform),
-
-                            }),
-                        }),
                     }),
                 }),
             }),

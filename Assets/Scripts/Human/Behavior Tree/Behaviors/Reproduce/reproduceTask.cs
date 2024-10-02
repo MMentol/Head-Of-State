@@ -51,14 +51,11 @@ public class reproduceTask : Node
             return NodeState.FAILURE;
         }
 
-
         if (_hStats._happiness <= house.HouseSettings.RequiredHappiness)
         {
             house.LeaveHouse(_hStats);
             return NodeState.FAILURE;
         }
-
-        
 
         HumanStats partner = house.PeopleInside.Where(h => house.IsHappy(h) && h != _hStats && h.breedCooldown <= 0).FirstOrDefault();
 

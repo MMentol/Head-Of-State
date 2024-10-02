@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea2f8bd5c598e847aef8883ec462a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: HouseL3
+  name: Mansion
   isPlaced: 0
   isRemovable: 1
   _currentPos: {x: 0, y: 0}

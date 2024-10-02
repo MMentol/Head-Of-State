@@ -34,7 +34,7 @@ public class HumanStats : MonoBehaviour
         getHungry();
         getThirsty();
         getHot();
-        getSleepy(0.1f);
+        getSleepy(0.25f);
         updateHappiness();
         updatePickaxe();
         updateBucket();
@@ -54,12 +54,12 @@ public class HumanStats : MonoBehaviour
     }
     public void getThirsty()
     {
-        this._thirst += Time.fixedDeltaTime * 0.5f ;
+        this._thirst += Time.fixedDeltaTime * 0.7f ;
         if (this._thirst >= 100) this._thirst = 100;
     }
     public void getHot()
     {
-        this._heat -= Time.fixedDeltaTime * 0.1f ;
+        this._heat -= Time.fixedDeltaTime * 0.4f ;
         if (this._heat <= 0) this._heat = 0;
     }
     public void getSleepy(float energyUsed)

@@ -219,7 +219,7 @@ public class MaterialDataStorage : MonoBehaviour
 
     public void UpdateText()
     {
-        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null || WoodTxtCurr == null)
+        if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null || WoodTxtCurr == null || StoneTxtCurr == null || MetalTxtCurr == null || FoodTxtCurr == null || WaterTxtCurr == null)
             return;
         WoodTxt.text = $": {WoodCapacity}";
         StoneTxt.text = $": {StoneCapacity}";

@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2644901599046946488
 Transform:
   m_ObjectHideFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   shouldMove: 0
   humanController: {fileID: 0}
   logDebug: 1
+  anim: {fileID: 4483563038361863268}
 --- !u!114 &-5366297016516215228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +264,7 @@ MonoBehaviour:
   hasBucket: 0
   breedCooldown: 0
   canBreed: 1
+  anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
 --- !u!114 &6538967730826234972
 MonoBehaviour:

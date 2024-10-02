@@ -266,7 +266,7 @@ MonoBehaviour:
   hasPickAxe: 0
   hasAxe: 0
   hasBucket: 0
-  breedCooldown: 0
+  breedCooldown: 30
   canBreed: 1
   currentHouse: {fileID: 0}
   anim: {fileID: 4483563038361863268}

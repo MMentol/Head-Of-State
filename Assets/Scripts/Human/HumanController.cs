@@ -79,7 +79,6 @@ public class HumanController : MonoBehaviour
             Vector3 tilexy = pathVectorList[currentPathIndex] - new Vector3(0.5f, 0.5f ,0.5f);
             Vector3 targetPosition = new Vector3(tilexy.x, 0 , tilexy.y);
             //Debug.Log("targetPosb4: " + targetPosition)
-            anim.SetBool("isWalking", true);
 
             if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {

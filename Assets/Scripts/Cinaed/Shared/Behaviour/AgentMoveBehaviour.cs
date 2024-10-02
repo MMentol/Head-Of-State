@@ -11,6 +11,7 @@ namespace Cinaed.GOAP.Behaviours
         [SerializeField] private bool shouldMove;
         [SerializeField] private HumanController humanController;
         [SerializeField] private bool logDebug = false;
+        [SerializeField] public Animator anim;
         private void Awake()
         {
             this.agent = this.GetComponent<AgentBehaviour>();
@@ -51,18 +52,24 @@ namespace Cinaed.GOAP.Behaviours
         {
 
             if (!this.shouldMove) {
+                anim.SetBool("isWalking", false);
                 return;
             }
 
-            if (this.currentTarget == null) 
+            if (this.currentTarget == null)  {
+                anim.SetBool("isWalking", false);
                 return;
+            }   
 
             //Debug.Log("Moving");
             //humanController.SetTargetPosition(new Vector3(this.currentTarget.Position.x, this.transform.position.y));
-            if (this.currentTarget.Position == Vector3.zero)
-                if (logDebug) { Debug.Log("Target was destroyed."); }
+            if (this.currentTarget.Position == Vector3.zero) {
+                anim.SetBool("isWalking", false);
+                if (logDebug) {   Debug.Log("Target was destroyed.");   }
+            }
 
             this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);
+            anim.SetBool("isWalking", true);
         }
 
         private void OnDrawGizmos()

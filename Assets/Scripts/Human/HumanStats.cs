@@ -20,6 +20,8 @@ public class HumanStats : MonoBehaviour
     public float breedCooldown = 0;
     public float canBreed = 1;
 
+    public Animator anim;
+
     public Inventory inventory;
 
     private void Awake()
@@ -37,7 +39,12 @@ public class HumanStats : MonoBehaviour
         updatePickaxe();
         updateBucket();
         RefractoryPeriod();
-        if (this._age > 1) inBabyPhase = 0;
+        if (this._age > 1) {
+            inBabyPhase = 0;
+            anim.SetBool("isBaby", false);
+        } else {
+            anim.SetBool("isBaby", true);
+        }
     }
 
     public void getHungry()
@@ -82,6 +89,7 @@ public class HumanStats : MonoBehaviour
     {
         if(inventory.items == null)
         {
+            anim.SetBool("hasPickaxe", false);
             return;
         }
 
@@ -89,6 +97,7 @@ public class HumanStats : MonoBehaviour
         {
             if(item.ItemName == "Pickaxe")
             {
+                anim.SetBool("hasPickaxe", true);
                 hasPickAxe = 1;
                 return;
             }
@@ -102,12 +111,14 @@ public class HumanStats : MonoBehaviour
     {
         if (inventory.items == null)
         {
+            anim.SetBool("hasWater", false);
             return;
         }
         foreach (var item in this.inventory.items)
         {
             if(item.ItemName == "Bucket")
             {
+                anim.SetBool("hasWater", true);
                 hasBucket = 1;
                 return;
             }

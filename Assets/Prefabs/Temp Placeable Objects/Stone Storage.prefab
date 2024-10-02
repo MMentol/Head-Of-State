@@ -157,7 +157,7 @@ MonoBehaviour:
   isRemovable: 1
   _currentPos: {x: 0, y: 0}
   _tile: {fileID: 0}
-  _woodCost: 0
+  _woodCost: 45
   _stoneCost: 0
   _metalCost: 0
   _foodCost: 0
@@ -181,4 +181,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Capacity: 100
   Count: 0
-  materialDataStorage: {fileID: 0}

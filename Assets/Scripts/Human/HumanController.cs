@@ -93,6 +93,7 @@ public class HumanController : MonoBehaviour
                 float slow = (humanStats._heat / 100f) >=0.2f ? humanStats._heat/100 : 0.2f;
                 transform.position = transform.position + moveDir * speed * Time.deltaTime * slow;
                 //Debug.Log("updating");
+                anim.SetBool("isWalking", true);
             }
             else
             {

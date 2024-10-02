@@ -164,4 +164,9 @@ public class UIScript : MonoBehaviour
     public void goMainMenu() {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void restartLevel(){
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
 }

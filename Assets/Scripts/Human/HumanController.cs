@@ -22,6 +22,8 @@ public class HumanController : MonoBehaviour
 
     public int randomMoveDistance = 5;
 
+    public bool debugLog = false;
+
     [Range(0, 100)]
     public int testx;
     [Range(0, 100)]
@@ -44,7 +46,7 @@ public class HumanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        //HandleMovement();
         //unitSkeleton.Update(Time.deltaTime);
 
 
@@ -72,7 +74,7 @@ public class HumanController : MonoBehaviour
         }
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
         //Debug.Log("Moving?");
         if (pathVectorList != null)
@@ -85,8 +87,8 @@ public class HumanController : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
-                //Debug.Log("MoveDir: " + moveDir);
-                //Debug.Log("targetPos: " +  targetPosition + " , " + transform.position);
+                if(debugLog)Debug.Log("MoveDir: " + moveDir);
+                if (debugLog) Debug.Log("targetPos: " +  targetPosition + " , " + transform.position);
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 //animatedWalker.SetMoveVector(moveDir);
@@ -106,29 +108,29 @@ public class HumanController : MonoBehaviour
                         transform.position = transform.position + new Vector3(1-transform.position.x%1,0);
                     if ((transform.position.z % 1) != 0)
                         transform.position = transform.position + new Vector3(0, 0, 1 - transform.position.z % 1);
-                    //Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
+                    if (debugLog) Debug.Log("final targetPos: " + targetPosition + " , " + transform.position);
                     if (transform.position.x < targetPosition.x)
                     {
                         transform.position = transform.position + new Vector3(1f, 0);
-                        Debug.Log("movedforce");
+                        if (debugLog) Debug.Log("movedforce");
                     }
                     if (transform.position.x > targetPosition.x)
                     {
                         transform.position = transform.position - new Vector3(1f, 0);
 
-                        Debug.Log("movedforce");
+                        if (debugLog) Debug.Log("movedforce");
                     }
                     if (transform.position.z < targetPosition.z)
                     {
                         transform.position = transform.position + new Vector3(0, 0, 1f);
 
-                        Debug.Log("movedforce");
+                        if (debugLog) Debug.Log("movedforce");
                     }
                     if (transform.position.z > targetPosition.z)
                     {
                         transform.position = transform.position - new Vector3(0, 0, 1f);
 
-                        Debug.Log("movedforce");
+                        if (debugLog) Debug.Log("movedforce");
                     }
                     //animatedWalker.SetMoveVector(Vector3.zero);
                 }

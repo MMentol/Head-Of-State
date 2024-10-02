@@ -13,6 +13,7 @@ public class HumanBT : Tree
 
         Node root = new Selector(new List<Node>
         {
+
             new Selector(new List<Node>
             {
                 new getFoodTask(transform),
@@ -72,7 +73,7 @@ public class HumanBT : Tree
                         }),
                     }),
 
-                    new Selector(new List<Node>
+                    new RandomizedSelector(new List<Node>
                     {
                         new Selector(new List<Node>
                         {

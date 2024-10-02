@@ -51,6 +51,6 @@ public class CameraMovement : MonoBehaviour
         float xBound = Mathf.Clamp(xPos, -140, 50);
         float yBound = Mathf.Clamp(yPos, 35, 115);
         gameObject.transform.position = new Vector3(xBound, yBound, transform.position.z);
-        Debug.Log(gameObject.transform.position);
+        //Debug.Log(gameObject.transform.position);
     }
 }

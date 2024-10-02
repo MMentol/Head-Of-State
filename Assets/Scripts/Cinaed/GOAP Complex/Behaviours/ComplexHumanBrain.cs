@@ -108,14 +108,15 @@ namespace Cinaed.GOAP.Complex.Behaviours
                 }
             }
 
-            //var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3);
-            
+            //var sortedActions = utilityActions.OrderByDescending(entry => entry.Value).Take(3).ToArray();
 
-            //int rnd = Random.Range(0, 2);
+
+            //int rnd = Random.Range(0, 3);
+            //bestAction = sortedActions[rnd].Key;
             //int cnt = 0;
             //foreach (var action in sortedActions)
             //{
-                
+
             //    if (cnt == rnd)
             //    {
             //        bestAction = action.Key;

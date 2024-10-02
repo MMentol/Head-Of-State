@@ -556,6 +556,12 @@ MonoBehaviour:
   bt: 0
   mds: {fileID: 1080942317}
   uis: {fileID: 859544285}
+  victoryText: {fileID: 0}
+  Pop: 0
+  Wood: 0
+  Stone: 0
+  Metal: 0
+  objCount: 0
 --- !u!114 &859544285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +582,7 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   instructions: {fileID: 0}
   credits: {fileID: 0}
+  victory: {fileID: 0}
   time: 0
   clock: 0
   currTime: 0
@@ -980,6 +987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880710921461461039, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2920499170520915455, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
@@ -1392,6 +1404,7 @@ MonoBehaviour:
   currentLevel: 0
   Capacity: 0
   Count: 100
+  totalCount: 0
 --- !u!1001 &1108955759
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class HumanStats : MonoBehaviour
     }
     public void getHot()
     {
-        this._heat -= Time.fixedDeltaTime * 0.4f ;
+        this._heat -= Time.fixedDeltaTime * 0.05f ;
         if (this._heat <= 0) this._heat = 0;
     }
     public void getSleepy(float energyUsed)

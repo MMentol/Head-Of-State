@@ -16,6 +16,7 @@ public class HumanController : MonoBehaviour
     private int currentPathIndex;
 
     public HumanPathfinding humanPathfinding;
+    public HumanStats humanStats;
 
     private const float speed = 1f;
 
@@ -88,7 +89,8 @@ public class HumanController : MonoBehaviour
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 //animatedWalker.SetMoveVector(moveDir);
-                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+                float slow = (humanStats._heat / 100f) >=0.2f ? humanStats._heat : 0.2f;
+                transform.position = transform.position + moveDir * speed * Time.deltaTime * slow;
                 Debug.Log("updating");
             }
             else

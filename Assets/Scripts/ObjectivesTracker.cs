@@ -63,27 +63,27 @@ public class ObjectivesTracker : MonoBehaviour
             objCount++;
         }
         // Objective 5
-        if(Stone >= 40 && Metal >= 30 && objCount == 4){
+        if(Stone >= 80 && Metal >= 30 && objCount == 4){
             WriteCSV(5, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 6
-        if(Wood >= 100 && Metal >= 50 && objCount == 5){
+        if(Wood >= 130 && Metal >= 50 && objCount == 5){
             WriteCSV(6, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 7
-        if(Stone >= 100 && Metal >= 70 && objCount == 6){
+        if(Stone >= 120 && Metal >= 70 && objCount == 6){
             WriteCSV(7, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 8
-        if(Wood >= 150 && Stone >= 120 && objCount == 7) {
+        if(Wood >= 150 && Stone >= 150 && objCount == 7) {
             WriteCSV(8, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 9
-        if(Wood >= 150 && Stone >= 120 && Metal >= 100 && objCount == 8) {
+        if(Wood >= 200 && Stone >= 200 && Metal >= 100 && objCount == 8) {
             WriteCSV(9, uis.getTime(uis.time));
             objCount++;
         }
@@ -93,9 +93,9 @@ public class ObjectivesTracker : MonoBehaviour
             objCount++;
         }
         // When Times Up
-        if(uis.time == 2700) {
+        if(uis.time >= 2700) {
             TextWriter tw = new StreamWriter(filename, true);
-            tw.WriteLine("Out of Time" + "Completed " + objCount + " objectives");
+            tw.WriteLine("Time is Up" + "Completed " + objCount + " objectives");
             tw.Close();
         }
     }

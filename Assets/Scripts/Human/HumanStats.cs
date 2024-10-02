@@ -27,6 +27,7 @@ public class HumanStats : MonoBehaviour
     private void Awake()
     {
         inventory = gameObject.GetComponent<Inventory>();
+        anim = gameObject.GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()

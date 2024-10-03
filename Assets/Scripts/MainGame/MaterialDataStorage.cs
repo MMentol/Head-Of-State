@@ -54,6 +54,7 @@ public class MaterialDataStorage : MonoBehaviour
     public TMP_Text MetalTxtCurr;
     public TMP_Text FoodTxtCurr;
     public TMP_Text WaterTxtCurr;
+    public TMP_Text PopulationTxtCurr;
 
     private void Awake()
     {
@@ -228,13 +229,14 @@ public class MaterialDataStorage : MonoBehaviour
         MetalTxt.text = $"{MetalCapacity}";
         FoodTxt.text = $"{FoodCapacity}";
         WaterTxt.text = $"{WaterCapacity}";
-        PopulationTxt.text = $"{Population}";
+        PopulationTxt.text = $"{MaxPopulation}";
 
         WoodTxtCurr.text = $"{Wood}";
         StoneTxtCurr.text = $"{Stone}";
         MetalTxtCurr.text = $"{Metal}";
         FoodTxtCurr.text = $"{Food}";
         WaterTxtCurr.text = $"{Water}";
+        PopulationTxtCurr.text = $"{Population}";
     }
 
     public int GetRemainingCapacity(string materialType)

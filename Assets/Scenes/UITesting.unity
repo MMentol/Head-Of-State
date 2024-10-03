@@ -672,6 +672,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438577524}
   m_CullTransparentMesh: 1
+--- !u!1 &452254249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4804974996709025082, guid: 782f9d754f314e146aa5c66953fcddf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 565949711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &558376405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2011226115938245076, guid: d684ea01f36a7b445b1356dcfa65e1fd,
@@ -1279,7 +1285,7 @@ PrefabInstance:
     - target: {fileID: 6214820763405114787, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6923590500828621012, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
@@ -1522,6 +1528,30 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 565949711}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &565949713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3432105623235251847, guid: 782f9d754f314e146aa5c66953fcddf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 565949711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &565949714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6797961102018304026, guid: 782f9d754f314e146aa5c66953fcddf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 565949711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &653518983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4433,6 +4463,8 @@ MonoBehaviour:
   bt: 0
   mds: {fileID: 2013503176}
   uis: {fileID: 1688967756}
+  MaterialObj: {fileID: 565949714}
+  PopulationObj: {fileID: 565949713}
   victoryText: {fileID: 1547988965}
   Pop: 0
   Wood: 0
@@ -4544,6 +4576,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid Map
       objectReference: {fileID: 0}
+    - target: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: popUI
+      value: 
+      objectReference: {fileID: 452254249}
+    - target: {fileID: 5328205706227911053, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: textBoxParent
+      value: 
+      objectReference: {fileID: 452254249}
     - target: {fileID: 9093610150126315720, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       propertyPath: m_LocalPosition.x

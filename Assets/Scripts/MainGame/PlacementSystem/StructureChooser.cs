@@ -19,14 +19,12 @@ public class StructureChooser : MonoBehaviour
     public Tilemap _tilemap;
 
     [Header("Building Mode Pop-Up")]
-    [SerializeField] GameObject popUI;
-    GameObject textBoxParent;
+    [SerializeField] GameObject textBoxParent;
     [SerializeField] TMP_Text textBox;
     
 
     void Awake() {
-        this.popUI = GameObject.FindWithTag("BuildingUI");
-        textBoxParent = popUI.transform.GetChild(11).GetChild(0).gameObject;
+        textBoxParent = textBoxParent.transform.GetChild(0).gameObject;
         textBox = textBoxParent.GetComponent<TMP_Text>();
     }
 

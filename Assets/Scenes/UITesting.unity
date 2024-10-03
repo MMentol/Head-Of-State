@@ -540,6 +540,16 @@ PrefabInstance:
       propertyPath: structureChooser
       value: 
       objectReference: {fileID: 1149703827}
+    - target: {fileID: 746662788651435990, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 746662788651435990, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 964965839037828310, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

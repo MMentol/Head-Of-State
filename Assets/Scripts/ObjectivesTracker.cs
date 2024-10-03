@@ -15,12 +15,22 @@ public class ObjectivesTracker : MonoBehaviour
     [SerializeField] MaterialDataStorage mds = null;
     [SerializeField] UIScript uis = null;
 
+    [Header("Objectives Window")]
+    [SerializeField] TMP_Text MaterialObj;
+    [SerializeField] TMP_Text PopulationObj;
+
     [Header("Victory Screen")]
     [SerializeField] TMP_Text victoryText;
 
     public float Pop, Wood, Stone, Metal;
     public int objCount = 0;
-    // Start is called before the first frame update
+
+    private float goalPop, goalWood, goalStone, goalMetal;
+
+    void Awake() {
+        MaterialObj.text = "";
+        PopulationObj.text = "";
+    }
     void Start()
     {
         Directory.CreateDirectory(Application.dataPath + "/Log");
@@ -48,6 +58,7 @@ public class ObjectivesTracker : MonoBehaviour
     void Update()
     {
         UpdateValues();
+        UpdateObjectiveText();
         bool printed = false;
         // Objective 1
         if(Wood >= 15 && objCount == 0) {
@@ -60,42 +71,42 @@ public class ObjectivesTracker : MonoBehaviour
             objCount++;
         }
         // Objective 3
-        if(Pop >= 10 && mds.Metal >= 5 && objCount == 2) {
+        if(Pop >= 10 && Metal >= 5 && objCount == 2) {
             WriteCSV(3, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 4
-        if(Pop >= 14 && Wood >= 60 && Stone >= 20 && objCount == 3) {
+        if(Pop >= 25 && Wood >= 60 && Stone >= 50 && objCount == 3) {
             WriteCSV(4, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 5
-        if(Stone >= 80 && Metal >= 30 && objCount == 4){
+        if(Pop >= 50 && Stone >= 80 && Metal >= 30 && objCount == 4){
             WriteCSV(5, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 6
-        if(Wood >= 130 && Metal >= 50 && objCount == 5){
+        if(Wood >= 300 && Stone >= 150 && Metal >= 120 && objCount == 5){
             WriteCSV(6, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 7
-        if(Stone >= 120 && Metal >= 70 && objCount == 6){
+        if(Pop >= 70 && Stone >= 210 && Metal >= 150 && objCount == 6){
             WriteCSV(7, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 8
-        if(Wood >= 150 && Stone >= 150 && objCount == 7) {
+        if(Pop >= 80 && Wood >= 600 && Stone >= 300 && Metal >= 200 && objCount == 7) {
             WriteCSV(8, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 9
-        if(Wood >= 200 && Stone >= 200 && Metal >= 100 && objCount == 8) {
+        if(Wood >= 800 && Stone >= 750 && Metal >= 300 && objCount == 8) {
             WriteCSV(9, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 10
-        if(Pop >= 60 && objCount == 9) {
+        if(Pop >= 100 && objCount == 9) {
             WriteCSV(10, uis.getTime(uis.time));
             objCount++;
         }
@@ -122,5 +133,71 @@ public class ObjectivesTracker : MonoBehaviour
         Stone = mds.totalStone;
         Metal = mds.totalMetal;
     }
+    void UpdateObjectiveText() {
+        switch(objCount){
+            case 0:
+            MaterialObj.text = "Collect\n" + (15-Wood) + " More Wood";
+            break;
 
+            case 1:
+            MaterialObj.text = "Collect\n" + (Mathf.Clamp(30-Wood, 0, 30)) + " More Wood\n" 
+                                + (Mathf.Clamp(10-Stone, 0, 10)) + " More Stone";
+            PopulationObj.text = "Reach\n5 Population";
+            break;
+
+            case 2:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(5-Metal, 0, 5))) + " Metal";
+            PopulationObj.text = "Reach\n10 Population";
+            break;
+
+            case 3:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(60-Wood, 0, 60))) + " Wood\n"
+                                + ((Mathf.Clamp(50-Stone, 0, 50))) + " Stone";
+            PopulationObj.text = "Reach\n25 Population";
+            break;
+
+            case 4:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(80-Stone, 0, 80))) + " Stone\n"
+                                + ((Mathf.Clamp(30-Metal, 0, 30))) + " Metal";
+            PopulationObj.text = "Reach\n50 Population";
+            break;
+
+            case 5:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(300-Wood, 0, 300))) + " Wood\n"
+                                + ((Mathf.Clamp(150-Stone, 0, 150))) + " Stone\n"
+                                + ((Mathf.Clamp(120-Metal, 0, 120))) + " Metal";
+            PopulationObj.text = "";
+            break;
+
+            case 6:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(210-Stone, 0, 210))) + " Stone\n"
+                                + ((Mathf.Clamp(150-Wood, 0, 150))) + " Metal";
+            PopulationObj.text = "Reach\n70 Population";
+            break;
+
+            case 7:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(600-Wood, 0, 600))) + " Wood\n"
+                                + ((Mathf.Clamp(300-Stone, 0, 300))) + " Stone\n"
+                                + ((Mathf.Clamp(200-Metal, 0, 200))) + " Metal";
+            PopulationObj.text = "Reach\n80 Population";
+            break;
+
+            case 8:
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(800-Wood, 0, 800))) + " Wood\n"
+                                + ((Mathf.Clamp(750-Stone, 0, 750))) + " Stone\n"
+                                + ((Mathf.Clamp(300-Metal, 0, 300))) + " Metal";
+            PopulationObj.text = "";
+            break;
+
+            case 9:
+            MaterialObj.text = "";
+            PopulationObj.text = "Reach\n100 Population";
+            break;
+
+            default:
+            MaterialObj.text = "";
+            PopulationObj.text = "";
+            break;
+        }
+    }
 }

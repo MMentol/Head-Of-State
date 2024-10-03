@@ -77,7 +77,10 @@ public class StructureWindow : MonoBehaviour
                 $"Stone:{stor.StoneUpgradeCost[nextUpg]}\r\n\r\n" +
                 $"Metal:{stor.MetalUpgradeCost[nextUpg]}";
             else
+            {
                 UpgradeMaterials.text = "Max upgrade reached.";
+                UpgradeButton.interactable = false;
+            }
         }
     }
 }

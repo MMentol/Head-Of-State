@@ -32,6 +32,8 @@ public class checkForStoneStorageTask : Node
         if (stoneStorage == null || stoneStorage.Length < 1)
         {
             state = NodeState.FAILURE;
+            ClearData("random");
+
             //Debug.Log("nostone");
             return state;
         }
@@ -42,6 +44,8 @@ public class checkForStoneStorageTask : Node
 
         if (closest == null)
         {
+            ClearData("random");
+
             state = NodeState.FAILURE;
             //Debug.Log("checking stone: " + state );
 

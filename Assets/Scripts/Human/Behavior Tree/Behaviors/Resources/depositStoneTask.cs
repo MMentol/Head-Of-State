@@ -52,6 +52,7 @@ public class depositStoneTask : Node
             {
                 ClearData("stoneStorage");
                 ClearData("stone");
+                ClearData("random");
             }
 
            // Debug.Log("stateDep :" + state);

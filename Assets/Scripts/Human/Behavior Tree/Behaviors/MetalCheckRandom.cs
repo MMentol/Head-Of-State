@@ -25,11 +25,11 @@ public class MetalCheckRandom : Node
     {
         var randMat = (int)GetData("random");
 
+        Debug.Log("rad?L " + randMat);
 
 
         if (randMat == 1)
         {
-            Debug.Log("rad?L " + randMat);
 
             return NodeState.SUCCESS;
         }

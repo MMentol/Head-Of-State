@@ -40,6 +40,7 @@ public class sleepTask : Node
             houseTile.EnterHouse(_hStats);
             houseTile.NapTime(_hStats);
             houseTile.LeaveHouse(_hStats);
+            _hStats.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             state = NodeState.SUCCESS;
             //Debug.Log("stateget :" + state);
             

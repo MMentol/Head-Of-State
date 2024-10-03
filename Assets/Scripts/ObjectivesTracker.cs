@@ -23,6 +23,7 @@ public class ObjectivesTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Directory.CreateDirectory(Application.dataPath + "/Log");
         if(goap) {
             filename = Application.dataPath + "/Log/GOAPRun.csv";
             TextWriter tw = new StreamWriter(filename, false);

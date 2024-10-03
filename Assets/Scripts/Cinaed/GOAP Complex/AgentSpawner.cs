@@ -37,7 +37,8 @@ namespace Cinaed.GOAP.Complex
             {
                 this.SpawnAgent(AgentIds.Human, Random.ColorHSV());
             }
-
+            MaterialDataStorage.Instance.Census();
+            MaterialDataStorage.Instance.UpdateText();
         }
 
         public void CreateNewHuman(string setId, Color color, Vector3 position)

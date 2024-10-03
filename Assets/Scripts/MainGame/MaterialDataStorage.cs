@@ -223,12 +223,12 @@ public class MaterialDataStorage : MonoBehaviour
     {
         if (WoodTxt == null || StoneTxt == null || MetalTxt == null || FoodTxt == null || WaterTxt == null || PopulationTxt == null || WoodTxtCurr == null || StoneTxtCurr == null || MetalTxtCurr == null || FoodTxtCurr == null || WaterTxtCurr == null)
             return;
-        WoodTxt.text = $": {WoodCapacity}";
-        StoneTxt.text = $": {StoneCapacity}";
-        MetalTxt.text = $": {MetalCapacity}";
-        FoodTxt.text = $": {FoodCapacity}";
-        WaterTxt.text = $": {WaterCapacity}";
-        PopulationTxt.text = $": {Population}";
+        WoodTxt.text = $"{WoodCapacity}";
+        StoneTxt.text = $"{StoneCapacity}";
+        MetalTxt.text = $"{MetalCapacity}";
+        FoodTxt.text = $"{FoodCapacity}";
+        WaterTxt.text = $"{WaterCapacity}";
+        PopulationTxt.text = $"{Population}";
 
         WoodTxtCurr.text = $"{Wood}";
         StoneTxtCurr.text = $"{Stone}";

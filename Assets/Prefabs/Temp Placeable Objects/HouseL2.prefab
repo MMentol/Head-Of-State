@@ -164,13 +164,6 @@ MonoBehaviour:
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  StructNameTxt: {fileID: 0}
-  ResidentsTxt: {fileID: 0}
-  StorageTxt: {fileID: 0}
-  UpgradeButton: {fileID: 0}
-  DemolishButton: {fileID: 0}
-  stor: {fileID: 0}
-  house: {fileID: 0}
 --- !u!114 &6280087910699436866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PeopleInside: []
-  Capacity: 5
+  Capacity: 10
   Spawner: {fileID: 0}
   HouseSettings: {fileID: 0}

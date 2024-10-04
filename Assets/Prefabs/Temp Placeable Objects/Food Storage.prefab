@@ -157,18 +157,11 @@ MonoBehaviour:
   isRemovable: 1
   _currentPos: {x: 0, y: 0}
   _tile: {fileID: 0}
-  _woodCost: 30
+  _woodCost: 20
   _stoneCost: 0
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  StructNameTxt: {fileID: 0}
-  ResidentsTxt: {fileID: 0}
-  StorageTxt: {fileID: 0}
-  UpgradeButton: {fileID: 0}
-  DemolishButton: {fileID: 0}
-  stor: {fileID: 0}
-  house: {fileID: 0}
 --- !u!114 &1821212036921388685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +181,4 @@ MonoBehaviour:
   currentLevel: 0
   Capacity: 100
   Count: 0
+  totalCount: 0

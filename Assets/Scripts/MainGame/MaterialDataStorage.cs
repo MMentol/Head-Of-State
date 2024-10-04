@@ -459,4 +459,40 @@ public class MaterialDataStorage : MonoBehaviour
     {
         return Houses;
     }
+
+    public void DeRegisterSource(Type type, ResourceSourceBase source )
+    {
+        switch (type.Name)
+        {
+            case "TreeResource":
+                List<TreeResource> woodList = WoodResources.ToList();
+                woodList.Remove((TreeResource)source);
+                WoodResources = woodList.ToArray();                
+                break;
+            case "StoneResource":
+                List<StoneResource> stoneList = StoneResources.ToList();
+                stoneList.Remove((StoneResource)source);
+                StoneResources = stoneList.ToArray();
+                break;
+            case "MetalResource":
+                List<MetalResource> metalList = MetalResources.ToList();
+                metalList.Remove((MetalResource)source);
+                MetalResources = metalList.ToArray();
+                break;
+            case "WaterResource":
+                List<WaterResource> waterList = WaterResources.ToList();
+                waterList.Remove((WaterResource)source);
+                WaterResources = waterList.ToArray();
+                break;
+            case "FoodResource":
+                List<FoodResource> foodList = FoodResources.ToList();
+                foodList.Remove((FoodResource)source);
+                FoodResources = foodList.ToArray();
+                break;
+            default:
+                //Unexpected resource types
+                break;
+        }
+        Debug.Log($"Removed {source.name} from {type.Name}");
+    }
 }

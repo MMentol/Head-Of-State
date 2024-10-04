@@ -56,6 +56,7 @@ public class StructureWindow : MonoBehaviour
         DemolishButton.onClick.AddListener(() => SelectedStructure._tile.DestroyStructure());
         DemolishButton.onClick.AddListener(() => gameObject.SetActive(false));
         //Clear Upgrade Button Listeners
+        UpgradeButton.interactable = false;
         UpgradeButton.onClick.RemoveAllListeners();
         //Structure Specific Details
         if (house != null)

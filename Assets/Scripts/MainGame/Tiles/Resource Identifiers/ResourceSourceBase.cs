@@ -58,5 +58,11 @@ namespace GridMap.Resources
             yield return new WaitForSeconds(1);
             this.gameObject.GetComponent<Structure>()._tile.DestroyStructure();
         }
+
+        private void OnDestroy()
+        {
+            this.rawMaterialAmount = 0;
+            MaterialDataStorage.Instance.DeRegisterSource(this.GetType(), this);
+        }
     }
 }

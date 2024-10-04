@@ -37,7 +37,33 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                     if (closest == null)
                         return null;
                 }*/
+            if (closest.GetType() == typeof(WaterResource))
+            {
+                //Debug.Log("found water: " +closest);
+                return new TransformTarget(WalkableSource(agent, closest));
+
+            }
             return new TransformTarget(closest.transform);
+        }
+
+        private Transform WalkableSource(IMonoAgent agent, TSource closestSource)
+        {
+            var pathfinding = agent.transform.GetComponent<HumanPathfinding>();
+
+            var waterSource = closestSource.transform.GetComponent<Tile>();
+            var neighbours = pathfinding.GetNeighbourList(waterSource);
+
+            foreach (var neighbour in neighbours)
+            {
+                //Debug.Log("neibour:" + neighbour + " "+ (neighbour.isWalkable));
+                if (neighbour.isWalkable)
+                {
+                    
+                    return neighbour.transform;
+
+                };
+            }
+            return waterSource.transform;
         }
 
     }

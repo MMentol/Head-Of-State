@@ -18,14 +18,14 @@ public class lookForBreedHomeTask : Node
 
     public override NodeState Evaluate()
     {
-        this.houses = MaterialDataStorage.Instance.GetHouses();
+        this.houses = MaterialDataStorage.Instance.Houses;
 
         Debug.Log("house " + houses.Length);
         object t = GetData("bhome");
         if (t == null)
         {
 
-            var closest = this.houses
+            var closest = houses
                 .Where(home => home.PeopleInside.Count < home.Capacity)
                 .OrderBy(x => Vector3.Distance(_transform.position, x.transform.position))
                 .FirstOrDefault();

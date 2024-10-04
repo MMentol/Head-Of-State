@@ -32,7 +32,8 @@ public class checkForWoodStorageTask : Node
         if (woodStorage == null || woodStorage.Length <= 1 )
         {
             state = NodeState.FAILURE;
-            ClearData("random");
+            parent.parent.SetData("random", -1);
+
 
             return state;
         }
@@ -43,7 +44,8 @@ public class checkForWoodStorageTask : Node
 
         if (closest == null)
         {
-            ClearData("random");
+            parent.parent.SetData("random", -1);
+
 
             state = NodeState.FAILURE; 
            //Debug.Log("checking: " + state);

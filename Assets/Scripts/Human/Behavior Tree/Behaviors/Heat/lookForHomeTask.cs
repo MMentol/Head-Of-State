@@ -18,7 +18,7 @@ public class lookForHomeTask : Node
 
     public override NodeState Evaluate()
     {
-        this.houses = MaterialDataStorage.Instance.GetHouses();
+        this.houses = MaterialDataStorage.Instance.Houses;
 
         Debug.Log("house " + houses.Length);
         object t = GetData("home");

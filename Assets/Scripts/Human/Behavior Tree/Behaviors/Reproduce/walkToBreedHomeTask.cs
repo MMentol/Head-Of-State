@@ -25,6 +25,7 @@ public class walkToBreedHomeTask : Node
         if(target == null)
         {
             ClearData("bhome");
+            return NodeState.FAILURE;
         }
 
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)

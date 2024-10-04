@@ -21,6 +21,25 @@ namespace Cinaed.GOAP.Complex.Actions
                 return;
 
             data.Source = transformTarget.Transform.GetComponent<ResourceSourceBase>();
+
+            if(data.Source == null)
+            {
+                Debug.Log("Rechecking Water");
+
+                var pathfinding = agent.transform.GetComponent<HumanPathfinding>();
+                var currTile = transformTarget.Transform.GetComponent<Tile>();
+                var neighbours = pathfinding.GetNeighbourList(currTile);
+
+                foreach(var neighbour in neighbours)
+                {
+                    if (neighbour.GetComponent<WaterResource>())
+                    {
+                        data.Source = neighbour.transform.GetComponent<WaterResource>();
+                        break;
+                    }
+                }
+
+            }
             data.Source.SetOccupied(agent.gameObject);
             //Inventory
             data.Inventory = agent.GetComponent<Inventory>();

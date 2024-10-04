@@ -38,6 +38,8 @@ public class sleepTask : Node
             //if (harvested > 0)
             //    this.inventory.addtoinventory(resource, harvested);
             houseTile.EnterHouse(_hStats);
+            houseTile.UpdateCurrentHouse(_hStats);
+
             houseTile.NapTime(_hStats);
             houseTile.LeaveHouse(_hStats);
             state = NodeState.SUCCESS;

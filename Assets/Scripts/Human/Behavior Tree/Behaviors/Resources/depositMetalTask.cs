@@ -52,7 +52,7 @@ public class depositMetalTask : Node
             {
                 ClearData("metalStorage");
                 ClearData("metal");
-                ClearData("random");
+                parent.parent.SetData("random", -1);
             }
 
 

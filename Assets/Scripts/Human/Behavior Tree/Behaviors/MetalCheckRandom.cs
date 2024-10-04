@@ -24,7 +24,11 @@ public class MetalCheckRandom : Node
     public override NodeState Evaluate()
     {
         var randMat = (int)GetData("random");
-
+        
+        if (randMat == -1)
+        {
+            return NodeState.FAILURE;
+        }
 
 
         if (randMat == 1)

@@ -25,6 +25,10 @@ public class StoneCheckRandom : Node
     {
         var randMat = (int)GetData("random");
 
+        if (randMat == -1)
+        {
+            return NodeState.FAILURE;
+        }
 
         if (randMat == 2)
         {

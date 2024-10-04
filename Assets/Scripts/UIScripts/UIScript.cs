@@ -168,8 +168,6 @@ public class UIScript : MonoBehaviour
         float intTime = time;
         int minutes = Mathf.FloorToInt(intTime / 60);
         int seconds = Mathf.FloorToInt(intTime % 60);
-        float fraction = time * 1000;
-        fraction = fraction % 1000;
         return string.Format ("{0:00}:{1:00}", minutes, seconds);
     }
 

@@ -182,11 +182,6 @@ MonoBehaviour:
   _metalCost: 0
   _foodCost: 0
   _waterCost: 0
-  StructNameTxt: {fileID: 0}
-  ResidentsTxt: {fileID: 0}
-  StorageTxt: {fileID: 0}
-  stor: {fileID: 0}
-  house: {fileID: 0}
 --- !u!114 &3793514890588155938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0cbf8c5d6f07e429b42a26edefb247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBound: 10000
+  maxBound: 20
   rawMaterialAmount: 0
   toDestroy: 0
   occupant: {fileID: 0}

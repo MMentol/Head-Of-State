@@ -56,7 +56,7 @@ public class StructureWindow : MonoBehaviour
         DemolishButton.onClick.AddListener(() => SelectedStructure._tile.DestroyStructure());
         DemolishButton.onClick.AddListener(() => gameObject.SetActive(false));
         //Clear Upgrade Button Listeners
-        UpgradeButton.interactable = false;
+        UpgradeButton.interactable = true;
         UpgradeButton.onClick.RemoveAllListeners();
         //Structure Specific Details
         if (house != null)
@@ -73,12 +73,16 @@ public class StructureWindow : MonoBehaviour
 
             //Upgrade Materials
             int nextUpg = stor.currentLevel + 1;
-            if (nextUpg < stor.CapacityTiers.Length)
+            if (nextUpg < stor.CapacityTiers.Length) {
                 UpgradeMaterials.text = $"Wood:{stor.WoodUpgradeCost[nextUpg]}\r\n\r\n" +
                 $"Stone:{stor.StoneUpgradeCost[nextUpg]}\r\n\r\n" +
                 $"Metal:{stor.MetalUpgradeCost[nextUpg]}";
-            else
-            {
+
+                if(MaterialDataStorage.Instance.Wood < stor.WoodUpgradeCost[nextUpg] || MaterialDataStorage.Instance.Stone < stor.StoneUpgradeCost[nextUpg] || MaterialDataStorage.Instance.Stone < stor.MetalUpgradeCost[nextUpg]) {
+                    UpgradeButton.interactable = false;
+                }
+            }
+            else  {
                 UpgradeMaterials.text = "Max upgrade reached.";
                 UpgradeButton.interactable = false;
             }

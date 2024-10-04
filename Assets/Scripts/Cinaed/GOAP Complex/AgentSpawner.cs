@@ -85,8 +85,8 @@ namespace Cinaed.GOAP.Complex
                 if (customBounds.y > grid.GetHeight() - 1)
                     customBounds.y = grid.GetHeight() - 1;
 
-                randomX = Random.Range(0, customBounds.x);
-                randomY = Random.Range(0, customBounds.y);
+                randomX = Random.Range(40, customBounds.x + 40);
+                randomY = Random.Range(40, customBounds.y + 40);
                 //Debug.Log($"CUSTOM X: {randomX}, Y: {randomY}");
                 Tile tile = grid.GetTileAtPos(new Vector2(Mathf.Round(randomX), Mathf.Round(randomY)));
                 //Debug.Log($"Tile Pos: {tile.transform.position}");

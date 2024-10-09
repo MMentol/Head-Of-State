@@ -8,6 +8,7 @@ public class Human : MonoBehaviour
     private string _name;
     private HumanStats stats;
     public float ageLimit;
+    public float gracePeriod = 15;
 
 
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class Human : MonoBehaviour
     public void Die()
     {
         //dies
-        if(stats._age >= ageLimit)
+        if(stats._age >= ageLimit || stats.deathTimer>= gracePeriod)
         {
             Destroy(gameObject);
             MaterialDataStorage.Instance.Census();

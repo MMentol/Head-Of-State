@@ -21,6 +21,8 @@ public class HumanStats : MonoBehaviour
     public float canBreed = 1;
     public House currentHouse = null;
 
+    public float deathTimer = 0;
+
     public float statsRandomizer;
 
     public Animator anim;
@@ -44,18 +46,35 @@ public class HumanStats : MonoBehaviour
         updatePickaxe();
         updateBucket();
         RefractoryPeriod();
-        if (this._age > 3) {
+        
+        statUnfullfilled();
+
+        if (this._age > 3)
+        {
             inBabyPhase = 0;
             anim.SetBool("isBaby", false);
-        } else {
+        }
+        else
+        {
             anim.SetBool("isBaby", true);
         }
+
+        
+    }
+
+    private void statUnfullfilled()
+    {
+        if (this._hunger <= 0 || this._thirst <= 0) deathTimer += Time.fixedDeltaTime;
+        else deathTimer = 0;
     }
 
     public void getHungry()
     {
         this._hunger += Time.fixedDeltaTime * 0.5f * statsRandomizer;
         if (this._hunger >= 100) this._hunger = 100;
+
+        
+
     }
     public void getThirsty()
     {
@@ -65,12 +84,15 @@ public class HumanStats : MonoBehaviour
     public void getHot()
     {
         this._heat -= Time.fixedDeltaTime * 0.05f * statsRandomizer;
-        if (this._heat <= 0) this._heat = 0;
+        this._heat = Mathf.Clamp(this._heat, 0, 100);
+
+
+
     }
     public void getSleepy(float energyUsed)
     {
         this._energy -= Time.fixedDeltaTime * energyUsed * statsRandomizer;
-        if (this._energy <= 0) this._energy = 0;
+        this._energy = Mathf.Clamp(this._energy, 0, 100);
     }
 
     public void getOlder()

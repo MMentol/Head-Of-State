@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe78dca168ccca249acb466fa38ed2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goap: 0
+  bt: 0
+  idle: 0
 --- !u!114 &8455184990884427051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +160,7 @@ MonoBehaviour:
   humanStats: {fileID: 0}
   randomMoveDistance: 5
   debugLog: 0
+  isBt: 0
   testx: 0
   testy: 0
 --- !u!114 &7002866369433048526
@@ -269,6 +273,7 @@ MonoBehaviour:
   breedCooldown: 30
   canBreed: 1
   currentHouse: {fileID: 0}
+  statsRandomizer: 0
   anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
 --- !u!114 &6538967730826234972

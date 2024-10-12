@@ -46,7 +46,12 @@ namespace Cinaed.GOAP.Complex
             Debug.Log("spawnPos:" + position);
             var agent = Instantiate(this.agentPrefab, position, Quaternion.identity, gameObject.transform);
             
-            if (!useBT) agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+            if (!useBT){ 
+                agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+                agent.GetComponent<TextUpdate>().goap = true;
+            } else {
+                agent.GetComponent<TextUpdate>().bt = true;
+            }
             agent.SetActive(true);
 
             agent.transform.name = $"Agent - {agent.GetInstanceID()}";
@@ -61,7 +66,12 @@ namespace Cinaed.GOAP.Complex
         {
             var agent = Instantiate(this.agentPrefab, this.GetRandomPosition(), Quaternion.identity, gameObject.transform);
 
-            if(!useBT)agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+            if (!useBT){ 
+                agent.GetComponent<AgentBehaviour>().GoapSet = this.goapRunner.GetGoapSet(setId);
+                agent.GetComponent<TextUpdate>().goap = true;
+            } else {
+                agent.GetComponent<TextUpdate>().bt = true;
+            }
             agent.SetActive(true);
 
             agent.transform.name = $"Agent - {agent.GetInstanceID()}";

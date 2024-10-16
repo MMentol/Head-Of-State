@@ -20,6 +20,7 @@ public class reproduceTask : Node
     public reproduceTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         this._hStats = transform.GetComponent<HumanStats>();
     }
 
@@ -38,6 +39,7 @@ public class reproduceTask : Node
 
         if (_transform.position.Equals(house.transform.position))
         {
+            rootTree.currentAction = "reproduce";
             if (house.PeopleInside.Count < house.Capacity && _hStats.insideHouse == 0f)
             {
                 house.UpdateCurrentHouse(_hStats);

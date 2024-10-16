@@ -21,6 +21,7 @@ public class depositStoneTask : Node
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
+        rootTree = transform.GetComponent<HumanBT>();
         this.inventory = transform.GetComponent<Inventory>();
 
     }
@@ -35,6 +36,7 @@ public class depositStoneTask : Node
        // Debug.Log("Capacity: " + ((float)stone.Count / (float)stone.Capacity));
         if (_transform.position.Equals(stone.transform.position))
         {
+            rootTree.currentAction = "depositStone";
             //add food to human
             //remove food from tile
             StoneStorage stoneStorage = stone.GetComponent<StoneStorage>();

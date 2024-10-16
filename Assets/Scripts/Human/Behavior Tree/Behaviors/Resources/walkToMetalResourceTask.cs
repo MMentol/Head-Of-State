@@ -16,6 +16,7 @@ public class walkToMetalResourceTask : Node
 
     public walkToMetalResourceTask(Transform transform)
     {
+        rootTree = transform.GetComponent<HumanBT>();
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
     }
@@ -30,7 +31,7 @@ public class walkToMetalResourceTask : Node
             Debug.Log("statewalk : YES " + target.transform.position);
 
         }
-
+        rootTree.currentAction = "walkToMetalResource";
         state = NodeState.RUNNING;
         return state;
     }

@@ -16,6 +16,7 @@ public class walkToWaterTask : Node
 
     public walkToWaterTask(Transform transform)
     {
+        rootTree = transform.GetComponent<HumanBT>();
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
     }
@@ -29,6 +30,7 @@ public class walkToWaterTask : Node
             humanController.SetTargetPosition(target.transform.position);
 
         }
+        rootTree.currentAction = "walkToWater";
         state = NodeState.RUNNING;
         return state;
     }

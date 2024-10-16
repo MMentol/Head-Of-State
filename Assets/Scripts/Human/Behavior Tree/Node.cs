@@ -19,6 +19,8 @@ namespace BehaviorTree
 
         private Dictionary<string, object> _dataContext = new Dictionary<string, object>();
 
+        public Tree rootTree;
+
         public Node()
         {
             parent = null;

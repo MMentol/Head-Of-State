@@ -21,6 +21,7 @@ public class depositMetalTask : Node
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
+        rootTree = transform.GetComponent<HumanBT>();
         this.inventory = transform.GetComponent<Inventory>();
 
     }
@@ -35,6 +36,7 @@ public class depositMetalTask : Node
         ///Debug.Log("Capacity: " + ((float)metal.Count / (float)metal.Capacity));
         if (_transform.position.Equals(metal.transform.position))
         {
+            rootTree.currentAction = "depositMetal";
             //add food to human
             //remove food from tile
             MetalStorage metalStorage = metal.GetComponent<MetalStorage>();

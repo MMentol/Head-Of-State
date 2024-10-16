@@ -8,6 +8,7 @@ namespace BehaviorTree
     {
 
         private Node _root = null;
+        public string currentAction = null;
 
         protected void Start()
         {

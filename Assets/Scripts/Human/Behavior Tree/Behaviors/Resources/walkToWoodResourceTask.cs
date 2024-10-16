@@ -17,6 +17,7 @@ public class walkToWoodResourceTask : Node
     public walkToWoodResourceTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         humanController = transform.GetComponent<HumanController>();
     }
 
@@ -30,7 +31,7 @@ public class walkToWoodResourceTask : Node
             Debug.Log("statewalk : YES "+ target.transform.position);
 
         }
-
+        rootTree.currentAction = "walkToWoodResource";
         state = NodeState.RUNNING;
         return state;
     }

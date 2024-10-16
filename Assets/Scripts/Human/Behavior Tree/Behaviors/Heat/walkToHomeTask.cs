@@ -16,6 +16,7 @@ public class walkToHomeTask : Node
     public walkToHomeTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         humanController = transform.GetComponent<HumanController>();
     }
 
@@ -29,7 +30,7 @@ public class walkToHomeTask : Node
             Debug.Log("statewalk : YES " + target.transform.position);
 
         }
-
+        rootTree.currentAction = "walkToHouseToSleep";
         state = NodeState.RUNNING;
         return state;
     }

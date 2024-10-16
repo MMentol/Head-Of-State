@@ -25,6 +25,8 @@ public class getFoodTask : Node
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
         inventory = transform.GetComponent<Inventory>();
+        rootTree = transform.GetComponent<HumanBT>();
+
     }
 
     public override NodeState Evaluate()
@@ -37,6 +39,7 @@ public class getFoodTask : Node
 
         if (_transform.position.Equals(foodTile.transform.position)&& _hStats._hunger>=20)
         {
+            rootTree.currentAction = "getFood";
             //add food to human
             //remove food from tile
             FoodResource food = foodTile.GetComponent<FoodResource>();

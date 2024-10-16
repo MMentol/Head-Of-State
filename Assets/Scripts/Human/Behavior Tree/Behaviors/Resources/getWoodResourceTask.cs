@@ -23,6 +23,7 @@ public class getWoodResourceTask : Node
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
+        rootTree = transform.GetComponent<HumanBT>();
         _hStats = transform.GetComponent<HumanStats>();
         this.inventory = transform.GetComponent<Inventory>();
     }
@@ -42,6 +43,7 @@ public class getWoodResourceTask : Node
         }
         if (_transform.position.Equals(woodTile.transform.position))
         {
+            rootTree.currentAction = "getWood";
             //add food to human
             //remove food from tile
             //TreeResource wood = woodTile.GetComponent<TreeResource>();

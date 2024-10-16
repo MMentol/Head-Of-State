@@ -17,6 +17,7 @@ public class walkToMetalStorageTask : Node
     public walkToMetalStorageTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         humanController = transform.GetComponent<HumanController>();
     }
 
@@ -32,6 +33,7 @@ public class walkToMetalStorageTask : Node
             humanController.SetTargetPosition(storage.transform.position);
 
         }
+        rootTree.currentAction = "walkToMetalStorage";
         state = NodeState.RUNNING;
         Debug.Log("statewalks :" + state);
 

@@ -16,6 +16,7 @@ public class walkToBreedHomeTask : Node
     public walkToBreedHomeTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         humanController = transform.GetComponent<HumanController>();
     }
 
@@ -33,7 +34,7 @@ public class walkToBreedHomeTask : Node
             humanController.SetTargetPosition(target.transform.position);
 
         }
-
+        rootTree.currentAction = "walkToHomeToReproduce";
         state = NodeState.RUNNING;
         return state;
     }

@@ -21,6 +21,7 @@ public class getWaterTask : Node
 
     public getWaterTask(Transform transform)
     {
+        rootTree = transform.GetComponent<HumanBT>();
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
@@ -42,6 +43,7 @@ public class getWaterTask : Node
         //}
         if (Vector3.Distance(_transform.position, waterTile.transform.position)<=1.5f && _hStats._thirst>=20)
         {
+            rootTree.currentAction = "getWater";
             
             //add water to human
             //remove water from tile

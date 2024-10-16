@@ -19,6 +19,7 @@ public class sleepTask : Node
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
+        rootTree = transform.GetComponent<HumanBT>();
         _hStats = transform.GetComponent<HumanStats>();
     }
 
@@ -32,6 +33,7 @@ public class sleepTask : Node
         
         if (_transform.position.Equals(houseTile.transform.position))
         {
+            rootTree.currentAction = "sleep";
             //add food to human
             //remove food from tile
 

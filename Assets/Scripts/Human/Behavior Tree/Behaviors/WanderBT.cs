@@ -30,7 +30,8 @@ public class WanderBT : Node
         humanController = transform.GetComponent<HumanController>();
         _animator = transform.GetComponent<Animator>();
 
-        
+        rootTree = transform.GetComponent<HumanBT>();
+
 
     }
 
@@ -71,8 +72,8 @@ public class WanderBT : Node
                 
             }
         }
-        
 
+        rootTree.currentAction = "wander";
         return NodeState.RUNNING;
     }
 

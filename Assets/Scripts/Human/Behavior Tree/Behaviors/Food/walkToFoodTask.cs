@@ -14,8 +14,11 @@ public class walkToFoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+
+
     public walkToFoodTask(Transform transform)
     {
+        rootTree = transform.GetComponent<HumanBT>();
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
     }
@@ -30,7 +33,8 @@ public class walkToFoodTask : Node
             Debug.Log("statewalk : YES " + target.transform.position);
 
         }
-
+        rootTree.currentAction = "walkToFood";
+        
         state = NodeState.RUNNING;
         return state;
     }

@@ -21,6 +21,7 @@ public class depositWoodTask : Node
     {
         _transform = transform;
         humanController = transform.GetComponent<HumanController>();
+        rootTree = transform.GetComponent<HumanBT>();
         this.inventory = transform.GetComponent<Inventory>();
 
     }
@@ -35,6 +36,7 @@ public class depositWoodTask : Node
         Debug.Log("Capacity: " + ((float)wood.Count / (float)wood.Capacity));
         if (_transform.position.Equals(wood.transform.position))
         {
+            rootTree.currentAction = "depositWood";
             //add food to human
             //remove food from tile
             WoodStorage woodStorage = wood.GetComponent<WoodStorage>();

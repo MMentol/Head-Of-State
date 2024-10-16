@@ -22,6 +22,7 @@ public class getMetalResourceTask : Node
     public getMetalResourceTask(Transform transform)
     {
         _transform = transform;
+        rootTree = transform.GetComponent<HumanBT>();
         humanController = transform.GetComponent<HumanController>();
         _hStats = transform.GetComponent<HumanStats>();
         this.inventory = transform.GetComponent<Inventory>();
@@ -42,6 +43,7 @@ public class getMetalResourceTask : Node
         }
         if (_transform.position.Equals(metalTile.transform.position))
         {
+            rootTree.currentAction = "getMetal";
             //add food to human
             //remove food from tile
             //TreeResource metal = metalTile.GetComponent<TreeResource>();

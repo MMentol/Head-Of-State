@@ -10,6 +10,7 @@ public class statsFulfilledTask : Node
 
     private Transform _lastTarget;
     public HumanStats _hStats;
+    
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
@@ -23,7 +24,7 @@ public class statsFulfilledTask : Node
 
     public override NodeState Evaluate()
     {
-        if (_hStats._happiness > 50 && _hStats.breedCooldown <= 0)
+        if (_hStats._happiness > 50 && _hStats.breedCooldown <= 0 && MaterialDataStorage.Instance.Population < MaterialDataStorage.Instance.MaxPopulation)
             state = NodeState.SUCCESS;
         else state = NodeState.FAILURE;
         return state;

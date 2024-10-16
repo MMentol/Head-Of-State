@@ -22,7 +22,6 @@ namespace Cinaed.GOAP.Complex.Behaviours
     {
         private AgentBehaviour agent;
         private Inventory inventory;
-        public MaterialDataStorage MaterialDataStorage;
         public MaterialPercentage MaterialPercentage;
         public Human human;
         public HumanStats humanStats;
@@ -39,7 +38,6 @@ namespace Cinaed.GOAP.Complex.Behaviours
             this.agent = this.GetComponent<AgentBehaviour>();
             this.inventory = this.GetComponent<Inventory>();
             this.humanStats = this.GetComponent<HumanStats>();
-            this.MaterialDataStorage = GameObject.FindObjectOfType<MaterialDataStorage>();
             this.MaterialPercentage = GameObject.FindObjectOfType<MaterialPercentage>();
 
             context = new Context(this);
@@ -149,35 +147,35 @@ namespace Cinaed.GOAP.Complex.Behaviours
                     return;
                 }
             //Resources in Inventory
-            float resourcePercentage = (float) this.MaterialDataStorage.Wood / (float) this.MaterialDataStorage.WoodCapacity * 100;
+            float resourcePercentage = (float)MaterialDataStorage.Instance.Wood / (float)MaterialDataStorage.Instance.WoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCWoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Wood>>(false);
                 return;
             }
 
-            resourcePercentage = (float) this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity * 100;
+            resourcePercentage = (float)MaterialDataStorage.Instance.Stone / (float)MaterialDataStorage.Instance.StoneCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCStoneThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Stone>>(false);
                 return;
             }
 
-            resourcePercentage = (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity * 100;
+            resourcePercentage = (float)MaterialDataStorage.Instance.Metal / (float)MaterialDataStorage.Instance.MetalCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCMetalThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Metal>>(false);
                 return;
             }
 
-            resourcePercentage = (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity * 100;
+            resourcePercentage = (float)MaterialDataStorage.Instance.Water / (float)MaterialDataStorage.Instance.WaterCapacity * 100;
     
             if (resourcePercentage < this.MaterialPercentage.NPCWaterThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Water>>(false);
                 return;
             }
-            resourcePercentage = (float)this.MaterialDataStorage.Food / (float)this.MaterialDataStorage.FoodCapacity * 100;
+            resourcePercentage = (float)MaterialDataStorage.Instance.Food / (float)MaterialDataStorage.Instance.FoodCapacity * 100;
             if (resourcePercentage < this.MaterialPercentage.NPCFoodThreshold)
             {
                 this.agent.SetGoal<GatherMaterialGoal<Food>>(false);
@@ -276,12 +274,12 @@ namespace Cinaed.GOAP.Complex.Behaviours
         #region UtilitySide
         private void UpdateContext()
         {
-            context.SetData("foodAmount", (float)this.MaterialDataStorage.Food /(float)this.MaterialDataStorage.FoodCapacity);
-            context.SetData("waterAmount", (float)this.MaterialDataStorage.Water / (float)this.MaterialDataStorage.WaterCapacity);
-            context.SetData("woodAmount", (float)this.MaterialDataStorage.Wood / (float)this.MaterialDataStorage.WoodCapacity);
-            context.SetData("stoneAmount", (float)this.MaterialDataStorage.Stone / (float)this.MaterialDataStorage.StoneCapacity);
-            context.SetData("metalAmount", (float)this.MaterialDataStorage.Metal / (float)this.MaterialDataStorage.MetalCapacity);
-            context.SetData("maxPopulation", (float)this.MaterialDataStorage.Population / (float)this.MaterialDataStorage.MaxPopulation);
+            context.SetData("foodAmount", (float)MaterialDataStorage.Instance.Food /(float)MaterialDataStorage.Instance.FoodCapacity);
+            context.SetData("waterAmount", (float)MaterialDataStorage.Instance.Water / (float)MaterialDataStorage.Instance.WaterCapacity);
+            context.SetData("woodAmount", (float)MaterialDataStorage.Instance.Wood / (float)MaterialDataStorage.Instance.WoodCapacity);
+            context.SetData("stoneAmount", (float)MaterialDataStorage.Instance.Stone / (float)MaterialDataStorage.Instance.StoneCapacity);
+            context.SetData("metalAmount", (float)MaterialDataStorage.Instance.Metal / (float)MaterialDataStorage.Instance.MetalCapacity);
+            context.SetData("maxPopulation", (float)MaterialDataStorage.Instance.Population / (float)MaterialDataStorage.Instance.MaxPopulation);
             context.SetData("hunger", humanStats._hunger/100f);
             context.SetData("thirst", humanStats._thirst/100f);
             context.SetData("happiness", humanStats._happiness/100f);

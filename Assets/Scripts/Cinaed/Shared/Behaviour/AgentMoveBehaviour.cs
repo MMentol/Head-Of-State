@@ -1,5 +1,6 @@
 using CrashKonijn.Goap.Behaviours;
 using CrashKonijn.Goap.Interfaces;
+using Demos.Complex.Behaviours;
 using UnityEngine;
 
 namespace Cinaed.GOAP.Behaviours
@@ -75,7 +76,12 @@ namespace Cinaed.GOAP.Behaviours
             
             if (this.currentTarget.Position == Vector3.zero) {
                 anim.SetBool("isWalking", false);
-                if (logDebug) {   Debug.Log("Target was destroyed.");   }
+                if (agent.CurrentAction.GetData().Target == null)
+                {
+                    agent.EndAction();
+                    agent.SetGoal<WanderGoal>(false);
+                    if (logDebug) {   Debug.Log("Target was destroyed.");   }
+                }
             }
             humanController.HandleMovement();
             //this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.currentTarget.Position.x, this.transform.position.y, this.currentTarget.Position.z), Time.deltaTime);

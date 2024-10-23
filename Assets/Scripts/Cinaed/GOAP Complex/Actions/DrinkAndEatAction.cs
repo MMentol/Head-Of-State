@@ -14,6 +14,9 @@ namespace Cinaed.GOAP.Complex.Actions
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context) 
         {
+            if (data.Stats._thirst <= 0)
+                return ActionRunState.Stop;
+
             if (data.Target == null)
                 return ActionRunState.Stop;
 
@@ -22,9 +25,13 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            data.Stats._thirst -= 25;
+            data.Stats._thirst = Mathf.Max(data.Stats._thirst - 25, 0);
+            data.Timer = 1f;
 
-            return ActionRunState.Stop;
+            if (data.Stats._thirst <= 0)
+                return ActionRunState.Stop;
+
+            return ActionRunState.Continue;
         }
 
         public override void Start(IMonoAgent agent, Data data) 
@@ -51,6 +58,9 @@ namespace Cinaed.GOAP.Complex.Actions
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
         {
+            if (data.Stats._hunger <= 0)
+                return ActionRunState.Stop;
+
             if (data.Target == null)
                 return ActionRunState.Stop;
 
@@ -59,9 +69,14 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            data.Stats._hunger -= 25;
+            data.Stats._hunger = Mathf.Max(data.Stats._hunger - 25, 0);
+            data.Timer = 1f;
 
-            return ActionRunState.Stop;
+            if (data.Stats._hunger <= 0)
+                return ActionRunState.Stop;
+
+            return ActionRunState.Continue;
+
         }
 
         public override void Start(IMonoAgent agent, Data data)
@@ -84,7 +99,7 @@ namespace Cinaed.GOAP.Complex.Actions
     {
         public override void Created() { }
 
-        public override void End(IMonoAgent agent, Data data) { }
+        public override void End(IMonoAgent agent, Data data) { if (data.House != null) data.House.LeaveHouse(data.Stats); }
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
         {
@@ -94,7 +109,7 @@ namespace Cinaed.GOAP.Complex.Actions
                 return ActionRunState.Stop;
             if (data.House != data.Stats.currentHouse)
             {
-                Debug.Log($"Data: {data.House} Cur:{data.Stats.currentHouse}");
+                //Debug.Log($"Data: {data.House} Cur:{data.Stats.currentHouse}");
                 return ActionRunState.Stop;
             }
 

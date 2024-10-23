@@ -9746,7 +9746,7 @@ MonoBehaviour:
   MetalUpgradeCost: 0000000000000000050000000a000000
   currentLevel: 0
   Capacity: 0
-  Count: 100
+  Count: 25
   totalCount: 0
 --- !u!1 &5013667643365939032
 GameObject:

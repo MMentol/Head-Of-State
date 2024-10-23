@@ -90,7 +90,7 @@ namespace Cinaed.GOAP.Complex.Behaviours
             AIAction bestAction = null;
             Dictionary<AIAction, float> utilityActions = new();
             float highestUtility = float.MinValue;
-            AIAction[] bestActions = new AIAction[3];
+            //AIAction[] bestActions = new AIAction[3];
 
             
 

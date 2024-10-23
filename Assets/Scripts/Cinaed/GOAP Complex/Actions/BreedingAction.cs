@@ -30,8 +30,7 @@ namespace Cinaed.GOAP.Complex.Actions
             data.Timer = 5f;
         }
 
-        public override void End(IMonoAgent agent, Data data)
-        { }
+        public override void End(IMonoAgent agent, Data data) { if (data.House != null) data.House.LeaveHouse(data.Human); }
 
         public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
         {
@@ -52,9 +51,9 @@ namespace Cinaed.GOAP.Complex.Actions
             }
 
             //Find partner
-            HumanStats partner = data.House.PeopleInside.Where(h => data.House.IsHappy(h) && h != data.Human && h.breedCooldown <= 0).FirstOrDefault();
+            data.Partner = data.House.PeopleInside.Where(h => data.House.IsHappy(h) && h != data.Human && h.breedCooldown <= 0).FirstOrDefault();
 
-            if (partner == null)
+            if (data.Partner == null)
                 return ActionRunState.Continue;
 
             data.Timer -= context.DeltaTime;
@@ -62,19 +61,19 @@ namespace Cinaed.GOAP.Complex.Actions
             if (data.Timer > 0)
                 return ActionRunState.Continue;
 
-            if (data.House.MakeNewHuman(data.Human, partner))
+            if (data.House.MakeNewHuman(data.Human, data.Partner))
             {
                 GameObject.FindObjectOfType<MaterialDataStorage>().TallyMaterials();
                 float breedCooldown = 60f;
                 data.Human.breedCooldown = breedCooldown;
-                partner.breedCooldown = breedCooldown;
+                data.Partner.breedCooldown = breedCooldown;
                 data.Human._energy = 100;
-                partner._energy = 100;
-                partner._heat = 100;
+                data.Partner._energy = 100;
+                data.Partner._heat = 100;
 
             }
             data.House.LeaveHouse(data.Human);
-            data.House.LeaveHouse(partner);
+            data.House.LeaveHouse(data.Partner);
 
             return ActionRunState.Stop;
         }
@@ -85,6 +84,7 @@ namespace Cinaed.GOAP.Complex.Actions
             public ITarget Target { get; set; }
             public House House { get; set; }
             public HumanStats Human { get; set; }
+            public HumanStats Partner { get; set; }
             public float Timer { get; set; }
         }
     }

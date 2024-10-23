@@ -76,6 +76,9 @@ public class House : MonoBehaviour
         if (h1._happiness >= happinessRequired && h2._happiness >= happinessRequired)
             Spawner.CreateNewHuman(AgentIds.Human, Random.ColorHSV(), gameObject.transform.position);
 
+        LeaveHouse(h1);
+        LeaveHouse(h2);
+
         return true;
     }
 
@@ -86,5 +89,6 @@ public class House : MonoBehaviour
 
         human._energy += HouseSettings.RestingEnergyBenefit; //JOSEP SET VALUE
         if (human._energy > 100) { human._energy = 100; }
+        LeaveHouse(human);
     }
 }

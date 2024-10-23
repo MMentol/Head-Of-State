@@ -102,8 +102,9 @@ public class HumanStats : MonoBehaviour
 
     public void RefractoryPeriod()
     {
-        breedCooldown -= Time.fixedDeltaTime * statsRandomizer;
-        if (breedCooldown <= 0) canBreed = 1;
+        if (breedCooldown > 0)
+            breedCooldown = Mathf.Max(breedCooldown - (Time.fixedDeltaTime * statsRandomizer), 0);
+        if (breedCooldown <= 0) canBreed = 1; 
         else canBreed = 0;
     }
 

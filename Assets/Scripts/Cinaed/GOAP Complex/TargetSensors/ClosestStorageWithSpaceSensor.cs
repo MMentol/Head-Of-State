@@ -38,7 +38,7 @@ namespace Cinaed.GOAP.Complex.TargetSensors
                         return null;
                 }
 
-            Debug.Log(closest.gameObject.name);
+            //Debug.Log(closest.gameObject.name);
             return new TransformTarget(closest.transform);
         }
 

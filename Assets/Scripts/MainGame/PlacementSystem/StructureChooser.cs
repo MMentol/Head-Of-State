@@ -16,7 +16,8 @@ public class StructureChooser : MonoBehaviour
 
     [Header("Grid")]
     [SerializeField] private GridManager _gridManager;
-    public Tilemap _tilemap;
+    public Tilemap _structTilemap;
+    public Tilemap _resourceTilemap;
 
     [Header("Building Mode Pop-Up")]
     [SerializeField] GameObject textBoxParent;

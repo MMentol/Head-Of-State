@@ -250,7 +250,7 @@ namespace Cinaed.GOAP.Complex.Factories.Extensions
         public static void AddBreedAction(this GoapSetBuilder builder, float condition)
         {
             builder.AddAction<BreedingAction>()
-                .AddCondition<Happiness>(Comparison.GreaterThan, Mathf.RoundToInt(condition))
+                //.AddCondition<Happiness>(Comparison.GreaterThan, Mathf.RoundToInt(condition))
                 .AddCondition<BreedCooldown>(Comparison.SmallerThanOrEqual, 0)
                 .SetTarget<ClosestHouseWithSpace>()
                 .AddEffect<PlayerMaterialPercentage<Population>>(EffectType.Increase);

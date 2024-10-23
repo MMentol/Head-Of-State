@@ -56,6 +56,9 @@ public class MaterialDataStorage : MonoBehaviour
     public TMP_Text WaterTxtCurr;
     public TMP_Text PopulationTxtCurr;
 
+    //Extra
+    private float TimeSinceLastUpdate = 0;
+
     private void Awake()
     {
         //Singleton
@@ -68,10 +71,25 @@ public class MaterialDataStorage : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Application.targetFrameRate = 60;
         UpdateStorageLists();
         UpdateSourcesLists();
         TallyMaterials();
         UpdateText();
+    }
+
+    void FixedUpdate()
+    {
+        if (TimeSinceLastUpdate > 15)
+        {
+            TallyMaterials();
+            TimeSinceLastUpdate = 0;
+        }
+    }
+
+    private void Update()
+    {
+        TimeSinceLastUpdate += Time.deltaTime;
     }
 
     private void OnValidate()
@@ -493,6 +511,6 @@ public class MaterialDataStorage : MonoBehaviour
                 //Unexpected resource types
                 break;
         }
-        Debug.Log($"Removed {source.name} from {type.Name}");
+        //Debug.Log($"Removed {source.name} from {type.Name}");
     }
 }

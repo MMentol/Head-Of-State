@@ -108,7 +108,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUp() 
     {
-        Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} ");
+        //Debug.Log($"Position: ({position.x} , {position.y}) | Type: {tileType.tileTypeName} | Occupied : {isOccupied} ");
     }
 
     public bool PlaceStructure(GameObject placeableStructure, Structure strucProps)
@@ -120,7 +120,7 @@ public class Tile : MonoBehaviour
             {
                 Debug.Log("Deducted Costs.");
                 isOccupied = true;
-                var placedObject = Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._tilemap.transform);
+                var placedObject = Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._structTilemap.transform);
                 _placedStructure = placedObject;
                 Structure objectStructure = placedObject.GetComponent<Structure>();
                 objectStructure.isPlaced = true;
@@ -150,7 +150,7 @@ public class Tile : MonoBehaviour
         if (!isOccupied && canPlaceOn)
         {
             isOccupied = true;
-            var placedObject = Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._tilemap.transform);
+            var placedObject = Instantiate(placeableStructure, gameObject.transform.position, Quaternion.identity, structureChooser._resourceTilemap.transform);
             _placedStructure = placedObject;
             Structure objectStructure = placedObject.GetComponent<Structure>();
             objectStructure.isPlaced = true;
@@ -167,10 +167,10 @@ public class Tile : MonoBehaviour
         if (logDebug) { Debug.Log($"Destroying structure at ({position.x},{position.y})"); }
         if(isOccupied)
         {
+            //Debug.Log($"Destroyed {_placedStructure.name}");
             Destroy(_placedStructure);
             _placedStructure = null;
             isOccupied = false;
-            Debug.Log("Destroyed");
             return true;
         }
         return false;

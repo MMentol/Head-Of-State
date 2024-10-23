@@ -89,7 +89,7 @@ namespace Cinaed
             TextWriter tw = new StreamWriter(filename, true);
             tw.WriteLine(agent + " ," + state + " ," + totalTime);
             tw.Close();
-            Debug.Log(agent + " " + totalTime + " " + state);
+            // Debug.Log(agent + " " + totalTime + " " + state);
             return;
         }
     }

@@ -1,3 +1,8 @@
 Agent Name, Action, Time in Act (In Seconds)
-Agent - -1351452 , ,0
-Agent - -1351510 , ,0
+Agent - -1047744 ,BreedingGoal ,12.3686
+Agent - -1047802 ,EatGoal ,2.183352
+Agent - -1048440 , ,0
+Agent - -1047744 ,GatherMaterialGoal<Stone> ,1.140279
+Agent - -1047744 ,EatGoal ,2.235032
+Agent - -1048382 ,EatGoal ,5.557191
+Agent - -1047802 ,GatherMaterialGoal<Stone> ,7.819223

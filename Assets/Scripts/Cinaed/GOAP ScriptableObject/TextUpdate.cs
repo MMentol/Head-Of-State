@@ -11,6 +11,7 @@ namespace Cinaed
     {
         private TextMeshProUGUI text;
         private AgentBehaviour agent;
+        private HumanBT hBT;
         public string currState;
         string filename = "";
         public bool goap;
@@ -22,6 +23,7 @@ namespace Cinaed
         {
             this.text = this.GetComponentInChildren<TextMeshProUGUI>();
             this.agent = this.GetComponent<AgentBehaviour>();
+            if(bt){this.hBT = this.GetComponent<HumanBT>();}
         }
 
         void Start() {
@@ -40,20 +42,33 @@ namespace Cinaed
                 tw.Close();
                 Debug.Log("BTAgent CSV CREATED");
             }
-            string name = agent.transform.name;
+            string name = transform.parent.name;
         }
 
         private void Update()
         {
-            this.text.text = this.GetText();
+        //    this.text.text = this.GetText();
             if(goap){
-                if(currState == null) currState = this.agent.CurrentGoal.GetType().GetGenericTypeName();
-                if(currState.Equals(this.agent.CurrentGoal.GetType().GetGenericTypeName())) {
+                this.text.text = this.GetText();
+                if(currState == null) currState = this.agent.CurrentAction.GetType().GetGenericTypeName();
+                if(!(this.agent.CurrentAction is null)){
+                    if(currState.Equals(this.agent.CurrentAction.GetType().GetGenericTypeName())) {
+                        timer += Time.deltaTime;
+                    } else {
+                        WriteCSV(name, timer, currState);
+                        timer = 0.0f;
+                        currState = this.agent.CurrentAction.GetType().GetGenericTypeName();
+                    }
+                }
+            }
+            if(bt) {
+                if(currState == null) {currState = hBT.currentAction;}
+                if(currState.Equals(hBT.currentAction)) {
                     timer += Time.deltaTime;
                 } else {
                     WriteCSV(name, timer, currState);
                     timer = 0.0f;
-                    currState = this.agent.CurrentGoal.GetType().GetGenericTypeName();
+                    currState = hBT.currentAction;
                 }
             }
         }
@@ -69,10 +84,12 @@ namespace Cinaed
 
 
         public void WriteCSV(string agent, float totalTime, string state) {
+            string comma = ",";
+            state = state.Replace(",", string.Empty);
             TextWriter tw = new StreamWriter(filename, true);
             tw.WriteLine(agent + " ," + state + " ," + totalTime);
             tw.Close();
-            Debug.Log(agent + " " + totalTime + " " + state);
+            // Debug.Log(agent + " " + totalTime + " " + state);
             return;
         }
     }

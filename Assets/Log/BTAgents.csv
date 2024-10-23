@@ -1,1 +1,6 @@
 Agent Name, Action, Time in Act (In Seconds)
+Agent - -261366 ,reproduce ,0
+Agent - -261920 , ,0
+Agent - -261808 ,wander ,32.29116
+Agent - -261808 ,walkToFood ,0
+Agent - -261808 ,getFood ,0

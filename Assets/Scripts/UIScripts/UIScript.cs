@@ -29,6 +29,7 @@ public class UIScript : MonoBehaviour
 
     [Header("Other Items")]
     [SerializeField] GameObject victory = null;
+    [SerializeField] GameObject lose = null;
     public float time = 0f;
     public int clock = 0;
     public float currTime = 0;
@@ -89,6 +90,9 @@ public class UIScript : MonoBehaviour
         }
         if(time >= 2700) {
             toggleVictory();
+        }
+        if(MaterialDataStorage.Instance.Population <= 0) {
+            toggleLose();
         }
     }
 
@@ -208,6 +212,11 @@ public class UIScript : MonoBehaviour
 
     public void toggleVictory() {
         victory.SetActive(true);
+        Time.timeScale = 0;
+    }
+    
+    public void toggleLose() {
+        lose.SetActive(true);
         Time.timeScale = 0;
     }
 }

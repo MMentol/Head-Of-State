@@ -86,22 +86,22 @@ public class ObjectivesTracker : MonoBehaviour
             objCount++;
         }
         // Objective 6
-        if(Wood >= 300 && Stone >= 150 && Metal >= 120 && objCount == 5){
+        if(Wood >= 300 && Stone >= 150 && Metal >= 80 && objCount == 5){
             WriteCSV(6, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 7
-        if(Pop >= 70 && Stone >= 210 && Metal >= 150 && objCount == 6){
+        if(Pop >= 70 && Stone >= 210 && Metal >= 100 && objCount == 6){
             WriteCSV(7, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 8
-        if(Pop >= 80 && Wood >= 600 && Stone >= 300 && Metal >= 200 && objCount == 7) {
+        if(Pop >= 80 && Wood >= 600 && Stone >= 300 && Metal >= 130 && objCount == 7) {
             WriteCSV(8, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 9
-        if(Wood >= 800 && Stone >= 750 && Metal >= 300 && objCount == 8) {
+        if(Wood >= 800 && Stone >= 750 && Metal >= 180 && objCount == 8) {
             WriteCSV(9, uis.getTime(uis.time));
             objCount++;
         }
@@ -165,27 +165,27 @@ public class ObjectivesTracker : MonoBehaviour
             case 5:
             MaterialObj.text = "Collect\n" + ((Mathf.Clamp(300-Wood, 0, 300))) + " Wood\n"
                                 + ((Mathf.Clamp(150-Stone, 0, 150))) + " Stone\n"
-                                + ((Mathf.Clamp(120-Metal, 0, 120))) + " Metal";
+                                + ((Mathf.Clamp(80-Metal, 0, 80))) + " Metal";
             PopulationObj.text = "";
             break;
 
             case 6:
             MaterialObj.text = "Collect\n" + ((Mathf.Clamp(210-Stone, 0, 210))) + " Stone\n"
-                                + ((Mathf.Clamp(150-Wood, 0, 150))) + " Metal";
+                                + ((Mathf.Clamp(100-Metal, 0, 100))) + " Metal";
             PopulationObj.text = "Reach\n70 Population";
             break;
 
             case 7:
             MaterialObj.text = "Collect\n" + ((Mathf.Clamp(600-Wood, 0, 600))) + " Wood\n"
                                 + ((Mathf.Clamp(300-Stone, 0, 300))) + " Stone\n"
-                                + ((Mathf.Clamp(200-Metal, 0, 200))) + " Metal";
+                                + ((Mathf.Clamp(130-Metal, 0, 130))) + " Metal";
             PopulationObj.text = "Reach\n80 Population";
             break;
 
             case 8:
             MaterialObj.text = "Collect\n" + ((Mathf.Clamp(800-Wood, 0, 800))) + " Wood\n"
                                 + ((Mathf.Clamp(750-Stone, 0, 750))) + " Stone\n"
-                                + ((Mathf.Clamp(300-Metal, 0, 300))) + " Metal";
+                                + ((Mathf.Clamp(180-Metal, 0, 180))) + " Metal";
             PopulationObj.text = "";
             break;
 

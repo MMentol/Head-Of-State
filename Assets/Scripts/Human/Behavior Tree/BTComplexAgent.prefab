@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4177433798054401649}
   - component: {fileID: 8893266055897164644}
   - component: {fileID: 5468543123643039256}
+  - component: {fileID: 4320924821996164870}
   m_Layer: 2
   m_Name: BTComplexAgent
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5669cbf976ce38d439f15cadd50b3c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAction: 
 --- !u!114 &8455184990884427051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ageLimit: 15
+  gracePeriod: 15
 --- !u!114 &4177433798054401649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +147,7 @@ MonoBehaviour:
   breedCooldown: 30
   canBreed: 1
   currentHouse: {fileID: 0}
+  deathTimer: 0
   statsRandomizer: 0
   anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
@@ -175,6 +179,20 @@ MonoBehaviour:
   goap: 0
   bt: 0
   idle: 0
+--- !u!114 &4320924821996164870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31104030825128304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe2865e036b39741a64ccd2c4353ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4483563038361863268}
+  currState: 
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0

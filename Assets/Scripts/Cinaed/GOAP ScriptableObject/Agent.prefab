@@ -170,6 +170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2cee34ed9657e47ab6da8feb7e6229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  shouldMove: 0
+  humanController: {fileID: 0}
+  logDebug: 0
+  anim: {fileID: 0}
 --- !u!114 &2424525501993337959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +202,8 @@ MonoBehaviour:
   logDebug: 1
   size: 100
   used: 0
+  items: []
+  anim: {fileID: 0}
 --- !u!114 &6274344096672448684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe78dca168ccca249acb466fa38ed2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currState: 
+  goap: 0
+  bt: 0
+  idle: 0
 --- !u!1 &5933139961471478912
 GameObject:
   m_ObjectHideFlags: 0

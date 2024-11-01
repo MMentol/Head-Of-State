@@ -6,8 +6,6 @@ using Scripts;
 public class HumanBT : Tree
 {
 
-
-
     protected override Node SetupTree()
     {
 

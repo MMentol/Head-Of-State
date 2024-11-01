@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 4963011506668082560}
   - component: {fileID: 4177433798054401649}
   - component: {fileID: 6538967730826234972}
+  - component: {fileID: 6389146194447097071}
   m_Layer: 2
   m_Name: CinaedComplexAgent
   m_TagString: Untagged
@@ -72,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbac894c6412a3428b45cefffaef29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaterialDataStorage: {fileID: 0}
   MaterialPercentage: {fileID: 0}
   human: {fileID: 0}
   humanStats: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe78dca168ccca249acb466fa38ed2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currState: 
   goap: 0
   bt: 0
   idle: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ageLimit: 15
+  gracePeriod: 15
 --- !u!114 &4177433798054401649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +275,7 @@ MonoBehaviour:
   breedCooldown: 30
   canBreed: 1
   currentHouse: {fileID: 0}
+  deathTimer: 0
   statsRandomizer: 0
   anim: {fileID: 4483563038361863268}
   inventory: {fileID: 0}
@@ -295,6 +298,20 @@ MonoBehaviour:
   humanStats: {fileID: 0}
   villageStats: {fileID: 0}
   logDebug: 0
+--- !u!114 &6389146194447097071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31104030825128304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd2263cbc703194e8203537652b6223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4483563038361863268}
+  currState: 
 --- !u!1 &1210546375148099049
 GameObject:
   m_ObjectHideFlags: 0

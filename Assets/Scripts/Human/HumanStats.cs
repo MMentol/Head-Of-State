@@ -117,7 +117,7 @@ public class HumanStats : MonoBehaviour
     {
         if(inventory.items == null)
         {
-            anim.SetBool("hasPickaxe", false);
+            //anim.SetBool("hasPickaxe", false);
             return;
         }
 
@@ -125,7 +125,7 @@ public class HumanStats : MonoBehaviour
         {
             if(item.ItemName == "Pickaxe")
             {
-                anim.SetBool("hasPickaxe", true);
+                //anim.SetBool("hasPickaxe", true);
                 hasPickAxe = 1;
                 return;
             }
@@ -139,14 +139,14 @@ public class HumanStats : MonoBehaviour
     {
         if (inventory.items == null)
         {
-            anim.SetBool("hasWater", false);
+            //anim.SetBool("hasWater", false);
             return;
         }
         foreach (var item in this.inventory.items)
         {
             if(item.ItemName == "Bucket")
             {
-                anim.SetBool("hasWater", true);
+                //anim.SetBool("hasWater", true);
                 hasBucket = 1;
                 return;
             }

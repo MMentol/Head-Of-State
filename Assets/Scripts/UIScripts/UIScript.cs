@@ -70,8 +70,12 @@ public class UIScript : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (!SceneManager.GetActiveScene().name.Equals("Main Menu"))
+        if (!SceneManager.GetActiveScene().name.Equals("Main Menu")) {
             timerText.text = getTime(time);
+            if(MaterialDataStorage.Instance.Population <= 0) {
+            toggleLose();
+        }
+        }
         float newTime = Mathf.Floor(time);
         if (Mathf.Floor(time) % 60 == 0)
         {
@@ -90,9 +94,6 @@ public class UIScript : MonoBehaviour
         }
         if(time >= 2700) {
             toggleVictory();
-        }
-        if(MaterialDataStorage.Instance.Population <= 0) {
-            toggleLose();
         }
     }
 

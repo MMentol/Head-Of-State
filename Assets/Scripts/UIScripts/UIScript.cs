@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using Cinaed;
 
 public class UIScript : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class UIScript : MonoBehaviour
     public float time = 0f;
     public int clock = 0;
     public float currTime = 0;
-
 
     public HumanStats[] allHumanStats;
 
@@ -73,8 +73,8 @@ public class UIScript : MonoBehaviour
         if (!SceneManager.GetActiveScene().name.Equals("Main Menu")) {
             timerText.text = getTime(time);
             if(MaterialDataStorage.Instance.Population <= 0) {
-            toggleLose();
-        }
+                toggleLose();
+            }
         }
         float newTime = Mathf.Floor(time);
         if (Mathf.Floor(time) % 60 == 0)
@@ -214,6 +214,10 @@ public class UIScript : MonoBehaviour
     public void toggleVictory() {
         victory.SetActive(true);
         Time.timeScale = 0;
+        TextUpdate[] logs = FindObjectsOfType<TextUpdate>();
+        foreach (TextUpdate t in logs) {
+            t.PrintAtEnd(t.name, t.timer, t.currState);
+        }
     }
     
     public void toggleLose() {

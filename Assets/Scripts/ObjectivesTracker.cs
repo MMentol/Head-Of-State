@@ -18,6 +18,8 @@ public class ObjectivesTracker : MonoBehaviour
     [Header("Objectives Window")]
     [SerializeField] TMP_Text MaterialObj;
     [SerializeField] TMP_Text PopulationObj;
+    [SerializeField] TMP_Text ObjCountText;
+
 
     [Header("Victory Screen")]
     [SerializeField] TMP_Text victoryText;
@@ -30,6 +32,7 @@ public class ObjectivesTracker : MonoBehaviour
     void Awake() {
         MaterialObj.text = "";
         PopulationObj.text = "";
+        ObjCountText.text = "";
     }
     void Start()
     {
@@ -60,6 +63,7 @@ public class ObjectivesTracker : MonoBehaviour
         UpdateValues();
         UpdateObjectiveText();
         bool printed = false;
+        ObjCountText.text = "Objective " + (Mathf.Clamp(1 + objCount, 0, 30));
         // Objective 1
         if(Wood >= 15 && objCount == 0) {
             WriteCSV(1, uis.getTime(uis.time));

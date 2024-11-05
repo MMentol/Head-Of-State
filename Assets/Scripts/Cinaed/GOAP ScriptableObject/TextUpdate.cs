@@ -12,12 +12,12 @@ namespace Cinaed
         private TextMeshProUGUI text;
         private AgentBehaviour agent;
         private HumanBT hBT;
-        public string currState;
         string filename = "";
         public bool goap;
         public bool bt;
-        public bool idle;
-        float timer = 0;
+        public  float timer = 0;
+        public string name;
+        public string currState;
 
         private void Awake()
         {
@@ -42,14 +42,12 @@ namespace Cinaed
                 tw.Close();
                 Debug.Log("BTAgent CSV CREATED");
             }
-            string name = transform.parent.name;
+            this.name = transform.name;
         }
 
         private void Update()
         {
-        //    this.text.text = this.GetText();
             if(goap){
-                this.text.text = this.GetText();
                 if(currState == null) currState = this.agent.CurrentAction.GetType().GetGenericTypeName();
                 if(!(this.agent.CurrentAction is null)){
                     if(currState.Equals(this.agent.CurrentAction.GetType().GetGenericTypeName())) {
@@ -87,10 +85,18 @@ namespace Cinaed
             string comma = ",";
             state = state.Replace(",", string.Empty);
             TextWriter tw = new StreamWriter(filename, true);
-            tw.WriteLine(agent + " ," + state + " ," + totalTime);
+            tw.WriteLine(agent + ", " + state + ", " + totalTime);
             tw.Close();
             // Debug.Log(agent + " " + totalTime + " " + state);
             return;
+        }
+
+        public void PrintAtEnd(string agent, float totalTime, string state) {
+            string comma = ",";
+            state = state.Replace(",", string.Empty);
+            TextWriter tw = new StreamWriter(filename, true);
+            tw.WriteLine(agent + ", " + state + " (Final)," + totalTime);
+            tw.Close();
         }
     }
 }

@@ -124,7 +124,7 @@ MonoBehaviour:
   currState: 
   goap: 0
   bt: 0
-  idle: 0
+  print: 0
 --- !u!114 &8455184990884427051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4661396797160660406
 RectTransform:
   m_ObjectHideFlags: 0

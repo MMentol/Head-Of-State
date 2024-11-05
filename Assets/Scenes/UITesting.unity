@@ -1552,6 +1552,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &565949715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 310966352735016058, guid: 782f9d754f314e146aa5c66953fcddf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 565949711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &653518983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4443,6 +4455,7 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   instructions: {fileID: 0}
   credits: {fileID: 0}
+  anim: {fileID: 0}
   victory: {fileID: 7602220406477925747}
   lose: {fileID: 1772961728}
   time: 0
@@ -4467,6 +4480,7 @@ MonoBehaviour:
   uis: {fileID: 1688967756}
   MaterialObj: {fileID: 565949714}
   PopulationObj: {fileID: 565949713}
+  ObjCountText: {fileID: 565949715}
   victoryText: {fileID: 1547988965}
   Pop: 0
   Wood: 0

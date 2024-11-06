@@ -54,9 +54,11 @@ public class depositMetalTask : Node
             {
                 ClearData("metalStorage");
                 ClearData("metal");
-                parent.parent.SetData("random", -1);
-            }
+                ClearData("random");
 
+                parent.parent.parent.SetData("random", -1);
+                //ClearData("random");
+            }
 
             //Debug.Log("stateDep :" + state);
 

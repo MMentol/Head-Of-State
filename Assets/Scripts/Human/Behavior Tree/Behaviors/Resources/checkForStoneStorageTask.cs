@@ -32,7 +32,10 @@ public class checkForStoneStorageTask : Node
         if (stoneStorage == null || stoneStorage.Length < 1)
         {
             state = NodeState.FAILURE;
-            parent.parent.SetData("random", -1);
+            ClearData("random");
+
+            parent.parent.parent.parent.SetData("random", -1);
+
 
             //Debug.Log("nostone");
             return state;
@@ -44,7 +47,9 @@ public class checkForStoneStorageTask : Node
 
         if (closest == null)
         {
-            parent.parent.SetData("random", -1);
+            ClearData("random");
+            parent.parent.parent.parent.SetData("random", -1);
+
 
             state = NodeState.FAILURE;
             //Debug.Log("checking stone: " + state );

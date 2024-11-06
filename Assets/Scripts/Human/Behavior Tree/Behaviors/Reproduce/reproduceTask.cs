@@ -40,7 +40,7 @@ public class reproduceTask : Node
         if (_transform.position.Equals(house.transform.position))
         {
             rootTree.currentAction = "reproduce";
-            if (house.PeopleInside.Count < house.Capacity && _hStats.insideHouse == 0f)
+            if (house.PeopleInside.Count <= house.Capacity && _hStats.insideHouse == 0f)
             {
                 house.UpdateCurrentHouse(_hStats);
             }
@@ -53,10 +53,11 @@ public class reproduceTask : Node
             }
 
 
-            if (_hStats._happiness <= house.HouseSettings.RequiredHappiness)
+            if (_hStats._happiness <= house.HouseSettings.RequiredHappiness|| _hStats.breedCooldown > 0)
             {
                 house.LeaveHouse(_hStats);
                 _hStats.insideHouse = 0;
+                ClearData("bhome");
                 return NodeState.FAILURE;
             }
 

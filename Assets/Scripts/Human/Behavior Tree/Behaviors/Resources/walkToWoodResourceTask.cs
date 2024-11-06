@@ -25,6 +25,12 @@ public class walkToWoodResourceTask : Node
     {
         TreeResource target = (TreeResource)GetData("wood");
 
+        if(target == null)
+        {
+            ClearData("wood");
+            return NodeState.FAILURE;
+        }
+
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
             humanController.SetTargetPosition(target.transform.position);

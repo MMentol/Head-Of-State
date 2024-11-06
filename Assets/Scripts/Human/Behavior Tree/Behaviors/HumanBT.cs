@@ -95,8 +95,8 @@ public class HumanBT : Tree
                                 }),
                             }),
 
-                            }),
-                            new Sequence(new List<Node>{
+                        }),
+                        new Sequence(new List<Node>{
                             new StoneCheckRandom(transform),
                             new Selector(new List<Node>  {
 
@@ -117,8 +117,8 @@ public class HumanBT : Tree
                                 }),
                             }),
 
-                            }),
-                            new Sequence(new List<Node>{
+                        }),
+                        new Sequence(new List<Node>{
                             new WoodCheckRandom(transform),
                             new Selector(new List<Node>  {
 

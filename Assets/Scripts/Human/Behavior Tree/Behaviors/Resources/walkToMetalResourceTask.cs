@@ -25,6 +25,12 @@ public class walkToMetalResourceTask : Node
     {
         MetalResource target = (MetalResource)GetData("metal");
 
+        if (target == null)
+        {
+            ClearData("metal");
+            return NodeState.FAILURE;
+        }
+
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
             humanController.SetTargetPosition(target.transform.position);

@@ -12,27 +12,33 @@ public class RandomizerMaterial : Node
     public HumanStats _hStats;
 
     private float _attackTime = 1f;
-    private float _attackCounter = 0f;
+    private int counter = 0;
     private int randMat = -1;
 
     public RandomizerMaterial(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
         this._hStats = transform.GetComponent<HumanStats>();
-        randMat = -1; ;
+        randMat = -1;
     }
 
     public override NodeState Evaluate()
     {
-        parent.parent.SetData("random", randMat);
+        if (counter <1)
+        {
+            parent.SetData("random", randMat);
+            counter++;
+        }
+        //parent.SetData("random", randMat);
         randMat = (int)GetData("random");
+        //Debug.Log("Randomizing: " +randMat);
 
-
-        if (randMat == null || randMat == -1)
+        if (randMat == null || randMat <=0 )
         {
             randMat = (int)Random.Range(1, 4);
-            parent.parent.SetData("random", randMat);
-            Debug.Log("rand: " + randMat);
+            //ClearData("random");
+            parent.SetData("random", randMat);
+            //Debug.Log("rand: " + randMat);
             return NodeState.SUCCESS;
         }
         else return NodeState.FAILURE;

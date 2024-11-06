@@ -23,11 +23,10 @@ public class walkToBreedHomeTask : Node
     public override NodeState Evaluate()
     {
         House target = (House)GetData("bhome");
-        if(target == null)
-        {
-            ClearData("bhome");
-            return NodeState.FAILURE;
-        }
+        //if(target == null)
+        //{
+        //    return NodeState.FAILURE;
+        //}
 
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {

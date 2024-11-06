@@ -32,7 +32,12 @@ public class checkForWoodStorageTask : Node
         if (woodStorage == null || woodStorage.Length <= 1 )
         {
             state = NodeState.FAILURE;
-            parent.parent.SetData("random", -1);
+            //Debug.Log("rete:  " + (int)GetData("random"));
+            ClearData("random");
+
+            parent.parent.parent.parent.SetData("random", -1);
+            //Debug.Log("rete2:  " + (int)GetData("random"));
+
 
 
             return state;
@@ -44,7 +49,10 @@ public class checkForWoodStorageTask : Node
 
         if (closest == null)
         {
-            parent.parent.SetData("random", -1);
+            ClearData("random");
+
+            parent.parent.parent.parent.SetData("random", -1);
+
 
 
             state = NodeState.FAILURE; 

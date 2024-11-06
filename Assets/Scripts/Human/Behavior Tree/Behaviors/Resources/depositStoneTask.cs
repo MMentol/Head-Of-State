@@ -55,6 +55,9 @@ public class depositStoneTask : Node
                 ClearData("stoneStorage");
                 ClearData("stone");
                 ClearData("random");
+
+                parent.parent.parent.SetData("random", -1);
+                //ClearData("random");
             }
 
            // Debug.Log("stateDep :" + state);

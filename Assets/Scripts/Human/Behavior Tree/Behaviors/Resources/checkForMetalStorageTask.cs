@@ -32,8 +32,10 @@ public class checkForMetalStorageTask : Node
         if (metalStorage == null || metalStorage.Length < 1)
         {
             state = NodeState.FAILURE;
-            parent.parent.SetData("random", -1);
+            ClearData("random");
 
+            parent.parent.parent.parent.SetData("random", -1);
+            //Debug.Log("Metal RANDOM FAIL1");
             //Debug.Log("checking: " + state);
 
             return state;
@@ -45,7 +47,11 @@ public class checkForMetalStorageTask : Node
 
         if (closest == null)
         {
-            parent.parent.SetData("random", -1);
+            ClearData("random");
+
+            parent.parent.parent.parent.SetData("random", -1);
+            //Debug.Log("Metal RANDOM FAIL2");
+
             state = NodeState.FAILURE;
 
             //Debug.Log("checking2: " + state);

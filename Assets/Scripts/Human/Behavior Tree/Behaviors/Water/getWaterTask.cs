@@ -41,7 +41,7 @@ public class getWaterTask : Node
 
         //    return state;
         //}
-        if (Vector3.Distance(_transform.position, waterTile.transform.position)<=1.5f && _hStats._thirst>=20)
+        if (Vector3.Distance(_transform.position, waterTile.transform.position)<=2f && _hStats._thirst>=80)
         {
             rootTree.currentAction = "getWater";
             
@@ -58,12 +58,12 @@ public class getWaterTask : Node
             _hStats._thirst -= 80;
 
             state = NodeState.SUCCESS;
-            Debug.Log("stateget :" + state);
+            //Debug.Log("stateget :" + state);
             ClearData("water");
             return state;
         }
         state = NodeState.FAILURE;
-        Debug.Log("stateget :" + state);
+        //Debug.Log("stateget :" + state);
 
         return state;
     }

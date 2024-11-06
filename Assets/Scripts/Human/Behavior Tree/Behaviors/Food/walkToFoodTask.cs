@@ -14,8 +14,6 @@ public class walkToFoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
-
-
     public walkToFoodTask(Transform transform)
     {
         rootTree = transform.GetComponent<HumanBT>();
@@ -27,14 +25,18 @@ public class walkToFoodTask : Node
     {
         FoodResource target = (FoodResource)GetData("food");
 
+        if (target == null)
+        {
+            ClearData("food");
+            return NodeState.FAILURE;
+        }
+
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
             humanController.SetTargetPosition(target.transform.position);
-            Debug.Log("statewalk : YES " + target.transform.position);
-
+            //Debug.Log("statewalk : YES " + target.transform.position);
         }
         rootTree.currentAction = "walkToFood";
-        
         state = NodeState.RUNNING;
         return state;
     }

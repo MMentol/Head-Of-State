@@ -25,6 +25,12 @@ public class walkToStoneResourceTask : Node
     {
         StoneResource target = (StoneResource)GetData("stone");
 
+        if (target == null)
+        {
+            ClearData("stone");
+            return NodeState.FAILURE;
+        }
+
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
             humanController.SetTargetPosition(target.transform.position);

@@ -55,8 +55,10 @@ public class depositWoodTask : Node
                 ClearData("woodStorage");
                 ClearData("wood");
                 ClearData("random");
+                parent.parent.parent.SetData("random", -1);
+
             }
-                    
+
             Debug.Log("stateDep :" + state);
 
             return state;

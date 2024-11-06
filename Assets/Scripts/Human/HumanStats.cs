@@ -52,14 +52,13 @@ public class HumanStats : MonoBehaviour
         if (this._age > 3)
         {
             inBabyPhase = 0;
-            anim.SetBool("isBaby", false);
         }
-        else
-        {
-            anim.SetBool("isBaby", true);
-        }
-
         
+        anim.SetBool("isBaby", inBabyPhase == 1 ? true:false);
+
+
+
+
     }
 
     private void statUnfullfilled()
@@ -103,7 +102,7 @@ public class HumanStats : MonoBehaviour
     public void RefractoryPeriod()
     {
         if (breedCooldown > 0)
-            breedCooldown = Mathf.Max(breedCooldown - (Time.fixedDeltaTime * statsRandomizer), 0);
+            breedCooldown = Mathf.Max(breedCooldown - Time.fixedDeltaTime, 0);
         if (breedCooldown <= 0) canBreed = 1; 
         else canBreed = 0;
     }

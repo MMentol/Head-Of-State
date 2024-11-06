@@ -25,6 +25,12 @@ public class walkToWaterTask : Node
     {
         WaterResource target = (WaterResource)GetData("water");
 
+        if (target == null)
+        {
+            ClearData("water");
+            return NodeState.FAILURE;
+        }
+
         if (Vector3.Distance(_transform.position, target.transform.position) > 0.1f)
         {
             humanController.SetTargetPosition(target.transform.position);

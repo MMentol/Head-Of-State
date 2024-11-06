@@ -23,6 +23,7 @@ public class MetalCheckRandom : Node
 
     public override NodeState Evaluate()
     {
+        //parent.parent.SetData("random", -1);
         var randMat = (int)GetData("random");
         
         if (randMat == -1)

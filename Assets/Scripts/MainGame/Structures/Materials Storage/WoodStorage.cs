@@ -1,4 +1,4 @@
 ﻿namespace GridMap.Structures.Storage
 {
-    public class WoodStorage : MaterialStorageBase { }
+    public class WoodStorage : MaterialStorageBase {}
 }

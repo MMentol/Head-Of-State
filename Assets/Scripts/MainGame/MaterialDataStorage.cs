@@ -218,15 +218,16 @@ public class MaterialDataStorage : MonoBehaviour
         FoodCapacity = 0;
         WaterCapacity = 0;
         MaxPopulation = 0;
+        TimeSinceLastUpdate = 0;
     }
 
     public void UpdateStorageLists()
     {
-        WoodStorages = FindObjectsOfType<WoodStorage>();
-        StoneStorages = FindObjectsOfType<StoneStorage>();
-        MetalStorages = FindObjectsOfType<MetalStorage>();
-        WaterStorages = FindObjectsOfType<WaterStorage>();
-        FoodStorages = FindObjectsOfType<FoodStorage>();
+        WoodStorages = FindObjectsOfType<WoodStorage>().OrderBy(storage => storage.Count).ToArray();
+        StoneStorages = FindObjectsOfType<StoneStorage>().OrderBy(storage => storage.Count).ToArray();
+        MetalStorages = FindObjectsOfType<MetalStorage>().OrderBy(storage => storage.Count).ToArray();
+        WaterStorages = FindObjectsOfType<WaterStorage>().OrderBy(storage => storage.Count).ToArray();
+        FoodStorages = FindObjectsOfType<FoodStorage>().OrderBy(storage => storage.Count).ToArray();
     }
 
     public void UpdateSourcesLists()
@@ -429,6 +430,52 @@ public class MaterialDataStorage : MonoBehaviour
         }
         TallyMaterials();
         return true;
+    }
+
+    public int DistributeRemainingCapacity(string materialType, int count)
+    {
+        Debug.Log($"Distributing {count} {materialType}");
+        MaterialStorageBase[] storageList;
+        switch (materialType.ToLower())
+        {
+            case "wood":
+                storageList = WoodStorages;
+                break;
+            case "stone":
+                storageList = StoneStorages;
+                break;
+            case "metal":
+                storageList = MetalStorages;
+                break;
+            case "food":
+                storageList = FoodStorages;
+                break;
+            case "water":
+                storageList = WaterStorages;
+                break;
+            default:
+                Debug.LogError("Invalid material type: " + materialType);
+                return count;
+        }
+
+        if (storageList.Length <= 0)
+        {
+            Debug.Log("Not enough storage available, voiding resources");
+            return count;
+        }
+
+        int i = 0;
+        while (count  > 0) 
+        {
+            MaterialStorageBase currentStorage = storageList[i];
+            if (currentStorage != null && currentStorage.Count < currentStorage.Capacity) 
+            {
+                count -= currentStorage.Add(count);
+            }
+            i++;
+        }
+
+        return count;
     }
 
     //List optimization to reduce findobject usage

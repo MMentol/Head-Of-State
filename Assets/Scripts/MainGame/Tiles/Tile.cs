@@ -127,6 +127,12 @@ public class Tile : MonoBehaviour
                 objectStructure._currentPos = position;
                 objectStructure._tile = GetComponent<Tile>();
                 placedObject.name = $"{placeableStructure.name} ({position.x},{position.y})";
+                Structure placedStructure = placedObject.GetComponent<Structure>();
+                placedStructure._woodSpent += placedStructure._woodCost;
+                placedStructure._stoneSpent += placedStructure._stoneCost;
+                placedStructure._metalSpent += placedStructure._metalCost;
+                placedStructure._waterSpent += placedStructure._waterCost;
+                placedStructure._foodSpent += placedStructure._foodCost;
 
                 if (placedObject.TryGetComponent<MaterialStorageBase>(out var storageComponent))
                 {

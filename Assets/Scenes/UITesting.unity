@@ -932,6 +932,11 @@ PrefabInstance:
       propertyPath: structureChooser
       value: 
       objectReference: {fileID: 1149703827}
+    - target: {fileID: 2390284784574508581, guid: 782f9d754f314e146aa5c66953fcddf4,
+        type: 3}
+      propertyPath: strucWindow
+      value: 
+      objectReference: {fileID: 2131214017}
     - target: {fileID: 2464822431463491735, guid: 782f9d754f314e146aa5c66953fcddf4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4455,7 +4460,6 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   instructions: {fileID: 0}
   credits: {fileID: 0}
-  anim: {fileID: 0}
   victory: {fileID: 7602220406477925747}
   lose: {fileID: 1772961728}
   time: 0
@@ -4614,6 +4618,11 @@ PrefabInstance:
       propertyPath: textBoxParent
       value: 
       objectReference: {fileID: 452254249}
+    - target: {fileID: 8732579145065857255, guid: 5f9537d8e95351a408beef259b229cd3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9093610150126315720, guid: 5f9537d8e95351a408beef259b229cd3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4838,6 +4847,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2131214017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 598270823771660418, guid: 782f9d754f314e146aa5c66953fcddf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 565949711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89aa0c55d9c70b40b50a3d3712bb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1996536620927271808

@@ -7,6 +7,7 @@ using TMPro;
 
 public class StructureChooser : MonoBehaviour
 {
+    private bool DevMode = false;
     public bool isBuildMode = false;
     public GameObject _mouseIndicator;
     public GameObject _storedStructure;
@@ -38,16 +39,18 @@ public class StructureChooser : MonoBehaviour
         }
 
         //Switch between objects
-        if(Input.GetKeyUp(KeyCode.Alpha1))
+        if (DevMode)
         {
-            ChooseStructure(_placeableObjects[0]);
+            if(Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                ChooseStructure(_placeableObjects[0]);
             
+            }
+            if(Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                ChooseStructure(_placeableObjects[1]);           
+            }
         }
-        if(Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            ChooseStructure(_placeableObjects[1]);           
-        }
-
         //Place
         if(_mouseIndicator != null && isBuildMode)
         {

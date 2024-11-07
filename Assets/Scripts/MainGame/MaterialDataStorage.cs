@@ -55,6 +55,7 @@ public class MaterialDataStorage : MonoBehaviour
     public TMP_Text FoodTxtCurr;
     public TMP_Text WaterTxtCurr;
     public TMP_Text PopulationTxtCurr;
+    public StructureWindow strucWindow;
 
     //Extra
     private float TimeSinceLastUpdate = 0;
@@ -256,6 +257,10 @@ public class MaterialDataStorage : MonoBehaviour
         FoodTxtCurr.text = $"{Food}";
         WaterTxtCurr.text = $"{Water}";
         PopulationTxtCurr.text = $"{Population}";
+        
+        if (strucWindow.SelectedStructure != null)
+            strucWindow.UpdateWindow();
+
     }
 
     public int GetRemainingCapacity(string materialType)

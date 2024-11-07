@@ -9729,6 +9729,7 @@ MonoBehaviour:
   FoodTxtCurr: {fileID: 6830009059844785256}
   WaterTxtCurr: {fileID: 739459688225114925}
   PopulationTxtCurr: {fileID: 6360120750655842747}
+  strucWindow: {fileID: 598270823771660418}
 --- !u!114 &8265795262387798016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9741,6 +9742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2859375944986642b519ad3624385a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ResourceType: 
   CapacityTiers: 640000007d000000fa000000f4010000
   WoodUpgradeCost: 000000000f0000001400000019000000
   StoneUpgradeCost: 00000000050000000a0000000f000000

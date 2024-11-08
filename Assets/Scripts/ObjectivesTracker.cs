@@ -100,17 +100,17 @@ public class ObjectivesTracker : MonoBehaviour
             objCount++;
         }
         // Objective 8
-        if(Pop >= 80 && Wood >= 600 && Stone >= 300 && Metal >= 130 && objCount == 7) {
+        if(Pop >= 80 && Wood >= 450 && Stone >= 250 && Metal >= 130 && objCount == 7) {
             WriteCSV(8, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 9
-        if(Wood >= 800 && Stone >= 750 && Metal >= 180 && objCount == 8) {
+        if(Wood >= 500 && Stone >= 300 && Metal >= 180 && objCount == 8) {
             WriteCSV(9, uis.getTime(uis.time));
             objCount++;
         }
         // Objective 10
-        if(Pop >= 100 && objCount == 9) {
+        if(Pop >= 120 && objCount == 9) {
             WriteCSV(10, uis.getTime(uis.time));
             objCount++;
         }
@@ -180,22 +180,22 @@ public class ObjectivesTracker : MonoBehaviour
             break;
 
             case 7:
-            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(600-Wood, 0, 600))) + " Wood\n"
-                                + ((Mathf.Clamp(300-Stone, 0, 300))) + " Stone\n"
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(450-Wood, 0, 600))) + " Wood\n"
+                                + ((Mathf.Clamp(250-Stone, 0, 300))) + " Stone\n"
                                 + ((Mathf.Clamp(130-Metal, 0, 130))) + " Metal";
             PopulationObj.text = "Reach\n80 Population";
             break;
 
             case 8:
-            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(800-Wood, 0, 800))) + " Wood\n"
-                                + ((Mathf.Clamp(750-Stone, 0, 750))) + " Stone\n"
+            MaterialObj.text = "Collect\n" + ((Mathf.Clamp(500-Wood, 0, 800))) + " Wood\n"
+                                + ((Mathf.Clamp(300-Stone, 0, 750))) + " Stone\n"
                                 + ((Mathf.Clamp(180-Metal, 0, 180))) + " Metal";
             PopulationObj.text = "";
             break;
 
             case 9:
             MaterialObj.text = "";
-            PopulationObj.text = "Reach\n100 Population";
+            PopulationObj.text = "Reach\n120 Population";
             break;
 
             default:

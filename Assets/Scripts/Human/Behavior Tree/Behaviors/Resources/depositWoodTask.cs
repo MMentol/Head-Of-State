@@ -18,7 +18,7 @@ public class depositWoodTask : Node
     private float _attackCounter = 0f;
 
     private float timer = 0f;
-    private float delay = 0.3f; //3 seconds~ish
+    private float delay = 0.5f;
 
     public depositWoodTask(Transform transform)
     {

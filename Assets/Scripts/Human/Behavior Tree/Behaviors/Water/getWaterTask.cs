@@ -19,6 +19,9 @@ public class getWaterTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public getWaterTask(Transform transform)
     {
         rootTree = transform.GetComponent<HumanBT>();
@@ -48,6 +51,15 @@ public class getWaterTask : Node
             //add water to human
             //remove water from tile
             WaterResource water = waterTile.GetComponent<WaterResource>();
+
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                Debug.Log($"Delay {timer}");
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
 
             int harvested = water.Harvest(1);
             string resource = "water";

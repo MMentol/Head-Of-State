@@ -15,6 +15,10 @@ public class sleepTask : Node
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
+
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public sleepTask(Transform transform)
     {
         _transform = transform;
@@ -34,6 +38,16 @@ public class sleepTask : Node
         if (_transform.position.Equals(houseTile.transform.position))
         {
             rootTree.currentAction = "sleep";
+
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                Debug.Log($"Delay {timer}");
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
+
             //add food to human
             //remove food from tile
 

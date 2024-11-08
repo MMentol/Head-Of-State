@@ -19,6 +19,9 @@ public class getMetalResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public getMetalResourceTask(Transform transform)
     {
         _transform = transform;
@@ -48,6 +51,13 @@ public class getMetalResourceTask : Node
             //remove food from tile
             //TreeResource metal = metalTile.GetComponent<TreeResource>();
 
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
             int harvested = metalTile.Harvest(1);
             string resource = "metal";
 

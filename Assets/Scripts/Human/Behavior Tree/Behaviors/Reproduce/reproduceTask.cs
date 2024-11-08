@@ -15,7 +15,9 @@ public class reproduceTask : Node
 
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
-    private float timer = 2f;
+
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
 
     public reproduceTask(Transform transform)
     {
@@ -40,6 +42,16 @@ public class reproduceTask : Node
         if (_transform.position.Equals(house.transform.position))
         {
             rootTree.currentAction = "reproduce";
+
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                Debug.Log($"Delay {timer}");
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
+
             if (house.PeopleInside.Count <= house.Capacity && _hStats.insideHouse == 0f)
             {
                 house.UpdateCurrentHouse(_hStats);

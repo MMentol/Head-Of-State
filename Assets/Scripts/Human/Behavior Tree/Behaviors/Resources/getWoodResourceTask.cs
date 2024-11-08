@@ -19,6 +19,9 @@ public class getWoodResourceTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public getWoodResourceTask(Transform transform)
     {
         _transform = transform;
@@ -46,8 +49,15 @@ public class getWoodResourceTask : Node
             rootTree.currentAction = "getWood";
             //add food to human
             //remove food from tile
-            //TreeResource wood = woodTile.GetComponent<TreeResource>();
+            //TreeResource wood = woodTile.GetComponent<TreeResource>();            
+            
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                return NodeState.RUNNING;
+            }
 
+            timer = 0f;
             int harvested = woodTile.Harvest(1);
             string resource = "wood";
 
@@ -66,4 +76,5 @@ public class getWoodResourceTask : Node
 
         return state;
     }
+
 }

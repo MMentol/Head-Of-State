@@ -19,6 +19,9 @@ public class getFoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public getFoodTask(Transform transform)
     {
         _transform = transform;
@@ -43,6 +46,15 @@ public class getFoodTask : Node
             //add food to human
             //remove food from tile
             FoodResource food = foodTile.GetComponent<FoodResource>();
+
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                Debug.Log($"Delay {timer}");
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
 
             int harvested = food.Harvest(1);
             string resource = "food";

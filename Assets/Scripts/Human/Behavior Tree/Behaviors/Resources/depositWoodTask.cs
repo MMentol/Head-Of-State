@@ -17,6 +17,9 @@ public class depositWoodTask : Node
     private float _attackTime = 1f;
     private float _attackCounter = 0f;
 
+    private float timer = 0f;
+    private float delay = 0.3f; //3 seconds~ish
+
     public depositWoodTask(Transform transform)
     {
         _transform = transform;
@@ -40,6 +43,14 @@ public class depositWoodTask : Node
             //add food to human
             //remove food from tile
             WoodStorage woodStorage = wood.GetComponent<WoodStorage>();
+
+            if (timer < delay)
+            {
+                timer += Time.deltaTime;
+                return NodeState.RUNNING;
+            }
+
+            timer = 0f;
 
             Debug.Log("Inventory of:" + this.inventory);
             string resource = "wood";

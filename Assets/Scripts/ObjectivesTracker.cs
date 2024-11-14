@@ -7,6 +7,7 @@ using TMPro;
 public class ObjectivesTracker : MonoBehaviour
 {
     string filename = "";
+    string agentLog = "";
     [Header ("Algorithm Used")]
     [SerializeField] bool goap;
     [SerializeField] bool bt;
@@ -43,6 +44,11 @@ public class ObjectivesTracker : MonoBehaviour
             tw.WriteLine("Objective No., Completion Time");
             tw.Close();
             Debug.Log("GOAP CSV CREATED");
+            agentLog = Application.dataPath + "/Log/GOAPAgents.csv";
+            TextWriter aw = new StreamWriter(agentLog, false);
+            aw.WriteLine("Agent Name, Action, Time in Act (In Seconds)");
+            aw.Close();
+            Debug.Log("GOAPAgent CSV CREATED");
         }
         else if(bt) {
             filename = Application.dataPath + "/Log/BTRun.csv";
@@ -50,7 +56,13 @@ public class ObjectivesTracker : MonoBehaviour
             tw.WriteLine("Objective No., Completion Time");
             tw.Close();
             Debug.Log("BT CSV CREATED");
+            agentLog = Application.dataPath + "/Log/BTAgents.csv";
+            TextWriter aw = new StreamWriter(agentLog, false);
+            aw.WriteLine("Agent Name, Action, Time in Act (In Seconds)");
+            aw.Close();
+            Debug.Log("BTAgent CSV CREATED");
         }
+        
         Pop = mds.Population;
         Wood = mds.totalWood;
         Stone = mds.totalStone;

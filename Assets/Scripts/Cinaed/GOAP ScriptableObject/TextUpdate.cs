@@ -30,17 +30,9 @@ namespace Cinaed
             //Directory.CreateDirectory(Application.dataPath + "/Log");
             if(goap) {
                 filename = Application.dataPath + "/Log/GOAPAgents.csv";
-                TextWriter tw = new StreamWriter(filename, false);
-                tw.WriteLine("Agent Name, Action, Time in Act (In Seconds)");
-                tw.Close();
-                Debug.Log("GOAPAgent CSV CREATED");
             }
             if(bt) {
                 filename = Application.dataPath + "/Log/BTAgents.csv";
-                TextWriter tw = new StreamWriter(filename, false);
-                tw.WriteLine("Agent Name, Action, Time in Act (In Seconds)");
-                tw.Close();
-                Debug.Log("BTAgent CSV CREATED");
             }
             this.name = transform.name;
         }

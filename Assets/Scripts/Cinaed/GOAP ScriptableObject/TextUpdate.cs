@@ -40,6 +40,7 @@ namespace Cinaed
         private void Update()
         {
             if(goap){
+                text.text = GetText();
                 if(currState == null) currState = this.agent.CurrentAction.GetType().GetGenericTypeName();
                 if(!(this.agent.CurrentAction is null)){
                     if(currState.Equals(this.agent.CurrentAction.GetType().GetGenericTypeName())) {
@@ -52,6 +53,7 @@ namespace Cinaed
                 }
             }
             if(bt) {
+                text.text = GetText();
                 if(currState == null) {currState = hBT.currentAction;}
                 if(currState.Equals(hBT.currentAction)) {
                     timer += Time.deltaTime;
@@ -65,10 +67,16 @@ namespace Cinaed
 
         private string GetText()
         {
-            if (this.agent.CurrentAction is null)
-                return "Idle";
+            if(goap) {
+                if (this.agent.CurrentAction is null)
+                    return "Idle";
 
-            return $"{this.agent.CurrentGoal.GetType().GetGenericTypeName()}\n{this.agent.CurrentAction.GetType().GetGenericTypeName()}\n{this.agent.State}";
+                return $"{this.agent.CurrentGoal.GetType().GetGenericTypeName()}\n{this.agent.CurrentAction.GetType().GetGenericTypeName()}\n{this.agent.State}";
+            }
+            if(bt) {
+                return $"{this.hBT.currentAction}";
+            }
+            return "No Action";
         }
 
 

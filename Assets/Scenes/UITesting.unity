@@ -5087,6 +5087,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8111629287539482620, guid: dbdbf0220aa132141b48cc9e13c053ef,
+        type: 3}
+      propertyPath: m_text
+      value: Congratulations! You completed a total of 8 objectives.
+      objectReference: {fileID: 0}
     - target: {fileID: 8142558339736744111, guid: dbdbf0220aa132141b48cc9e13c053ef,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
